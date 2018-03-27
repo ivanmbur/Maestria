@@ -1,0 +1,506 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{physics}
+\usepackage{amssymb}
+
+\title{Mecánica Cuántica Avanzada: Tarea 4}
+\author{Iván Mauricio Burbano Aldana}
+
+\begin{document}
+
+\maketitle
+
+\section*{3.3}
+
+Se tiene que
+\begin{align}
+\begin{split}
+\partial_i\phi(t,\vb{y})=&\partial_i\int \frac{\dd[3]{\vb{p}}}{\sqrt{(2\pi)^32E_p}}\qty(a(p)e^{-ip\vdot x}+a^\dagger(p)e^{ip\vdot x})\\
+=&\int \frac{\dd[3]{\vb{p}}}{\sqrt{(2\pi)^32E_p}}\qty(a(p)\partial_ie^{-ip\vdot x}+a^\dagger(p)\partial_ie^{ip\vdot x})\\
+=&\int \frac{\dd[3]{\vb{p}}}{\sqrt{(2\pi)^32E_p}}\qty(a(p)(-ip_i)e^{-ip\vdot x}+a^\dagger(p)ip_ie^{ip\vdot x})\\
+=&i\int \frac{\dd[3]{\vb{p}}}{\sqrt{(2\pi)^32E_p}}p_i\qty(-a(p)e^{-ip\vdot x}+a^\dagger(p)e^{ip\vdot x}).
+\end{split}
+\end{align}
+Por lo tanto
+\begin{align}
+\begin{split}
+\phi_i(t,\vb{x})\partial_i\phi(t,\vb{y})=&\int \frac{\dd[3]{\vb{p}}}{\sqrt{(2\pi)^32E_p}}\qty(a(p)e^{-ip\vdot x}+a^\dagger(p)e^{ip\vdot x})\times\\
+&i\int \frac{\dd[3]{\vb{p}}}{\sqrt{(2\pi)^32E_p}}p_i\qty(-a(p)e^{-ip\vdot y}+a^\dagger(p)e^{ip\vdot y})\\
+=&i\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{p'}}}{(2\pi)^32E_p}p_i'\times\\
+&\qty(a(p)e^{-ip\vdot x}+a^\dagger(p)e^{ip\vdot x})
+\qty(-a(p')e^{-ip'\vdot y}+a^\dagger(p')e^{ip'\vdot y})\\
+=&i\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{p'}}}{(2\pi)^32E_p}p_i'\times\\
+&\left(-a(p)a(p')e^{-ip\vdot x}e^{-ip'\vdot y}+a(p)a^\dagger(p')e^{-ip\vdot x}e^{ip'\vdot y}\right.\\
+&\left.-a^\dagger(p)a(p')e^{ip\vdot x}e^{-ip'\vdot y}+a^\dagger(p)a^\dagger(p')e^{ip\vdot x}e^{ip'\vdot y}\right).
+\end{split}
+\end{align}
+De manera similar
+\begin{align}
+\begin{split}
+\partial_i\phi(t,\vb{y})\phi_i(t,\vb{x})=&i\int \frac{\dd[3]{\vb{p}}}{\sqrt{(2\pi)^32E_p}}p_i\qty(-a(p)e^{-ip\vdot y}+a^\dagger(p)e^{ip\vdot y})\times\\
+&\int \frac{\dd[3]{\vb{p}}}{\sqrt{(2\pi)^32E_p}}\qty(a(p)e^{-ip\vdot x}+a^\dagger(p)e^{ip\vdot x})\\
+=&i\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{p'}}}{(2\pi)^32E_p}p_i'\times\\
+&\qty(-a(p')e^{-ip'\vdot y}+a^\dagger(p')e^{ip'\vdot y})\qty(a(p)e^{-ip\vdot x}+a^\dagger(p)e^{ip\vdot x})
+\\
+=&i\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{p'}}}{(2\pi)^32E_p}p_i'\times\\
+&\left(-a(p')a(p)e^{-ip'\vdot y}e^{-ip\vdot x}-a(p')a^\dagger(p)e^{-ip'\vdot y}e^{ip\vdot x}\right.\\
+&\left.+a^\dagger(p')a(p)e^{ip'\vdot y}e^{-ip\vdot x}+a^\dagger(p')a^\dagger(p)e^{ip'\vdot y}e^{ip\vdot x}\right).
+\end{split}
+\end{align}
+Entonces podemos calcular el conmutador
+\begin{align}
+\begin{split}
+[\phi_i(t,\vb{x}),\partial_i\phi(t,\vb{y})]_-=&\phi_i(t,\vb{x})\partial_i\phi(t,\vb{y})-\partial_i\phi(t,\vb{y})\phi_i(t,\vb{x})\\
+=&i\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{p'}}}{(2\pi)^32E_p}p_i'\times\\
+&\left(-a(p)a(p')e^{-ip\vdot x}e^{-ip'\vdot y}+a(p)a^\dagger(p')e^{-ip\vdot x}e^{ip'\vdot y}\right.\\
+&\left.-a^\dagger(p)a(p')e^{ip\vdot x}e^{-ip'\vdot y}+a^\dagger(p)a^\dagger(p')e^{ip\vdot x}e^{ip'\vdot y}\right.\\
+&\left.a(p')a(p)e^{-ip'\vdot y}e^{-ip\vdot x}+a(p')a^\dagger(p)e^{-ip'\vdot y}e^{ip\vdot x}\right.\\
+&\left.-a^\dagger(p')a(p)e^{ip'\vdot y}e^{-ip\vdot x}-a^\dagger(p')a^\dagger(p)e^{ip'\vdot y}e^{ip\vdot x}\right).\\
+&=i\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{p'}}}{(2\pi)^32E_p}p_i'\times\\
+&\left(e^{-ip\vdot x}e^{-ip'\vdot y}(-a(p)a(p')+a(p')a(p))\right.\\
+&\left.+e^{-ip\vdot x}e^{ip'\vdot y}(a(p)a^\dagger(p')-a^\dagger(p')a(p))\right.\\
+&\left.+e^{ip\vdot x}e^{-ip'\vdot y}(-a^\dagger(p)a(p')+a(p')a^\dagger(p))\right.\\
+&\left.+e^{ip\vdot x}e^{ip'\vdot y}(a^\dagger(p)a^\dagger(p')-a^\dagger(p')a^\dagger(p))\right)\\
+&=i\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{p'}}}{(2\pi)^32E_p}p_i'\times\\
+&\left(-e^{-ip\vdot x}e^{-ip'\vdot y}[a(p),a(p')]_-+\right.\\
+&\left.e^{-ip\vdot x}e^{ip'\vdot y}[a(p),a^\dagger(p')]_--e^{ip\vdot x}e^{-ip'\vdot y}[a(p'),a^\dagger(p)]\right.\\
+&\left.e^{ip\vdot x}e^{ip'\vdot y}[a^\dagger(p),a^\dagger(p')]\right)\\
+\end{split}
+\end{align}\\
+Utilizando las relaciones de conmutación
+\begin{align}
+\begin{split}
+[a(p),a(p')]_-=&0=[a^\dagger(p),a^\dagger(p')]_-\\
+[a(p),a^\dagger(p')]_-=&\delta^{3}(\vb{p}-\vb{p}')
+\end{split}
+\end{align}
+se tiene
+\begin{align}
+\begin{split}
+[\phi_i(t,\vb{x}),\partial_i\phi(t,\vb{y})]_-=&i\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{p'}}}{(2\pi)^32E_p}p_i'\times\\
+&\qty(e^{-ip\vdot x}e^{ip'\vdot y}\delta^{3}(\vb{p}-\vb{p}')-e^{ip\vdot x}e^{-ip'\vdot y}\delta^{3}(\vb{p}'-\vb{p}))\\
+=&i\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{p'}}}{(2\pi)^32E_p}p_i'\times\\
+&\qty(e^{-ip\vdot x}e^{ip'\vdot y}-e^{ip\vdot x}e^{-ip'\vdot y})\delta^{3}(\vb{p}'-\vb{p})\\
+=&i\int\frac{\dd[3]{\vb{p}}}{(2\pi)^32E_p}p_i\qty(e^{-ip\vdot x}e^{ip\vdot y}-e^{ip\vdot x}e^{-ip\vdot y})\\
+=&i\int\frac{\dd[3]{\vb{p}}}{(2\pi)^32E_p}p_i\qty(e^{ip\vdot(y- x)}-e^{-ip\vdot(y- x)}).
+\end{split}
+\end{align}
+Ya que el conmutador se toma en tiempos iguales se tiene que
+\begin{equation}
+p\vdot(y-x)=p_0(t-t)-\vb{p}\vdot(\vb{y}-\vb{x})=-\vb{p}\vdot(\vb{y}-\vb{x})=\vb{p}\vdot(\vb{x}-\vb{y}).
+\end{equation}
+Por lo tanto
+\begin{align}
+\begin{split}
+[\phi_i(t,\vb{x}),\partial_i\phi(t,\vb{y})]_-=&i\int\frac{\dd[3]{\vb{p}}}{(2\pi)^32E_p}p_i\qty(e^{i\vb{p}\vdot(\vb{x}-\vb{y})}-e^{-i\vb{p}\vdot(\vb{x}-\vb{y})})\\
+=&i\int\frac{\dd[3]{\vb{p}}}{(2\pi)^32E_p}p_i2\cos(\vb{p}\vdot(\vb{x}-\vb{y}))\\
+=&-i\int\frac{\dd[3]{\vb{p}}}{(2\pi)^3E_p}p^i\cos(\vb{p}\vdot(\vb{x}-\vb{y})).
+\end{split}
+\end{align}
+Note que la función
+\begin{align}
+\begin{split}
+f:\mathbb{R}^3&\rightarrow\mathbb{R}\\
+\vb{p}&\mapsto p^i\cos(\vb{p}\vdot(\vb{x}-\vb{y}))
+\end{split}
+\end{align}
+es impar, es decir, $f(-\vb{p})=-f(\vb{p})$. Se concluye entonces que su integral se debe anular y por lo tanto
+\begin{equation}
+[\phi_i(t,\vb{x}),\partial_i\phi(t,\vb{y})]_-=0.
+\end{equation}
+
+Debo aclarar que estos cálculos solo cobran sentido en el contexto de integrales oscilatorias.
+
+\section*{3.4}
+
+Para invertir la relación de Fourier recuerde
+\begin{equation}\label{ec:dirac}
+\int\frac{\dd[3]{x}}{(2\pi)^3}e^{-i(\vb{p}-\vb{p'})\vdot \vb{x}}=\delta^3(\vb{p}-\vb{p'})=\delta^3(\vb{p'}-\vb{p})=\int\frac{\dd[3]{x}}{(2\pi)^3}e^{i(\vb{p}-\vb{p'})\vdot \vb{x}}.
+\end{equation}
+Por lo tanto
+\begin{align}
+\begin{split}
+\int \dd[3]{x} e^{-i\vb{p}\vdot\vb{x}}\phi(x)=&\int\frac{\dd[3]{x}\dd[3]{p'}}{\sqrt{(2\pi)^32E_{p'}}}e^{-i\vb{p}\vdot\vb{x}}(a(p')e^{-i{p'}\vdot x}+a^\dagger(p')e^{ip'\vdot x})\\
+=&\int\frac{\dd[3]{x}\dd[3]{p'}}{\sqrt{(2\pi)^32E_{p'}}}(2\pi)^3\left(a(p')e^{-iE_{p'}t}\frac{e^{-i(\vb{p}-\vb{p'})\vdot\vb{x}}}{(2\pi)^3}\right.\\
+&\left.+a^\dagger(p')e^{iE_{p'}t}\frac{e^{-i(\vb{p}+\vb{p'})\vdot\vb{x}}}{(2\pi)^3}\right)\\
+=&\int\dd[3]{p'}\sqrt{\frac{(2\pi)^3}{2E_{p'}}}(a(p')e^{-iE_{p'}t}\delta^3(\vb{p}-\vb{p'})\\
+&+a^\dagger(p')e^{iE_{p'}t}\delta^3(\vb{p}+\vb{p'}))\\
+=&\sqrt{\frac{(2\pi)^3}{2E_{p}}}(a(p)e^{-iE_{p}t}+a^\dagger(\tilde{p})e^{iE_{p}t})
+\end{split}
+\end{align}
+y 
+\begin{align}
+\begin{split}
+\int \dd[3]{x} e^{-i\vb{p}\vdot\vb{x}}\Pi(x)=&\int\dd[3]{x}\dd[3]{p'}i\sqrt{\frac{E_{p'}}{(2\pi)^32}}e^{-i\vb{p}\vdot\vb{x}}(-a(p')e^{-i{p'}\vdot x}\\
+&+a^\dagger(p')e^{ip'\vdot x})\\
+=&\int\dd[3]{x}\dd[3]{p'}i\sqrt{\frac{E_{p'}}{(2\pi)^32}}(2\pi)^3\\
+&\left(-a(p')e^{-iE_{p'}t}\frac{e^{-i(\vb{p}-\vb{p'})\vdot\vb{x}}}{(2\pi)^3}\right.\\
+&\left.+a^\dagger(p')e^{iE_{p'}t}\frac{e^{-i(\vb{p}+\vb{p'})\vdot\vb{x}}}{(2\pi)^3}\right)\\
+=&\int\dd[3]{p'}i\sqrt{\frac{(2\pi)^3E_{p'}}{2}}(-a(p')e^{-iE_{p'}t}\delta^3(\vb{p}-\vb{p'})\\
+&+a^\dagger(p')e^{iE_{p'}t}\delta^3(\vb{p}+\vb{p'}))\\
+=&i\sqrt{\frac{(2\pi)^3E_{p}}{2}}(-a(p)e^{-iE_{p}t}+a^\dagger(\tilde{p})e^{iE_{p}t})
+\end{split}
+\end{align}
+donde donde $\tilde{p}=(E_p,-\vb{p})$. Por lo tanto
+\begin{align}
+\begin{split}
+a(p)=&\frac{1}{\sqrt{(2\pi)^32E_p}}\int \dd[3]{x}(E_p\phi(x)e^{-i\vb{p}\vdot\vb{x}}e^{iE_pt}+i\Pi(x)e^{-i\vb{p}\vdot\vb{x}}e^{iE_pt})\\
+=&\frac{1}{\sqrt{(2\pi)^32E_p}}\int \dd[3]{x}e^{ip\vdot x}(E_p\phi(x)+i\Pi(x))
+\end{split}
+\end{align}
+y
+\begin{equation}
+a^\dagger(p)=\frac{1}{\sqrt{(2\pi)^32E_p}}\int \dd[3]{x}e^{-ip\vdot x}(E_p\phi(x)-i\Pi(x)).
+\end{equation}
+Se concluye entonces
+\begin{align}
+\begin{split}
+[a(p),a(p')]_-=&\frac{1}{(2\pi)^32\sqrt{E_pE_{p'}}}\int \dd[3]{x}\dd[3]{y}e^{i(p\vdot x+p'\vdot y)}[E_p\phi(x)+i\Pi(x)\\
+&,E_{p'}\phi(y)+i\Pi(y)]\\
+=&\frac{1}{(2\pi)^32\sqrt{E_pE_{p'}}}\int \dd[3]{x}\dd[3]{y}e^{i(p\vdot x+p'\vdot y)}\\
+&(E_pE_{p'}[\phi(x),\phi(y)]_-+iE_p[\phi(x),\Pi(y)]_-\\
+&+iE_{p'}[\Pi(x),\phi(y)]_--[\Pi(x),\Pi(y)]_-),
+\end{split}
+\end{align}
+\begin{align}
+\begin{split}
+[a^\dagger(p),a^\dagger(p')]_-=&\frac{1}{(2\pi)^32\sqrt{E_pE_{p'}}}\int \dd[3]{x}\dd[3]{y}e^{-i(p\vdot x+p'\vdot y)}[E_p\phi(x)-i\Pi(x)\\
+&,E_{p'}\phi(y)-i\Pi(y)]\\
+=&\frac{1}{(2\pi)^32\sqrt{E_pE_{p'}}}\int \dd[3]{x}\dd[3]{y}e^{-i(p\vdot x+p'\vdot y)}\\
+&(E_pE_{p'}[\phi(x),\phi(y)]_--iE_p[\phi(x),\Pi(y)]_-\\
+&-iE_{p'}[\Pi(x),\phi(y)]_--[\Pi(x),\Pi(y)]_-)
+\end{split}
+\end{align}
+y
+\begin{align}
+\begin{split}
+[a(p),a^\dagger(p')]_-=&\frac{1}{(2\pi)^32\sqrt{E_pE_{p'}}}\int \dd[3]{x}\dd[3]{y}e^{i(p\vdot x-p'\vdot y)}[E_p\phi(x)+i\Pi(x)\\
+&,E_{p'}\phi(y)-i\Pi(y)]\\
+=&\frac{1}{(2\pi)^32\sqrt{E_pE_{p'}}}\int \dd[3]{x}\dd[3]{y}e^{i(p\vdot x-p'\vdot y)}\\
+&(E_pE_{p'}[\phi(x),\phi(y)]_--iE_p[\phi(x),\Pi(y)]_-\\
+&+iE_{p'}[\Pi(x),\phi(y)]_-+[\Pi(x),\Pi(y)]_-).
+\end{split}
+\end{align}
+Para evaluar estos conmutadores podemos utilizar las relaciones en tiempos simultaneos. Esto se debe a que los operadores de creación y aniquilación son constantes. En efecto, utilizando la ecuación de Klein-Gordon tenemos
+\begin{align}
+\begin{split}
+\dv{a(p)}{t}=&\frac{1}{\sqrt{(2\pi)^32E_p}}\int \dd[3]{x}iE_pe^{ip\vdot x}(E_p\phi(x)+i\Pi(x))\\
+&+\frac{1}{\sqrt{(2\pi)^32E_p}}\int \dd[3]{x}e^{ip\vdot x}(E_p\dot{\phi}(x)+i\dot{\Pi}(x))\\
+=&\frac{1}{\sqrt{(2\pi)^32E_p}}\int \dd[3]{x}E_pe^{ip\vdot x}(iE_p\phi(x)-\dot{\phi}(x)+\dot{\phi(x)}+\frac{i}{E_p}\ddot{\phi}(x))\\
+=&\frac{1}{\sqrt{(2\pi)^32E_p}}\int \dd[3]{x}ie^{ip\vdot x}(E_p^2\phi(x)+\ddot{\phi}(x))\\
+=&\frac{1}{\sqrt{(2\pi)^32E_p}}\int \dd[3]{x}ie^{ip\vdot x}(E_p^2\phi(x)+\Delta\phi(x)-m^2\phi(x)).
+\end{split}
+\end{align}
+Note que si los campos decaen en el infinito
+\begin{align}
+\begin{split}
+\int \dd{x^i}e^{\pm ip\vdot x}\partial_i^2\phi(x)=&-\int\dd{x^i}(\pm) ip_ie^{\pm ip\vdot x}\partial_i\phi(x)\\
+=&\int\dd{x^i}(ip_i)^2e^{\pm ip\vdot x}\phi(x).
+\end{split}
+\end{align}
+Por lo tanto
+\begin{align}
+\begin{split}
+\dv{a(p)}{t}=&\frac{1}{\sqrt{(2\pi)^32E_p}}\int \dd[3]{x}ie^{ip\vdot x}(E_p^2-\vb{p}^2-m^2)\phi(x)=0.
+\end{split}
+\end{align}
+Además,
+\begin{equation}
+\dv{a^\dagger(p)}{t}=\qty(\dv{a(p)}{t})^\dagger=0.
+\end{equation}
+Sabiendo esto, concluimos
+\begin{align}
+\begin{split}
+[a(p),a(p')]_-=&\frac{1}{(2\pi)^32\sqrt{E_pE_{p'}}}\int \dd[3]{x}\dd[3]{y}e^{i(p\vdot x+p'\vdot y)}\\
+&(-E_p\delta^3(\vb{x}-\vb{y})+E_{p'}\delta^3(\vb{x}-\vb{y}))\\
+=&\frac{1}{(2\pi)^32\sqrt{E_pE_{p'}}}\int \dd[3]{x}e^{i(p+p')\vdot x}(E_{p'}-E_p)\\
+=&\frac{1}{2\sqrt{E_pE_{p'}}}\delta^3(\vb{p}+\vb{p'})(E_{p'}-E_p)\\
+=&\frac{1}{2\sqrt{E_pE_{p'}}}\delta^3(\vb{p}+\vb{p'})(E_p-E_p)=0,
+\end{split}
+\end{align}
+\begin{align}
+\begin{split}
+[a^\dagger(p),a^\dagger(p')]_-=&\frac{1}{(2\pi)^32\sqrt{E_pE_{p'}}}\int \dd[3]{x}\dd[3]{y}e^{-i(p\vdot x+p'\vdot y)}\\
+&(E_p\delta^3(\vb{x}-\vb{y})-E_{p'}\delta^3(\vb{x}-\vb{y}))\\
+=&\frac{1}{(2\pi)^32\sqrt{E_pE_{p'}}}\int \dd[3]{x}e^{-i(p+p')\vdot x}(E_{p}-E_{p'})\\
+=&\frac{1}{2\sqrt{E_pE_{p'}}}\delta^3(\vb{p}+\vb{p'})(E_{p}-E_{p'})\\
+=&\frac{1}{2\sqrt{E_pE_{p'}}}\delta^3(\vb{p}+\vb{p'})(E_p-E_p)=0
+\end{split}
+\end{align}
+y
+\begin{align}
+\begin{split}
+[a(p),a^\dagger(p')]_-=&\frac{1}{(2\pi)^32\sqrt{E_pE_{p'}}}\int \dd[3]{x}\dd[3]{y}e^{i(p\vdot x-p'\vdot y)}\\
+&(E_p\delta^3(\vb{x}-\vb{y})+E_{p'}\delta^3(\vb{x}-\vb{y}))\\
+=&\frac{1}{(2\pi)^32\sqrt{E_pE_{p'}}}\int \dd[3]{x}e^{i(p-p')\vdot x}(E_{p}+E_{p'}\\
+=&\frac{1}{2\sqrt{E_pE_{p'}}}\delta^3(\vb{p}-\vb{p'})(E_{p}+E_{p'})\\
+=&\frac{2E_p}{2E_p}\delta^3(\vb{p}-\vb{p'})=\delta^3(\vb{p}-\vb{p'}).
+\end{split}
+\end{align}
+
+\section*{3.5}
+\subsection*{a)}
+En primer lugar necesitamos construir el tensor de energía-momento. Para el campo real masivo el Lagrangiano es
+\begin{equation}
+\mathcal{L}=\frac{1}{2}(\partial_\mu\phi)(\partial^\mu\phi)-\frac{1}{2}m^2\phi^2.
+\end{equation} 
+Por lo tanto, el tensor de energía-momento es
+\begin{align}
+\begin{split}
+T^{\mu\nu}=&\pdv{\mathcal{L}}{(\partial_\mu\phi)}\partial^\nu\phi-g^{\mu\nu}\mathcal{L}\\
+=&(\partial^\mu\phi)(\partial^\nu\phi)-\frac{1}{2}g^{\mu\nu}(\partial_\sigma\phi)(\partial^\sigma\phi)+\frac{1}{2}g^{\mu\nu}m^2\phi^2.
+\end{split}
+\end{align}
+De acá concluimos que el momento del campo es 
+\begin{align}
+\begin{split}
+P^\mu=&\int \dd[3]{x}T^{0\mu}(x)\\
+=&\int \dd[3]{x}\qty(\dot{\phi}(x)\partial^\nu\phi(x)-\frac{1}{2}g^{0\nu}(\partial_\sigma\phi)(\partial^\sigma\phi)+\frac{1}{2}g^{0\nu}m^2\phi(x)^2)\\
+=&\int \dd[3]{x}\qty(\Pi(x)\partial^\nu\phi(x)-\frac{1}{2}g^{0\nu}(\partial_\sigma\phi)(\partial^\sigma\phi)+\frac{1}{2}g^{0\nu}m^2\phi(x)^2).
+\end{split}
+\end{align}
+Tenemos que
+\begin{equation}
+\partial_\mu\phi(x)=\int\frac{\dd[3]{p}}{\sqrt{(2\pi)^32E_p}}\qty(-ip_\mu a(p)e^{-ip\vdot x}+ip_\mu a^\dagger(p)e^{ip\vdot x}),
+\end{equation}
+es decir,
+\begin{equation}
+\partial^\nu\phi(x)=g^{\mu\nu}\partial_\mu\phi(x)=\int\frac{\dd[3]{p}}{\sqrt{(2\pi)^32E_p}}ip^\nu\qty(- a(p)e^{-ip\vdot x}+ a^\dagger(p)e^{ip\vdot x}).
+\end{equation}
+Por lo tanto,
+\begin{align}
+\begin{split}
+\Pi(x)\partial^\mu\phi(x)=&\int\frac{\dd[3]{p}\dd[3]{p'}}{\sqrt{(2\pi)^32E_{p'}}}i\sqrt{\frac{E_p}{2(2\pi)^3}}ip'^\mu\qty(-a(p)e^{-ip\vdot x}+a^\dagger(p)e^{ip\vdot x})\times\\
+&\qty(- a(p')e^{-ip'\vdot x}+ a^\dagger(p')e^{ip'\vdot x})\\
+=&\int\frac{\dd[3]{p}\dd[3]{p'}}{(2\pi)^32}\sqrt{\frac{E_p}{E_{p'}}}p'^\mu\left(-a(p)a(p')e^{-i(p+p')\vdot x}\right.\\
+&+a(p)a^\dagger(p')e^{-i(p-p')\vdot x}+a^\dagger(p)a(p')e^{-i(p'-p)\vdot x}\\
+&\left.-a^\dagger(p)a^\dagger(p')e^{-i(-p-p')\vdot x}\right)\\
+=&\int\frac{\dd[3]{p}\dd[3]{p'}}{(2\pi)^32}\sqrt{\frac{E_p}{E_{p'}}}p'^\mu\left(-a(p)a(p')e^{-i(E_p+E_{p'})t}e^{i(\vb{p}+\vb{p'})\vdot\vb{x}}\right.\\
+&+a(p)a^\dagger(p')e^{-i(E_p-E_{p'})t}e^{i(\vb{p}-\vb{p'})\vdot\vb{x}}\\
+&+a^\dagger(p)a(p')e^{-i(E_{p'}-E_p)t}e^{i(\vb{p'}-\vb{p})\vdot\vb{x}}\\
+&\left.-a^\dagger(p)a^\dagger(p')e^{-i(-E_p-E_{p'})t}e^{i(-\vb{p}-\vb{p'})\vdot\vb{x}}\right).\\
+\end{split}
+\end{align}
+Recordando \eqref{ec:dirac_delta} y notando que $E_p=E_p'$ si $\vb{p}=-\vb{p'}$, concluimos
+\begin{align}
+\begin{split}
+\int\dd[3]{x}\Pi(x)\partial^\mu\phi(x)=&\int\frac{\dd[3]{p}\dd[3]{p'}}{2}\sqrt{\frac{E_p}{E_{p'}}}p'^\mu\\
+&\left(-a(p)a(p')e^{-i(E_p+E_{p'})t}\delta^3(\vb{p}+\vb{p'})\right.\\
+&+a(p)a^\dagger(p')e^{-i(E_p-E_{p'})t}\delta^3(\vb{p}-\vb{p'})\\
+&+a^\dagger(p)a(p')e^{-i(E_{p'}-E_p)t}\delta^3(\vb{p}-\vb{p'})\\
+&\left.-a^\dagger(p)a^\dagger(p')e^{-i(-E_p-E_{p'})t}\delta^3(\vb{p}+\vb{p'})\right)\\
+=&\int\dd[3]{p}\frac{1}{2}\left(-\tilde{p}^\mu a(p)a(\tilde{p})e^{-i2E_pt}\right.\\
+&\left.+p^\mu a(p)a^\dagger(p)+p^\mu a^\dagger(p)a(p)-\tilde{p}^\mu a^\dagger(p)a^\dagger(\tilde{p})e^{i2E_pt}\right)
+\end{split}
+\end{align}
+donde $\tilde{p}=(E_p,-\vb{p})$. 
+De manera análoga tenemos que
+\begin{align}
+\begin{split}
+\partial_\sigma\phi(x)\partial^\sigma\phi(x)=&\int\frac{\dd[3]{p}\dd[3]{p'}}{(2\pi)^32}\frac{1}{\sqrt{E_pE_{p'}}}(ip_\sigma)(ip'^\sigma)\times\\
+&\qty(- a(p)e^{-ip\vdot x}+ a^\dagger(p)e^{ip\vdot x})\times\\
+&\qty(- a(p')e^{-ip'\vdot x}+ a^\dagger(p')e^{ip'\vdot x})\\
+=&\int\frac{\dd[3]{p}\dd[3]{p'}}{(2\pi)^32}\frac{1}{\sqrt{E_pE_{p'}}}p_\sigma p'^\sigma\\
+&\left(-a(p)a(p')e^{-i(E_p+E_{p'})t}e^{i(\vb{p}+\vb{p'})\vdot\vb{x}}\right.\\
+&+a(p)a^\dagger(p')e^{-i(E_p-E_{p'})t}e^{i(\vb{p}-\vb{p'})\vdot\vb{x}}\\
+&+a^\dagger(p)a(p')e^{-i(E_{p'}-E_p)t}e^{i(\vb{p'}-\vb{p})\vdot\vb{x}}\\
+&\left.-a^\dagger(p)a^\dagger(p')e^{-i(-E_p-E_{p'})t}e^{i(-\vb{p}-\vb{p'})\vdot\vb{x}}\right)
+\end{split}
+\end{align}
+y
+\begin{align}
+\begin{split}
+\int\dd[3]{x}\frac{1}{2}g^{0\mu}\partial_\sigma\phi(x)\partial^\sigma\phi(x)=&\int\frac{\dd[3]{p}\dd[3]{p'}}{4}g^{0\mu}\frac{1}{\sqrt{E_pE_{p'}}}p_\sigma p'^\sigma\\
+&\left(-a(p)a(p')e^{-i(E_p+E_{p'})t}\delta^3(\vb{p}+\vb{p'})\right.\\
+&+a(p)a^\dagger(p')e^{-i(E_p-E_{p'})t}\delta^3(\vb{p}-\vb{p'})\\
+&+a^\dagger(p)a(p')e^{-i(E_{p'}-E_p)t}\delta^3(\vb{p}-\vb{p'})\\
+&\left.-a^\dagger(p)a^\dagger(p')e^{-i(-E_p-E_{p'})t}\delta^3(\vb{p}+\vb{p'})\right)\\
+=&\int\dd[3]{p}\frac{g^{0\mu}}{4E_p}\left(-p_\sigma \tilde{p}^\sigma a(p)a(\tilde{p})e^{-i2E_pt}\right.\\
+&+m^2a(p)a^\dagger(p)+m^2a^\dagger(p)a(p)\\
+&\left.-p_\sigma \tilde{p}^\sigma a^\dagger(p)a^\dagger(\tilde{p})e^{i2E_pt}\right).
+\end{split}
+\end{align}
+Finalmente
+\begin{align}
+\begin{split}
+\phi(x)^2=&\int\frac{\dd[3]{p}\dd[3]{p'}}{\sqrt{(2\pi)^32E_{p}}\sqrt{(2\pi)^32E_{p'}}}\qty(a(p)e^{-ip\vdot x}+a^\dagger(p)e^{ip\vdot x})\times\\
+&\qty(a(p')e^{-ip'\vdot x}+ a^\dagger(p')e^{ip'\vdot x})\\
+=&\int\frac{\dd[3]{p}\dd[3]{p'}}{(2\pi)^32}\frac{1}{\sqrt{E_pE_{p'}}}\left(a(p)a(p')e^{-i(p+p')\vdot x}\right.\\
+&+a(p)a^\dagger(p')e^{-i(p-p')\vdot x}+a^\dagger(p)a(p')e^{-i(p'-p)\vdot x}\\
+&\left.a^\dagger(p)a^\dagger(p')e^{-i(-p-p')\vdot x}\right)\\
+=&\int\frac{\dd[3]{p}\dd[3]{p'}}{(2\pi)^32}\frac{1}{\sqrt{E_pE_{p'}}}\left(a(p)a(p')e^{-i(E_p+E_{p'})t}e^{i(\vb{p}+\vb{p'})\vdot\vb{x}}\right.\\
+&+a(p)a^\dagger(p')e^{-i(E_p-E_{p'})t}e^{i(\vb{p}-\vb{p'})\vdot\vb{x}}\\
+&+a^\dagger(p)a(p')e^{-i(E_{p'}-E_p)t}e^{i(\vb{p'}-\vb{p})\vdot\vb{x}}\\
+&\left.a^\dagger(p)a^\dagger(p')e^{-i(-E_p-E_{p'})t}e^{i(-\vb{p}-\vb{p'})\vdot\vb{x}}\right)
+\end{split}
+\end{align}
+y por lo tanto
+\begin{align}
+\begin{split}
+\int\dd[3]{x}\frac{1}{2}g^{0\mu}m^2\phi(x)^2=&\int\frac{\dd[3]{p}\dd[3]{p'}}{4}\frac{m^2}{\sqrt{E_pE_{p'}}}\\
+&\left(a(p)a(p')e^{-i(E_p+E_{p'})t}\delta^3(\vb{p}+\vb{p'})\right.\\
+&+a(p)a^\dagger(p')e^{-i(E_p-E_{p'})t}\delta^3(\vb{p}-\vb{p'})\\
+&+a^\dagger(p)a(p')e^{-i(E_{p'}-E_p)t}\delta^3(\vb{p}-\vb{p'})\\
+&\left.a^\dagger(p)a^\dagger(p')e^{-i(-E_p-E_{p'})t}\delta^3(\vb{p}+\vb{p'})\right)\\
+=&\int\dd[3]{p}\frac{g^{0\mu}m^2}{4E_p}\left(a(p)a(\tilde{p})e^{-i2E_pt}\right.\\
+&\left.+a(p)a^\dagger(p)+a^\dagger(p)a(p)+a^\dagger(p)a^\dagger(\tilde{p})e^{i2E_pt}\right).
+\end{split}
+\end{align}
+Entonces llegamos a que
+\begin{align}
+\begin{split}
+P^\mu=&\int\dd[3]{p}\left(\frac{1}{2}\left(-\tilde{p}^\mu a(p)a(\tilde{p})e^{-i2E_pt}\right.\right.\\
+&\left.+p^\mu a(p)a^\dagger(p)+p^\mu a^\dagger(p)a(p)-\tilde{p}^\mu a^\dagger(p)a^\dagger(\tilde{p})e^{i2E_pt}\right)\\
+&-\frac{g^{0\mu}}{4E_p}\left(-p_\sigma \tilde{p}^\sigma a(p)a(\tilde{p})e^{-i2E_pt}\right.\\
+&\left.+m^2a(p)a^\dagger(p)+m^2a^\dagger(p)a(p)-p_\sigma \tilde{p}^\sigma a^\dagger(p)a^\dagger(\tilde{p})e^{i2E_pt}\right)\\
+&+\frac{g^{0\mu}m^2}{4E_p}\left(a(p)a(\tilde{p})e^{-i2E_pt}\right.\\
+&\left.\left.+a(p)a^\dagger(p)+a^\dagger(p)a(p)+a^\dagger(p)a^\dagger(\tilde{p})e^{i2E_pt}\right)\right)\\
+=&\int\dd[3]{p}\left(\frac{1}{2}\left(-\tilde{p}^\mu a(p)a(\tilde{p})e^{-i2E_pt}\right.\right.\\
+&\left.+p^\mu a(p)a^\dagger(p)+p^\mu a^\dagger(p)a(p)-\tilde{p}^\mu a^\dagger(p)a^\dagger(\tilde{p})e^{i2E_pt}\right)\\
+&+\frac{g^{0\mu}}{4E_p}\left((p_\sigma \tilde{p}^\sigma+m^2) a(p)a(\tilde{p})e^{-i2E_pt}\right.\\
+&\left.+(p_\sigma \tilde{p}^\sigma+m^2) a^\dagger(p)a^\dagger(\tilde{p})e^{i2E_pt}\right)).
+\end{split}
+\end{align}
+Note que
+\begin{equation}
+p_\sigma\tilde{p}^\sigma+m^2=p_\sigma(\tilde{p}^\sigma+p^\sigma)=E_p(E_p+E_p)+0=2E_p^2.
+\end{equation}
+Entonces el momento toma la forma
+\begin{align}
+\begin{split}
+P^\mu=&\int\dd[3]{p}\left(\frac{1}{2}\left(-\tilde{p}^\mu a(p)a(\tilde{p})e^{-i2E_pt}\right.\right.\\
+&\left.+p^\mu a(p)a^\dagger(p)+p^\mu a^\dagger(p)a(p)-\tilde{p}^\mu a^\dagger(p)a^\dagger(\tilde{p})e^{i2E_pt}\right)\\
+&\left.+\frac{g^{0\mu}E_p}{2}\qty( a(p)a(\tilde{p})e^{-i2E_pt}+a^\dagger(p)a^\dagger(\tilde{p})e^{i2E_pt})\right).
+\end{split}
+\end{align}
+En particular,
+\begin{align}
+\begin{split}
+P^i=&\int\dd[3]{p}\frac{1}{2}\left(-\tilde{p}^i a(p)a(\tilde{p})e^{-i2E_pt}\right.\\
+&\left.+p^i a(p)a^\dagger(p)+p^i a^\dagger(p)a(p)-\tilde{p}^i a^\dagger(p)a^\dagger(\tilde{p})e^{i2E_pt}\right)\\
+&\int\dd[3]{p}\frac{p^i}{2}\left(a(p)a(\tilde{p})e^{-i2E_pt}\right.\\
+&\left.+a(p)a^\dagger(p)+ a^\dagger(p)a(p)+ a^\dagger(p)a^\dagger(\tilde{p})e^{i2E_pt}\right)
+\end{split}
+\end{align}
+Note que bajo la transformación $p^i\mapsto-p^i$ se tiene que $p\mapsto\tilde{p}$. Como $[a(p),a(p')]_-=0=[a(p),a(p')]_-$ se tiene
+\begin{align}
+\begin{split}
+p^ia(p)a(\tilde{p})e^{-i2E_pt}&\mapsto-p^ia(\tilde{p})a(p)e^{-i2E_{\tilde{p}}t}=-p^ia(p)a(\tilde{p})e^{-i2E_pt}\\
+p^ia^\dagger(p)a^\dagger(\tilde{p})e^{i2E_pt}&\mapsto-p^ia^\dagger(\tilde{p})a^\dagger(p)e^{i2E_{\tilde{p}}t}=-p^ia^\dagger(p)a^\dagger(\tilde{p})e^{i2E_pt}.
+\end{split}
+\end{align} 
+Entonces por paridad se concluye que
+\begin{equation}
+P^i=\int\dd[3]{p}\frac{p^i}{2}\qty(a(p)a^\dagger(p)+a^\dagger(p)a(p)).
+\end{equation}
+No es necesaria la prescripción de orden normal  ya que el momento se puede poner en la forma
+\begin{equation}
+P^i=\int\dd[3]{p}p^i\qty(a^\dagger(p)a(p)+\frac{1}{2}\delta^3(0)).
+\end{equation}
+El termino $p^i\delta^3(0)$ es impar y por lo tanto su integral se anula\footnote{Este tipo de manipulaciones son comunes en la teoría cuántica de campos. Se pueden hacer más rigurosos mediante cercas técnicas. Sin embargo, siguiendo la tradición y teniendo en cuenta que esta parte de la clase es de carácter introductorio, me permitiré cometer esta y otras infracciones. Lo siento. Me gustaría poder responder de mejor manera a esta pregunta.}. Entonces
+\begin{equation}
+P^i=\int\dd[3]{p}p^ia^\dagger(p) a(p).
+\end{equation}
+
+\subsection*{b)}
+Note que
+\begin{align}
+\begin{split}
+P^0=&\int\dd[3]{p}\left(\frac{E_p}{2}\left(-a(p)a(\tilde{p})e^{-i2E_pt}\right.\right.\\
+&\left.+a(p)a^\dagger(p)+a^\dagger(p)a(p)-a^\dagger(p)a^\dagger(\tilde{p})e^{i2E_pt}\right)\\
+&\left.+\frac{E_p}{2}\qty( a(p)a(\tilde{p})e^{-i2E_pt}+a^\dagger(p)a^\dagger(\tilde{p})e^{i2E_pt})\right)\\
+=&\int\dd[3]{p}\frac{E_p}{2}\qty(a(p)a^\dagger(p)+a^\dagger(p)a(p))
+\end{split}
+\end{align}
+Por lo tanto, concluimos que
+\begin{equation}
+P^\mu=\int\dd[3]{p}\frac{p^\mu}{2}\qty(a(p)a^\dagger(p)+a^\dagger(p)a(p)).
+\end{equation}
+Entonces tenemos
+\begin{align}
+\begin{split}
+[\phi(x),P_\mu]_-=&\int\frac{\dd[3]{p}\dd[3]{p'}}{\sqrt{(2\pi)^32E_p}}\frac{p'_\mu}{2}[a(p)e^{-ip\vdot x}+a^\dagger(p)e^{ip\vdot x}\\
+&,a(p')a^\dagger(p')+a^\dagger(p')a(p')]_-.
+\end{split}
+\end{align}
+Note que
+\begin{align}\label{ec:conmutador_productos}
+\begin{split}
+[a(p),a(p')a^\dagger(p')]_-=&[a(p),a(p')]_-a^\dagger(p')+a(p')[a(p),a^\dagger(p')]_-\\
+=&a(p')\delta^3(\vb{p}-\vb{p'})\\
+[a(p),a^\dagger(p')a(p')]_-=&[a(p),a^\dagger(p')]_-a(p')+a^\dagger(p')[a(p),a(p')]_-\\
+=&a(p')\delta^3(\vb{p}-\vb{p'})\\
+[a^\dagger(p),a(p')a^\dagger(p')]_-=&[a^\dagger(p),a(p')]_-a^\dagger(p')+a(p')[a^\dagger(p),a^\dagger(p')]_-\\
+=&-a^\dagger(p')\delta^3(\vb{p}-\vb{p'})\\
+[a^\dagger(p),a^\dagger(p')a(p')]_-=&[a^\dagger(p),a^\dagger(p')]_-a(p')+a^\dagger(p')[a^\dagger(p),a(p')]_-\\
+=&-a^\dagger(p')\delta^3(\vb{p}-\vb{p'}),
+\end{split}
+\end{align}
+donde se hizo uso de
+\begin{align}\label{ec:conmutador_identidad}
+\begin{split}
+[A,BC]_-=&ABC-BCA=ABC-BAC+BAC-BCA\\
+=&[A,B]_-C+B[A,C]_-.
+\end{split}
+\end{align}
+Por lo tanto el conmutador se reduce a
+\begin{align}
+\begin{split}
+[\phi(x),P_\mu]_-=&\int\frac{\dd[3]{p}\dd[3]{p'}}{\sqrt{(2\pi)^32E_p}}\frac{p'_\mu}{2}(e^{-ip\vdot x}a(p')\delta^3(\vb{p}-\vb{p'})\\
+&+e^{-ip\vdot x}a(p')\delta^3(\vb{p}-\vb{p'})-e^{ip\vdot x}a^\dagger(p')\delta^3(\vb{p}-\vb{p'})\\
+&-e^{ip\vdot x}a^\dagger(p')\delta^3(\vb{p}-\vb{p'}))\\
+=&\int\frac{\dd[3]{p}}{\sqrt{(2\pi)^32E_p}}\frac{p_\mu}{2}(e^{-ip\vdot x}a(p)\\
+&+e^{-ip\vdot x}a(p)-e^{ip\vdot x}a^\dagger(p)-e^{ip\vdot x}a^\dagger(p))\\
+=&\int\frac{\dd[3]{p}}{\sqrt{(2\pi)^32E_p}}p_\mu(e^{-ip\vdot x}a(p)-e^{ip\vdot x}a^\dagger(p))\\
+=&i\int\frac{\dd[3]{p}}{\sqrt{(2\pi)^32E_p}}ip_\mu(-e^{-ip\vdot x}a(p)+e^{ip\vdot x}a^\dagger(p))\\
+=&i\partial_\mu\phi(x).
+\end{split}
+\end{align}
+
+\section*{3.6}
+
+Haciendo uso de \eqref{ec:conmutador_productos} se tiene
+\begin{align}
+\begin{split}
+[\mathcal{N},a^\dagger(k)]_-=&\int\dd[3]{p}[a^\dagger(p)a(p),a^\dagger(k)]_-=\int\dd[3]{p}a^\dagger(p)\delta^3(\vb{p}-\vb{k})=a^\dagger(\vb{k})\\
+[\mathcal{N},a(k)]_-=&\int\dd[3]{p}[a^\dagger(p)a(p),a(k)]_-=-\int\dd[3]{p}a(p)\delta^3(\vb{p}-\vb{k})\\
+=&-a(\vb{k}).
+\end{split}
+\end{align}
+Por lo tanto
+\begin{align}
+\begin{split}
+\mathcal{N}\ket{p_1,\dots,p_N}=&\mathcal{N}a^\dagger(p_1)\cdots a^\dagger(p_N)\ket{0}=([\mathcal{N},a^\dagger(p_1)\cdots a^\dagger(p_N)]_-\\
+&+a^\dagger(p_1)\cdots a^\dagger(p_N)\mathcal{N})\ket{0}.
+\end{split}
+\end{align}
+Es claro que
+\begin{equation}
+\mathcal{N}\ket{0}=\int\dd[3]{p}a^\dagger(p)a(p)\ket{0}=0
+\end{equation}
+y mediante una generalización de \eqref{ec:conmutador_identidad}
+\begin{align}
+\begin{split}
+&[\mathcal{N},a^\dagger(p_1)\cdots a^\dagger(p_N)]_-=\\
+&[\mathcal{N},a^\dagger(p_1)]_-a^\dagger(p_2)\cdots a^\dagger(p_N)+a^\dagger(p_1)[\mathcal{N},a^\dagger(p_2)\cdots a^\dagger(p_N)]_-=\\
+&a^\dagger(p_1)a^\dagger(p_2)\cdots a^\dagger(p_N)+a^\dagger(p_1)[\mathcal{N},a^\dagger(p_2)\cdots a^\dagger(p_N)]_-=\cdots=\\
+&\underbrace{a^\dagger(p_1)a^\dagger(p_2)\cdots a^\dagger(p_N)+\cdots+a^\dagger(p_1)a^\dagger(p_2)\cdots a^\dagger(p_N)}_{\text{N veces}}\\
+&=Na^\dagger(p_1)\cdots a^\dagger(p_N).
+\end{split}
+\end{align}
+Se concluye que
+\begin{equation}
+\mathcal{N}\ket{p_1,\dots,p_N}=Na^\dagger(p_1)\cdots a^\dagger(p_N)\ket{0}=N\ket{p_1,\dots,p_N}.
+\end{equation} 
+Este cálculo no depende de que los momentos sean distintos. Por lo tanto
+\begin{align}
+\begin{split}
+\mathcal{N}\ket{p(n)}=&\frac{1}{\sqrt{n!}}(\mathcal{N}a^\dagger(p))^n\ket{0}=\frac{1}{\sqrt{n!}}((a^\dagger(p))^n\mathcal{N}+[\mathcal{N},(a^\dagger(p))^n]_-)\ket{0}\\
+=&0+\frac{1}{\sqrt{n!}}n(a^\dagger(p))^n\ket{0}=n\ket{p(n)}.
+\end{split}
+\end{align}
+Se concluye que $\mathcal{N}$ cuenta el número de partículas.
+
+\end{document}

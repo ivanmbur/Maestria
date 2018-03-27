@@ -1,0 +1,186 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{physics}
+\usepackage{amssymb}
+
+\title{Taller computacional}
+\author{Iván Mauricio Burbano Aldana}
+
+\begin{document}
+
+\maketitle
+
+\section{Motivación computacional}\label{sec:motivacion}
+
+Suponga que se observa una partícula de masa $m$ en un sistema de referencia inercial. En este sistema podemos describir su trayectoria mediante una función\footnote{En la esta tarea utilizaremos notación de funciones. Recordemos que $f:A\rightarrow B$ significa una regla que le asocia a \textbf{cada} elemento $a$ del conjunto $A$ \textbf{un} elemento $f(a)$ del conjunto $B$. Recuerde que describimos conjuntos enlistando sus elementos en el caso finito $\{a_1,\dots,a_n\}$, enlistando sus elementos mediante un patrón  en el caso contable $\{a_1,a_2,\dots\}$ o utilizando la notación $\{x|P(x)\}$ que describe el conjunto de elementos $x$ que satisfacen una propiedad $P(x)$. $\mathbb{R}$ es el conjunto de los número reales y $\mathbb{R}^3$ es el conjunto de vectores. Ademas vamos a utilizar los conjuntos $\mathbb{R}^+=\{a\in\mathbb{R}|a>0\}$ y $\mathbb{N}^*=\{1,2,3,\dots\}$. Se utiliza $^*$ para distinguir este conjunto de $\mathbb{N}=\{0,1,2,3,\dots\}$. Finalmente, recuerde que el producto cartesiano $A\times B$ de dos conjuntos $A$ y $B$ es el conjunto de todos los pares ordenados $(a,b)$ tal que $a\in A$ y $b\in B$. El significado del producto cartesiano de tres o más conjuntos es claro de esta definición.} 
+\begin{equation}\label{ec:trayectoria}
+\vb{r}:\mathbb{R}\rightarrow\mathbb{R}^3.
+\end{equation}
+donde el argumento de $\vb{r}$ toma la interpretación de tiempo y $\vb{r}(t)$ es la posición de la partícula en el tiempo $t$. La segunda ley de Newton nos instruye a analizar cada interacción a la que está sujeta la partícula. Suponga que hay $N\in\mathbb{N}^*$ interacciones. Entonces si $i\in\{1,\dots,N\}$, esta ley garantiza que existe una función de fuerza asociada a la $i$-ésima interacción\footnote{En realidad en la mayoría de los casos no es posible definir la fuerza en todo el dominio $\mathbb{R}^3\times\mathbb{R}^3\times\mathbb{R}$. Por ejemplo, en la interacción gravitacional o electromagnética entre dos partículas es imposible definir la fuerza en el caso donde las partículas se encuentren en el mismo punto espacial. Obviaremos este detalle por el momento. En la práctica esto no es un problema. En el caso gravitacional los astros solo pueden ser modelados como partículas puntuales si se encuentran lejos el uno del otro. Si hay la posibilidad de choque, el hecho de que los astros son no puntuales debe ser tomado en cuenta. La interacción gravitacional de objetos con extensión ya no presenta tales irregularidades. El caso electromagnético es un poco más complicado porque, a diferencia del caso gravitacional, hemos observado partículas fundamentales que interactuan bajo esta interacción. Sin embargo, esto se sale de el marco de validez de la mecánica Newtoniana y se vuelve necesaria la mecánica cuántica.}
+\begin{equation}
+\vb{F}_i:\mathbb{R}^3\times\mathbb{R}^3\times\mathbb{R}\rightarrow\mathbb{R}^3
+\end{equation}
+tal que si la partícula solo estuviera sujeta a la $i$-ésima interacción se tendría
+\begin{equation}
+\vb{F}_i(\vb{r}(t),\vb{v}(t),t)=m\vb{r}''(t).
+\end{equation}
+Además, la ley asegura que definiendo la fuerza total
+\begin{align}
+\begin{split}
+\vb{F}:\mathbb{R}^3\times\mathbb{R}^3\times\mathbb{R}&\rightarrow\mathbb{R}^3\\
+(\vb{x},\vb{y},a)&\mapsto\vb{F}(\vb{x},\vb{y},a):=\sum_{i=1}^N\vb{F}_i(\vb{x},\vb{y},a)
+\end{split}
+\end{align}
+se tiene
+\begin{equation}\label{ec:segunda_ley}
+\vb{F}(\vb{r}(t),\vb{v}(t),t)=m\vb{r}''(t).
+\end{equation}
+
+En la práctica caracterizar una interacción consiste en estudiar movimientos sujetos a ella en donde el resto de las interacciones son conocidas o despreciables. Mediante el estudio de estas trayectorias se puede caracterizar la fuerza asociada a la interacción. Por el otro lado, para analizar una trayectoria en donde todas las interacciones han sido estudiadas previamente, construimos la fuerza total $\vb{F}$ y resolvemos la ecuación \eqref{ec:segunda_ley}. Esta es una ecuación diferencial de segundo orden. Por lo tanto, si $\vb{F}$ cumple ciertas condiciones de carácter técnico\footnote{En la realidad estas condiciones siempre se cumplen, al menos al nivel de las interacciones fundamentales de la gravedad y el electromagnetismo. Sin embargo, se pueden crear ejemplos patológicos donde la física Newtoniana no es determinista. Ver por ejemplo \cite{Norton2003}.}, se tiene que para cada $\vb{r}_0\in\mathbb{R}^3$ y $\vb{v}_0\in\mathbb{R}^3$ existe una única solución $\vb{r}:\mathbb{R}\rightarrow\mathbb{R}^3$ tal que
+\begin{align}
+\vb{r}(0)=\vb{r}_0\\
+\vb{r}'(0)=\vb{v}_0.
+\end{align}
+Sin embargo, aunque conocemos la existencia de la solución, esta es usualmente muy difícil de encontrar. Por ejemplo, si bien conocemos la solución exacta de \eqref{ec:segunda_ley} para un sistema de dos partículas que gravitan una sobre la otra, hasta el momento no se conoce una solución general para el de tres. Por esta razón, los métodos numéricos se han vuelto cada vez más importantes en la física. Con estos podemos encontrar soluciones para un número moderado de partículas. Estas soluciones le han permitido a la humanidad estudiar problemas tan importantes como el del aterrizaje en la luna. Vale la pena aclarar que debido a las restricciones computacionales que tenemos hoy en día, estos métodos no nos permiten resolver cualquier problema. Por ejemplo, intentar resolver la trayectoria de las aproximadamente $10^{23}$ partículas en un gas todavía está fuera de nuestro alcance. Es por esto que la termodinámica y la física estadística son tan importantes.
+
+\section{El oscilador armónico}
+
+Como un ejemplo del estudio de las interacciones consideremos la ley de Hooke. La ley de Hooke asegura que la fuerza que un resorte ejerce sobre un cuerpo atado a alguno de sus extremos es proporcional a la longitud de deformación del resorte. La constante de proporcionalidad depende del resorte y se conoce como la constante de elasticidad. Además, la fuerza es paralela a la dirección que une los dos extremos del resorte y opuesta a la dirección de la deformación. Vale la pena aclarar que esta es solo una aproximación. En el caso en el que las deformaciones son grandes, la aproximación lineal ya no va a ser válida. Así mismo, esta aproximación ya no es valida para describir compresiones que hagan que los dos extremos estén muy juntos.
+
+Suponga que observamos una partícula que describe una trayectoria $\vb{r}:\mathbb{R}\rightarrow\mathbb{R}^3$ en un sistema de referencia inercial. Si esta se encuentra atada a un resorte con su otro extremo fijo en $\vb{p}\in\mathbb{R}^3$ y una longitud natural $l$, se tiene por la ley de Hooke que la fuerza asociada a la interacción de la partícula con el resorte es
+\begin{equation}\label{ec:ley_hooke}
+\vb{F}(\vb{x},\vb{y},a)=-k(\|\vb{x}-\vb{p}\|-l)\frac{\vb{x}-\vb{p}}{\|\vb{x}-\vb{p}\|}.
+\end{equation}
+
+1. Explique porque la ecuación \eqref{ec:ley_hooke} se sigue de la ley de Hooke. Para esto haga un dibujo del sistema con el extremo fijo del resorte en un punto arbitario $\vb{p}$ y el extremo de la partícula en el punto $\vb{x}$. Dibuje el vector $\|\vb{x}-\vb{p}\|$ y explique el significado de los términos 
+\begin{equation}
+\|\vb{x}-\vb{p}\|-l\qquad\text{y}\qquad\frac{\vb{x}-\vb{p}}{\|\vb{x}-\vb{p}\|}.
+\end{equation} 
+Basado en \eqref{ec:ley_hooke}, ¿en qué dirección apunta $\vb{F}(\vb{x},\vb{y},a)$ si $\|\vb{x}-\vb{p}\|>l$. ¿Qué sucede con la dirección si $\|\vb{x}-\vb{p}\|<l$? 
+
+Considerando el caso $\vb{x}=\vb{p}$ vemos que \eqref{ec:ley_hooke} no define una función en todo $\mathbb{R}^3\times\mathbb{R}^3\times\mathbb{R}$. Obviaremos este problema por el momento. Sin embargo, es interesante notar que la fuerza no está definida ya que no sabemos que dirección asociarle. En efecto, la magnitud de la fuerza si está bien definida. Esto es muy distinto a lo que sucede en el caso gravitacional y electromagnético.
+
+Podemos simplificar la forma de esta ecuación si escogemos un sistema de referencia en el cual el extremo fijo del resorte esté en el origen. Con esto no perdemos generalidad pues cualquier sistema de referencia se puede relacionar a este mediante un traslación apropiada. En tal caso tenemos $\vb{p}=0$ y   
+\begin{equation}
+\vb{F}(\vb{x},\vb{y},a)=-k(\|\vb{x}\|-l)\frac{\vb{x}}{\|\vb{x}\|}.
+\end{equation} 
+Además, para nuestros propósitos vamos a considerar el caso de movimiento unidimensional. Esto significa que escogemos un vector unitario $\vu{u}\in\mathbb{R}^3$ y restringimos el movimiento que puede tener la partícula de manera que existe una función $r:\mathbb{R}\rightarrow\mathbb{R}^+$ tal que $\vb{r}(t)=r(t)\vu{u}$. Un análisis detallado mostraría que esto siempre se puede hacer si se asume que en algún momento $t_1\in\mathbb{R}$ de la trayectoria se tiene que $\|\vb{r}(t_1)\|<2l$ y $\vb{r}'(t_1)=0$, y que en algún momento $t_2\in\mathbb{R}$ se tiene que $\vb{r}(t_2)$ es paralelo $\vb{r}'(t_2)$. La primera condición garantiza (a través de la ley de la conservación de la energía) que la partícula no pasará a través del punto en el cual la fuerza no está definida. La segunda garantiza que la velocidad siempre va a ser paralela a la posición.  En tal caso tenemos que la segunda ley de Newton dicta
+\begin{equation}
+-k(r(t)-l)\vu{u}=\vb{F}(\vb{r}(t),\vb{r}'(t),t)=m\vb{r}''(t)=mr''(t)\vu{u},
+\end{equation} 
+es decir,
+\begin{equation}
+-k(r(t)-l)=mr''(t)
+\end{equation}
+Finalmente, defina
+\begin{align}
+\begin{split}
+\zeta:\mathbb{R}&\rightarrow\mathbb{R}\\
+t&\mapsto\zeta(t):=r(t)-l.
+\end{split}
+\end{align}
+
+2. Explique con un dibujo similar al anterior como se ha restringido el movimiento posible de la partícula. Para esto dibuje el extremo fijo del resorte en el origen y la partícula en un punto arbitrario $\vb{x}$.  Dibuje el vector $\vu{u}$. Teniendo en cuenta que $r(t)>0$ para todo $t\in\mathbb{R}$ dibuje las posiciones posibles que podría tener la partícula. De el significado físico de $\zeta$. Demuestre que
+\begin{equation}\label{ec:movimiento_armonico_simple}
+-k\zeta=m\zeta''.
+\end{equation}
+
+Una variable que cumple \eqref{ec:movimiento_armonico_simple} para algunas constantes $k,m\in\mathbb{R}$ se dice que sigue un movimiento armónico simple. Esta clase de movimientos se encuentran en toda la naturaleza. Por ejemplo, la misma ecuación aparece en el análisis de un péndulo en la aproximación de desviaciones pequeñas. En efecto, esta ecuación aparecerá en cualquier interacción descrita por una energía potencial con un mínimo local.
+
+\section{Solución computacional}
+
+Ahora vamos a describir el procedimiento computacional necesario para resolver \eqref{ec:movimiento_armonico_simple}. En primer lugar, tenemos que volver adimensionales a las variables dinámicas involucradas. De esta manera obtendremos soluciones que no dependen explicitamente de los parametros $m$, $k$ y $l$. Note que
+\begin{equation}
+[m]=M,\qquad [l]=L\qquad\text{y}\qquad [k]=\frac{M}{T^2}.
+\end{equation}
+
+3. Encuentre una constante $\omega=m^\alpha l^\beta k^\gamma$ para $\alpha,\beta,\gamma\in\mathbb{R}$ tal que $[\omega]=1/T$.
+
+Para volver el tiempo adimensional entonces debemos multiplicarlo por $\omega$. Una función que representa lo mismo que $\zeta$ pero en función de este tiempo adimensional es
+\begin{align}
+\begin{split}
+\xi:\mathbb{R}&\rightarrow\mathbb{R}\\
+\tau&\mapsto \xi(\tau):=\zeta(\tau/\omega).
+\end{split}
+\end{align}
+Para ver esto, debe pensar algo así como ``$\tau=\omega t$''. Entonces los tiempos van a estar dados en unidades de $1/\omega$. Además, $\xi$ sigue teniendo dimensiones de longitud. Para generar una versión adimensional definimos
+\begin{align}
+\begin{split}
+\psi:\mathbb{R}&\rightarrow\mathbb{R}\\
+\tau&\mapsto\psi(\tau):=\frac{1}{l}\xi(\tau).
+\end{split}
+\end{align}
+Esto se puede interpretar como que los valores de $\psi$ están dados en unidades de $l$.
+
+4. Demuestre haciendo uso de la regla de la cadena que
+\begin{equation}\label{ec:movimiento_armonico_simple_computador}
+\psi''=-\psi.
+\end{equation}
+
+La ecuación \eqref{ec:movimiento_armonico_simple_computador} ahora está lista para ser resuelta mediante métodos numéricos.
+
+En primer lugar, debemos notar que un computador tiene memoria finita. Por lo tanto un conjunto como $\mathbb{R}$ es imposible de representar. Por eso no podremos hallar $\psi(\tau)$ para todo $\tau\in\mathbb{R}$. Lo mejor que podemos hacer es seleccionar un subconjunto finito $\{\tau_1,\tau_2,\dots,\tau_n\}\subseteq\mathbb{R}$ para resolver \eqref{ec:movimiento_armonico_simple_computador}. La manera más apropiada para hacer esto es escogiendo un intervalo cerrado $[\tau_1,\tau_n ]:=\{\tau\in\mathbb{R}|\tau_1\leq\tau\leq\tau_n\}$ y realizar una partición del intervalo escogiendo $\tau_2,\dots,\tau_{n-1}\in\mathbb{R}$ tal que $\tau_1\leq\tau_2\leq\cdots\leq\tau_n$. De la misma manera, la función $\psi$ se va a reemplazar por una lista $(\psi_1,\dots,\psi_n)$ y $\psi'$ por $(\psi'_1,\dots,\psi'_n)$ donde $\psi_1,\psi'_1\dots,\psi_n,\psi'_n\in\mathbb{R}$. Nuestro objetivo es hallar tales listas de manera que $\psi_i$ sea cercano a $\psi(t_i)$ para una solución $\psi$ de \eqref{ec:movimiento_armonico_simple_computador}.
+
+Recordando la definición de derivada tenemos que para $i\in\{1,\dots,n-1\}$
+\begin{equation}
+\psi'(t_i)=\lim_{h\rightarrow\tau_i}\frac{\psi(h)-\psi(\tau_i)}{h-\tau_i}\approx\frac{\psi(\tau_{i+1})-\psi(\tau_i)}{\tau_{i+1}-\tau_{i}}.
+\end{equation} 
+Esta aproximación es valida si $\tau_{i+1}-\tau_i$ es pequeño\footnote{Sin estudiar mejor las propiedades de $\psi$ no podemos podemos ser más rigorosos acerca del significado de pequeño. En palabras débiles, lo que queremos es que $\psi$ no cambie mucho, es decir, sea lo más parecido a una recta como sea posible en el intervalo $[\tau_i,\tau_{i+1}]$.}. De esta manera podemos aproximar $\psi(\tau_{i+1})$ a partir de $\psi(\tau_i)$ y $\psi'(\tau_i)$.
+\begin{equation}
+\psi(\tau_{i+1})\approx\psi(\tau_i)+\psi'(\tau_i)(\tau_{i+1}-\tau_i).
+\end{equation}
+De manera similar tenemos
+\begin{equation}\label{ec:psi}
+\psi''(t_i)=\lim_{h\rightarrow\tau_i}\frac{\psi'(h)-\psi'(\tau_i)}{h-\tau_i}\approx\frac{\psi'(\tau_{i+1})-\psi(\tau_i)}{\tau_{i+1}-\tau_{i}}.
+\end{equation} 
+y podemos aproximar $\psi'(\tau_{i+1})$ a partir de $\psi'(\tau_i)$ y $\psi''(\tau_i)$
+\begin{equation}\label{ec:derivada}
+\psi'(\tau_{i+1})\approx\psi'(\tau_i)+\psi''(\tau_i)(\tau_{i+1}-\tau_i).
+\end{equation}
+Entonces vemos el porque del comentario sobre ecuaciones diferenciales de segundo orden hecho en la sección \ref{sec:motivacion}. Si escogemos valores iniciales $\psi_1,\psi'_1\in\mathbb{R}$ de manera que $\psi(\tau_1)=\psi_1$ y $\psi'(\tau_1)=\psi'_1$ podemos hacer uso de \eqref{ec:movimiento_armonico_simple_computador} para hallar $\psi''(\tau_1)$. Con esta información podemos utilizar \eqref{ec:derivada} para estimar $\psi'(\tau_2)$. A este número lo llamamos $\psi'_2$. De la misma manera podemos estimar  $\psi(\tau_2)$ con \eqref{ec:psi}. A este lo llamamos $\psi_2$. Repitiendo este procedimiento hallamos $\psi_3,\psi_4,\dots,\psi_n$ que deberían aproximar a $\psi$.
+
+En lo siguiente vamos a mostrar como realizar este procedimiento para resolver \eqref{ec:movimiento_armonico_simple_computador} en el intervalo $[0,\tau_n]$ con condiciones iniciales $\psi_1,\psi'_1\in\mathbb{R}$. Note que empezar en $0$ no quita generalidad ya que la ley de Hooke no genera fuerzas dependientes del tiempo y por lo tanto el sistema es invariante bajo traslaciones temporales. Además, vamos a realizar la partición del intervalo de manera uniforme, es decir,
+\begin{equation}
+\tau_i=\frac{\tau_n}{n-1}(i-1)
+\end{equation}
+
+\subsection{Implementación con hojas de cálculo}
+
+Esto se puede implementar facilmente con hojas de calculo de Microsoft Excel, LibreOffice Calc o otras.
+\begin{itemize}
+\item En la primera fila arregle $n$ números desde $0$ hasta $\tau_n$ espaciados uniformemente.
+\item En las dos filas siguientes ponga en la primera columna sus valores iniciales $\psi_1,\psi'_1$.
+\item En la primera columna de la cuarta fila utilice \eqref{ec:movimiento_armonico_simple_computador} para calcular $\psi''(t_1)$, es decir, calcule $-\psi_1$. Hágalo con una fórmula sobre las celdas.
+\item Para la segunda columna de la segunda fila calcule $\psi_2$ con \eqref{ec:psi}. Hágalo con una fórmula sobre las celdas.
+\item Para la segunda columna de la tercera fila calcule $\psi'_2$ con \eqref{ec:derivada}. Hágalo con una fórmula sobre las celdas.
+\item En la primera columna de la cuarta fila utilice \eqref{ec:movimiento_armonico_simple_computador} para calcular $\psi''(\tau_2)$, es decir, calcule $-\psi_2$. Hágalo con una fórmula sobre las celdas.
+\item Seleccione simultáneamente la segunda columna de la segunda, tercera y cuarta fila. Extienda la selección hasta la última columna de manera que se propaguen las fórmulas.
+\end{itemize}
+De esta manera, debería obtener $(\zeta_1,\dots,\zeta_n)$ en la segunda columna.
+
+\subsection{Implementación con código}
+
+Este tipo de códigos son estándar en lenguajes como Python o C. Por motivos pedagógicos, le sugiero a todos los estudiante que intenten implementar el algoritmo en Python.
+\begin{itemize}
+\item Cree una lista de $n$ números espaciados uniformemente desde $0$ hasta $\tau_n$. En Python el módulo Numpy tiene la función linspace que hace esto de manera automática.
+\item Cree dos listas de $n$ números. Pueden ser ceros. La función zeros de Numpy le puede ser útil.
+\item Asignen a la primera entrada de dos de sus listas los valores iniciales $\psi_1$ y $\psi'_1$.
+\item Mediante un ciclo, calcule $\psi''(t_i)$ con \eqref{ec:movimiento_armonico_simple_computador} y aplique las formulas \eqref{ec:psi} y \eqref{ec:derivada} para popular sus dos listas.
+\end{itemize} 
+
+5. Haga una gráfica de $\zeta$ en función del tiempo escogiendo como condiciones iniciales $\psi_1=0.5$ (lo que corresponde a $\zeta(0)=l/2$) y $\psi'_1=0$ (es decir $\zeta'(0)=0$). Tome $\tau_n=30$ y $n=100000$. Note que si bien el algoritmo presentado le permite calcular $\psi$ en función de un parámetro de tiempo adimensional, nombrando los ejes de su gráfica correctamente usted puede reportar los valores de $\zeta$ en términos del tiempo real. Para esto utilice las constantes $m$, $k$, y $l$. Repitiendo el procedimiento para otras condiciones iniciales explique como depende la gráfica de estas. También varíe $n$ y describa lo que sucede. ¿Este algoritmo describe un sistema en el que se conserva la energía? Envíe al correo im.burbano10@uniandes.edu.co una copia de su código con instrucciones para su compilación o una copia de su hoja de cálculo. 
+
+Vale la pena notar que si bien el algoritmo provee soluciones donde $\zeta$ toma valores con valor absoluto mayor a $l$, estas son de carácter no físico por las restricciones que hicimos para llegar a \eqref{ec:movimiento_armonico_simple}.
+
+6. Resulta que \eqref{ec:movimiento_armonico_simple} se puede solucionar exactamente. Demuestre que para todo $A,\phi\in\mathbb{R}$
+\begin{equation}
+\zeta(t)=A\cos(\sqrt{\frac{k}{m}}t+\phi)
+\end{equation} 
+es una solución de \eqref{ec:movimiento_armonico_simple}. Además, demuestre que todas las soluciones son de esta forma. Para esto lo único que necesita es demostrar que para todo $\zeta_0$, $\zeta'_0\in\mathbb{R}$ existen $A,\phi\in\mathbb{R}$ tal que $\zeta(0)=\zeta_0$ y $\zeta'(0)=\zeta'_0$. Compare estaeets conclusiones analíticas con las computacionales que obtuvo en el punto anterior.
+
+\bibliography{/Users/ivan/Documents/Bib_Files/library}
+\bibliographystyle{ieeetr}
+
+\end{document}
