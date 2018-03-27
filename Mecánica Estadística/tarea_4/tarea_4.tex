@@ -48,7 +48,7 @@ Luego
 \sum_{\langle i,j\rangle}\sigma_i\sigma_j=1|\{\langle i,j\rangle|\sigma_i=\sigma_j\}|-1|\{\langle i,j\rangle|\sigma_i\neq\sigma_j\}|=s-r-r=s-2r.
 \end{equation}
 
-3. Se tiene una función de partición es
+3. Se tiene una función de partición
 \begin{align}
 \begin{split}
 Z(T)=&\sum_{(\sigma_1,\dots,\sigma_N)\in\{-1,1\}^N}e^{\beta J\sum\limits_{\langle i,j\rangle}\sigma_i\sigma_j}=\sum_{(\sigma_1,\dots,\sigma_N)\in\{-1,1\}^N}e^{L(s-2r)}\\
@@ -201,10 +201,14 @@ de lo cual concluimos
 \end{split}
 \end{align}
 
-6. Note que
+6. En el límite termodinámico $Z$ y $Z^*$ coinciden ya que representan la función de partición del mismo sistema. En efecto, como se puede ver de la figura \ref{fig:configuracion_dual}, el retículo dual al retículo de $m\times m$ sitios es de $(m-1)\times (m-1)$ sitios. En particular, también es cuadrado, los espines pueden tomar los mismos valores y, en el límite termodinámico,
+\begin{equation}
+(m-1)\times(m-1)=m^2-2m+1\approx m^2,
+\end{equation}
+es decir, tienen el mismo número de sitios. Por lo tanto, los efectos de borde desaparecen y vemos que la única diferencia entre $Z$ y $Z^*$ es que están expresadas como expansiones aptas para aproximar en distintos regímenes de temperaturas. Además, note que
 \begin{align}
 \begin{split}
-\frac{Z^*(T^*)}{\cosh(2L^*)^{s/2}}=&\frac{2^{(N+1)/2}}{2^{(N-1)/2}}\frac{Z(T)}{\cosh(2L)^{s/2}}\\
+\frac{Z(T^*)}{\cosh(2L^*)^{s/2}}=\frac{Z^*(T^*)}{\cosh(2L^*)^{s/2}}=&\frac{2^{(N+1)/2}}{2^{(N-1)/2}}\frac{Z(T)}{\cosh(2L)^{s/2}}\\
 \overrightarrow{\text{límite termodinámico}}\qquad&\frac{Z(T)}{\cosh(2L)^{s/2}}
 \end{split}
 \end{align}
@@ -270,33 +274,41 @@ P_{eq}(C_1)W(C_1\rightarrow C_2)=&\begin{cases}
 
 \subsection{Implementación}
 
-Según \eqref{ec:temperatura_critica} en nuestra simulación deberíamos ver una transición de fase. Para poder observarla necesitamos representar el límite termodinámico y por lo tanto considerar un número grande de sitios. Sin embargo, dada la naturaleza del algoritmo de Metropolis, un número grande de sitios requiere un número considerable de iteraciones para la estabilización. Esto se debe a que para barrer un número representativo de configuraciones debemos permitir que cada sitio tenga la oportunidad de cambiar. Intentando hallar un balance entre el número de sitios y el número de iteraciones se decidió tomar un retículo cuadrado de 100 espines junto con 1000000 de iteraciones. De estas, las primeras 10000 fueron consideradas como parte del régimen estabilizador y por lo tanto ignoradas para el cálculo de la magnetización.
+Según \eqref{ec:temperatura_critica} en nuestra simulación deberíamos ver una transición de fase. Para poder observarla necesitamos representar el límite termodinámico y por lo tanto considerar un número grande de sitios. Sin embargo, dada la naturaleza del algoritmo de Metropolis, un número grande de sitios requiere un número considerable de iteraciones para la estabilización. Esto se debe a que para barrer un número representativo de configuraciones debemos permitir que cada sitio tenga la oportunidad de cambiar. Intentando hallar un balance entre el número de sitios y el número de iteraciones se decidió tomar un retículo cuadrado de 100 espines junto con 100000 de iteraciones. De estas, las primeras 10000 fueron consideradas como parte del régimen estabilizador y por lo tanto ignoradas para el cálculo de la magnetización.
 
-En primer lugar consideraremos las curvas de energía obtenidas. Como se puede observar en la figura \ref{fig:energia}, A medida que la temperatura aumenta la energía promedio y sus fluctuaciones también. Esto concuerda con la percepción intuitiva de la temperatura. Este fenómeno se puede rastrear a \eqref{ec:condicion_de_balance_detallado}. En el algoritmo implementado cada configuración $C$ se obtiene con una probabilidad $e^{-\beta H(C)}$. Por lo tanto a medida que la temperatura aumenta, es decir, $\beta$ disminuye, la probabilidad de obtener configuraciones de altas energías aumenta.
+En primer lugar consideraremos las curvas de energía obtenidas. Como se puede observar en la figura \ref{fig:energias}, A medida que la temperatura aumenta la energía promedio y sus fluctuaciones también. Esto concuerda con la percepción intuitiva de la temperatura. Este fenómeno se puede rastrear a \eqref{ec:condicion_de_balance_detallado}. En el algoritmo implementado cada configuración $C$ se obtiene con una probabilidad $e^{-\beta H(C)}$. Por lo tanto a medida que la temperatura aumenta, es decir, $\beta$ disminuye, la probabilidad de aceptar cambios de configuración aumenta.
 
 \begin{figure}
 \centering
 \begin{subfigure}{0.49\textwidth}
-\includegraphics[width=\textwidth]{energia_0_500000.png}
+\includegraphics[width=\textwidth]{energia_0.png}
 \end{subfigure}
 \begin{subfigure}{0.49\textwidth}
-\includegraphics[width=\textwidth]{energia_1_265306.png}
+\includegraphics[width=\textwidth]{energia_200.png}
 \end{subfigure}
 \begin{subfigure}{0.49\textwidth}
-\includegraphics[width=\textwidth]{energia_1_520408.png}
+\includegraphics[width=\textwidth]{energia_500.png}
 \end{subfigure}
 \begin{subfigure}{0.49\textwidth}
-\includegraphics[width=\textwidth]{energia_2_642857.png}
+\includegraphics[width=\textwidth]{energia_700.png}
 \end{subfigure}
-\caption{\label{fig:energia}Se muestra la energía de la configuración obtenida en cada iteración para tres temperaturas distintas. En el título se indica la temperatura de la simulación $T$ y el número de espines considerados $N$.}
+\caption{\label{fig:energias}Se muestra la energía de la configuración obtenida en cada iteración para tres temperaturas distintas. En el título se indica la temperatura de la simulación $T$ y el número de espines considerados $N$.}
 \end{figure}
 
-Para hallar la curva de magnetización en función de temperatura en la figura \ref{fig:magnetizacion}, se barrieron 50 temperaturas entre $0.5J/k_B$ y $3J/k_B$. Para cada temperatura la magnetización se calculó tomando la magnetización total en cada iteración y luego calculando el promedio descartando las primeras 10000 iteraciones. En la figura se observa que la magnetización decae para temperaturas mayores a $2J/k_B$. Esto concuerda con la transición de fase hallada teóricamente en \eqref{ec:temperatura_critica}. Con esta figura podemos distinguir que a temperaturas menores que la crítica el sistema es magnético. En efecto, las fluctuaciones térmicas son bajas y la interacción en el Hamiltoniano hace que los espines apunten en la misma dirección (asumiendo $J>0$). Debido a esto, los momentos magnéticos en cada sitio contribuyen a la magnetización del material obteniendo así propiedades magnéticas. La transición de fase corresponde a que a altas temperaturas las fluctuaciones térmicas se vuelven más relevantes. En tal caso, la interacción entre espines se vuelve despreciable y estos toman posiciones aleatorias. De esta manera la contribución del momento magnético de cada sitio se vuelve destructiva y se anula la magnetización del material. 
+Para hallar la curva de magnetización en función de temperatura en la figura \ref{fig:magnetizacion}, se barrieron 1000 temperaturas entre $0.5J/k_B$ y $3.5J/k_B$. Para cada temperatura la magnetización se calculó tomando la magnetización total en cada iteración y luego calculando el promedio descartando las primeras 10000 iteraciones. En la figura se observa que la magnetización se anula para temperaturas mayores a $2J/k_B$. Esto concuerda con la transición de fase hallada teóricamente en \eqref{ec:temperatura_critica}. Con esta figura podemos distinguir que a temperaturas menores que la crítica el sistema es magnético. En efecto, las fluctuaciones térmicas son bajas y la interacción en el Hamiltoniano hace que los espines apunten en la misma dirección (asumiendo $J>0$). Debido a esto, los momentos magnéticos en cada sitio contribuyen a la magnetización del material obteniendo así propiedades magnéticas. La transición de fase corresponde a que a altas temperaturas las fluctuaciones térmicas se vuelven más relevantes. En tal caso, la interacción entre espines se vuelve despreciable y estos toman posiciones aleatorias. De esta manera la contribución del momento magnético de cada sitio se vuelve destructiva y se anula la magnetización del material. 
 
 \begin{figure}
 \centering
 \includegraphics[width = 0.8\textwidth]{magnetizacion.png}
-\caption{\label{fig:magnetizacion}Se muestra la magnetización total en función de la temperatura.}
+\caption{\label{fig:magnetizacion}Se muestra la magnetización por sitio en función de la temperatura.}
+\end{figure}
+
+La gráfica \ref{fig:energia} muestra como aumenta la energía promedio a medida que la temperatura sube. Esto es lo que se espera de nuestra noción intuitiva de la temperatura. Además, la suavidad de la curva muestra que en los 10000 pasos descartados sí se logra llegar al equilibrio, algo que debido a las fluctuaciones térmicas no se podía ver en las gráficas correspondientes a altas temperaturas en  \ref{fig:energias}.
+
+\begin{figure}
+\centering
+\includegraphics[width = 0.8\textwidth]{energia.png}
+\caption{\label{fig:energia}Se muestra la energía promedio por sitio en función de la temperatura.}
 \end{figure}
 
 El código debidamente documentado fue

@@ -79,7 +79,7 @@ for t in range(0,len(temperaturas)):
 		ax.set_xlabel("Iteración")
 		ax.set_ylabel("Energía por sitio ($J$)")
 		ax.set_title("$T=%.2f J/K_B$, $N=%d$" % (temperaturas[t], N*N))
-		fig.savefig("%.2f_energia.png" % temperaturas[t])
+		fig.savefig("energia_%d.png" % t)
 		plt.close(fig) 
 
 	#Se guarda el valor de la energía promedio y la magnetización promedio
