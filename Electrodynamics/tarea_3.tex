@@ -1,0 +1,61 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{physics}
+
+\title{Electrodynamics: Homework 3}
+\author{Iván Mauricio Burbano Aldana}
+
+\begin{document}
+
+\maketitle
+
+1. Vamos a asumir en este punto que el marco de referencia está alineado de manera que el primer eje corresponde a $x$, el segundo a $y$ y el tercero a $z$. Ademas, los indices latinos perteneceran a $\{1,2,3\}$ mientras que los griegos a $\{0,1,2,3\}$. Se tiene entonces
+\begin{align}
+\begin{split}
+{E'}_x=&{E'}_1={F'}^{01}=\Lambda^0_\sigma\Lambda^1_\rho F^{\sigma\rho}\\
+=&\Lambda^0_0\Lambda^1_0F^{00}+\Lambda^0_0\Lambda^1_iF^{0i}+\Lambda^0_i\Lambda^1_0F^{i0}+\Lambda^0_i\Lambda^1_jF^{ij}.
+\end{split}
+\end{align}
+Por antisimetría $F^{00}=0$. Por otra parte, en vista de que $\vb{B}=0$ se tiene que $F^{ij}=0$ para todo $i,j\in\{1,2,3\}$. Entonces
+\begin{align}
+\begin{split}
+{E'}_x=&\Lambda^0_0\Lambda^1_iF^{0i}+\Lambda^0_i\Lambda^1_0F^{i0}=\gamma\qty(\delta_{1i}+v_1v_i\frac{\gamma-1}{\vb{v}^2})E_i-\gamma^2 v_iv_1F^{0i}\\
+=&\gamma E_1+\gamma v_1v_i\frac{\gamma-1}{\vb{v}^2}E_i-\gamma^2 v_iv_1E_i.
+\end{split}
+\end{align}
+En vista de que $v_1=v$ y $v_2=v_3=0$ se tiene
+\begin{align}
+\begin{split}
+{E'}_x=&\gamma E_1+\qty(\gamma\frac{\gamma-1}{v^2}-\gamma^2)v^2E_1=E_1\qty(\gamma+\gamma^2-\gamma-v^2\gamma^2)\\
+=&E_1\gamma^2(1-v^2)=E_1=E_x.
+\end{split}
+\end{align}
+
+2. 
+
+(i) Se tiene
+\begin{align}
+\begin{split}
+F^i=&\dv{p^i}{t}=\dv{p^i}{\tau}\dv{\tau}{t}=f^i\dv{\tau}{t}=e\dv{\tau}{t}\eta_{\beta\gamma}F^{i\beta}u^\gamma\\
+=&e\dv{\tau}{t}\eta_{0\gamma}F^{i0}u^\gamma+e\dv{\tau}{t}\eta_{j\gamma}F^{ij}u^\gamma\\
+=&-e\dv{\tau}{t}F^{i0}u^0+e\dv{\tau}{t}F^{ij}u^j=e\dv{\tau}{t}E_i\dv{t}{\tau}+e\dv{\tau}{t}\epsilon_{pij}B_p\dv{x^j}{\tau}\\
+=&e\dv{\tau}{t}E_i\dv{t}{\tau}+e\dv{\tau}{t}\epsilon_{pij}B_p\dv{x^j}{t}\dv{t}{\tau}=eE_i+e\dv{\tau}{t}\epsilon_{pij}B_pv_j\dv{t}{\tau}\\
+=&eE_i+e\epsilon_{pij}B_pv_j=e(E_i+\epsilon_{ijp}v_jB_p)=e(\vb{E}_i+(\vb{v}\cross\vb{B})_i)\\
+=&e(\vb{E}+\vb{v}\cross\vb{B})_i.
+\end{split}
+\end{align}
+Por lo tanto $\vb{F}=e(\vb{E}+\vb{v}\cross\vb{B})$.
+
+(ii) De manera análoga
+\begin{align}
+\begin{split}
+F^0=&\dv{p^0}{t}=\dv{p^0}{\tau}\dv{\tau}{t}=f^0\dv{\tau}{t}=e\dv{\tau}{t}\eta_{\beta\gamma}F^{0\beta}u^\gamma\\
+=&e\dv{\tau}{t}\eta_{0\gamma}F^{00}u^\gamma+e\dv{\tau}{t}\eta_{j\gamma}F^{0j}u^\gamma=e\dv{\tau}{t}F^{0j}u^j\\
+=&e\dv{\tau}{t}E_j\dv{x^j}{\tau}=e\dv{\tau}{t}E_j\dv{x^j}{t}\dv{t}{\tau}=eE_jv_j=e\vb{E}\vdot\vb{v}
+\end{split}
+\end{align}
+Por lo tanto $F^0=e\vb{E}\vdot\vb{v}$.
+
+\end{document}

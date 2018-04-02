@@ -1,0 +1,67 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{physics}
+\usepackage{amssymb}
+
+\title{Electrodynamics: Homework 1}
+\author{Iván Mauricio Burbano Aldana}
+
+\begin{document}
+
+\maketitle
+
+In this homework I will use the notation $\{\vu{e}_1,\vu{e}_2,\vu{e}_3\}$ for the canonical basis of $\mathbb{R}^3$. I will also make use of Stokes' Theorem, the Divergence Theorem, and the cyclicity of the triple vector product without mention.
+
+\begin{enumerate}
+
+\item \begin{align}
+\begin{split}
+\curl(\curl{\vb{G}})&=\epsilon_{ijk}\partial_j(\curl{\vb{G}})_k\vu{e}_i=\epsilon_{ijk}\partial_j\epsilon_{klm}\partial_lG_m\vu{e}_i\\
+&=\epsilon_{kij}\epsilon_{klm}\partial_j\partial_l G_m\vu{e}_i = (\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl})(\partial_j\partial_l G_m)\vu{e}_i\\
+&=(\partial_j\partial_i G_j - \partial_j\partial_j G_i)\vu{e}_i =\grad(\div{\vb{G}})-\laplacian\vb{G}
+\end{split}
+\end{align}
+
+\item \begin{align}
+\begin{split}
+&(\vb{F}\vdot\grad)\vb{G}+(\vb{G}\vdot\grad)\vb{F}+\vb{F}\cross(\curl{\vb{G}})+\vb{G}\cross(\curl{F})\\
+&= (F_j\partial_jG_i+G_j\partial_jF_i+\epsilon_{ijk}F_j\epsilon_{klm}\partial_lG_m+\epsilon_{ijk}G_j\epsilon_{klm}\partial_lF_m)\vu{e}_i\\
+&= (F_j\partial_jG_i+G_j\partial_jF_i+\epsilon_{kij}\epsilon_{klm}(F_j\partial_lG_m+G_j\partial_lF_m))\vu{e}_i\\
+&= (F_j\partial_jG_i+G_j\partial_jF_i+(\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl})(F_j\partial_lG_m+G_j\partial_lF_m))\vu{e}_i\\
+&= (F_j\partial_jG_i+G_j\partial_jF_i+F_j\partial_iG_j+G_j\partial_iF_j-F_j\partial_jG_i-G_j\partial_jF_i)\vu{e}_i\\
+&=(F_j\partial_iG_j+G_j\partial_iF_j)\vu{e}_i=\partial_i(F_jG_j)\vu{e}_i=\grad(\vb{F}\vdot\vb{G})
+\end{split}
+\end{align}
+
+\item \begin{align}
+\begin{split}
+\int_V d^3x\curl{\vb{F}}&=\int_V d^3 x \epsilon_{ijk}\partial_jF_k\vu{e}_i=\int_V d^3 x \partial_j(\epsilon_{jki}F_k\vu{e}_i)\\
+&=\int_V d^3 x \partial_j(\epsilon_{jki}F_k\delta_{il})\vu{e}_l=\int_V d^3 x \partial_j(\vb{F}\cross \vu{e}_l)_j\vu{e}_l\\
+&=\int_ V d^3 x \div(\vb{F}\cross \vu{e}_l)\vu{e}_l=\int_{\partial V}dA\vu{n}\vdot(\vb{F}\cross\vu{e}_l)\vu{e}_l\\
+&=\int_{\partial V}dA\vu{e}_l\vdot(\vu{n}\cross\vb{F})\vu{e}_l=\int_{\partial V}dA\vu{n}\cross\vb{F}
+\end{split}
+\end{align}
+
+\item \begin{align}
+\begin{split}
+\int_{\partial S}d\vb{r}\psi&= \int_{\partial S}d\vb{r}\vdot\vu{e}_i\psi\vu{e}_i=\int_{\partial S}d\vb{r}\vdot(\psi\vu{e}_i)\vu{e}_i\\
+&=\int_S dA\vu{n}\vdot(\curl(\psi\vu{e}_i))\vu{e}_i=\int_S dA \vu{n}\vdot(\epsilon_{klm}\partial_l\psi\delta_{mi}\vu{e}_k)\vu{e}_i\\
+&=\int_S dA \vu{n}\vdot(\grad{\psi}\cross\vu{e}_i)\vu{e}_i=\int_S dA \vu{e}_i\vdot(\vu{n}\cross\grad{\psi})\vu{e}_i\\
+&=\int_S dA \vu{n}\cross\grad{\psi}
+\end{split}
+\end{align}
+
+\item \begin{align}
+\begin{split}
+-\int_V d^3x\vb{F}\vdot\grad{f}+\int_{\partial V} dAf\vb{F}\vdot\vu{n}=&\\
+-\int_V d^3x\vb{F}\vdot\grad{f}+\int_V d^3x\div(f\vb{F})=&\\
+\int_V d^3x(-\vb{F}\vdot\grad{f}+\partial_i(fF_i))=&\\
+\int_V d^3x(-F_i\partial_if+F_i\partial_i f + f\partial_i F_i)=\int_V d^3xf\partial_i F_i=&\\
+\int_V d^3xf\div{\vb{F}}&
+\end{split}
+\end{align}
+
+\end{enumerate}
+
+\end{document}

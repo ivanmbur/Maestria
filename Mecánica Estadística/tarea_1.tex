@@ -1,0 +1,186 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage[margin=0.5in]{geometry}
+
+\title{Mecánica Estadística: Tarea 1}
+\author{Iván Mauricio Burbano Aldana}
+
+\begin{document}
+
+\maketitle
+
+\section{Fórmula del virial}
+
+Sea $\Omega\subseteq\mathbb{R}^3$ el espacio que ocupa el gas. Entonces el espacio de estados es $\Omega^N\times\mathbb{R}^{3N}$. Tenemos el Hamiltoniano $H:\Omega^N\times\mathbb{R}^{3N}\rightarrow\mathbb{R}$ dado por
+\begin{equation}
+H(\vb{r}_1,\dots,\vb{r}_N,\vb{p}_1,\dots\vb{p}_N)=\sum_{i=1}^N\frac{\vb{p}_i^2}{2m_i}+\frac{1}{2}\sum_{i=1}^N\sum_{j=1,j\neq i}^Nv(\|\vb{r}_i-\vb{r}_j\|).
+\end{equation}
+Consideramos como el espacio de macroestados $\mathbb{R}^+\times\mathbb{R}^+$ donde los elementos son pares de temperaturas inversas y volumenes. Entonces la función de partición canónica $Z:\mathbb{R}^+\times\mathbb{R}^+\rightarrow\mathbb{R}$ satisface que $Z(\beta,V)$ es proporcional a
+\begin{align}
+\begin{split}
+&\int_{\Omega^N\times\mathbb{R}^{3N}}d^3\vb{r}_1\cdots d^3\vb{r}_Nd^3\vb{p}_1\cdots d^3\vb{p}_N\exp(-\beta H(\vb{r}_1,\dots,\vb{r}_N,\vb{p}_1,\dots\vb{p}_N))\\
+&=\int_{\mathbb{R}^{3N}}d^3\vb{p}_1\cdots d^3\vb{p}_N\exp(-\beta\sum_{i=1}^N\frac{\vb{p}_i^2}{2m_i})\int_{\Omega^N}d^3\vb{r}_1\cdots d^3\vb{r}_N\exp(-\beta\frac{1}{2}\sum_{i=1}^N\sum_{j=1,j\neq i}^Nv(\|\vb{r}_i-\vb{r}_j\|))\\
+&=\int_{\mathbb{R}^{3N}}d^3\vb{p}_1\cdots d^3\vb{p}_N\prod_{i=1}^N\exp(-\beta\frac{\vb{p}_i^2}{2m_i})\int_{\Omega^N/V^{1/3}}d^3\vb{r}_1\cdots d^3\vb{r}_NV^N\exp(-\beta\frac{1}{2}\sum_{i=1}^N\sum_{j=1,j\neq i}^Nv(V^{1/3}\|\vb{r}_i-\vb{r}_j\|))\\
+&=V^N\prod_{i=1}^N\int_{\mathbb{R}^3}d^3\vb{p}\exp(-\beta\frac{\vb{p}^2}{2m_i})\int_{\Omega^N/V^{1/3}}d^3\vb{r}_1\cdots d^3\vb{r}_N\exp(-\beta\frac{1}{2}\sum_{i=1}^N\sum_{j=1,j\neq i}^Nv(V^{1/3}\|\vb{r}_i-\vb{r}_j\|))\\
+&=V^N\prod_{i=1}^N\qty(\int_{\mathbb{R}}dp\exp(-\beta\frac{p^2}{2m_i}))^3\int_{\Omega^N/V^{1/3}}d^3\vb{r}_1\cdots d^3\vb{r}_N\exp(-\beta\frac{1}{2}\sum_{i=1}^N\sum_{j=1,j\neq i}^Nv(V^{1/3}\|\vb{r}_i-\vb{r}_j\|))\\
+&=V^N\prod_{i=1}^N\qty(\frac{2\pi m_i}{\beta})^{3/2}\int_{\Omega^N/V^{1/3}}d^3\vb{r}_1\cdots d^3\vb{r}_N\exp(-\beta\frac{1}{2}\sum_{i=1}^N\sum_{j=1,j\neq i}^Nv(V^{1/3}\|\vb{r}_i-\vb{r}_j\|)).
+\end{split}
+\end{align}
+Por lo tanto, notando que el volumen de $\Omega^N/V^{1/3}$ es 1, se tiene
+\begin{align}
+\begin{split}
+&\beta p(\beta,V) =\frac{\partial \ln{Z}}{\partial V}(\beta,V)=\frac{1}{Z(\beta,V)}\frac{\partial Z}{\partial V}(\beta, V)\\
+&=\frac{NV^{N-1}\int_{\Omega^N/V^{1/3}}d^3\vb{r}_1\cdots d^3\vb{r}_N\exp(-\beta\frac{1}{2}\sum_{i=1}^N\sum_{j=1,j\neq i}^Nv(V^{1/3}\|\vb{r}_i-\vb{r}_j\|))}{V^N\int_{\Omega^N/V^{1/3}}d^3\vb{r}_1\cdots d^3\vb{r}_N\exp(-\beta\frac{1}{2}\sum_{i=1}^N\sum_{j=1,j\neq i}^Nv(V^{1/3}\|\vb{r}_i-\vb{r}_j\|))}+\\
+&\frac{\int_{\Omega^N/V^{1/3}}d^3\vb{r}_1\cdots d^3\vb{r}_N(-\frac{\beta}{2}\sum_{i\neq j}v'(V^{1/3}\|\vb{r}_i-\vb{r}_j\|)\|\vb{r}_i-\vb{r}_j\|\frac{1}{3}V^{-2/3})\exp(-\beta\frac{1}{2}\sum_{i\neq j}v(V^{1/3}\|\vb{r}_i-\vb{r}_j\|))}{\int_{\Omega^N/V^{1/3}}d^3\vb{r}_1\cdots d^3\vb{r}_N\exp(-\beta\frac{1}{2}\sum_{i\neq j}v(V^{1/3}\|\vb{r}_i-\vb{r}_j\|))}\\
+&= n-\frac{\beta}{6}V^{-2/3}\frac{\sum_{i,j=1,i\neq j}^N\int_{\Omega^N}d^3\vb{r}_1\cdots d^3\vb{r}_Nv'(\|\vb{r}_i-\vb{r}_j\|)\|\vb{r}_i-\vb{r}_j\|\exp(-\beta\frac{1}{2}\sum_{i,j=1,i\neq j}^Nv(\|\vb{r}_i-\vb{r}_j\|))}{\int_{\Omega^N}d^3\vb{r}_1\cdots d^3\vb{r}_N\exp(-\beta\frac{1}{2}\sum_{i,j=1,i\neq j}^Nv(\|\vb{r}_i-\vb{r}_j\|))}.
+\end{split}
+\end{align}
+Si el sistema es homogeneo e isotrópico tenemos 
+\begin{align}
+\begin{split}
+&\beta p(\beta,V)\\
+&= n-\frac{\beta}{6}V^{-2/3}\frac{N(N-1)\int_{\Omega^N}d^3\vb{r}_1\cdots d^3\vb{r}_Nv'(\|\vb{r}_1-\vb{r}_2\|)\|\vb{r}_1-\vb{r}_2\|\exp(-\beta\frac{1}{2}\sum_{i,j=1,i\neq j}^Nv(\|\vb{r}_i-\vb{r}_j\|))}{\int_{\Omega^N}d^3\vb{r}_1\cdots d^3\vb{r}_N\exp(-\beta\frac{1}{2}\sum_{i,j=1,i\neq j}^Nv(\|\vb{r}_i-\vb{r}_j\|))}\\
+&= n-\frac{\beta V^{-2/3}N(N-1)}{6}\int_{\Omega^2}d^3\vb{r}_1d^3\vb{r}_2v'(\|\vb{r}_1-\vb{r}_2\|)\|\vb{r}_1-\vb{r}_2\|\\
+&\frac{\int_{\Omega^{N-2}} d^3\vb{r}_3\cdots d^3\vb{r}_N\exp(-\beta\frac{1}{2}\sum_{i,j=1,i\neq j}^Nv(\|\vb{r}_i-\vb{r}_j\|))}{\int_{\Omega^N}d^3\vb{r}_1\cdots d^3\vb{r}_N\exp(-\beta\frac{1}{2}\sum_{i,j=1,i\neq j}^Nv(\|\vb{r}_i-\vb{r}_j\|))}\\
+&= n-\frac{\beta V^{-2/3}}{6}\int_{\Omega^2}d^3\vb{r}_1d^3\vb{r}_2v'(\|\vb{r}_1-\vb{r}_2\|)\|\vb{r}_1-\vb{r}_2\|\\
+&\frac{\int_{\Omega^N} d^3\vb{u}_1\cdots d^3\vb{u}_N\sum_{i=1}^N\sum_{j=1,j\neq i}^N\delta(\vb{u}_i-\vb{r}_1)\delta(\vb{u}_j-\vb{r}_2)\exp(-\beta\frac{1}{2}\sum_{i,j=1,i\neq j}^Nv(\|\vb{u}_i-\vb{u}_j\|))}{\int_{\Omega^N}d^3\vb{r}_1\cdots d^3\vb{r}_N\exp(-\beta\frac{1}{2}\sum_{i,j=1,i\neq j}^Nv(\|\vb{r}_i-\vb{r}_j\|))}\\
+&= n-\frac{\beta V^{-2/3}}{6}\int_{\Omega^2}d^3\vb{r}_1d^3\vb{r}_2v'(\|\vb{r}_1-\vb{r}_2\|)\|\vb{r}_1-\vb{r}_2\|n^{(2)}(\vb{r}_1,\vb{r}_2)\\
+&= n-\frac{\beta V^{-2/3}}{6}\int_{\Omega^2}d^3\vb{r}_1d^3\vb{r}_2v'(\|\vb{r}_1-\vb{r}_2\|)\|\vb{r}_1-\vb{r}_2\|n^2g(\|\vb{r}_1-\vb{r}_2\|)= n-\frac{\beta n^2V^{1/3}}{6}\int_{\Omega}d^3\vb{r}v'(\|\vb{r}\|)\|\vb{r}\|g(\|\vb{r}\|)\\
+\end{split}
+\end{align}
+
+\section{Fórmula de compresibilidad}
+
+1.
+\begin{align}
+\begin{split}
+&\int d^3\vb{r}_1d^3\vb{r}_2n^{(2)}(\vb{r}_1,\vb{r}_2)\\
+&=\int d^3\vb{r}_1d^3\vb{r}_2\ev{\qty(\sum_{i=1}^N\delta(\vb{x}_i-\vb{r}_1))\qty(\sum_{i=1}^N\delta(\vb{x}_j-\vb{r}_2))}\\
+&=\int d^3\vb{r}_1d^3\vb{r}_2\frac{1}{Z(\mu,V,\beta)}\sum_{N=0}^\infty\frac{\zeta^N}{N!}\int d^3\vb{x}_1\cdots d^3\vb{x}_N\sum_{i=1}^N\sum_{j=1,j\neq i}^N\delta(\vb{x}_i-\vb{r}_1)\delta(\vb{x}_j-\vb{r}_2) e^{-\beta U(\vb{x}_1,\dots,\vb{x}_N)}\\
+&=\sum_{N=0}^\infty\sum_{i=1}^N\sum_{j=1,j\neq i}^N\frac{1}{Z(\mu,V,\beta)}\frac{\zeta^N}{N!}\int d^3\vb{r}_1d^3\vb{r}_2\int d^3\vb{x}_1\cdots d^3\vb{x}_N\delta(\vb{x}_i-\vb{r}_1)\delta(\vb{x}_j-\vb{r}_2) e^{-\beta U(\vb{x}_1,\dots,\vb{x}_N)}\\
+&=\sum_{N=0}^\infty\sum_{i=1}^N\sum_{j=1,j\neq i}^N\frac{1}{Z(\mu,V,\beta)}\frac{\zeta^N}{N!}\int d^3\vb{x}_1\cdots d^3\vb{x}_N e^{-\beta U(\vb{x}_1,\dots,\vb{x}_N)}\\
+&=\sum_{N=0}^\infty N(N-1)\frac{1}{Z(\mu,V,\beta)}\frac{\zeta^N}{N!}\int d^3\vb{x}_1\cdots d^3\vb{x}_N e^{-\beta U(\vb{x}_1,\dots,\vb{x}_N)}\\
+&= \frac{1}{Z(\mu,V,\beta)}\sum_{N=0}^\infty\frac{\zeta^N}{N!}\int d^3\vb{x}_1\cdots d^3\vb{x}_N N(N-1)e^{-\beta U(\vb{x}_1,\dots,\vb{x}_N)}=\ev{N(N-1)}\\
+\end{split}
+\end{align}
+
+2. Por una parte tenemos
+\begin{align}
+\begin{split}
+\zeta\frac{\partial\ev{N}}{\partial\zeta}&=\zeta\frac{\partial}{\partial\zeta}\frac{1}{Z(\mu,V,\beta)}\sum_{N=0}^\infty\frac{\zeta^N}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N N e^{-\beta U(\vb{r}_1,\dots,\vb{r}_N)}\\
+&=\frac{1}{Z(\mu,V,\beta)}\sum_{N=0}^\infty\frac{\zeta^N}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N N^2 e^{-\beta U(\vb{r}_1,\dots,\vb{r}_N)}\\
+&-\frac{1}{Z(\mu,V,\beta)^2}\sum_{N=0}^\infty\frac{\zeta^N}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N N e^{-\beta U(\vb{r}_1,\dots,\vb{r}_N)}\\
+&\times\sum_{N=0}^\infty\frac{N\zeta^N}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N e^{-\beta U(\vb{r}_1,\dots,\vb{r}_N)}\\
+&=\frac{1}{Z(\mu,V,\beta)}\sum_{N=0}^\infty\frac{\zeta^N}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N N^2 e^{-\beta U(\vb{r}_1,\dots,\vb{r}_N)}\\
+&-\qty(\frac{1}{Z(\mu,V,\beta)}\sum_{N=0}^\infty\frac{\zeta^N}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N N e^{-\beta U(\vb{r}_1,\dots,\vb{r}_N)})^2=\ev{N^2}-\ev{N}^2.
+\end{split}
+\end{align}
+Por otra, en el límite termodinámico
+\begin{align}
+\begin{split}
+k_BT\ev{N}\frac{\partial n}{\partial p}&=k_BT\ev{N}\frac{\partial}{\partial p}\frac{\ev{N}}{V}=k_BT\ev{N}\frac{\partial \ev{N}}{\partial\mu}\qty(\frac{\partial p}{\partial \mu})^{-1}\frac{1}{V}=k_BT\ev{N}\frac{\partial \ev{N}}{\partial\mu}\qty(\frac{\partial}{\partial\mu}\frac{-\Omega}{V})^{-1}\frac{1}{V}\\
+&=k_BT\ev{N}\frac{\partial \ev{N}}{\partial\mu}\ev{N}^{-1}=k_BT\frac{\partial \ev{N}}{\partial\mu}=\frac{1}{\beta}\beta\zeta\frac{\partial \ev{N}}{\partial\zeta}=\ev{N^2}-\ev{N}^2,
+\end{split}
+\end{align}
+donde se utilizó que 
+\begin{equation}
+\frac{\partial}{\partial \mu}=\frac{\partial\zeta}{\partial\mu}\frac{\partial}{\partial\zeta}=\beta\frac{e^{\beta\mu}}{\lambda}\frac{\partial}{\partial\zeta}=\beta\zeta\frac{\partial}{\partial\zeta}
+\end{equation}
+y en el límite termodinámico se tiene $\ev{N}=-\frac{\partial\Omega}{\partial\mu}$ y $p=-\frac{\Omega}{V}$.
+
+3. En un sistema homogeneo e isotrópico se tiene
+\begin{align}
+\begin{split}
+k_BT\frac{\partial n}{\partial p}&=\frac{\ev{N^2}-\ev{N}^2}{\ev{N}}=\frac{\ev{N^2}-\ev{N}+\ev{N}-\ev{N}^2}{\ev{N}}=1+\frac{\ev{N(N-1)}-\ev{N}^2}{\ev{N}}\\
+&=1+\frac{1}{\ev{N}}\qty(\int d^3\vb{r}_1d^3\vb{r}_2n^{(2)}(\vb{r}_1,\vb{r}_2)-n^2V^2)=1+\frac{1}{\ev{N}}\qty(\int d^3\vb{r}_1d^3\vb{r}_2n^2g(\|\vb{r}_1-\vb{r}_2\|)-n^2V\int d^3\vb{r})\\
+&=1+\frac{n^2}{\ev{N}}\qty(\int d^3\vb{r}_1d^3\vb{r}g(\|\vb{r}\|)-V\int d^3\vb{r})=1+\frac{n^2}{\ev{N}}\qty(V\int d^3\vb{r}g(\|\vb{r}\|)-V\int d^3\vb{r})\\
+&=1+\frac{n^2}{\ev{N}}\qty(\int d^3\vb{r}_1d^3\vb{r}g(\|\vb{r}\|)-V\int d^3\vb{r})=1+\frac{n^2V}{\ev{N}}\int d^3\vb{r}\qty(g(\|\vb{r}\|)-1)=1+n\int d^3\vb{r}\qty(g(\|\vb{r}\|)-1)
+\end{split}
+\end{align}
+
+\section{Correlaciones en gran-canónico}
+
+\subsection{Preliminares: derivación funcional}
+
+1.
+\begin{align}
+\begin{split}
+\frac{\delta}{\delta f(x)}\int\qty(f(y)\ln(f(y))-f(y))dy&=\int\qty(\delta(y-x)\ln(f(y))+f(y)\frac{\delta(y-x)}{f(y)}-\delta(y-x))dy\\
+&=\ln(f(x))+1-1=\ln(f(x))
+\end{split}
+\end{align}
+
+2.
+\begin{align}
+\begin{split}
+\frac{\delta G(f(z))}{\delta f(x_0)}=G'(f(z))\delta(z-x_0)
+\end{split}
+\end{align}
+
+3.
+\begin{align}
+\begin{split}
+\frac{\delta}{\delta f(x_0)}\int\int \frac{f(x)f(y)}{|x-y|}dxdy&=\int\int\frac{\delta(x-x_0)f(y)+f(x)\delta(y-x_0)}{|x-y|}dxdy=\int \frac{f(y)}{|x_0-y|} dy + \int \frac{f(x)}{|x-x_0|}dx\\
+&=2\int \frac{f(x)}{|x-x_0|}dx
+\end{split}
+\end{align}
+
+\subsection{Densidades y correlaciones}
+
+1.
+\begin{align}
+\begin{split}
+&n^{(1)}(\vb{r})=\ev{\sum_{i=1}^N\delta(\vb{r}-\vb{r}_i)}\\
+&=\frac{1}{\Xi(\mu,V,T)}\sum_{N=1}^\infty \frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{i=1}^N\delta(\vb{r}-\vb{r}_i)\prod_{j=1}^N\zeta(\vb{r}_j)e^{-\beta V_N(\vb{r}_1,\dots,\vb{r}_N)}\\
+&=\frac{1}{\Xi(\mu,V,T)}\sum_{N=1}^\infty\sum_{i=1}^N \frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\delta(\vb{r}-\vb{r}_i)\prod_{j=1}^N\zeta(\vb{r}_j)e^{-\beta V_N(\vb{r}_1,\dots,\vb{r}_N)}\\
+&=\frac{1}{\Xi(\mu,V,T)}\sum_{N=1}^\infty\sum_{i=1}^N \frac{1}{N!}\int \prod_{l=1,l\neq i}^\infty d^3\vb{r}_l\zeta(\vb{r})\prod_{j=1,j\neq l}^N\zeta(\vb{r}_j)e^{-\beta V_N(\vb{r}_1,\dots,\vb{r}_{i-1},\vb{r},\vb{r}_{i+1},\dots,\vb{r}_N)}\\
+&=\frac{\zeta(\vb{r})}{\Xi(\mu,V,T)}\sum_{N=1}^\infty\sum_{i=1}^N \frac{1}{N!}\int \prod_{l=1,l\neq i}^\infty d^3\vb{r}_l\prod_{j=1,j\neq l}^N\zeta(\vb{r}_j)e^{-\beta V_N(\vb{r}_1,\dots,\vb{r}_{i-1},\vb{r},\vb{r}_{i+1},\dots,\vb{r}_N)}\\
+&=\frac{\zeta(\vb{r})}{\Xi(\mu,V,T)}\sum_{N=1}^\infty\sum_{i=1}^N \frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\delta(\vb{r}-\vb{r}_i)\prod_{j=1,j\neq l}^N\zeta(\vb{r}_j)e^{-\beta V_N(\vb{r}_1,\dots,\vb{r}_N)}\\
+&=\frac{\zeta(\vb{r})}{\Xi(\mu,V,T)}\sum_{N=1}^\infty \frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{i=1}^N\delta(\vb{r}-\vb{r}_i)\prod_{j=1,j\neq l}^N\zeta(\vb{r}_j)e^{-\beta V_N(\vb{r}_1,\dots,\vb{r}_N)}\\
+&=\frac{\zeta(\vb{r})}{\Xi(\mu,V,T)}\sum_{N=1}^\infty \frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\frac{\delta}{\delta \zeta(\vb{r})}\qty(\prod_{j=1}^N\zeta(\vb{r}_j))e^{-\beta V_N(\vb{r}_1,\dots,\vb{r}_N)}\\
+&=\frac{\zeta(\vb{r})}{\Xi(\mu,V,T)}\frac{\delta}{\delta \zeta(\vb{r})}\qty(1+\sum_{N=1}^\infty \frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\prod_{j=1}^N\zeta(\vb{r}_j)e^{-\beta V_N(\vb{r}_1,\dots,\vb{r}_N)})\\
+&=\frac{\zeta(\vb{r})}{\Xi(\mu,V,T)}\frac{\delta\Xi}{\delta \zeta(\vb{r})}=\zeta(\vb{r})\frac{\delta\ln(\Xi)}{\delta \zeta(\vb{r})}
+\end{split}
+\end{align}
+
+
+2.
+\begin{align}
+\begin{split}
+&\zeta(\vb{R}_2)\frac{\delta n^{(1)}(\vb{R}_1)}{\delta\zeta(\vb{R}_2)}=\zeta(\vb{R}_2)\frac{\delta}{\delta\zeta(\vb{R}_2)}\qty(\zeta(\vb{R}_1)\frac{\delta\ln(\Xi)}{\delta\zeta(\vb{R}_1)})=\zeta(\vb{R}_2)\frac{\delta}{\delta\zeta(\vb{R}_2)}\qty(\zeta(\vb{R}_1)\frac{1}{\Xi(\mu,V,T)}\frac{\delta\Xi}{\delta\zeta(\vb{R}_1)})\\
+&=\zeta(\vb{R}_2)\frac{\delta}{\delta\zeta(\vb{R}_2)}\qty(\frac{1}{\Xi(\mu,V,T)}\sum_{N=1}^\infty \frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{i=1}^N\delta(\vb{R}_1-\vb{r}_i)\prod_{j=1}^N\zeta(\vb{r}_j)e^{-\beta V_N(\vb{r}_1,\dots,\vb{r}_N)})\\
+&=-\zeta(\vb{R}_2)\frac{1}{\Xi(\mu,V,T)^2}\frac{\delta\Xi}{\delta\zeta(\vb{R}_2)}\sum_{N=1}^\infty \frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{i=1}^N\delta(\vb{R}_1-\vb{r}_i)\prod_{j=1}^N\zeta(\vb{r}_j)e^{-\beta V_N(\vb{r}_1,\dots,\vb{r}_N)}\\
+&+\frac{\zeta(\vb{R}_2)}{\Xi(\mu,V,T)}\frac{\delta}{\delta\zeta(\vb{R}_2)}\qty(\sum_{N=1}^\infty \frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{i=1}^N\delta(\vb{R}_1-\vb{r}_i)\prod_{j=1}^N\zeta(\vb{r}_j)e^{-\beta V_N(\vb{r}_1,\dots,\vb{r}_N)})\\
+&=-\zeta(\vb{R}_2)\frac{\delta\ln(\Xi)}{\delta\zeta(\vb{R}_2)}\frac{1}{\Xi(\mu,V,T)}\sum_{N=1}^\infty \frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{i=1}^N\delta(\vb{R}_1-\vb{r}_i)\prod_{j=1}^N\zeta(\vb{r}_j)e^{-\beta V_N(\vb{r}_1,\dots,\vb{r}_N)}\\
+&+\frac{\zeta(\vb{R}_2)}{\Xi(\mu,V,T)}\sum_{N=1}^\infty \frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{i=1}^N\delta(\vb{R}_1-\vb{r}_i)\sum_{k=1}^N\delta(\vb{R}_2-\vb{r}_k)\prod_{j=1,j\neq k}^N\zeta(\vb{r}_j)e^{-\beta V_N(\vb{r}_1,\dots,\vb{r}_N)}\\
+&=-n^{(1)}(\vb{R}_1)n^{(1)}(\vb{R}_2)\\
+&+\frac{1}{\Xi(\mu,V,T)}\sum_{N=1}^\infty\sum_{k=1}^N \frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{i=1}^N\delta(\vb{R}_1-\vb{r}_i)\zeta(\vb{R}_2)\delta(\vb{R}_2-\vb{r}_k)\prod_{j=1,j\neq k}^N\zeta(\vb{r}_j)e^{-\beta V_N(\vb{r}_1,\dots,\vb{r}_N)}\\
+&=\frac{1}{\Xi(\mu,V,T)}\sum_{N=1}^\infty\sum_{k=1}^N \frac{1}{N!}\int \prod_{l=1,l\neq k}^Nd^3\vb{r}_l\delta(\vb{R}_1-\vb{R}_2)\sum_{i=1,i\neq k}^N\delta(\vb{R}_1-\vb{r}_i)\zeta(\vb{R}_2)\prod_{j=1,j\neq k}^N\zeta(\vb{r}_j)e^{-\beta V_N(\vb{r}_1,\dots,\vb{r}_{k-1},\vb{R}_2,\vb{r}_{k+1},\dots,\vb{r}_N)}\\
+&-n^{(1)}(\vb{R}_1)n^{(1)}(\vb{R}_2)\\
+&=\frac{1}{\Xi(\mu,V,T)}\sum_{N=1}^\infty\sum_{k=1}^N \frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{i=1}^N\delta(\vb{R}_1-\vb{r}_i)\delta(\vb{R}_2-\vb{r}_k)\prod_{j=1}^N\zeta(\vb{r}_j)e^{-\beta V_N(\vb{r}_1,\dots,\vb{r}_N)}\\
+&-n^{(1)}(\vb{R}_1)n^{(1)}(\vb{R}_2)\\
+&=\frac{1}{\Xi(\mu,V,T)}\sum_{N=1}^\infty \frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{i=1}^N\delta(\vb{R}_1-\vb{r}_i)\sum_{k=1}^N\delta(\vb{R}_2-\vb{r}_k)\prod_{j=1}^N\zeta(\vb{r}_j)e^{-\beta V_N(\vb{r}_1,\dots,\vb{r}_N)}\\
+&-\ev{\hat{n}(\vb{R}_1;\vb{r}_1,\dots,\vb{r}_N)}\ev{\hat{n}(\vb{R}_2;\vb{r}_1,\dots,\vb{r}_N)}\\
+&=\ev{\hat{n}(\vb{R}_1;\vb{r}_1,\dots,\vb{r}_N)\hat{n}(\vb{R}_2;\vb{r}_1,\dots,\vb{r}_N)}-\ev{\hat{n}(\vb{R}_1;\vb{r}_1,\dots,\vb{r}_N)}\ev{\hat{n}(\vb{R}_2;\vb{r}_1,\dots,\vb{r}_N)}=U^{(2)T}(\vb{R}_1,\vb{R}_2)
+\end{split}
+\end{align}
+
+3.Obtenemos la relación
+\begin{align}
+\begin{split}
+U^{(2)T}(\vb{R}_1,\vb{R}_2)&=\ev{\hat{n}(\vb{R}_1;\vb{r}_1,\dots,\vb{r}_N)\hat{n}(\vb{R}_2;\vb{r}_1,\dots,\vb{r}_N)}-\ev{\hat{n}(\vb{R}_1;\vb{r}_1,\dots,\vb{r}_N)}\ev{\hat{n}(\vb{R}_2;\vb{r}_1,\dots,\vb{r}_N)}\\
+&=\ev{\sum_{i=1}^N\delta(\vb{R}_1-\vb{r}_i)\sum_{j=1}^N\delta(\vb{R}_2-\vb{r}_j)}-\ev{\hat{n}(\vb{R}_1;\vb{r}_1,\dots,\vb{r}_N)}\ev{\hat{n}(\vb{R}_2;\vb{r}_1,\dots,\vb{r}_N)}\\
+&=\ev{\sum_{i=1}^N\sum_{j=1,j\neq i}^N\delta(\vb{R}_1-\vb{r}_i)\delta(\vb{R}_2-\vb{r}_j)}+\ev{\sum_{i=1}^N\delta(\vb{R}_1-\vb{r}_i)\delta(\vb{R}_2-\vb{r}_i)}\\
+&-\ev{\hat{n}(\vb{R}_1;\vb{r}_1,\dots,\vb{r}_N)}\ev{\hat{n}(\vb{R}_2;\vb{r}_1,\dots,\vb{r}_N)}\\
+&=n^{(2)}(\vb{R}_1,\vb{R}_2)-n^{(1)}(\vb{R}_1)n^{(1)}(\vb{R}_2) +\delta(\vb{R}_1-\vb{R}_2)\ev{\sum_{i=1}^N\delta(\vb{R}_1-\vb{r}_i)}\\
+&=n^{(2)}(\vb{R}_1,\vb{R}_2)-n^{(1)}(\vb{R}_1)n^{(1)}(\vb{R}_2) +\delta(\vb{R}_1-\vb{R}_2)n^{(1)}(\vb{R}_1)\\
+
+&=n^{(2)}(\vb{R}_1,\vb{R}_2)-n^{(1)}(\vb{R}_1)\qty(n^{(1)}(\vb{R}_2) +\delta(\vb{R}_1-\vb{R}_2))
+\end{split}
+\end{align}
+
+\end{document}

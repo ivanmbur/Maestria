@@ -1,0 +1,104 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{physics}
+\usepackage{amssymb}
+
+\author{Iván Mauricio Burbano Aldana}
+\title{Mecánica Cuántica Avanzada: Tarea 1}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+
+\item Asumimos que $\alpha:=\{\ket{a_n}|n\in\{1,\dots, k\}\}$ es una base del espacio de Hilbert sobre el cual $\hat{O}_k$ actúa. Observando que 
+\begin{equation}
+\hat{O}_k\ket{a_n}=\sum_{i=1}^k a_i\ket{a_i}\ip{a_i}{a_n}=\sum_{i=1}^ka_i\ket{a_i}\delta_{in}=a_n\ket{a_n}
+\end{equation}
+para todo $n\in\{1,\dots,k\}$ se concluye que la representación matricial de $\hat{O}_k$ en la base $\alpha$ es $\text{diag}(a_1,\dots,a_n)$. De esto se concluye que
+\begin{equation}
+\tr(\hat{O}_k)=\sum_{i=1}^ka_i.
+\end{equation}
+También podemos calcularla directamente,
+\begin{align}
+\begin{split}
+\tr(\hat{O}_k)&=\sum_{n=1}^k\ev{\hat{O}_k}{a_n}=\sum_{n=1}^k\bra{a_n}\sum_{i=1}^k a_i\ket{a_i}\ip{a_i}{a_n} \\
+&=\sum_{n=1}^k\sum_{i=1}^ka_i\ip{a_n}{a_i}\ip{a_i}{a_n}=\sum_{n=1}^k\sum_{i=1}^ka_i|\ip{a_n}{a_i}|^2\\
+&=\sum_{n=1}^k\sum_{i=1}^ka_i\delta_{in}=\sum_{i=1}^k a_i.
+\end{split}
+\end{align}
+
+Note que para una proyección, se tiene que $\tr(P)$ es igual al rango de la proyección. Si la proyección es ortogonal, es autoadjunta y el teorema espectral vale. Luego si $\hat{O}_k$ es una proyección ortogonal, los $a_i\in\{0,1\}$ son sus valores propios y el número de $a_k\neq 0$, es decir $|\{i\in\{0,\dots,k\}|a_i\neq 0\}|$ es la dimensión de su imágen.
+
+\item Definimos $\ket{\psi_t}:=\psi(\cdot,t)$ y $\ket{\phi_i}:=\phi_i$ para todo indice $i$ y tiempo $t$. Entonces tenemos para todo tiempo $t$
+\begin{align}
+\begin{split}
+\ev{\hat{P_i}}{\psi_t}&=\sum_k a_k(t)^*\ip{\phi_k}{\phi_i}\bra{\phi_i}\sum_l a_l(t)\ket{\phi_l}\\
+&=\sum_k\sum_l a_k(t)^*a_l(t)\ip{\phi_k}{\phi_i}\ip{\phi_i}{\phi_l}\\
+&=\sum_k\sum_l a_k(t)^*a_l(t)\delta_{ki}\delta_{il}=|a_i(t)|^2=\left\vert \sum_k a_k(t)\delta_{ik}\right\vert^2\\
+&=\left\vert\sum_k a_k(t)\ip{\phi_i}{\phi_k}\right\vert^2=\left\vert \bra{\phi_i}\sum_k a_k(t)\ket{\phi_k}\right\vert^2=|\ip{\phi_i}{\psi_t}|^2
+\end{split}
+\end{align}
+demostrando lo que se pedía.
+
+\item Para poder resolver este problema, es necesario recordar la demostración de las relaciones de incertidumbre. Suponga que $A:\mathcal{D}_A\rightarrow\mathcal{H}$ y $B:\mathcal{D}_B\rightarrow\mathcal{H}$ son operadores simétricos sobre un espacio de Hilbert $\mathcal{H}$. Sea $\psi\in\mathcal{D}_{AB}\cap\mathcal{D}_{BA}$ unitario donde $\mathcal{D}_{AB}:=\{\phi\in\mathcal{D}_B|B\phi\in\mathcal{D}_A\}$. Defina la incertidumbre de $A$ en el estado descrito por $\psi$ por $(\Delta_\psi A)^2:=\|(A-\ev{A}_\psi)\psi\|^2$ donde $\ev{A}_\psi:=\langle\psi,A\psi\rangle$. Entonces en vista de que $A-\ev{A}_\psi$ es simétrico 
+\begin{align}
+\begin{split}
+&(\Delta_\psi A)^2(\Delta_\psi B)^2=\|(A-\ev{A}_\psi)\psi\|^2\|(B-\ev{B}_\psi)\psi\|^2 \\
+&\geq |\langle (A-\ev{A}_\psi)\psi,(B-\ev{B}_\psi)\psi\rangle|^2\\
+&\geq \left\vert\Im{\langle (A-\ev{A}_\psi)\psi,(B-\ev{B}_\psi)\psi\rangle}\right\vert^2\\
+&=\frac{1}{4}\left\vert \langle (A-\ev{A}_\psi)\psi,(B-\ev{B}_\psi)\psi\rangle-\langle (B-\ev{B}_\psi)\psi,(A-\ev{A}_\psi)\psi\rangle\right\vert^2\\
+&=\frac{1}{4}\left\vert \langle\psi,(A-\ev{A}_\psi)(B-\ev{B}_\psi)\psi\rangle-\langle \psi,(B-\ev{B}_\psi)(A-\ev{A}_\psi)\psi\rangle\right\vert^2\\
+&=\frac{1}{4}\left\vert \langle\psi,((A-\ev{A}_\psi)(B-\ev{B}_\psi)-(B-\ev{B}_\psi)(A-\ev{A}_\psi))\psi\rangle\right\vert^2\\
+&=\frac{1}{4}\left\vert \langle\psi,(AB-A\ev{B}_\psi - \ev{A}_\psi B+\ev{A}_\psi\ev{B}_\psi\right.\\
+&\left.-BA+B\ev{A}_\psi+\ev{B}_\psi A-\ev{B}_\psi\ev{A}_\psi)\psi\rangle\right\vert^2\\
+&=\frac{1}{4}\left\vert \langle\psi,(AB-BA)\psi\rangle\right\vert^2=\frac{1}{4}\left\vert \langle\psi,[A,B]\psi\rangle\right\vert^2=\frac{1}{4}\left\vert \ev{[A,B]}_\psi\right\vert^2.
+\end{split}
+\end{align}
+Se concluye que $\psi$ es un estado de mínima incertidumbre si y solo si se obtiene igualdad en las dos desigualdades anteriores. Ahora bien, estudiando la desigualdad de Cauchy-Schwarz, se puede ver que la primera desigualdad se satisface si y solo si $\{(A-\ev{A}_\psi)\psi,(B-\ev{B}_\psi)\psi\}$ no es linealmente independiente, lo que sucede si y solo si $(A-\ev{A}_\psi)\psi=0$, $(B-\ev{B}_\psi)\psi=0$ o existe $c\in\mathbb{C}\setminus\{0\}$ tal que $(A-\ev{A}_\psi)\psi=c(B-\ev{B}_\psi)\psi$. Note que el primer caso es equivalente a que $\psi$ sea vector propio de $A$ y en tal caso se satisface automaticamente la segunda desigualdad. El segundo caso es análogo. En el tercer caso la segunda desigualdad se satisface si y solo si $c$ es imaginario, es decir, existe $\gamma\in\mathbb{R}$ tal que $c=i\gamma$. Luego en el tercer caso la segunda desigualdad se obtiene si y solo si
+\begin{align}
+\begin{split}
+0&=(A-\ev{A}_\psi)\psi - i\gamma (B-\ev{B}_\psi)\psi\\
+&=(A-i\gamma B)\psi - (\ev{A}_\psi+i\gamma\ev{B}_\psi)\psi,
+\end{split}
+\end{align}  
+es decir, existe $\gamma\in\mathbb{R}$ tal que $\psi$ es un vector propio de $A-i\gamma B$ con valor propio $\ev{A}_\psi-i\gamma\ev{B}_\psi$. Es fácil ver que es suficiente pedir que $\psi$ sea vector propio de $A-i\gamma B$ pues si $c+id$ es el valor propio asociado, se tiene
+\begin{equation}
+c+id=(c+id)\|\psi\|^2=\langle \psi,(A-i\gamma B)\psi\rangle = \ev{A}_\psi -i\gamma\ev{B}_\psi.
+\end{equation} 
+Concluimos entonces que $\psi$ es un estado de mínima incertidumbre si y solo si es un vector propio de $A$ o de $B$ o de $A-i\gamma B$ para algún $\gamma\in\mathbb{R}$.
+
+Ahora especializamos la discusión a los operadores de posición y momento $\hat{q}$ y $\hat{p}$ en $L^2(\mathbb{R})$. Ya que son auto-adjuntos se tiene que son simétricos. Queremos hallar una función de onda normalizada $\psi\in\mathcal{D}_{\hat{q}\hat{p}}\cap\mathcal{D}_{\hat{p}\hat{q}}\subseteq L^2(\mathbb{R})$ que represente un estado de mínima incertidumbre. En efecto si lo hallamos se tiene
+\begin{equation}
+\Delta_\psi \hat{q}\Delta_\psi \hat{p}=\sqrt{(\Delta_\psi \hat{q})^2(\Delta_\psi \hat{p})^2}=\sqrt{\frac{1}{4}|\ev{[\hat{q},\hat{p}]}_\psi|^2}=\frac{1}{2}\hbar.
+\end{equation}
+Es claro que ni $\hat{q}$ o $\hat{p}$ tienen vectores propios en $L^2(\mathbb{R})$. Luego $\psi$ es un estado de mínima incertidumbre si y solo si existe $\gamma\in\mathbb{R}$ tal que $\psi$ es vector propio de $\hat{q}-i\gamma\hat{p}$. Entonces tenemos que resolver la ecuación de valores propios
+\begin{equation}
+x\psi(x)-\gamma\psi'(x)=\lambda\psi(x)
+\end{equation}
+para $\lambda\in\mathbb{C}$. Note que simbólicamente
+\begin{align}
+\begin{split}
+\psi(x)&=\psi(x_0)\exp(\log(\frac{\psi(x)}{\psi(x_0)}))=\psi(x_0)\exp(\int_{x_0}^xdy(\log\circ\psi)'(y))\\
+&=\psi(x_0)\exp(\int_{x_0}^xdy\frac{\psi'(y)}{\psi(y)})=\psi(x_0)\exp(\int_{x_0}^xdy\frac{y-\lambda}{\gamma})\\
+&\propto\exp(\frac{(x-\lambda)^2}{2\gamma})
+\end{split}
+\end{align}
+el cual solo está en $L^2(\mathbb{R})$ si $\gamma<0$. Vemos entonces utilizando teoría de ecuaciones diferenciales de primer orden que un estado es de mínima incertidumbre en este sistema si y solo si es de la forma
+\begin{equation}
+\psi(x)=A\exp(-\frac{(x-\lambda)^2}{2\delta})
+\end{equation}
+para $\delta>0$. Realizando una integral gaussiana notamos que 
+\begin{equation}
+1=\|\psi\|^2=|A|^2\int dx \exp(-\frac{(x-\lambda)^2}{\delta})=|A|^2\sqrt{\delta\pi},
+\end{equation}
+es decir podemos tomar $A=(\delta\pi)^{-\frac{1}{4}}$. Además,  tenemos que $\lambda = \ev{\hat{q}}_\psi+i\delta\ev{\hat{p}}_\psi$.
+\end{enumerate}
+
+\bibliography{/home/ivan/Documents/Bib_Files/mathematics_QM}
+\bibliographystyle{ieeetr}
+
+\end{document}
