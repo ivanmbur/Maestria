@@ -276,20 +276,20 @@ P_{eq}(C_1)W(C_1\rightarrow C_2)=&\begin{cases}
 
 Según \eqref{ec:temperatura_critica} en nuestra simulación deberíamos ver una transición de fase. Para poder observarla necesitamos representar el límite termodinámico y por lo tanto considerar un número grande de sitios. Sin embargo, dada la naturaleza del algoritmo de Metropolis, un número grande de sitios requiere un número considerable de iteraciones para la estabilización. Esto se debe a que para barrer un número representativo de configuraciones debemos permitir que cada sitio tenga la oportunidad de cambiar. Intentando hallar un balance entre el número de sitios y el número de iteraciones se decidió tomar un retículo cuadrado de 100 espines junto con 100000 de iteraciones. De estas, las primeras 10000 fueron consideradas como parte del régimen estabilizador y por lo tanto ignoradas para el cálculo de la magnetización.
 
-En primer lugar consideraremos las curvas de energía obtenidas. Como se puede observar en la figura \ref{fig:energias}, A medida que la temperatura aumenta la energía promedio y sus fluctuaciones también. Esto concuerda con la percepción intuitiva de la temperatura. Este fenómeno se puede rastrear a \eqref{ec:condicion_de_balance_detallado}. En el algoritmo implementado cada configuración $C$ se obtiene con una probabilidad $e^{-\beta H(C)}$. Por lo tanto a medida que la temperatura aumenta, es decir, $\beta$ disminuye, la probabilidad de aceptar cambios de configuración aumenta.
+En primer lugar consideraremos las curvas de energía obtenidas. Como se puede observar en la figura \ref{fig:energias}, A medida que la temperatura aumenta la energía promedio y sus fluctuaciones también. Esto concuerda con la percepción intuitiva de la temperatura. Este fenómeno se puede rastrear a \eqref{ec:condicion_de_balance_detallado}. En el algoritmo implementado cada configuración $C$ se obtiene con una probabilidad $e^{-\beta H(C)}$. Por lo tanto a medida que la temperatura aumenta, es decir, $\beta$ disminuye, la probabilidad de aceptar cambios de configuración aumenta. Más aún, confirmamos que a bajas temperaturas la energía es $-2JN$. Esto se espera ya que a bajas temperaturas las fluctuaciones térmicas son irrelevantes. Entonces la configuración del sistema debería corresponder a aquella que minimiza la energía. Para minimizar la energía, todos los espines deben ser paralelos. En tal caso se tiene
+\begin{equation}
+H(1,\dots,1)=H(-1,\dots,-1)=-J\sum_{\langle i,j\rangle}(\pm 1)^2=-2JN.
+\end{equation}
 
 \begin{figure}
 \centering
-\begin{subfigure}{0.49\textwidth}
-\includegraphics[width=\textwidth]{energia_0.png}
-\end{subfigure}
-\begin{subfigure}{0.49\textwidth}
+\begin{subfigure}{0.7\textwidth}
 \includegraphics[width=\textwidth]{energia_200.png}
 \end{subfigure}
-\begin{subfigure}{0.49\textwidth}
+\begin{subfigure}{0.7\textwidth}
 \includegraphics[width=\textwidth]{energia_500.png}
 \end{subfigure}
-\begin{subfigure}{0.49\textwidth}
+\begin{subfigure}{0.7\textwidth}
 \includegraphics[width=\textwidth]{energia_700.png}
 \end{subfigure}
 \caption{\label{fig:energias}Se muestra la energía de la configuración obtenida en cada iteración para tres temperaturas distintas. En el título se indica la temperatura de la simulación $T$ y el número de espines considerados $N$.}
