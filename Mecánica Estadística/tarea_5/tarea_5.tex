@@ -1,0 +1,132 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{physics}
+
+\title{Mecánica Estadística\\Tarea 5: Teoría de Landau y Renormalización}
+\author{Iván Mauricio Burbano Aldana}
+
+\begin{document}
+
+\maketitle
+
+\section{Teoría de Landau}
+
+\subsection{Parámetro de orden}
+
+\begin{enumerate}
+
+\item La derivada funcional de $S$ es
+\begin{align}
+\begin{split}
+\fdv{S}{\phi(\vb{r})}[\phi]=&\fdv{H}{\phi(\vb{r})}[\phi]-\fdv{\phi(\vb{r})}\int \dd[d]{\vb{r'}} h(\vb{r'})\phi(\vb{r'})\\
+=&\fdv{\phi(\vb{r'})}\int\dd[d]{\vb{r'}}\qty(\frac{1}{2}\|\grad{\phi}(\vb{r'})\|^2+A\phi(\vb{r'})^2+B\phi(\vb{r'})^4)\\
+&-\int\dd[d]{\vb{r'}}h(\vb{r'})\delta(\vb{r'}-\vb{r})\\
+=&\int\dd[d]{\vb{r'}}\grad{\phi}(\vb{r'})\vdot\grad{\delta}(\vb{r'}-\vb{r})\\
+&+\int\dd[d]{\vb{r'}}\qty(2A\phi(\vb{r'})\delta(\vb{r'}-\vb{r})+4B\phi(\vb{r'})^3\delta(\vb{r'}-\vb{r}))-h(\vb{r})\\
+=&\int\dd[d]{\vb{r'}}\grad{\phi}(\vb{r'})\vdot\grad{\delta}(\vb{r'}-\vb{r})+2A\phi(\vb{r})+4B\phi(\vb{r})^3-h(\vb{r}).
+\end{split}
+\end{align}
+Note que según la definición de derivada de una distribución se tiene
+\begin{align}
+\begin{split}
+\grad{\phi}(\vb{r'})\vdot\grad{\delta}(\vb{r'}-\vb{r})=&\sum_{i=1}^d\partial_i\phi(\vb{r'})\partial_i{\delta}(\vb{r'}-\vb{r})=-\sum_{i=1}^d\partial_i^2\phi(\vb{r'})\delta(\vb{r'}-\vb{r})\\
+=&-\Delta\phi(\vb{r'})\delta(\vb{r'}-\vb{r}).
+\end{split}
+\end{align}
+Se concluye entonces que
+\begin{align}
+\begin{split}
+\fdv{S}{\phi(\vb{r})}[\phi]=&\int\dd[d]{\vb{r'}}\grad{\phi}(\vb{r'})\vdot\grad{\delta}(\vb{r'}-\vb{r})+2A\phi(\vb{r})+4B\phi(\vb{r})^3-h(\vb{r})\\
+=&-\int\dd[d]{\vb{r'}}\Delta\phi(\vb{r'})\delta(\vb{r'}-\vb{r})+2A\phi(\vb{r})+4B\phi(\vb{r})^3-h(\vb{r})\\
+=&-\Delta\phi(\vb{r})+2A\phi(\vb{r})+4B\phi(\vb{r})^3-h(\vb{r}).
+\end{split}
+\end{align}
+En efecto, la condición de minimización $0=\fdv{S}{\phi(\vb{r})}[\phi_0]$ toma la forma
+\begin{equation}
+h(\vb{r})=2A\phi_0(\vb{r})+4B\phi_0(\vb{r})^3-\Delta\phi_0(\vb{r}).
+\end{equation}
+
+\item En el caso $h=0$ en el que $\phi_0$ es constante, $\Delta\phi=0$ y por lo tanto
+\begin{equation}
+0=2A\phi_0+4B\phi_0^3=2\phi_0(A+2B\phi_0^2).
+\end{equation}
+Se obtienen las soluciones $\phi_0=0$ y, si $A$ y $B$ tienen signos opuestos, $\phi_0=\pm\sqrt{-\frac{A}{2B}}$.
+
+\item En este caso, si $T>T_c$, se tiene $A>0$. Por lo tanto, la única solución posible es $\phi_0=0$. Por el otro lado, si $T<T_c$, tanto la solución $\phi_0=0$ como las soluciones 
+\begin{equation}\label{ec:magnetizacion_ferromagnetica}
+\phi_0=\pm\sqrt{\frac{A_1(T_c-T)}{B}}
+\end{equation}
+son permitidas. Sin embargo, solo consideramos la solución \eqref{ec:magnetizacion_ferromagnetica} ya que esta minimiza la energía libre. En efecto, ya que $h=0$, se tiene
+\begin{align}
+\begin{split}
+F=&H[\phi_0]=\int\dd[d]{\vb{r}}\qty(A\phi^2+B\phi^4)=\int\dd[d]{\vb{r}}\qty(A+B\phi^2)\phi^2\\
+=&\begin{cases}
+0, & \phi_0=0\\
+-\int\dd[d]{\vb{r}}(A-B\frac{A}{2B})\frac{A}{2B}=-\int\dd[d]{\vb{r}}\frac{A^2}{4B}<0, & \phi_0=\pm{\sqrt{-\frac{A}{2B}}}.
+\end{cases}
+\end{split}
+\end{align} 
+
+\end{enumerate}
+
+\subsection{Correlaciones}
+
+\begin{enumerate}
+
+\item Tomando la derivada funcional y utilizando la relación vista en clase $G(\vb{r'},\vb{r})=\fdv{h(\vb{r})}\phi_0(\vb{r'})$ se tiene
+\begin{align}
+\begin{split}
+\delta(\vb{r'}-\vb{r})=&\fdv{h(\vb{r})}h(\vb{r'})=\fdv{h(\vb{r})}\qty(2A\phi_0(\vb{r'})+4B\phi_0(\vb{r'})^3-\Delta\phi_0(\vb{r'}))\\
+=&2A\fdv{h(\vb{r})}\phi_0(\vb{r'})+12B\phi_0(\vb{r'})^2\fdv{h(\vb{r})}\phi_0(\vb{r'})-\Delta\fdv{h(\vb{r})}\phi_0(\vb{r'})\\
+=&2AG(\vb{r'},\vb{r})+12B\phi_0(\vb{r'})^2G(\vb{r'},\vb{r})-\Delta_{\vb{r'}} G(\vb{r'},\vb{r}).
+\end{split}
+\end{align}
+Si $h=0$ y el sistema es homogeneo, $\phi_0$ es constante y $G(\vb{r'},\vb{r})=G(\vb{r'}-\vb{r})$. Es claro entonces por la regla de la cadena que
+\begin{equation}
+\Delta_{\vb{r'}} G(\vb{r'},\vb{r})=\Delta_{\vb{r'}} G(\vb{r'}-\vb{r})=\Delta G(\vb{r'}-\vb{r}).
+\end{equation} 
+Tomando
+\begin{equation}
+\xi^{-2}=2A+12B\phi_0^2
+\end{equation}
+y haciendo el cambio de variable $\vb{r'}-\vb{r}\mapsto\vb{r}$ se concluye
+\begin{equation}\label{ec:funcion_green}
+\delta(\vb{r})=(-\Delta+\xi^{-2})G(\vb{r}).
+\end{equation}
+Podemos determinar
+\begin{align}
+\begin{split}
+\xi =& \frac{1}{\sqrt{2A+12B\phi^2}}\\
+=&\begin{cases}
+\frac{1}{\sqrt{2A-12B\frac{A}{2B}}}=\frac{1}{2\sqrt{-A}}=\frac{1}{2\sqrt{A_1(T_c-T)}}, & T<T_c\\
+\frac{1}{\sqrt{2A}}=\frac{1}{\sqrt{2A_1(T-T_c)}}, & T>T_c.
+\end{cases}
+\end{split}
+\end{align}
+
+\item Utilizando la forma integral de la distribución delta e insertando la transformada de Fourier en \eqref{ec:funcion_green} se tiene
+\begin{align}
+\begin{split}
+\int\frac{\dd[d]{\vb{k}}}{(2\pi)^d}e^{i\vb{k}\vdot\vb{r}}=&\delta(\vb{r})=(-\Delta+\xi^{-2})\int\frac{\dd[d]{\vb{k}}}{(2\pi)^d}e^{i\vb{k}\vdot\vb{r}}\tilde{G}(\vb{k})\\
+=&\int\frac{\dd[d]{\vb{k}}}{(2\pi)^d}(-\Delta+\xi^{-2})e^{i\vb{k}\vdot\vb{r}}\tilde{G}(\vb{k})\\
+=&\int\frac{\dd[d]{\vb{k}}}{(2\pi)^d}(\vb{k}^2+\xi^{-2})e^{i\vb{k}\vdot\vb{r}}\tilde{G}(\vb{k})
+\end{split}
+\end{align}
+en vista de que $\Delta e^{i\vb{k}\vdot\vb{r}}=i\vb{k}\vdot i\vb{k}e^{i\vb{k}\vdot\vb{r}}=-\vb{k}^2e^{i\vb{k}\vdot\vb{r}}$. Comparando se obtiene que 
+\begin{equation}
+\tilde{G}(\vb{k})=\frac{1}{\vb{k}^2+\xi^{-2}}.
+\end{equation} 
+
+\item Utilizando el resultado anterior y restringiendo a $d=3$ tenemos 
+\begin{align}
+\begin{split}
+G(\vb{r})=&\int\frac{\dd[3]{\vb{k}}}{(2\pi)^3}\frac{e^{i\vb{k}\vdot\vb{r}}}{\vb{k}^2+\xi^{-2}}\\
+=&\frac{1}{(2\pi)^3}\int_0^\infty\dd{u}\int_0^\pi\dd{\theta}\int_0^{2\pi}\dd{\phi}u^2\sin(\theta)\frac{e^{iu\|\vb{r}\|\cos(\theta)}}{u^2+\xi^{-2}}.
+\end{split}
+\end{align}
+
+\end{enumerate}
+
+\end{document}
