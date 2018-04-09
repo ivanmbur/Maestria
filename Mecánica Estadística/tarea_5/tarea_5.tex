@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage{physics}
+\usepackage{amssymb}
 
 \title{Mecánica Estadística\\Tarea 5: Teoría de Landau y Renormalización}
 \author{Iván Mauricio Burbano Aldana}
@@ -123,7 +124,85 @@ en vista de que $\Delta e^{i\vb{k}\vdot\vb{r}}=i\vb{k}\vdot i\vb{k}e^{i\vb{k}\vd
 \begin{align}
 \begin{split}
 G(\vb{r})=&\int\frac{\dd[3]{\vb{k}}}{(2\pi)^3}\frac{e^{i\vb{k}\vdot\vb{r}}}{\vb{k}^2+\xi^{-2}}\\
-=&\frac{1}{(2\pi)^3}\int_0^\infty\dd{u}\int_0^\pi\dd{\theta}\int_0^{2\pi}\dd{\phi}u^2\sin(\theta)\frac{e^{iu\|\vb{r}\|\cos(\theta)}}{u^2+\xi^{-2}}.
+=&\frac{1}{(2\pi)^3}\int_0^\infty\dd{u}\int_0^\pi\dd{\theta}\int_0^{2\pi}\dd{\phi}u^2\sin(\theta)\frac{e^{iu\|\vb{r}\|\cos(\theta)}}{u^2+\xi^{-2}}\\
+=&\frac{1}{(2\pi)^2}\int_0^\infty\dd{u}\int_1^{-1}\dd{v}(-1)u^2\frac{e^{iu\|\vb{r}\|v}}{u^2+\xi^{-2}}\\
+=&\frac{1}{i\|\vb{r}\|(2\pi)^2}\int_0^\infty\dd{u}u\frac{e^{iu\|\vb{r}\|}-e^{-iu\|\vb{r}\|}}{u^2+\xi^{-2}}
+\end{split}
+\end{align}
+Note que bajo un cambio de variable
+\begin{align}
+\begin{split}
+\int_0^\infty\dd{u}u\frac{e^{-iu\|\vb{r}\|}}{u^2+\xi^{-2}}=&\int_0^{-\infty}\dd{u}(-1)(-u)\frac{e^{iu\|\vb{r}\|}}{(-u)^2+\xi^{-2}}\\
+=&-\int_{-\infty}^0\dd{u}u\frac{e^{iu\|\vb{r}\|}}{u^2+\xi^{-2}}.
+\end{split}
+\end{align}
+Por lo tanto
+\begin{equation}
+G(\vb{r})=\frac{1}{i\|\vb{r}\|(2\pi)^2}\int_{-\infty}^\infty\dd{u}\frac{ue^{iu\|\vb{r}\|}}{u^2+\xi^{-2}}.
+\end{equation}
+Sea $R>i\xi^{-1}$. Considere bajo la orientación en contra de las manecillas del reloj los conjuntos 
+\begin{align}
+\begin{split}
+S^+_R:=&\{Re^{i\theta}\in\mathbb{C}|\theta\in[0,\pi]\}\subseteq D_R:=S^+_R\cup[-R,R]\times\{0\}\\
+\subseteq&\mathbb{C}\setminus\{i\xi^{-1},-i\xi^{-1}\},
+\end{split}
+\end{align}
+el dominio de definición de la función holomorfa
+\begin{align}
+\begin{split}
+f:\mathbb{C}\setminus\{i\xi^{-1},-i\xi^{-1}\}&\rightarrow\mathbb{C}\\
+z&\mapsto \frac{ze^{iz\|\vb{r}\|}}{z^2+\xi^{-2}}=\frac{ze^{iz\|\vb{r}\|}}{(z+i\xi^{-1})(z-i\xi^{-1})}.
+\end{split}
+\end{align}
+$D_R$ solo encierra el polo $i\xi^{-1}$ y en este punto el residuo de $f$ claramente es
+\begin{equation}
+\frac{i\xi^{-1}e^{ii\xi^{-1}\|\vb{r}\|}}{2i\xi^{-1}}=\frac{1}{2}e^{-\|\vb{r}\|/\xi}.
+\end{equation}
+Por lo tanto por el teorema del residuo
+\begin{equation}
+\int_{D_R}dzf(z)=2\pi i\frac{1}{2}e^{-\|\vb{r}\|/\xi}=i\pi e^{-\|\vb{r}\|/\xi},
+\end{equation}
+y
+\begin{align}
+\begin{split}
+\int_{-\infty}^\infty duf(u)=&\lim_{R\rightarrow\infty}\qty(\int_{D_R}dzf(z)-\int_{S^+_R}dzf(z))\\
+=&i\pi e^{-\|\vb{r}\|/\xi}-\lim_{R\rightarrow\infty}\int_{S^+_R}dzf(z)=i\pi e^{-\|\vb{r}\|/\xi}.
+\end{split}
+\end{align}
+Se concluye que
+\begin{equation}
+G(\vb{r})=\frac{1}{i\|\vb{r}\|(2\pi)^2}i\pi e^{-\|\vb{r}\|/\xi}=\frac{e^{-\|\vb{r}\|/\xi}}{4\pi\|\vb{r}\|}
+\end{equation}
+
+\item En el caso $d=2$ tenemos tomando coordenadas polares con los ángulos medidos desde $\vb{r}$
+\begin{align}
+\begin{split}
+G(\vb{r})=&\int\frac{\dd[2]{\vb{k}}}{(2\pi)^2}\frac{e^{i\vb{k}\vdot\vb{r}}}{\vb{k}^2+\xi^{-2}}\\
+=&\frac{1}{(2\pi)^2}\int_0^\infty\dd{u}\int_0^{2\pi}\dd{\theta}u\frac{e^{iu\|\vb{r}\|\cos(\theta)}}{u^2+\xi^{-2}}.
+\end{split}
+\end{align}
+Recordando la expresión integral para la función de Bessel de orden $0$
+\begin{align}
+\begin{split}
+J_0(x)=&\frac{1}{2\pi}\int_{-\pi}^\pi\dd{\tau} e^{-ix\sin(\tau)}=\frac{1}{2\pi}\int_0^{2\pi}\dd{\tau} e^{-ix(-\cos(\tau))}\\
+=&\frac{1}{2\pi}\int_0^{2\pi}\dd{\tau} e^{ix\cos(\tau)},
+\end{split}
+\end{align}
+se tiene
+\begin{equation}
+G(\vb{r})=\frac{1}{2\pi}\int_0^\infty\dd{u}\frac{uJ_0(u\|\vb{r}\|)}{u^2+\xi^{-2}}.
+\end{equation}
+Defina
+\begin{align}
+\begin{split}
+g:\mathbb{R}^+_0:=\{x\in\mathbb{R}|x\geq 0\}&\rightarrow\mathbb{C}\\
+x&\mapsto\frac{1}{(2\pi)^2}\int_0^\infty\dd{u}\frac{uJ_0(x)}{u^2+\xi^{-2}}.
+\end{split}
+\end{align}
+Entonces se tiene para todo $x\in\mathbb{R}^+:=\mathbb{R}^+_0\setminus\{0\}$
+\begin{align}
+\begin{split}
+g''(x)+\frac{1}{x}g'(x)-g(x)=\frac{1}{(2\pi)^2}\int_0^\infty\dd{u}\frac{u}{u^2+\xi^{-2}}\qty(J_0''(x)+\frac{1}{x}J_0'(x)-J_0(x))
 \end{split}
 \end{align}
 
