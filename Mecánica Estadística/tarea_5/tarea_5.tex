@@ -4,6 +4,7 @@
 \usepackage[spanish]{babel}
 \usepackage{physics}
 \usepackage{amssymb}
+\usepackage{hyperref}
 
 \title{Mecánica Estadística\\Tarea 5: Teoría de Landau y Renormalización}
 \author{Iván Mauricio Burbano Aldana}
@@ -55,7 +56,18 @@ h(\vb{r})=2A\phi_0(\vb{r})+4B\phi_0(\vb{r})^3-\Delta\phi_0(\vb{r}).
 \end{equation}
 Se obtienen las soluciones $\phi_0=0$ y, si $A$ y $B$ tienen signos opuestos, $\phi_0=\pm\sqrt{-\frac{A}{2B}}$.
 
-\item En este caso, si $T>T_c$, se tiene $A>0$. Por lo tanto, la única solución posible es $\phi_0=0$. Por el otro lado, si $T<T_c$, tanto la solución $\phi_0=0$ como las soluciones 
+\item Empezamos considerando las expansiones en series de potencias de $A$ y $B$ alrededor de la temperatura crítica $T_c$
+\begin{align}
+\begin{split}
+A(T)=&A_0+A_1(T-T_c)+\cdots\\
+B(T)=&B_0+B_1(T-T_c)+\cdots.
+\end{split}
+\end{align}
+Recordando los resultado de campo medio, queremos dependencia del tiempo. Por lo tanto no podemos permitirnos considerar a $A$ y $B$ simultaneamente como constantes. Mas aún, ya que en la aproximación de campo medio tenemos para $T<T_c$ la relación $m\propto|T-T_c|^{1/2}$ y, como se demostró en clase, podemos identificar $\phi_0$ con $m$, observamos que las soluciones
+\begin{equation}
+\phi_0=\pm\sqrt{-\frac{A_0+A_1(T-T_c)+\cdots}{2B_0+B_1(T-T_c)+\cdots}}
+\end{equation}
+coinciden con las obtenidas en campo medio al poner $A_0=A_2=\cdots=B_1=B_2\cdots=0$. Más aún, queremos que esta solución sea inválida en el caso $T>T_c$. Esto lo podemos obtener asegurando que los coeficientes $A_1$ y $B_0$ tengan el mismo signo. Las escogemos positivas. En este caso, si $T>T_c$, se tiene $A>0$. Por lo tanto, la única solución posible es $\phi_0=0$. Por el otro lado, si $T<T_c$, tanto la solución $\phi_0=0$ como las soluciones 
 \begin{equation}\label{ec:magnetizacion_ferromagnetica}
 \phi_0=\pm\sqrt{\frac{A_1(T_c-T)}{B}}
 \end{equation}
@@ -180,7 +192,7 @@ El límite desaparece por la estimación
 \end{split}
 \end{align}
 Para poner los límites del ángulo utilizamos el hecho de que $[0,\pi]\setminus(0,\pi)=\{0,\pi\}$ tiene medida nula. Se concluye que
-\begin{equation}
+\begin{equation}\label{ec:correlacion_3}
 G(\vb{r})=\frac{1}{i\|\vb{r}\|(2\pi)^2}i\pi e^{-\|\vb{r}\|/\xi}=\frac{e^{-\|\vb{r}\|/\xi}}{4\pi\|\vb{r}\|}
 \end{equation}
 
@@ -191,29 +203,68 @@ G(\vb{r})=&\int\frac{\dd[2]{\vb{k}}}{(2\pi)^2}\frac{e^{i\vb{k}\vdot\vb{r}}}{\vb{
 =&\frac{1}{(2\pi)^2}\int_0^\infty\dd{u}\int_0^{2\pi}\dd{\theta}u\frac{e^{iu\|\vb{r}\|\cos(\theta)}}{u^2+\xi^{-2}}.
 \end{split}
 \end{align}
-Recordando la expresión integral para la función de Bessel de orden $0$
+Recordando la expresión integral para la función de Bessel de orden $0$\cite{NIST_DLMF_10.32}
 \begin{align}
 \begin{split}
-J_0(x)=&\frac{1}{2\pi}\int_{-\pi}^\pi\dd{\tau} e^{-ix\sin(\tau)}=\frac{1}{2\pi}\int_0^{2\pi}\dd{\tau} e^{-ix(-\cos(\tau))}\\
-=&\frac{1}{2\pi}\int_0^{2\pi}\dd{\tau} e^{ix\cos(\tau)},
+J_0(x)=&\frac{1}{2}(J_0(x)+J_0(x))\\
+=&\frac{1}{2\pi}\qty(\int_0^\pi \dd{\theta}e^{ix\cos(\theta)}+\int_0^\pi \dd{\theta}e^{-ix\cos(\theta)})\\
+=&\frac{1}{2\pi}\qty(\int_0^\pi \dd{\theta}e^{ix\cos(\theta)}+\int_\pi^2\pi \dd{\theta}e^{-ix\cos(\theta-\pi)})\\
+=&\frac{1}{2\pi}\qty(\int_0^\pi \dd{\theta}e^{ix\cos(\theta)}+\int_\pi^2\pi \dd{\theta}e^{ix\cos(\theta)})\\
+=&\frac{1}{2\pi}\int_0^{2\pi} \dd{\theta}e^{ix\cos(\theta)}
 \end{split}
 \end{align}
 se tiene
 \begin{equation}
 G(\vb{r})=\frac{1}{2\pi}\int_0^\infty\dd{u}\frac{uJ_0(u\|\vb{r}\|)}{u^2+\xi^{-2}}.
 \end{equation}
-Recordando que bajo ciertas asumciones sobre el comportamiento de las funciones se tiene
+Recordando que bajo ciertas asunciones sobre el comportamiento de las funciones se tiene\cite{Williams1973}
 \begin{equation}
 \int_0^\infty \dd{x}f(x)g(x)=\int_0^\infty \mathcal{L}(f)(x)\mathcal{L}^{-1}(g)(x),
 \end{equation}
-se tiene que
+se tiene que\cite{NIST_DLMF_10.32, Williams1973}
 \begin{align}
 \begin{split}
 G(\vb{r})=&\frac{1}{2\pi}\int_0^\infty\dd{u}\mathcal{L}(u\mapsto J_0(u\|\vb{r}\|))(u)\mathcal{L}^{-1}\qty(u\mapsto\frac{u}{u^2+\xi^{-2}})(u)\\
-=&\frac{1}{2\pi}\int_0^\infty\dd{u}\frac{1}{\sqrt{\|\vb{r}\|^2+u^2}}\cos(\frac{u}{\zeta})=K_0(\|\vb{r}\|/\xi)
+=&\frac{1}{2\pi}\int_0^\infty\dd{u}\frac{1}{\sqrt{\|\vb{r}\|^2+u^2}}\cos(\frac{u}{\xi})\\
+=&\frac{1}{2\pi}\int_0^\infty\dd{u}\|\vb{r}\|\frac{1}{\sqrt{\|\vb{r}\|^2+\|\vb{r}\|^2u^2}}\cos(\frac{\|\vb{r}\|u}{\xi})\\
+=&\frac{1}{2\pi}\int_0^\infty\dd{u}\frac{\cos(\frac{\|\vb{r}\|u}{\xi})}{\sqrt{1+u^2}}=K_0(\|\vb{r}\|/\xi)
 \end{split}
 \end{align}
+El crédito de esta solución va para Iwaniuk\cite{Iwaniuk2018}.
+
+\item En el caso $d=2$ tenemos según el apéndice del enunciado que para $\|\vb{r}\|/\xi\gg 1$, es decir, $\|\vb{r}\|\gg \xi$ se tiene
+\begin{equation}
+G(\vb{r})=\frac{1}{2\pi}K_0(\|\vb{r}\|/\xi)\sim\frac{1}{2\pi}\sqrt{\frac{\pi\xi}{2\|\vb{r}\|}}e^{-\|\vb{r}\|/\xi}.
+\end{equation}
+Este es el comportamiento deseado. En el caso $d=3$ el comportamiento es trivial de \eqref{ec:correlacion_3}.
+
+\item En el caso $d=2$ cuando $\xi\gg\|\vb{r}\|$ se tiene $\|\vb{r}\|/\xi\ll 1$. Por lo tanto, según el apéndice del enunciado se tiene
+\begin{equation}
+G(\vb{r})\sim-\frac{1}{2\pi}\ln(\|\vb{r}\|/\xi).
+\end{equation}
+Ya que no hay dependencia en potencias, se tiene $0=d+\eta-2=2+\eta-2=\eta$. En el caso $d=3$ vemos que 
+\begin{equation}
+G(\vb{r})=\frac{e^{-\|\vb{r}\|/\xi}}{4\pi\|\vb{r}\|}\sim\frac{1}{2\pi\|\vb{r}\|}.
+\end{equation}
+Por lo tanto $1=d+\eta-2=3+\eta-2=1+\eta$. Se concluye una vez más que $\eta=0$.
+
+\item En el punto crítico $\xi\rightarrow\infty$. Por lo tanto en caso $d=2$ y $d=3$
+\begin{equation}
+\tilde{G}(\vb{r})=\frac{1}{\vb{k}^2+\zeta}\sim\frac{1}{\vb{k}^2}=\|\vb{k}\|^{-2}
+\end{equation}
+Se concluye entonces que $\eta=0$ en ambos casos, resultado que concuerda con el anterior.
 
 \end{enumerate}
+
+\section{Renormalización}
+
+\begin{enumerate}
+
+\item 
+
+\end{enumerate}
+
+\bibliography{/Users/ivan/Documents/Bib_Files/library}
+\bibliographystyle{ieeetr}
 
 \end{document}
