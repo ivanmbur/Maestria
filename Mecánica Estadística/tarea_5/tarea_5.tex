@@ -160,16 +160,26 @@ $D_R$ solo encierra el polo $i\xi^{-1}$ y en este punto el residuo de $f$ claram
 \end{equation}
 Por lo tanto por el teorema del residuo
 \begin{equation}
-\int_{D_R}dzf(z)=2\pi i\frac{1}{2}e^{-\|\vb{r}\|/\xi}=i\pi e^{-\|\vb{r}\|/\xi},
+\int_{D_R}\dd{z}f(z)=2\pi i\frac{1}{2}e^{-\|\vb{r}\|/\xi}=i\pi e^{-\|\vb{r}\|/\xi},
 \end{equation}
 y
 \begin{align}
 \begin{split}
-\int_{-\infty}^\infty duf(u)=&\lim_{R\rightarrow\infty}\qty(\int_{D_R}dzf(z)-\int_{S^+_R}dzf(z))\\
-=&i\pi e^{-\|\vb{r}\|/\xi}-\lim_{R\rightarrow\infty}\int_{S^+_R}dzf(z)=i\pi e^{-\|\vb{r}\|/\xi}.
+\int_{-\infty}^\infty \dd{u}f(u)=&\lim_{R\rightarrow\infty}\qty(\int_{D_R}\dd{z}f(z)-\int_{S^+_R}\dd{z}f(z))\\
+=&i\pi e^{-\|\vb{r}\|/\xi}-\lim_{R\rightarrow\infty}\int_{S^+_R}\dd{z}f(z)=i\pi e^{-\|\vb{r}\|/\xi}.
 \end{split}
 \end{align}
-Se concluye que
+El límite desaparece por la estimación
+\begin{align}
+\begin{split}
+\left\vert\int_{S^+_R}\dd{z}f(z)\right\vert\leq&\int_{S^+_R}\dd{z}|f(z)|=\int\dd{z}R\left\vert \frac{e^{iRre^{i\theta}}}{R^2e^{i2\theta}+\xi^{-2}}\right\vert\\
+=&R\int\dd{z}\frac{e^{-Rr\sin(\theta)}}{(R^2e^{i2\theta}+\xi^{-2})(R^2e^{-i2\theta}+\xi^{-2})}\\
+=&R\int\dd{z}\frac{e^{-Rr\sin(\theta)}}{R^4+\xi^{-4}+2R^2\xi^{-2}\cos(2\theta)}\\
+\leq&\pi R^2\sup\qty{\left.\frac{e^{-Rr\sin(\theta)}}{R^4+\xi^{-4}+2R^2\xi^{-2}\cos(2\theta)}\right\vert\theta\in\qty(0,\pi)}\\
+\underset{R\rightarrow\infty}{\longrightarrow}&\pi R^2 0=0.
+\end{split}
+\end{align}
+Para poner los límites del ángulo utilizamos el hecho de que $[0,\pi]\setminus(0,\pi)=\{0,\pi\}$ tiene medida nula. Se concluye que
 \begin{equation}
 G(\vb{r})=\frac{1}{i\|\vb{r}\|(2\pi)^2}i\pi e^{-\|\vb{r}\|/\xi}=\frac{e^{-\|\vb{r}\|/\xi}}{4\pi\|\vb{r}\|}
 \end{equation}
@@ -192,17 +202,15 @@ se tiene
 \begin{equation}
 G(\vb{r})=\frac{1}{2\pi}\int_0^\infty\dd{u}\frac{uJ_0(u\|\vb{r}\|)}{u^2+\xi^{-2}}.
 \end{equation}
-Defina
+Recordando que bajo ciertas asumciones sobre el comportamiento de las funciones se tiene
+\begin{equation}
+\int_0^\infty \dd{x}f(x)g(x)=\int_0^\infty \mathcal{L}(f)(x)\mathcal{L}^{-1}(g)(x),
+\end{equation}
+se tiene que
 \begin{align}
 \begin{split}
-g:\mathbb{R}^+_0:=\{x\in\mathbb{R}|x\geq 0\}&\rightarrow\mathbb{C}\\
-x&\mapsto\frac{1}{(2\pi)^2}\int_0^\infty\dd{u}\frac{uJ_0(x)}{u^2+\xi^{-2}}.
-\end{split}
-\end{align}
-Entonces se tiene para todo $x\in\mathbb{R}^+:=\mathbb{R}^+_0\setminus\{0\}$
-\begin{align}
-\begin{split}
-g''(x)+\frac{1}{x}g'(x)-g(x)=\frac{1}{(2\pi)^2}\int_0^\infty\dd{u}\frac{u}{u^2+\xi^{-2}}\qty(J_0''(x)+\frac{1}{x}J_0'(x)-J_0(x))
+G(\vb{r})=&\frac{1}{2\pi}\int_0^\infty\dd{u}\mathcal{L}(u\mapsto J_0(u\|\vb{r}\|))(u)\mathcal{L}^{-1}\qty(u\mapsto\frac{u}{u^2+\xi^{-2}})(u)\\
+=&\frac{1}{2\pi}\int_0^\infty\dd{u}\frac{1}{\sqrt{\|\vb{r}\|^2+u^2}}\cos(\frac{u}{\zeta})=K_0(\|\vb{r}\|/\xi)
 \end{split}
 \end{align}
 
