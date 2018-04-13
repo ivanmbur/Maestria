@@ -2,6 +2,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{physics}
+\usepackage{enumerate}
 
 \title{Electrodynamics: Homework 4}
 \author{Iván Mauricio Burbano Aldana}
@@ -14,14 +15,26 @@
 
 \item We have
 \begin{equation}
-T^{0i}=F^i_\gamma F^{0\gamma}-\frac{1}{4}\eta^{i0}F_{\gamma\delta}F^{\gamma\delta}.
+T^{i0}=F^i_\gamma F^{0\gamma}-\frac{1}{4}\eta^{i0}F_{\gamma\delta}F^{\gamma\delta}.
 \end{equation}
 Given that $\eta^{\mu\nu}=0$ if $\mu\neq\nu$ and $i\in\{1,2,3\}$ we conclude
-\begin{align}
-\begin{split}
-T^{0i}=F^i_\gamma F^{0\gamma}=\eta_{\rho\gamma}F^{i\rho}F^{0\gamma}
-\end{split}
-\end{align}
+\begin{equation}
+T^{i0}=F^i_\gamma F^{0\gamma}=\eta_{\rho\gamma}F^{i\rho}F^{0\gamma}
+\end{equation}
+Remembering that $F^{\mu\nu}$ is antisymmetric and thus that $F^{00}=0$, we notice that
+\begin{equation}
+T^{i0}=\eta_{\rho j}F^{i\rho}F^{0j}=-\sum_{j=1}^3F^{ij}F^{0j}.
+\end{equation}
+Recalling that $F^{0j}=E_j$ and $F^{ij}=\sum_{k=1}^3\epsilon_{ijk}B_k$ we have
+\begin{equation}
+T^{i0}=-\sum_{j=1}^3\sum_{k=1}^3\epsilon_{ijk}B_kE_j=-(\vb{E}\cross\vb{B})_i
+\end{equation}
+
+\item \begin{enumerate}[(i)]
+
+\item Indeed, $\mathcal{L}$ is real. This is because $\mathcal{L}_\phi$, $\mathcal{L}_A$ and $\mathcal{L}_{\text{int}}$ are.
+
+\end{enumerate}
 
 \end{enumerate}
 
