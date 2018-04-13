@@ -276,14 +276,68 @@ Se concluye entonces que $\eta=0$ en ambos casos, resultado que concuerda con el
 }
 \draw [fill] (4,{6*sqrt(3)}) circle [radius=0.08];
 \draw [fill] (10,{6*sqrt(3)}) circle [radius=0.08];
+\draw [ultra thick] (1,{sqrt(3)}) -- (0,{sqrt(3)*2});
+\draw [ultra thick] (1,{sqrt(3)}) -- (2,{sqrt(3)*2});
+\draw [ultra thick] (5,{3*sqrt(3)}) -- (6,{sqrt(3)*2});
+\draw [ultra thick] (5,{3*sqrt(3)}) -- (7,{sqrt(3)*3});
+\draw [ultra thick] (9,{5*sqrt(3)}) -- (8,{sqrt(3)*4});
+\draw [ultra thick] (9,{5*sqrt(3)}) -- (7,{sqrt(3)*5});
 \end{tikzpicture}
 \end{center}
-\caption{\label{fig:red}Se muestra una red triangular de sitios para un retículo de espines. Las lineas punteadas señalan la agrupación de los espines en el equema de renormalización propuesto.}
+\caption{\label{fig:red}Se muestra una red triangular de sitios para un retículo de espines. Las lineas punteadas señalan la agrupación de los espines en el equema de renormalización propuesto. Las lineas solidas corresponden a ejemplos de vecinos más cercanos que pertencen a grupos distintos.}
 \end{figure}
 
 \begin{enumerate}
 
-\item Considere la red triangular mostrada en la figura \ref{fig:red}. Al conjunto contable de sitios lo vamos a denotar $\Lambda$. Entonces los microestados de la red se pueden tomar como los elementos $s\in\{-1,1\}^\Lambda$ bajo la interpretación de que $s_i:=s(i)$ para $i\in\Lambda$ es el espín en el sitio $i$. Vamos a considerar un esquema de renormalización agrupando los sitios en grupos de 3. Por lo tanto, el factor de escala $\lambda$ está determinado por la restricción de que $\lambda^2=3$. Se concluye que $\lambda=\sqrt{3}$.
+\item Considere la red triangular mostrada en la figura \ref{fig:red}. Al conjunto contable de sitios lo vamos a denotar $\Lambda$ y al de vecinos más cercanos $\ev{\Lambda}\subseteq\Lambda\times\Lambda$. Cabe notar que solo escojemos un representante por vecino, es decir, si $(i,j)\in\ev{\Lambda}$ entonces $(j,i)\not\in\ev{\Lambda}$. Entonces los microestados de la red se pueden tomar como los elementos $s\in\{-1,1\}^\Lambda$ bajo la interpretación de que $s_i:=s(i)$ para $i\in\Lambda$ es el espín en el sitio $i$. El Hamiltoniano toma la forma
+\begin{align}
+\begin{split}
+\beta H:\{-1,1\}^\Lambda&\rightarrow \mathbb{R}\\
+s&\mapsto \beta H(s)=-K\sum_{(i,j)\in\ev{\Lambda}}s_is_j-h\sum_{i\in\Lambda}s_i
+\end{split}
+\end{align} 
+para unas constantes $K,h\in[0,\infty)$.
+
+Vamos a considerar un esquema de renormalización agrupando los sitios en grupos de 3. Por lo tanto, el factor de escala $\lambda$ está determinado por la restricción de que $\lambda^2=3$. Se concluye que $\lambda=\sqrt{3}$. Podemos tomar $\Lambda'\subseteq \mathcal{P}(\Lambda)$ como el conjunto de los grupos de 3 sitios. Este va a ser el conjunto de sitios despues del procedimiento de renormalización. Note que para cada $\mu\in\Lambda'$ se tiene un conjunto $\ev{\mu}:=\{(i,j)\in\ev{\Lambda}|i,j\in\mu\}\subseteq\ev{\Lambda}$ de vecinos contenidos en $\mu$. Ya que los elementos de $\Lambda'$ son disjuntos,
+\begin{equation}
+\beta H(s)=\beta H_0(s)+\beta V(s)
+\end{equation}
+donde
+\begin{equation}
+\beta H_0(s)=-K\sum_{(i,j)\in\bigcup\limits_{\mu\in\Lambda'}\ev{\mu}}s_is_j=-K\sum_{\mu\in\Lambda'}\sum_{(i,j)\in\ev{\mu}}s_is_j
+\end{equation}
+y
+\begin{equation}
+\beta V(s)=-K\sum_{(i,j)\in\ev{\Lambda}\setminus\bigcup\limits_{\mu\in\Lambda'}\ev{\mu}}s_is_j+h\sum_{i\in\Lambda}s_i.
+\end{equation}
+
+Note que el conjunto $\ev{\Lambda}\setminus\bigcup\limits_{\mu\in\Lambda'}\ev{\mu}$ es el de vecinos más cercanos que corresponden a grupos distintos. Sea $\ev{\Lambda'}\subseteq\Lambda'\times\Lambda'$ el conjunto de grupos vecinos más cercanos. Sin perdida de generalidad, ordenamos los pares de manera que si $(\mu,\nu)\in\ev{\Lambda'}$ el segmento más corto entre los triángulos generados por $\mu$ y $\nu$ tiene un punto final en un vertice del generado por $\mu$ y otro en la mitad de una arista del generado por $\nu$. Defina $s_{(\mu,\nu)}$ como el espín en el vertice en el segmento y $s_{(\mu,\nu)}^{(1)}$ y $s_{(\mu,\nu)}^{(2)}$ como los espinos en los vertices que generan la arista en el segmento. En particular $s_{(\mu,\nu)}=s_i$ para algún $i\in\mu$ y $s_{(\mu,\nu)}^{(1)}=s_{j_1}$ y $s_{(\mu,\nu)}^{(2)}=s_{j_1}$ para algunos $j_1,j_2\in\nu$ distintos. La figura \ref{fig:red} muestra que todos los $s_is_j$ con $(i,j)\in\ev{\Lambda}\setminus\bigcup\limits_{\mu\in\Lambda'}\ev{\mu}$ son de la forma $s_{(\mu,\nu)}s_{(\mu,\nu)}^{(1)}$ o $s_{(\mu,\nu)}s_{(\mu,\nu)}^{(2)}$ para $\mu,\nu\in\ev{\Lambda'}$. Concluimos que 
+\begin{equation}
+\beta V(s)=-K\sum_{(\mu,\nu)\in\ev{\Lambda'}}\qty(s_{(\mu,\nu)}s_{(\mu,\nu)}^{(1)}+s_{(\mu,\nu)}s_{(\mu,\nu)}^{(2)})+h\sum_{i\in\Lambda}s_i.
+\end{equation}
+
+Defina la función 
+\begin{align}
+\begin{split}
+f:\{-1,1\}^3&\rightarrow\{-1,1\}\\
+(s_1,s_2,s_3)&\mapsto s_1+s_2+s_3.
+\end{split}
+\end{align}
+Si $\mu=\{i,j,k\}$ entonces interpretamos $s'_\mu:=f(s_i,s_j,s_k)$ como el espín en el sitio $\mu$ posterior al proceso de renormalización. Es claro que este mapa le asigna a los nuevos sitios su espín según una regla de mayoría. Esta función se extiende a
+\begin{align}
+\begin{split}
+g:\{-1,1\}^\Lambda&\rightarrow\{-1,1\}^{\Lambda'}\\
+s&\mapsto s'
+\end{split}
+\end{align}
+donde $s'(\mu):=s'_\mu$. Este mapa le asigna a cada estado de la red original un estado en la red renormalizada. Mediante este podemos inducir a partir de la medida de probabilidad canónica sobre $\{-1,1\}^\Lambda$ generada por
+\begin{equation}
+P(\{s\})=\frac{1}{Z}e^{-\beta H(s)},
+\end{equation}
+con $Z$ la constante de normalización apropiada, una medida de probabilidad sobre $\{-1,1\}^{\Lambda'}$ generada por
+\begin{equation}
+P'(\{s'\})=P(g^{-1}(\{s'\}))=\frac{1}{Z}\sum_{s\in g^{-1}(\{s'\})}e^{-\beta H(s)}
+\end{equation}
 
 \end{enumerate}
 
