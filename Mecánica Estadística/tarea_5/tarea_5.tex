@@ -5,6 +5,7 @@
 \usepackage{physics}
 \usepackage{amssymb}
 \usepackage{hyperref}
+\usepackage{tikz}
 
 \title{Mecánica Estadística\\Tarea 5: Teoría de Landau y Renormalización}
 \author{Iván Mauricio Burbano Aldana}
@@ -258,9 +259,31 @@ Se concluye entonces que $\eta=0$ en ambos casos, resultado que concuerda con el
 
 \section{Renormalización}
 
+\begin{figure}[h]
+\begin{center}
+\begin{tikzpicture}
+\foreach \x in {0,...,5}
+\foreach \y in {0,...,2}
+{
+\draw [fill] (2*\x,{2*sqrt(3)*\y}) circle [radius=0.08];
+\draw [fill] (2*\x+1,{2*sqrt(3)*\y+sqrt(3)}) circle [radius=0.08];
+}
+\foreach \x in {0,3}
+\foreach \y in {0,...,2}
+{
+\draw [dashed] (2*\x,{2*sqrt(3)*\y}) -- (2*\x+1,{2*sqrt(3)*\y+sqrt(3)}) -- (2*\x+2,{2*sqrt(3)*\y}) -- (2*\x,{2*sqrt(3)*\y});
+\draw [dashed] (2*\x+3,{2*sqrt(3)*\y+sqrt(3)}) -- (2*\x+5,{2*sqrt(3)*\y+sqrt(3)}) -- (2*\x+4,{2*sqrt(3)*\y+2*sqrt(3)}) -- (2*\x+3,{2*sqrt(3)*\y+sqrt(3)});
+}
+\draw [fill] (4,{6*sqrt(3)}) circle [radius=0.08];
+\draw [fill] (10,{6*sqrt(3)}) circle [radius=0.08];
+\end{tikzpicture}
+\end{center}
+\caption{\label{fig:red}Se muestra una red triangular de sitios para un retículo de espines. Las lineas punteadas señalan la agrupación de los espines en el equema de renormalización propuesto.}
+\end{figure}
+
 \begin{enumerate}
 
-\item 
+\item Considere la red triangular mostrada en la figura \ref{fig:red}. Al conjunto contable de sitios lo vamos a denotar $\Lambda$. Entonces los microestados de la red se pueden tomar como los elementos $s\in\{-1,1\}^\Lambda$ bajo la interpretación de que $s_i:=s(i)$ para $i\in\Lambda$ es el espín en el sitio $i$. Vamos a considerar un esquema de renormalización agrupando los sitios en grupos de 3. Por lo tanto, el factor de escala $\lambda$ está determinado por la restricción de que $\lambda^2=3$. Se concluye que $\lambda=\sqrt{3}$.
 
 \end{enumerate}
 
