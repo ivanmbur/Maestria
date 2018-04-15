@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{physics}
 \usepackage{enumerate}
+\usepackage{amssymb}
 
 \title{Electrodynamics: Homework 4}
 \author{Iván Mauricio Burbano Aldana}
@@ -32,7 +33,125 @@ T^{i0}=-\sum_{j=1}^3\sum_{k=1}^3\epsilon_{ijk}B_kE_j=-(\vb{E}\cross\vb{B})_i
 
 \item \begin{enumerate}[(i)]
 
-\item Indeed, $\mathcal{L}$ is real. This is because $\mathcal{L}_\phi$, $\mathcal{L}_A$ and $\mathcal{L}_{\text{int}}$ are.
+\item Indeed, $\mathcal{L}$ is real. This is because $\mathcal{L}_\phi$, $\mathcal{L}_A$ and $\mathcal{L}_{\text{int}}$ are. We have
+\begin{align}
+\begin{split}
+\mathcal{L}_\phi^*=&(\partial_\mu\phi)(\partial^\mu\phi)^*-m^2\phi\phi^*=(\partial_\mu\phi)(g^{\mu\nu}\partial_\nu\phi)^*-m^2\phi^*\phi\\
+=&(g^{\mu\nu}\partial_\mu\phi)(\partial_\nu\phi)^*-m^2\phi^*\phi=(\partial^\nu\phi)(\partial_\nu\phi)^*-m^2\phi^*\phi\\
+=&(\partial_\mu\phi)^*(\partial^\mu\phi)-m^2\phi^*\phi=\mathcal{L}_\phi,\\
+\mathcal{L}_A^*=&\frac{1}{4}F_{\mu\nu}^*F^{\mu\nu*}=\frac{1}{4}F_{\mu\nu}F^{\mu\nu}=\mathcal{L}_A\quad\text{y}\\
+\mathcal{L}_{\text{int}}^*=&ieA_\mu(\phi(\partial^\mu\phi)^*-(\partial^\mu\phi)\phi^*)+e^2A_\mu A^\mu\phi^*\phi\\
+=&-ieA_\mu((\partial^\mu\phi)\phi^*-\phi(\partial^\mu\phi)^*)+e^2A_\mu A^\mu\phi^*\phi\\
+=&\mathcal{L}_\text{int}
+\end{split}
+\end{align}
+
+\item It is clear that $\mathcal{L}_A$ is invariant under gauge transformations since the electromagnetic tensor $F_{\mu\nu}$ is. This is because under a gauge transformation the commutation of partial derivatives tells us that
+\begin{align}
+\begin{split}
+F_{\mu\nu}\mapsto F_{\mu\nu}'=&\partial_\mu A'_\nu-\partial_\nu A'_\mu=\partial_\mu A_\nu +\partial_\mu\partial_\nu\alpha-\partial_\nu A_\mu -\partial_\nu\partial_\mu\alpha\\
+=&\partial_\mu A_\nu-\partial_\nu A_\mu=F_{\mu\nu}.
+\end{split}
+\end{align}
+For the other two terms in the Lagrangian we have the following behavior under gauge transformations
+\begin{align}
+\begin{split}
+\mathcal{L}_\phi &\mapsto \mathcal{L}_\phi'=(\partial_\mu\phi')^*(\partial^\mu\phi')-m^2{\phi'}^*\phi' \\
+=&(\partial_\mu(e^{-ie\alpha}\phi))^*(\partial^\mu(e^{-ie\alpha}\phi))-m^2e^{ie\alpha}{\phi}^*e^{-ie\alpha}\phi \\
+=&(e^{-ie\alpha}\partial_\mu\phi-iee^{-ie\alpha}\phi\partial_\mu\alpha)^*(e^{-ie\alpha}\partial^\mu\phi-iee^{-ie\alpha}\phi\partial^\mu\alpha)\\
+&-m^2\phi^*\phi \\
+=&(e^{ie\alpha}(\partial_\mu\phi)^*+iee^{ie\alpha}\phi^*\partial_\mu\alpha)(e^{-ie\alpha}\partial^\mu\phi-iee^{-ie\alpha}\phi\partial^\mu\alpha)\\
+&-m^2\phi^*\phi \\
+=&(\partial_\mu\phi)^*\partial^\mu\phi+ie\phi^*(\partial^\mu\phi)(\partial_\mu\alpha)-ie\phi(\partial_\mu\phi)^*(\partial^\mu\alpha)\\
+&+e^2\phi^*\phi(\partial_\mu\alpha)(\partial^\mu\alpha)-m^2\phi^*\phi\\
+=&\mathcal{L}_\phi+ie(\phi^*\partial^\mu\phi-\phi(\partial^\mu\phi)^*)\partial_\mu\alpha+e^2\phi^*\phi(\partial_\mu\alpha)(\partial^\mu\alpha)
+\end{split}
+\end{align}
+and
+\begin{align}
+\begin{split}
+\mathcal{L}_{\text{int}}&\mapsto \mathcal{L}_{\text{int}}'=-ieA_\mu'((\phi')^*\partial^\mu\phi'-(\partial^\mu\phi')^*\phi')+e^2A_\mu'{A'}^\mu{\phi'}^*\phi\\
+=&-ie(A_\mu+\partial_\mu\alpha)(e^{ie\alpha}\phi^*\partial^\mu(e^{-ie\alpha}\phi)-(\partial^\mu(e^{-ie\alpha}\phi))^*e^{-ie\alpha}\phi)\\
+&+e^2(A_\mu+\partial_\mu\alpha)(A^\mu+\partial^\mu\alpha)e^{ie\alpha}\phi^*e^{-ie\alpha}\phi\\
+=&-ie(A_\mu+\partial_\mu\alpha)(e^{ie\alpha}\phi^*(e^{-ie\alpha}\partial^\mu\phi-iee^{-ie\alpha}\phi\partial^\mu\alpha)\\
+&-(e^{-ie\alpha}\partial^\mu\phi-iee^{-ie\alpha}\phi\partial^\mu\alpha)^*e^{-ie\alpha}\phi)\\
+&+e^2A_\mu A^\mu\phi^*\phi+2e^2A_\mu\phi^*\phi\partial^\mu\alpha+e^2\phi^*\phi(\partial_\mu\alpha)(\partial^\mu\alpha)\\
+=&-ie(A_\mu+\partial_\mu\alpha)(\phi^*\partial^\mu\phi-(\partial^\mu\phi)^*\phi-2ie\phi^*\phi\partial^\mu\alpha)\\
+&+e^2A_\mu A^\mu\phi^*\phi+2e^2A_\mu\phi^*\phi\partial^\mu\alpha+e^2\phi^*\phi(\partial_\mu\alpha)(\partial^\mu\alpha)\\
+=&\mathcal{L}_{\text{int}}-2e^2\phi^*\phi A_\mu\partial^\mu\alpha-ie(\phi^*\partial^\mu\phi-(\partial^\mu\phi)^*\phi)\partial_\mu\alpha\\
+&-2e^2\phi^*\phi(\partial_\mu\alpha)(\partial^\mu\alpha)+2e^2A_\mu\phi^*\phi\partial^\mu\alpha+e^2\phi^*\phi(\partial_\mu\alpha)(\partial^\mu\alpha)\\
+=&\mathcal{L}_{\text{int}}-ie(\phi^*\partial^\mu\phi-(\partial^\mu\phi)^*\phi)\partial_\mu\alpha-e^2\phi^*\phi(\partial_\mu\alpha)(\partial^\mu\alpha).
+\end{split}
+\end{align}
+We thus conclude that the sum $\mathcal{L}_\phi+\mathcal{L}_\text{int}$ is gauge invariant and the full Lagrangian $\mathcal{L}$ is as well.
+
+\end{enumerate}
+
+\item 
+
+\begin{enumerate}[(i)]
+
+\item Notice that the Lagrangian $\mathcal{L}'$ is a function of the 30 fields $\phi$, $\phi^*$, $\partial_\mu\phi$, $\partial_\mu\phi^*$, $A_\mu$, and $\partial_\mu A^\nu$. We have the derivatives
+\begin{align}
+\begin{split}
+\pdv{\mathcal{L}'}{(\partial_\mu\phi^*)}=&\pdv{\mathcal{L}_\phi}{(\partial_\mu\phi^*)}+\pdv{\mathcal{L}_\text{int}}{(\partial_\mu\phi^*)}\\
+=&\pdv{(\partial_\nu\phi)^*(\partial^\nu\phi)}{(\partial_\mu\phi)}-ie\pdv{A_\nu(\phi^*\partial^\nu\phi-(\partial^\nu\phi^*)\phi)}{(\partial_\mu\phi)}\\
+=&(\partial^\nu\phi)\pdv{(\partial_\nu\phi^*)}{(\partial_\mu\phi)^*}+ieA^\nu\phi\pdv{(\partial_\nu\phi^*)}{(\partial_\mu\phi^*)}\\
+=&(\partial^\nu\phi)\delta^\mu_\nu+ieA^\nu\phi\delta^\mu_\nu=\partial^\mu\phi+ieA^\mu\phi,
+\end{split}
+\end{align}
+\begin{align}
+\begin{split}
+\pdv{\mathcal{L}'}{\phi^*}=&\pdv{\mathcal{L}_\phi}{\phi^*}+\pdv{\mathcal{L}_\text{int}}{\phi^*}+\pdv{V}{\phi^*}\\
+=&-m^2\phi-ieA_\mu\partial^\mu\phi+e^2A_\mu A^\mu\phi+2\lambda(\phi^*\phi-\phi_0^2)\phi,
+\end{split}
+\end{align}
+\begin{align}
+\begin{split}
+\pdv{\mathcal{L}'}{(\partial_\mu A_\nu)}=&\pdv{\mathcal{L}_A}{(\partial_\mu A_\nu)}=\frac{1}{4}\pdv{(F^{\sigma\rho}F_{\sigma\rho})}{(\partial_\mu A_\nu)}=\frac{1}{4}g^{\sigma\lambda}g^{\rho\xi}\pdv{(F_{\lambda\xi}F_{\sigma\rho})}{(\partial_\mu A_\nu)}\\
+=&\frac{1}{4}g^{\sigma\lambda}g^{\rho\xi}\qty(F_{\sigma\rho}\pdv{F_{\lambda\xi}}{(\partial_\mu A_\nu)}+F_{\lambda\xi}\pdv{F_{\sigma\rho}}{(\partial_\mu A_\nu)})\\
+=&\frac{1}{4}g^{\sigma\lambda}g^{\rho\xi}\qty(F_{\sigma\rho}\qty(\delta^\mu_\lambda\delta^\nu_\xi-\delta^\mu_\xi\delta^\nu_\lambda)+F_{\lambda\xi}\qty(\delta^\mu_\sigma\delta^\nu_\rho-\delta^\mu_\rho\delta^\nu_\sigma))\\
+=&\frac{1}{4}\qty(F^{\lambda\xi}\qty(\delta^\mu_\lambda\delta^\nu_\xi-\delta^\mu_\xi\delta^\nu_\lambda)+F^{\sigma\rho}\qty(\delta^\mu_\sigma\delta^\nu_\rho-\delta^\mu_\rho\delta^\nu_\sigma))\\
+=&\frac{1}{4}\qty(F^{\mu\nu}-F^{\nu\mu}+F^{\mu\nu}-F^{\nu\mu})=F^{\mu\nu},
+\end{split}
+\end{align}
+and
+\begin{align}
+\begin{split}
+\pdv{\mathcal{L}'}{A_\nu}=&\pdv{\mathcal{L}_\text{int}}{A_\nu}=-ie((\partial^\mu\phi)\phi^*-\phi(\partial^\mu\phi)^*)\delta^\nu_\mu+e^2\phi^*\phi\pdv{A^\mu A_\mu}{A_\nu}\\
+=&-ie((\partial^\nu\phi)\phi^*-\phi(\partial^\nu\phi)^*)+e^2\phi^*\phi g^{\sigma\mu}\pdv{A_\sigma A_\mu}{A_\nu}\\
+=&-ie((\partial^\nu\phi)\phi^*-\phi(\partial^\nu\phi)^*)+e^2\phi^*\phi g^{\sigma\mu}(A_\sigma\delta^\nu_\mu+A_\mu\delta^\nu_\sigma)\\
+=&-ie((\partial^\nu\phi)\phi^*-\phi(\partial^\nu\phi)^*)+2e^2\phi^*\phi A^\nu.
+\end{split}
+\end{align}
+Therefore, the Euler-Lagrange equations read for the $\phi$ field
+\begin{align}
+\begin{split}
+0=&\partial_\mu\pdv{\mathcal{L}'}{(\partial_\mu\phi^*)}-\pdv{\mathcal{L}'}{\phi^*}\\
+=&\partial^\mu\partial_\mu\phi+ie\partial_\mu(A^\mu\phi)+m^2\phi+ieA_\mu\partial^\mu\phi-e^2A_\mu A^\mu\phi\\
+&-2\lambda(\phi^*\phi-\phi_0^2)\phi.
+\end{split}
+\end{align}
+Familiarity with the Klein-Gordon equation compels us to write this result in the form
+\begin{equation}
+(\Box + m^2)\phi=2\lambda(\phi^*\phi-\phi_0^2)\phi+e^2A^\mu A_\mu-ie(\partial_\mu(A^\mu\phi)+A^\mu\partial_\mu\phi)
+\end{equation}
+where $\Box=\partial^\mu\partial_\mu$. On the other hand, the Euler-Lagrange equations for the $A_\mu$ field read
+\begin{align}
+\begin{split}
+0=&\partial_\mu\pdv{\mathcal{L}'}{(\partial_\mu A_\nu)}-\pdv{\mathcal{L}'}{A_\nu}\\
+=&\partial_\mu F^{\mu\nu}+ie((\partial^\nu\phi)\phi^*-\phi(\partial^\nu\phi)^*)-2e^2\phi^*\phi A^\nu.
+\end{split}
+\end{align}
+Once again, familiarity with Maxwell's equations suggests that we write this equation in the form
+\begin{equation}\label{ec:Maxwell}
+\partial_\mu F^{\mu\nu}=2e^2\phi^*\phi A^\nu-ie((\partial^\nu\phi)\phi^*-\phi(\partial^\nu\phi)^*).
+\end{equation}
+
+\item Comparing \eqref{ec:Maxwell} with Maxwell's equations $\partial_\mu F^{\mu\nu}=j^\nu$ we conclude that the electromagnetic current density is
+\begin{equation}
+j^\mu=2e^2\phi^*\phi A^\mu-ie((\partial^\mu\phi)\phi^*-\phi(\partial^\mu\phi)^*).
+\end{equation}
 
 \end{enumerate}
 

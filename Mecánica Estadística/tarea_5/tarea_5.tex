@@ -7,6 +7,8 @@
 \usepackage{hyperref}
 \usepackage{tikz}
 
+\DeclareMathOperator{\id}{id}
+
 \title{Mecánica Estadística\\Tarea 5: Teoría de Landau y Renormalización}
 \author{Iván Mauricio Burbano Aldana}
 
@@ -289,7 +291,7 @@ Se concluye entonces que $\eta=0$ en ambos casos, resultado que concuerda con el
 
 \begin{enumerate}
 
-\item Considere la red triangular mostrada en la figura \ref{fig:red}. Al conjunto contable de sitios lo vamos a denotar $\Lambda$ y al de vecinos más cercanos $\ev{\Lambda}\subseteq\Lambda\times\Lambda$. Cabe notar que solo escojemos un representante por vecino, es decir, si $(i,j)\in\ev{\Lambda}$ entonces $(j,i)\not\in\ev{\Lambda}$. Entonces los microestados de la red se pueden tomar como los elementos $s\in\{-1,1\}^\Lambda$ bajo la interpretación de que $s_i:=s(i)$ para $i\in\Lambda$ es el espín en el sitio $i$. El Hamiltoniano toma la forma
+\item Considere la red triangular mostrada en la figura \ref{fig:red}. Al conjunto  a lo sumo contable de sitios lo vamos a denotar $\Lambda$ y al de vecinos más cercanos $\ev{\Lambda}\subseteq\Lambda\times\Lambda$. Cabe notar que solo escojemos un representante por vecino, es decir, si $(i,j)\in\ev{\Lambda}$ entonces $(j,i)\not\in\ev{\Lambda}$. Entonces los microestados de la red se pueden tomar como los elementos $s\in\{-1,1\}^\Lambda$ bajo la interpretación de que $s_i:=s(i)$ para $i\in\Lambda$ es el espín en el sitio $i$. El Hamiltoniano toma la forma
 \begin{align}
 \begin{split}
 \beta H:\{-1,1\}^\Lambda&\rightarrow \mathbb{R}\\
@@ -308,22 +310,22 @@ donde
 \end{equation}
 y
 \begin{equation}
-\beta V(s)=-K\sum_{(i,j)\in\ev{\Lambda}\setminus\bigcup\limits_{\mu\in\Lambda'}\ev{\mu}}s_is_j+h\sum_{i\in\Lambda}s_i.
+\beta V(s)=-K\sum_{(i,j)\in\ev{\Lambda}\setminus\bigcup\limits_{\mu\in\Lambda'}\ev{\mu}}s_is_j-h\sum_{i\in\Lambda}s_i.
 \end{equation}
 
-Note que el conjunto $\ev{\Lambda}\setminus\bigcup\limits_{\mu\in\Lambda'}\ev{\mu}$ es el de vecinos más cercanos que corresponden a grupos distintos. Sea $\ev{\Lambda'}\subseteq\Lambda'\times\Lambda'$ el conjunto de grupos vecinos más cercanos. Sin perdida de generalidad, ordenamos los pares de manera que si $(\mu,\nu)\in\ev{\Lambda'}$ el segmento más corto entre los triángulos generados por $\mu$ y $\nu$ tiene un punto final en un vertice del generado por $\mu$ y otro en la mitad de una arista del generado por $\nu$. Defina $s_{(\mu,\nu)}$ como el espín en el vertice en el segmento y $s_{(\mu,\nu)}^{(1)}$ y $s_{(\mu,\nu)}^{(2)}$ como los espinos en los vertices que generan la arista en el segmento. En particular $s_{(\mu,\nu)}=s_i$ para algún $i\in\mu$ y $s_{(\mu,\nu)}^{(1)}=s_{j_1}$ y $s_{(\mu,\nu)}^{(2)}=s_{j_1}$ para algunos $j_1,j_2\in\nu$ distintos. La figura \ref{fig:red} muestra que todos los $s_is_j$ con $(i,j)\in\ev{\Lambda}\setminus\bigcup\limits_{\mu\in\Lambda'}\ev{\mu}$ son de la forma $s_{(\mu,\nu)}s_{(\mu,\nu)}^{(1)}$ o $s_{(\mu,\nu)}s_{(\mu,\nu)}^{(2)}$ para $\mu,\nu\in\ev{\Lambda'}$. Concluimos que 
+Note que el conjunto $\ev{\Lambda}\setminus\bigcup\limits_{\mu\in\Lambda'}\ev{\mu}$ es el de vecinos más cercanos que corresponden a grupos distintos. Sea $\ev{\Lambda'}\subseteq\Lambda'\times\Lambda'$ el conjunto de grupos vecinos más cercanos. Sin perdida de generalidad, ordenamos los pares de manera que si $(\mu,\nu)\in\ev{\Lambda'}$ el segmento más corto entre los triángulos generados por $\mu$ y $\nu$ tiene un punto final en un vertice del generado por $\mu$ y otro en la mitad de una arista del generado por $\nu$. Defina $s_{(\mu,\nu)}$ como el espín en el vertice en el segmento y $s_{(\mu,\nu)}^{(1)}$ y $s_{(\mu,\nu)}^{(2)}$ como los espinos en los vertices que generan la arista en el segmento. En particular $s_{(\mu,\nu)}=s_i$ para algún $i\in\mu$ y $s_{(\mu,\nu)}^{(1)}=s_{j_1}$ y $s_{(\mu,\nu)}^{(2)}=s_{j_2}$ para algunos $j_1,j_2\in\nu$ distintos. La figura \ref{fig:red} muestra que todos los $s_is_j$ con $(i,j)\in\ev{\Lambda}\setminus\bigcup\limits_{\mu\in\Lambda'}\ev{\mu}$ son de la forma $s_{(\mu,\nu)}s_{(\mu,\nu)}^{(1)}$ o $s_{(\mu,\nu)}s_{(\mu,\nu)}^{(2)}$ para $(\mu,\nu)\in\ev{\Lambda'}$. Concluimos que 
 \begin{equation}
-\beta V(s)=-K\sum_{(\mu,\nu)\in\ev{\Lambda'}}\qty(s_{(\mu,\nu)}s_{(\mu,\nu)}^{(1)}+s_{(\mu,\nu)}s_{(\mu,\nu)}^{(2)})+h\sum_{i\in\Lambda}s_i.
+\beta V(s)=-K\sum_{(\mu,\nu)\in\ev{\Lambda'}}\qty(s_{(\mu,\nu)}s_{(\mu,\nu)}^{(1)}+s_{(\mu,\nu)}s_{(\mu,\nu)}^{(2)})-h\sum_{i\in\Lambda}s_i.
 \end{equation}
 
 Defina la función 
 \begin{align}
 \begin{split}
-f:\{-1,1\}^3&\rightarrow\{-1,1\}\\
-(s_1,s_2,s_3)&\mapsto s_1+s_2+s_3.
+f_\mu:\{-1,1\}^\mu&\rightarrow\{-1,1\}\\
+s&\mapsto \text{sgn}\sum_{i\in\mu}s_i.
 \end{split}
 \end{align}
-Si $\mu=\{i,j,k\}$ entonces interpretamos $s'_\mu:=f(s_i,s_j,s_k)$ como el espín en el sitio $\mu$ posterior al proceso de renormalización. Es claro que este mapa le asigna a los nuevos sitios su espín según una regla de mayoría. Esta función se extiende a
+para todo $\mu\in\Lambda'$. Si $\mu=\{i,j,k\}$ entonces interpretamos $s'_\mu:=f_\mu(s)$ como el espín en el sitio $\mu$ posterior al proceso de renormalización. Es claro que este mapa le asigna a los nuevos sitios su espín según una regla de mayoría. Esta función se extiende a
 \begin{align}
 \begin{split}
 g:\{-1,1\}^\Lambda&\rightarrow\{-1,1\}^{\Lambda'}\\
@@ -335,10 +337,187 @@ donde $s'(\mu):=s'_\mu$. Este mapa le asigna a cada estado de la red original un
 P(\{s\})=\frac{1}{Z}e^{-\beta H(s)},
 \end{equation}
 con $Z$ la constante de normalización apropiada, una medida de probabilidad sobre $\{-1,1\}^{\Lambda'}$ generada por
+\begin{align}
+\begin{split}
+P'(\{s'\})=&P(g^{-1}(\{s'\}))=\frac{1}{Z}\sum_{s\in g^{-1}(\{s'\})}e^{-\beta H(s)}\\
+=&\frac{1}{Z}\sum_{s\in g^{-1}(\{s'\})}e^{-\beta H_0(s)}e^{-\beta V(s)}=\frac{Z_0}{Z}\ev{e^{-\beta V}}_{P_0(s')}
+\end{split}
+\end{align}
+donde $P_0(s')$ es una medida de probabilidad sobre $\{-1,1\}^\Lambda$ generada por
+\begin{align}
+\begin{split}
+P_0(s')(\{s\})=&\frac{\chi_{g^{-1}(\{s'\})}(s)}{Z_0(s')}e^{-\beta H_0(s)}\\
+=&\frac{\chi_{g^{-1}(\{s'\})}(s)}{Z_0(s')}\prod_{\mu\in\Lambda'}e^{\sum_{(i,j)\in\ev{\mu}}Ks_is_j}
+\end{split}
+\end{align}
+donde $\chi_{g^{-1}(\{s'\})}$ es la función característica de $g^{-1}(\{s'\})$ y $Z_0$ es la constante de normalización apropiada. Note que esta medida es el producto de las medidas $P_\mu(s')$ sobre $\{-1,1\}^\mu$ para $\mu\in\Lambda'$ definidas por
 \begin{equation}
-P'(\{s'\})=P(g^{-1}(\{s'\}))=\frac{1}{Z}\sum_{s\in g^{-1}(\{s'\})}e^{-\beta H(s)}
+P_\mu(s')(\{s\})=\frac{\chi_{f_\mu^{-1}(\{s'_\mu\})}(s)}{Z_\mu(s')}e^{\sum_{(i,j)\in\ev{\mu}}Ks_is_j}
+\end{equation} 
+donde
+\begin{align}
+\begin{split}
+Z_\mu(s')=&\sum_{s\in\{-1,1\}^\mu}\chi_{f_\mu^{-1}(\{s'_\mu\})}(s)e^{\sum_{(i,j)\in\ev{\mu}}Ks_is_j}\\
+=&\sum_{s\in f_\mu^{-1}(\{s'_\mu\})}e^{\sum_{(i,j)\in\ev{\mu}}Ks_is_j}\\
+=&\sum_{(s_1,s_2,s_3)\in f_\mu^{-1}(\{s'_\mu\})}e^{K(s_1s_2+s_2s_3+s_3s_1)}.
+\end{split}
+\end{align}
+Se tiene que $f_\mu^{-1}(\{1\})=\{(1,1,1),(1,1,-1),(1,-1,1),(-1,1,1)\}$ y por lo tanto
+\begin{equation}
+\sum_{(s_1,s_2,s_3)\in f_\mu^{-1}(\{1\})}e^{K(s_1s_2+s_2s_3+s_3s_1)}=e^{3K}+3e^{-K}.
+\end{equation}
+Por la simetría del modelo bajo la inversión de los espines se tiene que $f^{-1}(\{-1\})=\{(-1,-1,-1),(-1,-1,1),(-1,1,-1),(1,-1,-1)\}$ y
+\begin{equation}
+\sum_{(s_1,s_2,s_3)\in f_\mu^{-1}(\{-1\})}e^{K(s_1s_2+s_2s_3+s_3s_1)}=e^{3K}+3e^{-K}.
+\end{equation}
+Por lo tanto
+\begin{equation}
+Z_\mu(s')=e^{3K}+3e^{-K}
 \end{equation}
 
+Definimos el Hamiltoniano renormalizado $H':\{-1,1\}^{\Lambda'}\rightarrow\mathbb{R}$ pidiendo que $P'$ corresponda al estado de Gibbs de este y se preserve la función de partición. Entonces
+\begin{equation}
+P'(\{s'\})=\frac{1}{Z}e^{-\beta' H'(s')},
+\end{equation}
+es decir,
+\begin{align}
+\begin{split}
+\beta' H'(s')=&-\ln(ZP'(\{s'\}))=-\ln(Z_0(s')\ev{e^{-\beta V}}_{P_0(s')})\\
+=&-\ln(\ev{e^{-\beta V}}_{P_0(s')})-\ln(Z_0(s'))=.
+\end{split}
+\end{align}
+
+\item Para calcular el nuevo Hamiltoniano vamos a realizar la aproximación
+\begin{equation}
+\ev{e^{-\beta V}}_{P_0(s')}\approx e^{-\ev{\beta V}_{P_0(s')}}
+\end{equation}
+Este valor esperado se puede calcular como
+\begin{align}
+\begin{split}
+&\ev{\beta V}_{P_0(s')}=\\
+&-K\sum_{(\mu,\nu)\in\ev{\Lambda'}}\qty(\ev{s_{(\mu,\nu)}s_{(\mu,\nu)}^{(1)}}_{P_0(s')}+\ev{s_{(\mu,\nu)}s_{(\mu,\nu)}^{(2)}}_{P_0(s')})\\
+&-h\sum_{i\in\Lambda}\ev{s_i}_{P_0(s')}.
+\end{split}
+\end{align}
+donde hacemos el abuso de notación $\ev{s_i}_{P_0(s')}:=\ev{\pi_i}_{P_0(s')}$ y $\ev{s_is_j}_{P_0(s')}:=\ev{\pi_i\pi_j}_{P_0(s')}$ para las funciones de evaluación
+\begin{align}
+\begin{split}
+\pi_i:\{-1,1\}^\Lambda&\rightarrow\{-1,1\}\\
+s&\mapsto s_i
+\end{split}
+\end{align}
+para todo $i\in\Lambda$. Dado que estos son valores esperados de funciones locales con una medida producto tenemos que
+$\ev{s_i}_{P_0(s')}=\ev{s_i}_{P_\mu(s')}$ y $\ev{s_is_j}_{P_0(s')}=\ev{s_i}_{P_0(s')}\ev{s_j}_{P_0(s')}=\ev{s_i}_{P_\mu(s')}\ev{s_j}_{P_\nu(s')}$ donde $i\in\mu$ y $j\in\nu$ con $\mu,\nu\in\Lambda'$ distintos. Una vez más, hacemos el abuso de notación $\ev{s_i}_{P_\mu(s')}:=\ev{\tau_i}_{P_\mu(s')}$ donde
+\begin{align}
+\begin{split}
+\tau_i:\{-1,1\}^\mu&\rightarrow\{-1,1\}\\
+s&\mapsto s_i.
+\end{split}
+\end{align}
+Se tiene que
+\begin{align}
+\begin{split}
+\ev{s_i}_{P_\mu(s')}=&\sum_{s\in\{-1,1\}^\mu}\frac{\chi_{f_\mu^{-1}(\{s'_\mu\})}(s)}{Z_\mu(s')}e^{\sum_{(j,k)\in\ev{\mu}}Ks_js_k}s_i\\
+=&\sum_{s\in f_\mu^{-1}(\{s'_\mu\})}\frac{1}{e^{3K}+3e^{-K}}e^{\sum_{(j,k)\in\ev{\mu}}Ks_js_k}s_i\\
+=&\begin{cases}
+\frac{1}{e^{3K}+3e^{-K}}\qty(e^{3K}+e^{-K}) & s'_\mu=1\\
+\frac{1}{e^{3K}+3e^{-K}}\qty(-e^{3K}-e^{-K}) & s'_\mu=-1
+\end{cases}\\
+=&\frac{e^{3K}+e^{-K}}{e^{3K}+3e^{-K}}s'_\mu.
+\end{split}
+\end{align}
+Por lo tanto, el Hamiltoniano nuevo es
+\begin{align}
+\begin{split}
+&\beta' H'(s')=\\
+&-2K\qty(\frac{e^{3K}+e^{-K}}{e^{3K}+3e^{-K}})^2\sum_{(\mu,\nu)\in\ev{\Lambda'}}s'_\mu s'_\nu - 3h\frac{e^{3K}+e^{-K}}{e^{3K}+3e^{-K}}\sum_{\mu\in\Lambda}s'_\mu
+\end{split}
+\end{align}
+donde la última suma se paso a $\Lambda'$ teniendo en cuenta que por cada grupo hay tres sitios. Se concluye que la operación de renormalización es
+\begin{align}
+\begin{split}
+R_\lambda:[0,\infty)^2&\rightarrow[0,\infty)^2\\
+(K,h)&\mapsto(K',h'):=\qty(2K\qty(\frac{e^{3K}+e^{-K}}{e^{3K}+3e^{-K}})^2,3h\frac{e^{3K}+e^{-K}}{e^{3K}+3e^{-K}})
+\end{split}
+\end{align}
+
+\item Es obvio que $(0,0)$ es un punto fijo. Suponga que $h\neq 0$. Entonces
+\begin{equation}
+R_\lambda(0,h)=\qty(0,\frac{3h}{2})\neq(0,h)
+\end{equation} 
+Suponga que $(0,0)\neq(K,h)\in[0,\infty)^2$ es otro punto fijo de $R$. Por el argumento anterior $K\neq 0$. Luego de 
+\begin{equation}
+K=2K\qty(\frac{e^{3K}+e^{-K}}{e^{3K}+3e^{-K}})^2
+\end{equation}
+se deduce que
+\begin{equation}
+2\qty(\frac{e^{4K}+1}{e^{4K}+3})^2=2\qty(\frac{e^{3K}+e^{-K}}{e^{3K}+3e^{-K}})^2=1.
+\end{equation}
+Esto se puede reducir a una ecuación lineal en $e^{4K}$
+\begin{equation}
+\sqrt{2}(e^{4K}+1)=e^{4K}+3
+\end{equation}
+cuya solución es
+\begin{equation}
+e^{4K}=\frac{3-\sqrt{2}}{\sqrt{2}-1},
+\end{equation}
+es decir,
+\begin{equation}
+K=\frac{1}{4}\ln(\frac{3-\sqrt{2}}{\sqrt{2}-1})\approx 0.336.
+\end{equation}
+Por el otro lado, tenemos
+\begin{equation}
+h=3h\frac{e^{3K}+e^{-K}}{e^{3K}+3e^{-K}}=\frac{3h}{\sqrt{2}}.
+\end{equation}
+Se concluye que $h=0$. Luego los dos puntos fijos de $R$ son $(0,0)$ y $(0.336,0)$.
+
+\item El punto $(0,0)$ corresponde a una red en la cual no hay campo magnético y los espines no interactúan. Esto hace que el punto no sea interesante.
+
+Tenemos
+\begin{align}
+\begin{split}
+&\partial_1 R_\lambda^1(K,h)=2\qty(\frac{e^{3K}+e^{-K}}{e^{3K}+3e^{-K}})^2+4K\frac{e^{3K}+e^{-K}}{e^{3K}+3e^{-K}}\times\\
+&\frac{(3e^{3K}-e^{-K})(e^{3K}+3e^{-K})-(e^{3K}+e^{-K})(3e^{3K}-3e^{-K})}{(e^{3K}+3e^{-K})^2}\\
+&\partial_1 R_\lambda^2(K,h)=3h\times\\
+&\frac{(3e^{3K}-e^{-K})(e^{3K}+3e^{-K})-(e^{3K}+e^{-K})(3e^{3K}-3e^{-K})}{(e^{3K}+3e^{-K})^2}\\
+&\partial_2 R_\lambda^1(K,h)=0\\
+&\partial_2 R_\lambda^2(K,h)=3\frac{e^{3K}+e^{-K}}{e^{3K}+3e^{-K}}
+\end{split}
+\end{align} 
+Evaluando en el punto crítico interesante se obtiene
+\begin{align}
+\begin{split}
+\sqrt{3}^{y_T}=&\lambda^{y_T}=\partial_1 R_\lambda^1(K^*,h^*)\approx 1.623524\\
+\sqrt{3}^{y_h}=&\lambda^{y_h}=\partial_2 R_\lambda^2(K^*,h^*)=\frac{3}{\sqrt{2}}\approx 2.121320.
+\end{split}
+\end{align}
+Se concluyen entonces los valores
+\begin{align}
+\begin{split}
+y_T\approx&0.882203\\
+y_h\approx&1.369070.
+\end{split}
+\end{align}
+Con estos valores podemos hallar los exponentes críticos. Tome $(K',h')$ cercano a $(K^*,h^*)$ y defina la función
+\begin{equation}
+L:[0,\infty)^2\rightarrow[0,\infty)
+\end{equation}
+tal que
+\begin{equation}
+(K',h')=R_{L(K,h)}(K,h)\approx(K^*,h^*)+(L(K,h)^{y_T}(K-K^*),L(K,h)^{y_h}(h-h^*)).
+\end{equation}
+para $(K,h)$ cercano a $(K^*,h^*)$.
+Para la longitud de correlación tenemos la relación de escala $\xi'=\xi/L(K,h)$. Por lo tanto
+\begin{align}
+\begin{split}
+\xi=&\xi'L(K,h)=\xi'\qty(\frac{K'-K^*}{K-K^*})^{1/y_T}\propto (K-K^*)^{-1/y_T}\\
+\propto&(T-T_c)^{-1/y_T}
+\end{split}
+\end{align}
+donde se utilizo que $K$ es proporcional a la temperatura como se puede ver de la expresión para el Hamiltoniano. Se conluye
+\begin{equation}
+\nu=\frac{1}{y_T}\approx 1.133526.
+\end{equation}
 \end{enumerate}
 
 \bibliography{/Users/ivan/Documents/Bib_Files/library}
