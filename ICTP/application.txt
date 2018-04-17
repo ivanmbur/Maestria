@@ -1,0 +1,16 @@
+Reason for Participation:
+I aim to better understand the current challenges in theoretical physics and obtain the tools to confront them. I believe that my background in mathematical physics will allow me to make the most of the lectures provided guaranteeing a successful and enjoyable experience. I also believe this is a great chance of getting immersed at the international scale with the theoretical physics community. In particular, I am excited to get to know colleagues with similar interests who may eventually turn into collaborators.
+
+I am also very interested in the SAIFR-Perimeter Fellowship. Ever since I first started watching Professor Carl Bender's lectures on mathematical physics online I knew that I wanted to do graduate school at the Perimeter Institute for Theoretical Physics. I believe this joint masters program would be an amazing opportunity to consolidate my knowledge of modern theoretical physics and continue my career as a researcher.
+
+Additional Information:
+My research is based on the applications of geometric, algebraic and topological methods for physics. In particular, I am interested in the applications that algebraic formulations of physics may have in better understanding the inner pinnings of Quantum Field Theory. I believe that the power in these formulations lies in the clearness and transparency of the physical and mathematical interpretations of the objects it involves.
+
+During my undergraduate thesis I worked on KMS States and Tomita-Takesaki Theory. Here I studied how thermal equilibrium finds a natural formulation in the framework of  algebraic quantum physics through the KMS condition. Moreover, I learned how the modular theory of Tomita-Takesaki allows us to construct a dynamical law from a normal faithful state which guarantees that the state is in equilibrium. This shows that there are equilibrium induced canonical dynamics and elucidates the relation between temperature and complex time. 
+
+I am currently on the first semester of a masters program as a graduate assistant at the Universidad de los Andes. My research has now shifted towards the calculation of entanglement measures for general algebraic states. As it turns out, calculation of entropy through the GNS construction is ambiguous. We are currently trying to understand how one can relate such ambiguities to the modular operators of Tomita-Takesaki and the relationship this phenomena has with quantum anomalies and information theory.
+
+I've also been interested before in the foundations of space-time models and regular black holes. Outside of theoretical physics, I've previously worked with electrochemically exfoliated graphene and infrared sensors. Doing the latter, I was an Summer Undergraduate Research Fellow at the California Institute of Technology during the summer of 2017. In here I collaborated with JPL NASA researchers in the Precision Projector Laboratory.
+
+Justification for Financial Request:
+I've recently moved away from my family home to relieve the financial stress off of my parents. Thus, I don't currently own any personal or family funds. On the other hand, I was unable to obtain assistance from my university due to recent budget cuts and financial reforms.
