@@ -1,0 +1,139 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{slashed}
+\usepackage{physics}
+
+\author{Iván Mauricio Burbano Aldana}
+\title{Mecánica Cuántica Avanzada\\Tarea 5}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+
+\item[4.8] Multiplicando por izquierda $\overline{u}_r(\vb{p'})\gamma^\mu$ a la ecuación (4.46) de \cite{Lahiri2005} se obtiene
+\begin{equation}
+0=\overline{u}_r(\vb{p'})\gamma^\mu(\slashed{p}-m)u_s(\vb{p})=\overline{u}_r(\vb{p'})\gamma^\mu\gamma^\nu p_\nu u_s(\vb{p})-\overline{u}_r(\vb{p'})\gamma^\mu m u_s(\vb{p}).
+\end{equation}
+Multiplicando por la derecha $\gamma^\mu u_s(\vb{p})$ a la ecuación (4.48) de \cite{Lahiri2005} se obtiene
+\begin{equation}
+0=\overline{u}_r(\vb{p'})(\slashed{p}'-m)\gamma^\mu u_s(\vb{p})=\overline{u}_r(\vb{p'})\gamma^\nu\gamma^\mu p'_\nu u_s(\vb{p})-\overline{u}_r(\vb{p'})\gamma^\mu m u_s(\vb{p}).
+\end{equation}
+Sumandolas se concluye que
+\begin{align}\label{ec:u_original}
+\begin{split}
+0=&\overline{u}_r(\vb{p'})\gamma^\mu\gamma^\nu p_\nu u_s(\vb{p})-\overline{u}_r(\vb{p'})\gamma^\mu m u_s(\vb{p})\\
++&\overline{u}_r(\vb{p'})\gamma^\nu\gamma^\mu p'_\nu u_s(\vb{p})-\overline{u}_r(\vb{p'})\gamma^\mu m u_s(\vb{p})\\
+=&\overline{u}_r(\vb{p'})\qty(\gamma^\mu\gamma^\nu p_\nu+\gamma^\nu\gamma^\mu p'_\nu) u_s(\vb{p})-2\overline{u}_r(\vb{p'})\gamma^\mu m u_s(\vb{p}).
+\end{split}
+\end{align}
+En particular, si $\vb{p}=\vb{p'}$
+\begin{equation}
+0=\overline{u}_r(\vb{p})2g^{\mu\nu} p_\nu u_s(\vb{p})-2m\overline{u}_r(\vb{p})\gamma^\mu u_s(\vb{p}).
+\end{equation}
+Dividiendo por 2 y subiendo el índice del momento entonces es claro que
+\begin{equation}\label{ec:u}
+\overline{u}_r(\vb{p})\gamma^\mu m u_s(\vb{p})=\overline{u}_r(\vb{p})p^\mu u_s(\vb{p}).
+\end{equation}
+Repitiendo este proceso al pie de la letra se tiene
+\begin{equation}
+0=\overline{v}_r(\vb{p'})\gamma^\mu(\slashed{p}+m)v_s(\vb{p})=\overline{v}_r(\vb{p'})\gamma^\mu\gamma^\nu p_\nu v_s(\vb{p})+\overline{v}_r(\vb{p'})\gamma^\mu m v_s(\vb{p}),
+\end{equation}
+\begin{equation}
+0=\overline{v}_r(\vb{p'})(\slashed{p}'+m)\gamma^\mu v_s(\vb{p})=\overline{v}_r(\vb{p'})\gamma^\nu\gamma^\mu p'_\nu v_s(\vb{p})+\overline{v}_r(\vb{p'})\gamma^\mu m v_s(\vb{p}),
+\end{equation}
+\begin{align}\label{ec:v_original}
+\begin{split}
+0=&\overline{v}_r(\vb{p'})\gamma^\mu\gamma^\nu p_\nu v_s(\vb{p})+\overline{v}_r(\vb{p'})\gamma^\mu m v_s(\vb{p})\\
++&\overline{v}_r(\vb{p'})\gamma^\nu\gamma^\mu p'_\nu v_s(\vb{p})+\overline{v}_r(\vb{p'})\gamma^\mu m v_s(\vb{p})\\
+=&\overline{v}_r(\vb{p'})\qty(\gamma^\mu\gamma^\nu p_\nu+\gamma^\nu\gamma^\mu p'_\nu) v_s(\vb{p})+2\overline{v}_r(\vb{p'})\gamma^\mu m v_s(\vb{p})\\
+=&\overline{v}_r(\vb{p'})2g^{\mu\nu} p_\nu v_s(\vb{p})+2m\overline{v}_r(\vb{p'})\gamma^\mu v_s(\vb{p})
+\end{split}
+\end{align}
+en el caso $\vb{p}=\vb{p'}$ y
+\begin{equation}\label{ec:v}
+\overline{v}_r(\vb{p'})\gamma^\mu m v_s(\vb{p})=-\overline{v}_r(\vb{p'})p^\mu v_s(\vb{p}).
+\end{equation}
+
+Poniendo $\mu=0$ en \eqref{ec:u} se tiene haciendo uso de la normalización (4.49) de \cite{Lahiri2005}
+\begin{align}
+\begin{split}
+2E_p\delta_{rs}m=&mu^\dagger_r(\vb{p})u_s(\vb{p})=mu^\dagger_r(\vb{p})\gamma^0\gamma^0 u_s(\vb{p})=m\overline{u}_r(\vb{p})\gamma^0 u_s(\vb{p})\\
+=&p^0\overline{u}_r(\vb{p})u(\vb{p})=E_p\overline{u}_r(\vb{p})u_s(\vb{p}).
+\end{split}
+\end{align} 
+Repitiendo con \eqref{ec:v}
+\begin{align}
+\begin{split}
+2E_p\delta_{rs}m=&mv^\dagger_r(\vb{p})v_s(\vb{p})=mv^\dagger_r(\vb{p})\gamma^0\gamma^0 v_s(\vb{p})=m\overline{v}_r(\vb{p})\gamma^0 v_s(\vb{p})\\
+=&-p^0\overline{v}_r(\vb{p})v(\vb{p})=-E_p\overline{v}_r(\vb{p})v_s(\vb{p}).
+\end{split}
+\end{align} 
+Por lo tanto, asumiendo que $E_p\neq 0$, se tiene
+\begin{equation}
+\overline{u}_r(\vb{p})u_s(\vb{p})=-\overline{v}_r(\vb{p})v_s(\vb{p})=2m\delta_{rs}.
+\end{equation}  
+
+\item[4.9] Note que haciendo uso de la relaciones de conmutación de las matrices de Dirac se tiene 
+\begin{align}
+\begin{split}
+&(p+p')^\mu-i\sigma^{\mu\nu}q_\nu\\
+=&p^\mu+{p'}^\mu-i\frac{i}{2}[\gamma^\mu,\gamma^\nu]_{-}(p_\nu-p'_\nu)\\
+=&p^\mu+{p'}^\mu+\frac{1}{2}(\gamma^\mu\gamma^\nu-\gamma^\nu\gamma^\mu)(p_\nu-p'_\nu)\\
+=&p^\mu+{p'}^\mu+\frac{1}{2}(\gamma^\mu\gamma^\nu p_\nu -\gamma^\mu\gamma^\nu p'_\nu - \gamma^\nu\gamma^\mu p_\nu +\gamma^\nu\gamma^\mu p'_\nu)\\
+=&p^\mu+{p'}^\mu\\
+&+\frac{1}{2}(\gamma^\mu\gamma^\nu p_\nu-2g^{\mu\nu}p'_\nu+\gamma^\nu\gamma^\mu p'_\nu-2g^{\nu\mu}p_\nu+ \gamma^\mu\gamma^\nu p_\nu +\gamma^\nu\gamma^\mu p'_\nu)\\
+=&p^\mu+{p'}^\mu+\frac{1}{2}(2\gamma^\mu\gamma^\nu p_\nu-2p'^\mu+2\gamma^\nu\gamma^\mu p'_\nu-2p^\mu)\\
+=&\gamma^\mu\gamma^\nu p_\nu+\gamma^\nu\gamma^\mu p'_\nu. 
+\end{split}
+\end{align}
+Por lo tanto, comparando con las ecuaciones \eqref{ec:u_original} y \eqref{ec:v_original} se obtiene
+\begin{align}
+\begin{split}
+0=&\overline{u}_r(\vb{p'})((p+p')^\mu-i\sigma^{\mu\nu}q_\nu)u_s(\vb{p})-2m\overline{u}_r(\vb{p'})\gamma^\mu u_s(\vb{p})\\
+0=&\overline{v}_r(\vb{p'})((p+p')^\mu-i\sigma^{\mu\nu}q_\nu)v_s(\vb{p})+2m\overline{v}_r(\vb{p'})\gamma^\mu v_s(\vb{p}).
+\end{split}
+\end{align}
+Dividiendo por $2m$ se obtienen las identidades de Gordon
+\begin{align}
+\begin{split}
+\overline{u}_r(\vb{p'})\gamma^\mu u_s(\vb{p})=&\frac{1}{2m}\overline{u}_r(\vb{p'})((p+p')^\mu-i\sigma^{\mu\nu}q_\nu)u_s(\vb{p})\\
+\overline{v}_r(\vb{p'})\gamma^\mu v_s(\vb{p})=&-\frac{1}{2m}\overline{v}_r(\vb{p'})((p+p')^\mu-i\sigma^{\mu\nu}q_\nu)v_s(\vb{p}).
+\end{split}
+\end{align}
+
+\item[4.10] Note que debido a la ecuación de Dirac (4.46) de \cite{Lahiri2005}
+\begin{align}
+\begin{split}
+(\slashed{p}+m)u_r(\vb{p})=&(\slashed{p}-m+2m)u_r(\vb{p})=2mu_r(\vb{p})\\
+(\slashed{p}+m)v_r(\vb{p})=&0\\
+(\slashed{p}-m)u_r(\vb{p})=&0\\
+(\slashed{p}-m)v_r(\vb{p})=&(\slashed{p}+m-2m)v_r(\vb{p})=-2mv_r(\vb{p}).
+\end{split}
+\end{align}
+Por el otro lado, haciendo uso de las relaciones de normalización halladas en el ejercicio 4.8 y el hecho de que $u_r(\vb{p})$ y $v_s(\vb{p})$ son ortogonales pues son vectores propios de la energía con valores propios asociados distintos
+\begin{align}
+\begin{split}
+\sum_s u_s(\vb{p})\overline{u}_s(\vb{p})u_r(\vb{p})=&\sum_s u_s(\vb{p})2m\delta_{sr}=2mu_r(\vb{p})\\
+\sum_s u_s(\vb{p})\overline{u}_s(\vb{p})v_r(\vb{p})=&0\\
+\sum_s v_s(\vb{p})\overline{v}_s(\vb{p})u_r(\vb{p})=&0\\
+\sum_s v_s(\vb{p})\overline{v}_s(\vb{p})v_r(\vb{p})=&\sum_s v_s(\vb{p})(-2m\delta_{sr})=-2mv_r(\vb{p}).
+\end{split}
+\end{align}
+Ya que las matrices coinciden en una base, por extensión lineal deben ser iguales
+\begin{align}
+\begin{split}
+\sum_s u_s(\vb{p})\overline{u}_s(\vb{p})=&\slashed{p}+m\\
+\sum_s v_s(\vb{p})\overline{v}_s(\vb{p})=&\slashed{p}-m.
+\end{split}
+\end{align}
+
+\end{enumerate}
+
+\bibliography{/Users/ivan/Documents/Bib_Files/library}
+\bibliographystyle{ieeetr}
+
+\end{document}
