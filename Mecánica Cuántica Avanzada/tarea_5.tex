@@ -105,7 +105,35 @@ Dividiendo por $2m$ se obtienen las identidades de Gordon
 \end{split}
 \end{align}
 
-\item[4.10] Note que debido a la ecuación de Dirac (4.46) de \cite{Lahiri2005}
+\item[4.10] Como en el ejercicio 4.8, multiplicando a izquierda por $\overline{u}_r(\vb{p})\gamma^\mu$ a la ecuación (4.46) de \cite{Lahiri2005} y por la derecha por $\gamma^\mu v_s(\vb{p})$ a (4.48) de \cite{Lahiri2005} se obtiene
+\begin{align}
+\begin{split}
+\overline{u}_r(\vb{p})\gamma^\mu(\slashed{p}+m)v_s(\vb{p})=&0\\
+\overline{u}_r(\vb{p})(\slashed{p}-m)\gamma^\mu v_s(\vb{p})=&0.
+\end{split}
+\end{align}
+Al sumar estas ecuaciones se concluye
+\begin{align}
+\begin{split}
+0=&\overline{u}_r(\vb{p})\gamma^\mu(\slashed{p}+m)v_s(\vb{p})+\overline{u}_r(\vb{p})(\slashed{p}-m)\gamma^\mu v_s(\vb{p})\\
+=&\overline{u}_r(\vb{p})(\gamma^\mu\slashed{p}+\slashed{p}\gamma^\mu)v_s(\vb{p})=\overline{u}_r(\vb{p})(\gamma^\mu\gamma^\nu p_\nu+\gamma^\nu\gamma^\mu p_\nu)v_s(\vb{p})\\
+=&\overline{u}_r(\vb{p})(\gamma^\mu\gamma^\nu+\gamma^\nu\gamma^\mu)p_\nu v_s(\vb{p})=\overline{u}_r(\vb{p})2g^{\mu\nu}p_\nu v_s(\vb{p})\\
+=&2p^\mu\overline{u}_r(\vb{p})v_s(\vb{p}),
+\end{split}
+\end{align}
+es decir,
+\begin{equation}\label{ec:ortogonalidad_1}
+0=\overline{u}_r(\vb{p})v_s(\vb{p}).
+\end{equation}
+Conjugando se tiene
+\begin{align}\label{ec:ortogonalidad_2}
+\begin{split}
+0=&(\overline{u}_r(\vb{p})v_s(\vb{p}))^\dagger=(u_r^\dagger(\vb{p})\gamma^0v_s(\vb{p}))^\dagger=v_s(\vb{p})^\dagger\gamma^0 u_r(\vb{p})\\
+=&\overline{v}_s(\vb{p})u_r(\vb{p}).
+\end{split}
+\end{align}
+
+Note que debido a la ecuación de Dirac (4.46) de \cite{Lahiri2005}
 \begin{align}
 \begin{split}
 (\slashed{p}+m)u_r(\vb{p})=&(\slashed{p}-m+2m)u_r(\vb{p})=2mu_r(\vb{p})\\
@@ -114,7 +142,7 @@ Dividiendo por $2m$ se obtienen las identidades de Gordon
 (\slashed{p}-m)v_r(\vb{p})=&(\slashed{p}+m-2m)v_r(\vb{p})=-2mv_r(\vb{p}).
 \end{split}
 \end{align}
-Por el otro lado, haciendo uso de las relaciones de normalización halladas en el ejercicio 4.8 y el hecho de que $u_r(\vb{p})$ y $v_s(\vb{p})$ son ortogonales pues son vectores propios de la energía con valores propios asociados distintos
+Por el otro lado, haciendo uso de las relaciones de normalización halladas en el ejercicio 4.8 y las relaciones \eqref{ec:ortogonalidad_1} y \eqref{ec:ortogonalidad_2}
 \begin{align}
 \begin{split}
 \sum_s u_s(\vb{p})\overline{u}_s(\vb{p})u_r(\vb{p})=&\sum_s u_s(\vb{p})2m\delta_{sr}=2mu_r(\vb{p})\\
@@ -128,6 +156,17 @@ Ya que las matrices coinciden en una base, por extensión lineal deben ser igual
 \begin{split}
 \sum_s u_s(\vb{p})\overline{u}_s(\vb{p})=&\slashed{p}+m\\
 \sum_s v_s(\vb{p})\overline{v}_s(\vb{p})=&\slashed{p}-m.
+\end{split}
+\end{align}
+
+\item[4.24] Se tiene con la ecuación (A.32) de \cite{Lahiri2005} que
+\begin{align}
+\begin{split}
+W^\mu W_\mu=&\frac{1}{4}\epsilon^{\mu\nu\lambda\rho}\epsilon_{\mu\nu'\lambda'\rho'}P_\nu J_{\lambda\rho}P^{\nu'} J^{\lambda'\rho'}\\
+=&-\frac{1}{4}(\delta^\nu_{\nu'}\delta^\lambda_{\lambda'}\delta^\rho_{\rho'}+\delta^\nu_{\lambda'}\delta^\lambda_{\rho'}\delta^\rho_{\nu'}+\delta^\nu_{\rho'}\delta^\lambda_{\nu'}\delta^\rho_{\lambda'}\\
+&-\delta^\nu_{\lambda'}\delta^\lambda_{\nu'}\delta^\rho_{\rho'}-\delta^\nu_{\rho'}\delta^\lambda_{\lambda'}\delta^\rho_{\nu'}-\delta^\nu_{\nu'}\delta^\lambda_{\rho'}\delta^\rho_{\lambda'})P_\nu J_{\lambda\rho}P^{\nu'} J^{\lambda'\rho'}\\
+=&-\frac{1}{4}(P_\nu J_{\lambda\rho}P^{\nu} J^{\lambda\rho}+P_\nu J_{\lambda\rho}P^{\rho} J^{\nu\lambda}+P_\nu J_{\lambda\rho}P^{\lambda} J^{\rho\nu}\\
+&-\delta^\nu_{\lambda'}\delta^\lambda_{\nu'}\delta^\rho_{\rho'}-\delta^\nu_{\rho'}\delta^\lambda_{\lambda'}\delta^\rho_{\nu'}-\delta^\nu_{\nu'}\delta^\lambda_{\rho'}\delta^\rho_{\lambda'})
 \end{split}
 \end{align}
 
