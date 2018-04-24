@@ -184,10 +184,73 @@ Por lo tanto
 W^\mu W_\mu=&-\frac{1}{2}P_\nu J_{\lambda\rho}(P^{\nu} J^{\lambda\rho}+P^{\rho} J^{\nu\lambda}+P^{\lambda} J^{\rho\nu})
 \end{split}
 \end{align}
+Ahora bien, note que $W^\mu W_\mu$ es un escalar y por lo tanto no depende del sistema de referencia en el que se evalue. Ya que la fórmula (4.95) de \cite{Lahiri2005} solo tiene sentido para partículas masivas, asumimos que nuestra partícula tiene $m\neq 0$. Por lo tanto en el sistema de reposo de la partícula las componentes espaciales del momento se anulan y
+\begin{align}
+\begin{split}
+W^\mu W_\mu=&-\frac{1}{2}P_0 J_{\lambda\rho}(P^0 J^{\lambda\rho}+P^{\rho} J^{0\lambda}+P^{\lambda} J^{\rho 0})\\
+=&-\frac{1}{2}(P_0J_{\lambda\rho}P^0J^{\lambda\rho}+P_0J_{\lambda\rho}P^\rho J^{0\lambda}+P_0J_{\lambda\rho}P^\lambda J^{\rho0})\\
+=&-\frac{1}{2}(P_0J_{\lambda\rho}P^0J^{\lambda\rho}+P_0J_{\lambda0}P^0 J^{0\lambda}+P_0J_{0\rho}P^0 J^{\rho0})\\
+=&-\frac{1}{2}(P_0J_{\lambda\rho}P^0J^{\lambda\rho}+P_0J_{\lambda0}P^0 J^{0\lambda}+P_0J_{\rho 0}P^0 J^{0\rho})\\
+=&-\frac{1}{2}(P_0J_{\lambda\rho}P^0J^{\lambda\rho}+2P_0J_{\lambda0}P^0 J^{0\lambda}.)
+\end{split}
+\end{align} 
+Más aún, en el sistema de reposo el momento angular orbital es nulo y por lo tanto
+\begin{equation}
+J_{\mu\nu}=\frac{1}{2}\sigma_{\mu\nu}.
+\end{equation}
+Ya que actuan en espacios distintos se tiene
+\begin{equation}
+[P^\mu,\sigma^{\nu\lambda}]_-=0.
+\end{equation}
+Además, en el centro de masa el cuadrado de la energía es $m^2$, es decir $P^0P_0=m^2$. Se concluye
+\begin{equation}
+W^\mu W_\mu=-\frac{1}{8}m^2(\sigma_{\lambda\rho}\sigma^{\lambda\rho}+2\sigma_{\lambda0}\sigma^{0\lambda}).
+\end{equation}
+Note las siguientes identidades
+\begin{align}
+\begin{split}
+\gamma^0\gamma_0=&\gamma_0\gamma_0=1,\\
+\gamma^\mu\gamma_\mu=&g^{\mu\nu}\gamma_\nu\gamma_\mu=\frac{1}{2}(g^{\mu\nu}+g^{\nu\mu})\gamma_\nu\gamma_\mu=\frac{1}{2}(g^{\mu\nu}\gamma_\nu\gamma_\mu+g^{\nu\mu}\gamma_\nu\gamma_\mu)\\
+=&\frac{1}{2}(g^{\mu\nu}\gamma_\nu\gamma_\mu+g^{\mu\nu}\gamma_\mu\gamma_\nu)=\frac{1}{2}g^{\mu\nu}[\gamma_\mu,\gamma_\nu]_-=\frac{1}{2}g^{\mu\nu}2g_{\mu\nu}\\
+=&\delta^\mu_\mu=4,\\
+\gamma^\mu\gamma^\nu\gamma_\mu=&(2g^{\mu\nu}-\gamma^\nu\gamma^\mu)\gamma_\mu=2\gamma^\nu-4\gamma^\nu=-2\gamma^\nu.
+\end{split}
+\end{align}
+Por lo tanto se concluye que 
+\begin{align}
+\begin{split}
+\sigma_{\lambda\rho}\sigma^{\lambda\rho}=&-\frac{1}{4}(\gamma_\lambda\gamma_\rho-\gamma_\rho\gamma_\lambda)(\gamma^\lambda\gamma^\rho-\gamma^\rho\gamma^\lambda)\\
+=&-\frac{1}{4}(\gamma_\lambda\gamma_\rho\gamma^\lambda\gamma^\rho-\gamma_\lambda\gamma_\rho\gamma^\rho\gamma^\lambda-\gamma_\rho\gamma_\lambda\gamma^\lambda\gamma^\rho+\gamma_\rho\gamma_\lambda\gamma^\rho\gamma^\lambda)\\
+=&-\frac{1}{4}(\gamma_\lambda(-2\gamma^\lambda)-4\gamma_\lambda\gamma^\lambda-4\gamma_\rho\gamma^\rho+\gamma_\rho(-2\gamma^\rho))\\
+=&-\frac{1}{4}(-8-16-16-8)=\frac{48}{4}=12\\
+\sigma_{\lambda 0}\sigma^{0\lambda}=&-\frac{1}{4}(\gamma_\lambda\gamma_0-\gamma_0\gamma_\lambda)(\gamma^0\gamma^\lambda-\gamma^\lambda\gamma^0)\\
+=&-\frac{1}{4}(\gamma_\lambda\gamma_0\gamma^0\gamma^\lambda-\gamma_\lambda\gamma_0\gamma^\lambda\gamma^0-\gamma_0\gamma_\lambda\gamma^0\gamma^\lambda+\gamma_0\gamma_\lambda\gamma^\lambda\gamma^0)\\
+=&-\frac{1}{4}(\gamma_\lambda\gamma^\lambda-(-2\gamma_0)\gamma^0-\gamma_0(-2\gamma^0)+4\gamma_0\gamma^0)\\
+=&-\frac{1}{4}(4+2+2+4)=-\frac{12}{4}=-3.
+\end{split}
+\end{align}
+Este invariante entonces satisface
+\begin{align}
+\begin{split}
+-m^2s(s+1)=W^\mu W_\mu=-\frac{1}{8}m^2(12-2\times3)=-\frac{6}{8}m^2=-\frac{3}{4}m^2.
+\end{split}
+\end{align}
+Esto nos lleva a la ecuación cuadrática $s^2+s-\frac{3}{4}=0$ cuyas soluciones son
+\begin{equation}
+s=\frac{-1\pm\sqrt{1+3}}{2}=\frac{-1\pm 2}{2}=\begin{cases}
+\frac{1}{2}\\
+-\frac{3}{2}.
+\end{cases}
+\end{equation}
+En particular, ya que el espín total es positivo, se concluye que
+\begin{equation}
+s=\frac{1}{2}.
+\end{equation}
 
 \end{enumerate}
 
-\bibliography{/Users/ivan/Documents/Bib_Files/library}
+%\bibliography{/Users/ivan/Documents/Bib_Files/library}
+\bibliography{/home/UANDES/im.burbano10/Documents/library}
 \bibliographystyle{ieeetr}
 
 \end{document}
