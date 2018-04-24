@@ -165,8 +165,23 @@ Ya que las matrices coinciden en una base, por extensión lineal deben ser igual
 W^\mu W_\mu=&\frac{1}{4}\epsilon^{\mu\nu\lambda\rho}\epsilon_{\mu\nu'\lambda'\rho'}P_\nu J_{\lambda\rho}P^{\nu'} J^{\lambda'\rho'}\\
 =&-\frac{1}{4}(\delta^\nu_{\nu'}\delta^\lambda_{\lambda'}\delta^\rho_{\rho'}+\delta^\nu_{\lambda'}\delta^\lambda_{\rho'}\delta^\rho_{\nu'}+\delta^\nu_{\rho'}\delta^\lambda_{\nu'}\delta^\rho_{\lambda'}\\
 &-\delta^\nu_{\lambda'}\delta^\lambda_{\nu'}\delta^\rho_{\rho'}-\delta^\nu_{\rho'}\delta^\lambda_{\lambda'}\delta^\rho_{\nu'}-\delta^\nu_{\nu'}\delta^\lambda_{\rho'}\delta^\rho_{\lambda'})P_\nu J_{\lambda\rho}P^{\nu'} J^{\lambda'\rho'}\\
-=&-\frac{1}{4}(P_\nu J_{\lambda\rho}P^{\nu} J^{\lambda\rho}+P_\nu J_{\lambda\rho}P^{\rho} J^{\nu\lambda}+P_\nu J_{\lambda\rho}P^{\lambda} J^{\rho\nu}\\
-&-\delta^\nu_{\lambda'}\delta^\lambda_{\nu'}\delta^\rho_{\rho'}-\delta^\nu_{\rho'}\delta^\lambda_{\lambda'}\delta^\rho_{\nu'}-\delta^\nu_{\nu'}\delta^\lambda_{\rho'}\delta^\rho_{\lambda'})
+=&-\frac{1}{4}P_\nu J_{\lambda\rho}(P^{\nu} J^{\lambda\rho}+P^{\rho} J^{\nu\lambda}+P^{\lambda} J^{\rho\nu}\\
+&-P^{\lambda} J^{\nu\rho}-P^{\rho} J^{\lambda\nu}-P^{\nu} J^{\rho\lambda})\\
+=&-\frac{1}{4}P_\nu J_{\lambda\rho}(P^{\nu} (J^{\lambda\rho}-J^{\rho\lambda})+P^{\rho} (J^{\nu\lambda}-J^{\lambda\nu})\\
+&+P^{\lambda} (J^{\rho\nu}-J^{\nu\rho}))
+\end{split}
+\end{align}
+Note las siguientes propiedades de antisimetría
+\begin{align}
+\begin{split}
+\sigma_{\mu\nu}=&\frac{i}{2}[\gamma^\mu,\gamma^\nu]_-=-\frac{i}{2}[\gamma^\nu,\gamma^\mu]_-=-\sigma^{\nu\mu}\\
+J_{\mu\nu}=&i(x_\mu\partial_\nu-x_\nu\partial_\mu)+\frac{1}{2}\sigma_{\mu\nu}=-i(x_\nu\partial_\mu-x_\mu\partial_\nu)-\frac{1}{2} \sigma_{\nu\mu}=-J_{\nu\mu}.
+\end{split}
+\end{align}
+Por lo tanto
+\begin{align}
+\begin{split}
+W^\mu W_\mu=&-\frac{1}{2}P_\nu J_{\lambda\rho}(P^{\nu} J^{\lambda\rho}+P^{\rho} J^{\nu\lambda}+P^{\lambda} J^{\rho\nu})
 \end{split}
 \end{align}
 
