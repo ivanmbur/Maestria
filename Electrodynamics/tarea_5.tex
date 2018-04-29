@@ -1,0 +1,161 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{physics}
+
+\title{Electrodynamics: Homework 5}
+\author{Iván Mauricio Burbano Aldana}
+
+\begin{document}
+
+\maketitle
+
+The Green function for the \textit{massive photon} equation is given by
+\begin{equation}\label{ec:green_klein_gordon}
+(\Box+m^2)G(x-x')=\delta^{(4)}(x-x').
+\end{equation}
+Consider the ansatz 
+\begin{equation}
+G(x)=\frac{1}{(2\pi)^4}\int \dd[4]{k}e^{-ikx}\tilde{G}(k).
+\end{equation}
+By using the representation
+\begin{equation}
+\delta^{(4)}(x)=\frac{1}{(2\pi)^4}\int\dd[4]{k}e^{-ikx}
+\end{equation}
+on \eqref{ec:green_klein_gordon} with $x'=0$ we obtain
+\begin{align}
+\begin{split}
+\frac{1}{(2\pi)^4}\int\dd[4]{k}e^{-ikx}=&(\Box+m^2)G(x)=(\Box+m^2)\frac{1}{(2\pi)^4}\int \dd[4]{k}e^{-ikx}\tilde{G}(k)\\
+=&\frac{1}{(2\pi)^4}\int \dd[4]{k}(\Box+m^2)e^{-ikx}\tilde{G}(k)\\
+=&\frac{1}{(2\pi)^4}\int \dd[4]{k}(\partial^\mu\partial_\mu+m^2)e^{-ikx}\tilde{G}(k)\\
+=&\frac{1}{(2\pi)^4}\int \dd[4]{k}((-ik^\mu)(-ik_\mu)+m^2)e^{-ikx}\tilde{G}(k)\\
+=&\frac{1}{(2\pi)^4}\int \dd[4]{k}(-k^2+m^2)e^{-ikx}\tilde{G}(k).
+\end{split}
+\end{align}
+This in turn tells us that
+\begin{equation}
+\tilde{G}(k)=\frac{1}{m^2-k^2}.
+\end{equation}
+Thus, the Green function is given by
+\begin{align}\label{ec:green_1}
+\begin{split}
+G(x)=&\frac{1}{(2\pi)^4}\int \dd[4]{k}\frac{e^{-ikx}}{m^2-k^2}=\frac{1}{(2\pi)^4}\int \dd[3]{\vb{k}}\int\dd{k^0}\frac{e^{-i(k^0x^0-\vb{k}\vdot\vb{x})}}{m^2-(k^0)^2+\vb{k}^2}\\
+=&-\frac{1}{(2\pi)^4}\int \dd[3]{\vb{k}}e^{i\vb{k}\vdot\vb{x}}\int\dd{k^0}\frac{e^{-ik^0x^0}}{(k^0)^2-(m^2+\vb{k}^2)}\\
+=&-\frac{1}{(2\pi)^4}\int \dd[3]{\vb{k}}e^{i\vb{k}\vdot\vb{x}}\int\dd{k^0}\frac{e^{-ik^0x^0}}{(k^0)^2-E_{\vb{k}}^2}.
+\end{split}
+\end{align}
+where
+\begin{equation}
+E_{\vb{k}}:=\sqrt{m^2+\vb{k}^2}.
+\end{equation}
+
+The procedure is now precisely the one followed in class. We consider the paths
+\begin{align}
+\begin{split}
+L_{R,\epsilon}:=&\{x-i\epsilon|x\in[-R,R]\},\\
+U_{R,\epsilon}:=&\{x+i\epsilon|x\in[-R,R]\},\\
+S^+_R:=&\{Re^{i\theta}|\theta\in[0,\pi]\},\\
+S^-_R:=&\{Re^{i\theta}|\theta\in[-\pi,0]\},\\
+\mathcal{C}^+_{R,\epsilon}:=&L_{R,\epsilon}\cup \{\pm R-iy|y\in[0,\epsilon]\}\cup S^+_R,\\
+\mathcal{D}^+_{R,\epsilon}:=&U_{R,\epsilon}\cup S^+_{\sqrt{R^2+\epsilon^2}}\setminus\{x+iy\in\mathbb{C}|y<\epsilon\},\\
+\mathcal{C}^-_{R,\epsilon}:=&U_{R,\epsilon}\cup \{\pm R+iy|y\in[0,\epsilon]\}\cup S^-_R,\\
+\mathcal{D}^-_{R,\epsilon}:=&L_{R,\epsilon}\cup S^-_{\sqrt{R^2+\epsilon^2}}\setminus\{x+iy\in\mathbb{C}|y>-\epsilon\},
+\end{split}
+\end{align}
+for $\epsilon>0$ and $R>E_{\vb{k}}$. We orient $\mathcal{C}^+_{R,\epsilon}$ and $\mathcal{D}^+_{R,\epsilon}$ counterclockwise, and $\mathcal{C}^-_{R,\epsilon}$ and $\mathcal{D}^-_{R,\epsilon}$ clockwise. If 
+\begin{align}
+\begin{split}
+f:\mathbb{C}&\rightarrow\mathbb{C}\\
+z&\mapsto\frac{e^{-izx^0}}{z^2-E_{\vb{k}}^2}=\frac{e^{-izx^0}}{(z-E_{\vb{k}})(z+E_{\vb{k}})}
+\end{split}
+\end{align}
+by the residue theorem
+\begin{align}
+\begin{split}
+\int_{\mathcal{C}^+_{R,\epsilon}}\dd{z}f(z)=&2\pi i\qty(\frac{e^{-iE_{\vb{k}}x^0}}{2E_{\vb{k}}}-\frac{e^{iE_{\vb{k}}x^0}}{2E_{\vb{k}}})=2\pi \frac{\sin(E_{\vb{k}}x^0)}{E_{\vb{k}}}\\
+\int_{\mathcal{C}^-_{R,\epsilon}}\dd{z}f(z)=&-2\pi \qty(\frac{e^{-iE_{\vb{k}}x^0}}{2E_{\vb{k}}}-\frac{e^{iE_{\vb{k}}x^0}}{2E_{\vb{k}}})=-2\pi \frac{\sin(E_{\vb{k}}x^0)}{E_{\vb{k}}}\\
+\int_{\mathcal{D}^+_{R,\epsilon}}\dd{z}f(z)=&0\\
+\int_{\mathcal{D}^-_{R,\epsilon}}\dd{z}f(z)=&0\\
+\end{split}
+\end{align}
+Take $x^0<0$. For $\theta\in[0,\pi]$, $\sin(\theta)x^0<0$ and thus
+\begin{align}
+\begin{split}
+|f(Re^{i\theta})|^2=&\left|\frac{e^{-iRe^{i\theta}x^0}}{R^2e^{i2\theta}-E_{\vb{k}}^2}\right|^2=\frac{\left|e^{-iR\cos(\theta)x^0}e^{R\sin(\theta)x^0}\right|^2}{\qty(R^2e^{i2\theta}-E_{\vb{k}}^2)\qty(R^2e^{-i2\theta}-E_{\vb{k}}^2)}\\
+=&\frac{\left|e^{R\sin(\theta)x^0}\right|^2}{R^4+E_{\vb{k}}^4-R^2E_{\vb{k}}^2(e^{i2\theta}+e^{-i2\theta})}=\frac{e^{2R\sin(\theta)x^0}}{R^4+E_{\vb{k}}^4-2R^2E_{\vb{k}}^2\cos(2\theta)}\\
+\leq&\frac{1}{R^4+E_{\vb{k}}^4-2R^2E_{\vb{k}}^2\cos(2\theta)}\leq\frac{1}{R^4+E_{\vb{k}}^4-2R^2E_{\vb{k}}^2}\\
+=&\frac{1}{(R^2-E_{\vb{k}}^2)^2}.
+\end{split}
+\end{align}
+Therefore
+\begin{align}
+\begin{split}
+\left|\int_{S^+_R}\dd{z}f(z)\right|\leq&\int_{S^+_R}\dd{z}\left|f(z)\right|\leq\pi R\sup\qty{|f\qty(Re^{i\theta})||\theta\in[0,\pi]}\\
+\leq&\frac{\pi R}{R^2-E_{\vb{k}}^2}=\frac{\pi/R}{1-E_{\vb{k}}^2/R^2}\rightarrow 0
+\end{split}
+\end{align}
+as $R\rightarrow\infty$. Similarly for $x^0>0$ we have for $\theta\in[-\pi,0]$ that
+\begin{align}
+\begin{split}
+|f(Re^{i\theta})|^2=&\left|\frac{e^{-iRe^{i\theta}x^0}}{R^2e^{i2\theta}-E_{\vb{k}}^2}\right|^2=\frac{\left|e^{-iR\cos(\theta)x^0}e^{R\sin(\theta)x^0}\right|^2}{\qty(R^2e^{i2\theta}-E_{\vb{k}}^2)\qty(R^2e^{-i2\theta}-E_{\vb{k}}^2)}\\
+=&\frac{\left|e^{R\sin(\theta)x^0}\right|^2}{R^4+E_{\vb{k}}^4-R^2E_{\vb{k}}^2(e^{i2\theta}+e^{-i2\theta})}=\frac{e^{2R\sin(\theta)x^0}}{R^4+E_{\vb{k}}^4-2R^2E_{\vb{k}}^2\cos(2\theta)}\\
+\leq&\frac{1}{R^4+E_{\vb{k}}^4-2R^2E_{\vb{k}}^2\cos(2\theta)}\leq\frac{1}{R^4+E_{\vb{k}}^4-2R^2E_{\vb{k}}^2}\\
+=&\frac{1}{(R^2-E_{\vb{k}}^2)^2},
+\end{split}
+\end{align}
+and thus
+\begin{align}
+\begin{split}
+\left|\int_{S^-_R}\dd{z}f(z)\right|\leq&\int_{S^-_R}\dd{z}\left|f(z)\right|\leq\pi R\sup\qty{|f\qty(Re^{i\theta})||\theta\in[-\pi,0]}\\
+\leq&\frac{\pi R}{R^2-E_{\vb{k}}^2}=\frac{\pi/R}{1-E_{\vb{k}}^2/R^2}\rightarrow 0
+\end{split}
+\end{align}
+as $R\rightarrow\infty$.
+We conclude for $x^0<0$ that
+\begin{align}
+\begin{split}
+\int_{L_{R,\epsilon}}\dd{z}f(z)=&\int_{\mathcal{C}^+_{R,\epsilon}}\dd{z}f(z)-\int_{\{\pm R-iy|y\in[0,\epsilon]\}}\dd{z}f(z)-\int_{S^+_R}\dd{z}f(z)\\
+=&2\pi \frac{\sin(E_{\vb{k}}x^0)}{E_{\vb{k}}}-\int_{\{\pm R-iy|y\in[0,\epsilon]\}}\dd{z}f(z)-\int_{S^+_R}\dd{z}f(z)\\
+\rightarrow &2\pi \frac{\sin(E_{\vb{k}}x^0)}{E_{\vb{k}}}-\int_{\emptyset}\dd{z}f(z)=2\pi \frac{\sin(E_{\vb{k}}x^0)}{E_{\vb{k}}},\\
+\int_{U_{R,\epsilon}}\dd{z}f(z)=&\int_{\mathcal{D}^+_{R,\epsilon}}\dd{z}f(z)-\int_{S^+_{\sqrt{R^2+\epsilon^2}}\setminus\{x+iy\in\mathbb{C}|y<\epsilon\}}\dd{z}f(z)\\
+=&-\int_{S^+_{\sqrt{R^2+\epsilon^2}}\setminus\{x+iy\in\mathbb{C}|y<\epsilon\}}\dd{z}f(z)\rightarrow\int_{S^+_{R}}\dd{z}f(z)\rightarrow 0
+\end{split}
+\end{align}
+as $R\rightarrow\infty$ and $\epsilon\rightarrow 0$. On the other hand, for $x^0>0$ we have
+\begin{align}
+\begin{split}
+\int_{U_{R,\epsilon}}\dd{z}f(z)=&\int_{\mathcal{C}^-_{R,\epsilon}}\dd{z}f(z)-\int_{\{\pm R+iy|y\in[0,\epsilon]\}}\dd{z}f(z)-\int_{S^-_R}\dd{z}f(z)\\
+=&-2\pi \frac{\sin(E_{\vb{k}}x^0)}{E_{\vb{k}}}-\int_{\{\pm R+iy|y\in[0,\epsilon]\}}\dd{z}f(z)-\int_{S^-_R}\dd{z}f(z)\\
+\rightarrow &-2\pi \frac{\sin(E_{\vb{k}}x^0)}{E_{\vb{k}}}-\int_{\emptyset}\dd{z}f(z)=-2\pi \frac{\sin(E_{\vb{k}}x^0)}{E_{\vb{k}}},\\
+\int_{L_{R,\epsilon}}\dd{z}f(z)=&\int_{\mathcal{D}^-_{R,\epsilon}}\dd{z}f(z)-\int_{S^-_{\sqrt{R^2+\epsilon^2}}\setminus\{x+iy\in\mathbb{C}|y>-\epsilon\}}\dd{z}f(z)\\
+=&-\int_{S^-_{\sqrt{R^2+\epsilon^2}}\setminus\{x+iy\in\mathbb{C}|y>-\epsilon\}}\dd{z}f(z)\rightarrow\int_{S^-_{R}}\dd{z}f(z)\rightarrow 0
+\end{split}
+\end{align}
+as $R\rightarrow\infty$ and $\epsilon\rightarrow 0$. These results may be summarized in
+\begin{align}
+\begin{split}
+\int_{U_{R,\epsilon}}\dd{z}f(z)\rightarrow&-2\pi \theta(x^0)\frac{\sin(E_{\vb{k}}x^0)}{E_{\vb{k}}}\\
+\int_{L_{R,\epsilon}}\dd{z}f(z)\rightarrow &2\pi \theta(-x^0)\frac{\sin(E_{\vb{k}}x^0)}{E_{\vb{k}}}
+\end{split}
+\end{align}
+as $R\rightarrow\infty$ and $\epsilon\rightarrow 0$. In here $\theta$ is the Heaviside step function. 
+
+Both of these integrals are on equal footing to be regarded as the solutions of
+\begin{equation}
+\int\dd{k^0}\frac{e^{-ik^0x^0}}{(k^0)^2-E_{\vb{k}}^2}.
+\end{equation}
+Considering the first, we obtain
+\begin{equation}
+G(x)=\frac{\theta(x^0)}{(2\pi)^3}\int \dd[3]{\vb{k}}\frac{e^{i\vb{k}\vdot\vb{x}}\sin(E_{\vb{k}}x^0)}{E_{\vb{k}}}
+\end{equation}
+On the other hand, the second yields
+\begin{equation}
+G(x)=-\frac{\theta(-x^0)}{(2\pi)^3}\int \dd[3]{\vb{k}}\frac{e^{i\vb{k}\vdot\vb{x}}\sin(E_{\vb{k}}x^0)}{E_{\vb{k}}}.
+\end{equation}
+These results may be summarized by
+\begin{equation*}
+G_\pm(x-x')=\pm\frac{\theta(\pm (x^0-{x'}^0)}{(2\pi)^3}\int \dd[3]{\vb{k}}\frac{e^{i\vb{k}\vdot(\vb{x}-\vb{x'})}\sin(\qty(x^0-{x'}^0)\sqrt{m^2+\vb{k}^2})}{\sqrt{m^2+\vb{k}^2}}.
+\end{equation*}
+
+\end{document}
