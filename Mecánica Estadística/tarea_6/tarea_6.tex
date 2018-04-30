@@ -22,10 +22,17 @@ Tarea 6: Mecánica estadística fuera del equilibrio}
 \hat{\chi}(z)=\int_0^\infty\chi(t)e^{izt}\dd{t}=\int_0^\infty\chi(t)e^{-yt}e^{ixt}dt=\int_0^\infty\chi(t)e^{ixt}e^{-yt}\dd{t}
 \end{equation} 
 existe ya que para todo $y\in\mathbb{R}^+:=(0,\infty)$
-\begin{equation}
+\begin{equation}\label{ec:cota_2}
 \int_0 ^\infty |\chi(t)e^{-yt}| \dd{t}=\int_0 ^\infty |\chi(t)||e^{-yt}| dt\leq\int_0 ^\infty |\chi(t)| \dd{t}<\infty.
 \end{equation}
-En efecto, por hipótesis $\chi$ es medible, por continuidad la exponencial es medible y la transformada de Fourier de una función en $L^1(\mathbb{R})$ siempre existe\cite{Rudin1991}. 
+En efecto, por hipótesis $\chi$ es medible, por continuidad la exponencial es medible y la transformada de Fourier de una función en $L^1(\mathbb{R})$ siempre existe\cite{Rudin1987}. Por otra parte, es claro que
+\begin{align}
+\begin{split}
+\Re\hat{\chi}(z)=&\int_0^\infty\chi(t)e^{-yt}\cos(xt)\dd{t},\\
+\Im\hat{\chi}(z)=&\int_0^\infty\chi(t)e^{-yt}\sin(xt)\dd{t}.
+\end{split}
+\end{align}
+Por una cota análoga a \eqref{ec:cota_2} vemos que podemos intercambiar el proceso de derivación con el de integración y las ecuaciones de Cauchy-Riemman se satisfacen\cite{Rudin1987}. Por lo tanto $\hat{\chi}$ es analítico.
 
 \item Ya que $\hat{\chi}$ es analítica, el único polo del integrado es $\omega_0$. Ya que el camino está contenido en el conjunto donde el integrando es analítico $\mathbb{R}\times\mathbb{R}^+\setminus\{\omega_0\}$ y no encierra al polo se concluye
 \begin{equation}
@@ -124,8 +131,8 @@ Esta induce una ecuación diferencial sobre los valores esperados
 
 \end{enumerate}
 
-\bibliography{/Users/ivan/Documents/Bib_Files/library}
-%\bibliography{/home/UANDES/im.burbano10/Documents/library}
+%\bibliography{/Users/ivan/Documents/Bib_Files/library}
+\bibliography{/home/UANDES/im.burbano10/Documents/library}
 \bibliographystyle{ieeetr}
 
 \end{document}
