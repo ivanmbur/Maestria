@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage{amssymb}
+\usepackage{physics}
 
 \title{Mecánica Estadística\\
 Tarea 6: Mecánica estadística fuera del equilibrio}
@@ -18,14 +19,113 @@ Tarea 6: Mecánica estadística fuera del equilibrio}
 
 \item Considere $z=x+iy\in\mathbb{R}\times\mathbb{R}^+\subseteq\mathbb{C}$ en el plano complejo superior. Entonces
 \begin{equation}
-\hat{\chi}(z)=\int_0^\infty\chi(t)e^{izt}dt=\int_0^\infty\chi(t)e^{-yt}e^{ixt}dt=\int_0^\infty\chi(t)e^{ixt}e^{-yt}dt
+\hat{\chi}(z)=\int_0^\infty\chi(t)e^{izt}\dd{t}=\int_0^\infty\chi(t)e^{-yt}e^{ixt}dt=\int_0^\infty\chi(t)e^{ixt}e^{-yt}\dd{t}
 \end{equation} 
 existe ya que para todo $y\in\mathbb{R}^+:=(0,\infty)$
 \begin{equation}
-\int_0 ^\infty |\chi(t)e^{-yt}| dt=\int_0 ^\infty |\chi(t)||e^{-yt}| dt\leq\int_0 ^\infty |\chi(t)| dt<\infty.
+\int_0 ^\infty |\chi(t)e^{-yt}| \dd{t}=\int_0 ^\infty |\chi(t)||e^{-yt}| dt\leq\int_0 ^\infty |\chi(t)| \dd{t}<\infty.
 \end{equation}
-Por otra parte, 
+En efecto, por hipótesis $\chi$ es medible, por continuidad la exponencial es medible y la transformada de Fourier de una función en $L^1(\mathbb{R})$ siempre existe\cite{Rudin1991}. 
+
+\item Ya que $\hat{\chi}$ es analítica, el único polo del integrado es $\omega_0$. Ya que el camino está contenido en el conjunto donde el integrando es analítico $\mathbb{R}\times\mathbb{R}^+\setminus\{\omega_0\}$ y no encierra al polo se concluye
+\begin{equation}
+\int_\mathcal{C}\frac{\hat{\chi}(\omega)}{\omega-\omega_0}\dd{\omega}=0
+\end{equation}
+por el teorema de Cauchy.
+
+\item Se tiene si $R$ es el radio de $\Gamma$
+\begin{equation}
+\int_\Gamma\frac{\hat{\chi}(\omega)}{\omega-\omega_0}\dd{\omega}=\int_0^\pi\frac{\hat{\chi}(Re^{i\theta}+\omega_0)}{Re^{i\theta}}iRe^{i\theta}\dd{\theta}=i\int_0^\pi\hat{\chi}(Re^{i\theta}+\omega_0)\dd{\theta}.
+\end{equation}
+Ahora bien, si $\theta\in(0,\pi)$ entonces $Re^{i\theta}+\omega_0\in\mathbb{R}\times\mathbb{R}^+$ y
+\begin{align}\label{ec:cota_1}
+\begin{split}
+\left|\hat{\chi}(Re^{i\theta}+\omega_0)\right|=&\left|\int_0^\infty\chi(t)e^{i(R\cos(\theta)+\omega_0)t}e^{-R\sin(\theta)t}\dd{t}\right|\\
+\leq&\int_0^\infty\left|\chi(t)e^{i(R\cos(\theta)+\omega_0)t}e^{-R\sin(\theta)t}\right|\dd{t}\\
+=&\int_0^\infty\left|\chi(t)\right|e^{-R\sin(\theta)t}\dd{t}
+\end{split}
+\end{align}
+La desigualdad es un resultado estándar de la teoría de la medida\cite{Rudin1976}. Además, $\left|\chi\right|\geq\left|\chi(t)\right|e^{-R\sin(\theta)t}$ e integrable. Entonces por el teorema de convergencia dominada\cite{Rudin1976} como $\left|\chi(t)\right|e^{-R\sin(\theta)t}\rightarrow 0$ se tiene que 
+\begin{equation}
+\left|\hat{\chi}(Re^{i\theta}+\omega_0)\right|\rightarrow 0
+\end{equation}
+cuando $R\rightarrow\infty$. La positividad de la función medible $(t,\theta)\mapsto\left|\chi(t)\right|e^{-R\sin(\theta)t}$ permite la aplicación del teorema de Fubini\cite{Rudin1987}. Esto hace evidente que la cota \eqref{ec:cota_1} es integrable como función de $\theta$. Aplicando entonces una vez más el teorema de convergencia dominada se obtiene
+\begin{equation}
+\left|\int_\Gamma\frac{\hat{\chi}(\omega)}{\omega-\omega_0}\dd{\omega}\right|\leq\int_0^\pi\left|\hat{\chi}(Re^{i\theta}+\omega_0)\right|\dd{\theta}\rightarrow 0
+\end{equation}
+cuando $R\rightarrow\infty$. Por lo tanto
+\begin{equation}
+\lim_{R\rightarrow\infty}\int_\Gamma\frac{\hat{\chi}(\omega)}{\omega-\omega_0}\dd{\omega}=0.
+\end{equation}
+
+Por otra parte, si el radio de $\gamma$ es $\epsilon$
+\begin{equation}
+\int_\gamma\frac{\hat{\chi}(\omega)}{\omega-\omega_0}\dd{\omega}=i\int_\pi^0\hat{\chi}(\epsilon e^{i\theta}+\omega_0)\dd{\theta}
+\end{equation}
+Con una cota análoga a \eqref{ec:cota_1} podemos utilizar el teorema de convergencia dominada de manera que la continuidad de $\hat{\chi}$ heredada al ser analítica garantiza que 
+\begin{equation}
+\int_\gamma\frac{\hat{\chi}(\omega)}{\omega-\omega_0}\dd{\omega}\rightarrow i\int_\pi^0\hat{\chi}(\omega_0)\dd{\theta}=-i\pi\hat{\chi}(\omega_0)
+\end{equation}
+cuando $\epsilon\rightarrow 0$.
+
+\item Se tiene que
+\begin{align}
+\begin{split}
+P\int_{-\infty}^\infty\frac{\hat{\chi}(\omega)}{\omega-\omega_0}\dd{\omega}=&\\
+\lim_{\epsilon\rightarrow 0^+}\qty(\int_{-\infty}^{\omega_0-\epsilon}\frac{\hat{\chi}(\omega)}{\omega-\omega_0}\dd{\omega}+\int_{\omega_0+\epsilon}^\infty\frac{\hat{\chi}(\omega)}{\omega-\omega_0}\dd{\omega})=&\\
+\lim_{\epsilon\rightarrow 0^+}\lim_{R\rightarrow\infty}\qty(\int_\mathcal{C}\frac{\hat{\chi}(\omega)}{\omega-\omega_0}\dd{\omega}-\int_\Gamma\frac{\hat{\chi}(\omega)}{\omega-\omega_0}\dd{\omega}-\int_\gamma\frac{\hat{\chi}(\omega)}{\omega-\omega_0}\dd{\omega})=&\\
+\lim_{\epsilon\rightarrow 0^+}\lim_{R\rightarrow\infty}\qty(0-\int_\Gamma\frac{\hat{\chi}(\omega)}{\omega-\omega_0}\dd{\omega}+i\pi\hat{\chi}(\omega_0))=\lim_{\epsilon\rightarrow 0^+}i\pi\hat{\chi}(\omega_0)=&\\
+i\pi\hat{\chi}(\omega_0)
+\end{split}
+\end{align}
+
+\item Se deduce que
+\begin{equation}
+\hat{\chi}(\omega_0)=-\frac{1}{\pi}P\int_{-\infty}^\infty\frac{i\hat{\chi}(\omega)}{\omega-\omega_0}\dd{\omega}.
+\end{equation}
+Note que la integral respeta suma y multiplicación por escalares, las operaciones necesarias para separar un número complejo en su parte real e imaginaria. Además, tenemos las relaciones
+\begin{align}
+\begin{split}
+\Re(-i(x+iy))=&\Re(y-ix)=y=\Im(x+iy),\\
+\Im(-i(x+iy))=&\Im(y-ix)=-x=-\Re(x+iy)
+\end{split}
+\end{align}
+para todo $x,y\in\mathbb{R}$. De estas observaciones se hacen evidentes las relaciones de Kramers-Kronig
+\begin{align}
+\begin{split}
+\Re\hat{\chi}(\omega_0)=&\frac{1}{\pi}P\int_{-\infty}^\infty\frac{\Im\hat{\chi}(\omega)}{\omega-\omega_0}\dd{\omega},\\
+\Im\hat{\chi}(\omega_0)=&-\frac{1}{\pi}P\int_{-\infty}^\infty\frac{\Re\hat{\chi}(\omega)}{\omega-\omega_0}\dd{\omega}.
+\end{split}
+\end{align}
 
 \end{enumerate}
+
+\section{Teorema de fluctuación-disipación cuántico}
+
+\begin{enumerate}
+
+\item Tenemos la ecuación de von Neumann
+\begin{align}
+\begin{split}
+\pdv{\rho}{t} (t)=&\frac{1}{i\hbar}[H(t),\rho(t)]=\frac{1}{i\hbar}[H_0+H_1(t),\rho_eq+\rho_1(t)]\\
+=&\frac{1}{i\hbar}\qty([H_0,\rho_{\text{eq}}]+[H_0,\rho_1(t)]+[H_1(t),\rho_{\text{eq}}]+[H_1(t),\rho_1(t)])\\
+=&\frac{1}{i\hbar}\qty(\pdv{\rho_{\text{eq}}}{t} (t)+[H_0,\rho_1(t)]+[H_1(t),\rho_{\text{eq}}]+[H_1(t),\rho_1(t)]).
+\end{split}
+\end{align}
+Recordando que $\rho_{\text{eq}}$ es independiente del tiempo e ignorando como demasiado pequeños a los términos de orden 2 en operadores dependientes del tiempo
+\begin{equation}
+\pdv{\rho_{\text{eq}}}{t} (t)=0=[H_1(t),\rho_1(t)].
+\end{equation} 
+Se obtiene entonces la ecuación diferencial
+\begin{equation}
+\pdv{\rho}{t} (t)-[H_0,\rho_1(t)]=\frac{1}{i\hbar}[H_1(t),\rho_{\text{eq}}].
+\end{equation}
+Esta induce una ecuación diferencial sobre los valores esperados
+
+\end{enumerate}
+
+\bibliography{/Users/ivan/Documents/Bib_Files/library}
+%\bibliography{/home/UANDES/im.burbano10/Documents/library}
+\bibliographystyle{ieeetr}
 
 \end{document}
