@@ -1,0 +1,131 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage[spanish]{babel}
+%\usepackage[english]{babel}
+\usepackage[latin5]{inputenc}
+\usepackage{hyperref}
+\usepackage[left=3cm,top=3cm,right=3cm,nohead,nofoot]{geometry}
+\usepackage{braket}
+\usepackage{datenumber}
+\usepackage{amssymb}
+\usepackage{physics}
+%\newdate{date}{10}{05}{2013}
+%\date{\displaydate{date}}
+
+\begin{document}
+
+\begin{center}
+\Huge
+Ambigüedades cuánticas en entropías y teoría modular
+
+\vspace{3mm}
+\Large Iván Mauricio Burbano Aldana
+
+\large
+C\'odigo 201423205
+
+
+\vspace{2mm}
+\Large
+Director: Andrés Fernando Reyes Lega
+
+\normalsize
+\vspace{2mm}
+
+\today
+\end{center}
+
+
+\normalsize
+\section{Introducción}
+
+%Introducción a la propuesta de Monografía. Debe incluir un breve resumen del estado del arte del problema a tratar. También deben aparecer citadas todas las referencias de la bibliografía (a menos de que se citen más adelante, en los objetivos o metodología, por ejemplo)
+
+La aproximación álgebraica a las teorías físicas ha sido una herramienta muy importante para estudiar la posibilidad de marcos axiomáticos en la teoría cuántica de campos\cite{Haag1992}. Su poder recae en la transparencia del sígnificado físico de los objetos matemáticos involucrados. En este marco se toma un álgebra de observables $\mathcal{A}$. Los estados que toman la forma de funcionales positivos lineales normalizados $\omega:\mathcal{A}\rightarrow\mathbb{C}$ de manera que $\omega(a)$ se interpreta como el valor de esperado de $a$ para todo $a\in\mathcal{A}$. Los automorfismos del álgebra implementan su dinámica. En el caso conmutativo el teorema de Gelfand asegura que una $C^*$-álgebra unital es isomorfa al conjunto de funciones continuas complejas sobre un espacio compacto. En este caso el teorema de representación de Riesz\cite{Hewitt1975} garantiza que los estados son medidas de probabilidad sobre este espacio. De esta manera recuperamos el marco teórico de las teorías clásicas. Por otra parte, el teorema de Gelfand-Naimark muestra que toda $C^*$-álgebra es isomorfa a una subálgebra cerrada de operadores acotados sobre un espacio de Hilbert. De esta manera, asociando operadores autoadjuntos a las $C^*$-álgebras generadas por sus proyecciones espectrales\cite{Rudin1991} se recuper el marco de las teorías cuánticas.
+
+Las teorías clásicas suceden en un espacio de fase al que se le puede dar la estructura de un espacio de medida $(M,\Sigma,\mu)$. En tal caso, a un estado descrito por una medida de probabilidad $P$ absolutamente continua con respecto a $\mu$ se le puede asignar una entropía 
+\begin{equation}\label{ec:entropia_clasica}
+S(P)=-\int \log\circ\dv{P}{\mu}\dd{P}=-\ev{\log\circ\dv{P}{\mu}}_P.
+\end{equation}    
+De manera similar, en el caso cuántico a un estado descrito por una matriz densidad $\rho$ se le puede asignar la entropía de von Neumann
+\begin{equation}\label{entropia_cuantica}
+S(\rho)=-\tr(\log(\rho)\rho)=-\ev{\log(\rho)}_\rho.
+\end{equation}
+Notese que tanto en el caso clásico como en el cuántico la entropía se puede caracterizar como el valor esperado de un observable. En el contexto algebráico no es claro como asociar generar tal observable apartir de un estado. 
+
+\section{Objetivo General}
+
+%Objetivo general del trabajo. Empieza con un verbo en infinitivo.
+
+Aqu\'i texto.
+
+
+\section{Objetivos Específicos}
+
+%Objetivos específicos del trabajo. Empiezan con un verbo en infinitivo.
+
+\begin{itemize}
+	\item Objetivo 1
+	\item Objetivo 2
+	\item Objetivo 3
+	\item ...
+\end{itemize}
+
+\section{Metodología}
+
+%Exponer DETALLADAMENTE la metodología que se usará en la Monografía. 
+
+%Monografía teórica o computacional: ¿Cómo se harán los cálculos teóricos? ¿Cómo se harán las simulaciones? ¿Qué requerimientos computacionales se necesitan? ¿Qué espacios físicos o virtuales se van a utilizar?
+
+%Monografía experimental: Recordar que para ser aprobada, los aparatos e insumos experimentales que se usarán en la Monografía deben estar previamente disponibles en la Universidad, o garantizar su disponibilidad para el tiempo en el que se realizará la misma. ¿Qué montajes experimentales se van a usar y que material se requiere? ¿En qué espacio físico se llevarán a cabo los experimentos? Si se usan aparatos externos, ¿qué permisos se necesitan? Si hay que realizar pagos a terceros, ¿cómo se financiará esto?
+
+Aqu\'i texto.
+
+\section{Cronograma}
+
+\begin{table}[htb]
+	\begin{tabular}{|c|cccccccccccccccc| }
+	\hline
+	Tareas $\backslash$ Semanas & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16  \\
+	\hline
+	1 & X & X &   &   &   &   &   & X & X &   &   &   &   &   &   &   \\
+	2 &   & X & X &   & X & X & X &   &   & X & X & X &   & X & X &   \\
+	3 &   &   &   & X &   &   &   & X &   &   &   & X &   &   & X &   \\
+	4 & X & X & X & X & X & X & X & X & X & X &   &   &   &   &   &   \\
+	5 &   &   &   &   & X &   &   &   & X &   &   & X &   &   & X &   \\
+	\hline
+	\end{tabular}
+\end{table}
+\vspace{1mm}
+
+\begin{itemize}
+	\item Tarea 1: Descripci\'on de la tarea 1
+	\item Tarea 2: Descripci\'on de la tarea 2
+	\item Tarea 3: Descripci\'on de la tarea 3
+	\item ...
+\end{itemize}
+
+\section{Personas Conocedoras del Tema}
+
+%Nombres de por lo menos 3 profesores que conozcan del tema. Uno de ellos debe ser profesor de planta de la Universidad de los Andes.
+
+\begin{itemize}
+	\item Nombre de profesor 1 (Instituto o Universidad de afiliaci\'on 1)
+	\item Nombre de profesor 2 (Instituto o Universidad de afiliaci\'on 2)
+	\item Nombre de profesor 3 (Instituto o Universidad de afiliaci\'on 3)
+	\item ...
+\end{itemize}
+
+
+%\bibliography{/Users/ivan/Documents/Bib_Files/library}
+\bibliography{/home/UANDES/im.burbano10/Documents/library}
+\bibliographystyle{ieeetr}
+
+\section*{Firma del Director}
+\vspace{1.5cm}
+
+\section*{Firma del Codirector	}
+
+\end{document} 
