@@ -56,13 +56,13 @@ j^\mu(\vb{r},\omega)=\int\dd{t}e^{i\omega t}j^\mu(\vb{r},t)
 \end{equation}
 concluding
 \begin{equation}
-A^\mu(\vb{r},\omega)=\frac{\mu_0}{4\pi}\int \dd[3]{\vb{r}'}\frac{e^{iK\|\vb{r}-\vb{r}'\|}}{\|\vb{r}-\vb{r}'\|}j^\mu(\vb{r},\omega).
+A^\mu(\vb{r},\omega)=\frac{\mu_0}{4\pi}\int \dd[3]{\vb{r}'}\frac{e^{iK\|\vb{r}-\vb{r}'\|}}{\|\vb{r}-\vb{r}'\|}j^\mu(\vb{r}',\omega).
 \end{equation}
 Separating this equation by remembering that $A^\mu=(\phi/c,\vb{A})$, $j^\mu=(c\rho,\vb{J})$, and $c^2\mu_0=\frac{\mu_0}{\mu_0\epsilon_0}=\frac{1}{\epsilon_0}$ we obtain
-\begin{align}
+\begin{align}\label{ec:fourier_vector_potential}
 \begin{split}
-\phi(\vb{r},\omega)=&\frac{1}{4\pi\epsilon_0}\int \dd[3]{\vb{r}'}\frac{e^{iK\|\vb{r}-\vb{r}'\|}}{\|\vb{r}-\vb{r}'\|}\rho(\vb{r},\omega),\\
-\vb{A}(\vb{r},\omega)=&\frac{\mu_0}{4\pi}\int \dd[3]{\vb{r}'}\frac{e^{iK\|\vb{r}-\vb{r}'\|}}{\|\vb{r}-\vb{r}'\|}\vb{J}(\vb{r},\omega).
+\phi(\vb{r},\omega)=&\frac{1}{4\pi\epsilon_0}\int \dd[3]{\vb{r}'}\frac{e^{iK\|\vb{r}-\vb{r}'\|}}{\|\vb{r}-\vb{r}'\|}\rho(\vb{r}',\omega),\\
+\vb{A}(\vb{r},\omega)=&\frac{\mu_0}{4\pi}\int \dd[3]{\vb{r}'}\frac{e^{iK\|\vb{r}-\vb{r}'\|}}{\|\vb{r}-\vb{r}'\|}\vb{J}(\vb{r}',\omega).
 \end{split}
 \end{align}
 
@@ -95,8 +95,8 @@ Under the right conditions the uniqueness theorem is valid and a function is nul
 \item We recall the definition of the electric dipole moment and magnetic dipole moment
 \begin{align}
 \begin{split}
-\vb{p}(\vb{r})=&\int\dd[3]{\vb{r}'}(\vb{r}'-\vb{r})\rho(\vb{r}'),\\
-\vb{m}(\vb{r})=&\int\dd[3]{\vb{r}'}(\vb{r}'-\vb{r})\cross\vb{J}(\vb{r}').
+\vb{p}=&\int\dd[3]{\vb{r}}\vb{r}\rho(\vb{r}),\\
+\vb{m}=&\frac{1}{2}\int\dd[3]{\vb{r}}\vb{r}\cross\vb{J}(\vb{r}).
 \end{split}
 \end{align}
 By using the product rule of the divergence
@@ -109,13 +109,77 @@ By using the product rule of the divergence
 \end{split}
 \end{align}
 The first integral vanishes since it is a total differential on a region without a boundary, namely $\mathbb{R}^3$. Therefore, by using \eqref{ec:fourier_charge_current} we obtain
-\begin{align}
+\begin{align}\label{ec:integral_current}
 \begin{split}
 \int\dd[3]{\vb{r}}\vb{J}(\vb{r},\omega)=&-\sum_{i=1}^3\vu{e}_i\int\dd[3]{\vb{r}}x^i\div{\vb{J}}(\vb{r},\omega)\\
 =&-\int\dd[3]{\vb{r}}\sum_{i=1}^3\vu{e}_ix^ii\omega\rho(\vb{r},\omega)=-\int\dd[3]{\vb{r}}\vb{r}i\omega\rho(\vb{r},\omega)\\
-=&-i\omega\vb{p}(0)
+=&-i\omega\vb{p}.
 \end{split}
 \end{align}
+
+In the far zone we have as hinted in the problem sheet
+\begin{equation}
+\frac{
+1}{\|\vb{r}-\vb{r}'\|}\approx\frac{
+1}{\|\vb{r}\|-\frac{\vb{r}\vdot\vb{r}'}{\|\vb{r}\|}}=\frac{
+1}{r-\frac{\vb{r}\vdot\vb{r}'}{r}}=\frac{1}{r}\frac{1}{1-\frac{\vb{r}\vdot\vb{r}'}{r^2}}
+\end{equation}
+where $r:=\|\vb{r}\|$ to lighten notation. Given that
+\begin{equation}\label{ec:estimate_1}
+\left|\frac{\vb{r}\vdot\vb{r}'}{r^2}\right|\leq\frac{rr'}{r^2}=\frac{r'}{r}
+\end{equation}
+if we assume that the fields are local, that is, that $r'\ll r$ in the region where fields are relevant we may say that under the integral sign $|r'/r|\ll 1$. Therefore, we may employ the geometric series
+\begin{equation}
+\frac{1}{1-x}=\sum_{n=0}^\infty x^n
+\end{equation}
+to approximate
+\begin{equation}
+\frac{
+1}{\|\vb{r}-\vb{r}'\|}\approx\frac{1}{r}\qty(1+\frac{\vb{r}\vdot\vb{r}'}{r^2}).
+\end{equation}
+Similarly, we may stablish the estimate
+\begin{equation}
+e^{ik\|\vb{r}-\vb{r}'\|}\approx e^{ik\qty(r-\frac{\vb{r}\vdot\vb{r}'}{r})}=e^{ikr}e^{-ik\frac{\vb{r}\vdot\vb{r}'}{r}}=e^{ikr}\sum_{n=0}^\infty\frac{(-ik)^n}{n!}\qty(\frac{\vb{r}\vdot\vb{r}'}{r})^n.
+\end{equation}
+Thus,
+\begin{align}
+\begin{split}
+\frac{
+e^{ik\|\vb{r}-\vb{r}'\|}}{\|\vb{r}-\vb{r}'\|}\approx&\frac{1}{r}\qty(1+\frac{\vb{r}\vdot\vb{r}'}{r^2})e^{ikr}\sum_{n=0}^\infty\frac{(-ik)^n}{n!}\qty(\frac{\vb{r}\vdot\vb{r}'}{r})^n\\
+=&\qty(1+\frac{\vb{r}\vdot\vb{r}'}{r^2})e^{ikr}\sum_{n=0}^\infty\frac{(-ik)^n}{n!}\frac{1}{r}\qty(\frac{\vb{r}\vdot\vb{r}'}{r})^n.
+\end{split}
+\end{align}
+Due to estimate \eqref{ec:estimate_1} we can truncate the series to obtain
+\begin{equation}
+\frac{
+e^{ik\|\vb{r}-\vb{r}'\|}}{\|\vb{r}-\vb{r}'\|}\approx\qty(1+\frac{\vb{r}\vdot\vb{r}'}{r^2})e^{ikr}\qty(\frac{1}{r}-ik\frac{\vb{r}\vdot\vb{r}'}{r^2}).
+\end{equation}
+Thus far, all of our estimates have been consistent up to $\mathcal{O}(\frac{\vb{r}\vdot\vb{r}'}{r^2})$. Therefore, we may estimate further
+\begin{equation}
+\frac{e^{ik\|\vb{r}-\vb{r}'\|}}{\|\vb{r}-\vb{r}'\|}\approx e^{ikr}\qty(\frac{1}{r}-ik\frac{\vb{r}\vdot\vb{r}'}{r^2})=\frac{e^{ikr}}{r}\qty(1-ik\frac{\vb{r}\vdot\vb{r}'}{r}).
+\end{equation}
+Pluggin this estimate in \eqref{ec:fourier_vector_potential} we obtain
+\begin{equation}
+\vb{A}(\vb{r},\omega)=\frac{\mu_0e^{ikr}}{4\pi r}\int \dd[3]{\vb{r}'}\qty(1-ik\frac{\vb{r}\vdot\vb{r}'}{r})\vb{J}(\vb{r}',\omega).
+\end{equation}
+Remembering \eqref{ec:integral_current} and the hint in the exam sheet we obtain
+\begin{align}
+\begin{split}
+\vb{A}(\vb{r},\omega)=&\frac{\mu_0e^{ikr}}{4\pi r}\qty(-i\omega\vb{p}-\frac{ik}{r}\int\dd[3]{\vb{r}'}(\vb{r}\vdot\vb{r}')\vb{J}(\vb{r}',\omega))\\
+=&-\frac{\mu_0e^{ikr}}{4\pi r}\qty(i\omega\vb{p}+\frac{ik}{2r}\int\dd[3]{\vb{r}'}(\vb{r}'\cross\vb{J}(\vb{r}',\omega))\cross\vb{r})\\
+=&-\frac{\mu_0e^{ikr}}{4\pi r}\qty(i\omega\vb{p}+\frac{ik}{r}\vb{m}\cross\vb{r}).
+\end{split}
+\end{align}
+
+\item We can express the Fourier transform of the electric and magnetic field by
+\begin{equation}
+\vb{B}(\vb{r},\omega)=\int\dd{t}e^{i\omega t}\vb{B}(\vb{r},t)=\int\dd{t}e^{i\omega t}\curl{\vb{A}}(\vb{r},t).
+\end{equation}
+Given that $e^{i\omega t}$ has no spatial dependence and assuming that the right conditions are met to exchange differentiation and integration we obtain
+\begin{equation}
+\vb{B}(\vb{r},\omega)=\curl{\int\dd{t}e^{i\omega t}\vb{A}(\vb{r},t)}=\curl{\vb{A}}(\vb{r},\omega).
+\end{equation}
+Making use of the product rule we have by inserting 
 
 \end{enumerate}
 
