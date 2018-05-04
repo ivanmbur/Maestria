@@ -14,6 +14,8 @@ Third Exam\\
 
 \maketitle
 
+Throughout this exam I will make use of Einstein's summation convention where repeated indices are summed over. $\{\vu{e}_1,\vu{e}_2,\vu{e}_3\}$ is the canonical basis of $\mathbb{R}^3$.
+
 \begin{enumerate}[(i)]
 
 \item As we have seen in class the potential $A^\mu$ is given by
@@ -164,10 +166,10 @@ Pluggin this estimate in \eqref{ec:fourier_vector_potential} we obtain
 \end{equation}
 Remembering \eqref{ec:integral_current} and the hint in the exam sheet we obtain
 \begin{align}
-\begin{split}
+\begin{split}\label{ec:magnetic_potential}
 \vb{A}(\vb{r},\omega)=&\frac{\mu_0e^{ikr}}{4\pi r}\qty(-i\omega\vb{p}-\frac{ik}{r}\int\dd[3]{\vb{r}'}(\vb{r}\vdot\vb{r}')\vb{J}(\vb{r}',\omega))\\
 =&-\frac{\mu_0e^{ikr}}{4\pi r}\qty(i\omega\vb{p}+\frac{ik}{2r}\int\dd[3]{\vb{r}'}(\vb{r}'\cross\vb{J}(\vb{r}',\omega))\cross\vb{r})\\
-=&-\frac{\mu_0e^{ikr}}{4\pi r}\qty(i\omega\vb{p}+\frac{ik}{r}\vb{m}\cross\vb{r}).
+=&-\frac{i\mu_0e^{ikr}}{4\pi r}\qty(\omega\vb{p}+\frac{k}{r}\vb{m}\cross\vb{r}).
 \end{split}
 \end{align}
 
@@ -179,7 +181,92 @@ Given that $e^{i\omega t}$ has no spatial dependence and assuming that the right
 \begin{equation}
 \vb{B}(\vb{r},\omega)=\curl{\int\dd{t}e^{i\omega t}\vb{A}(\vb{r},t)}=\curl{\vb{A}}(\vb{r},\omega).
 \end{equation}
-Making use of the product rule we have by inserting 
+Making use of the product rule 
+\begin{align}
+\begin{split}
+\curl(f\vb{F})=&\epsilon_{ijk}\partial_j(fF_k)\vu{e}_i=\epsilon_{ijk}\partial_jfF_k\vu{e}_i+\epsilon_{ijk}f\partial_jF_k\vu{e}_i\\
+=&\grad{f}\cross\vb{F}+f\curl{F}
+\end{split}
+\end{align}
+we have through \eqref{ec:magnetic_potential}
+\begin{align}
+\begin{split}
+\vb{B}(\vb{r},\omega)=&-\frac{i\mu_0}{4\pi}\grad(\frac{e^{ikr}}{r})\cross\qty(\omega\vb{p}+\frac{k}{r}\vb{m}\cross\vb{r})\\
+&-\frac{i\mu_0e^{ikr}}{4\pi r}\curl(\omega\vb{p}+\frac{k}{r}\vb{m}\cross\vb{r}).
+\end{split}
+\end{align}
+Given that $\vb{p}$ has no spatial dependence this can be reduced to
+\begin{align}
+\begin{split}
+\vb{B}(\vb{r},\omega)=&-\frac{i\mu_0}{4\pi}\grad(\frac{e^{ikr}}{r})\cross\qty(\omega\vb{p}+\frac{k}{r}\vb{m}\cross\vb{r})\\
+&-\frac{i\mu_0ke^{ikr}}{4\pi r}\curl(\vb{m}\cross\frac{\vb{r}}{r}).
+\end{split}
+\end{align}
+Notice that given that $\vb{m}$ has no spatial dependence if $\vb{F}$ is a function of space
+\begin{align}
+\begin{split}
+\curl(\vb{m}\cross\vb{F})=&\epsilon_{ijk}\partial_j(\epsilon_{klm}m_lF_m)\vu{e}_i=\epsilon_{ijk}\epsilon_{klm}m_l\partial_jF_m\vu{e}_i\\
+=&(\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl})m_l\partial_jF_m\vu{e}_i\\
+=&m_i\partial_jF_j\vu{e}_i-m_j\partial_jF_i\vu{e}_i=(\div{\vb{F}})\vb{m}-(\vb{m}\vdot\grad)\vb{F}.
+\end{split}
+\end{align}
+Now we will begin to evaluate the necessary derivatives to obtain the final result. We note that in calculations we don't have to consider $\vb{r}=0$ since we are in the far zone. We have
+\begin{equation}
+\grad(\frac{e^{ikr}}{r})=\partial_i\qty(\frac{e^{ikr}}{r})\vu{e}_i=\frac{ike^{ikr}r\partial_ir-e^{ikr}\partial_ir}{r^2}\vu{e}_i
+\end{equation}
+Since
+\begin{equation}
+\partial_ir=\partial_i\sqrt{(x_1)^2+(x_2)^2+(x_3)^2}=\frac{2x_i}{2\sqrt{(x_1)^2+(x_2)^2+(x_3)^2}}=\frac{x_i}{r}
+\end{equation}
+we obtain
+\begin{equation}
+\grad(\frac{e^{ikr}}{r})=\frac{ike^{ikr}x_i-e^{ikr}x_i/r}{r^2}\vu{e}_i=e^{ikr}\qty(ik-\frac{1}{r})\frac{\vb{r}}{r^2}.
+\end{equation}
+On the other hand, 
+\begin{equation}
+\div(\frac{\vb{r}}{r})=\partial_i\qty(\frac{x_i}{r})=\frac{r-x_i\partial_ir}{r^2}=\frac{r-x_ix_i/r}{r^2}=\frac{r-r^2/r}{r^2}=0.
+\end{equation}
+Finally
+\begin{equation}
+\partial_i\qty(\frac{x_j}{r})=\frac{\delta_{ij}r-x_j\partial_ir}{r^2}=\frac{\delta_{ij}r-x_jx_i/r}{r^2}=\frac{\delta_{ij}}{r^2}-\frac{x_jx_i}{r^2}
+\end{equation}
+and thus
+\begin{equation}
+(\vb{m}\vdot\grad)\frac{\vb{r}}{r}=m_i\partial_i\qty(\frac{x_j}{r})\vu{e}_j=m_i\qty(\frac{\delta_{ij}}{r^2}-\frac{x_jx_i}{r^2})\vu{e}_j=\frac{\vb{m}}{r^2}-(\vb{m}\vdot\vb{r})\frac{\vb{r}}{r}.
+\end{equation}
+Putting it all together we conclude
+\begin{align}
+\begin{split}
+\vb{B}(\vb{r},\omega)=&\frac{i\mu_0e^{ikr}}{4\pi r^2}\qty(\frac{1}{r}-ik)\vb{r}\cross\qty(\omega\vb{p}+\frac{k}{r}\vb{m}\cross\vb{r})\\
+&+\frac{i\mu_0ke^{ikr}}{4\pi r^2}\qty(\frac{\vb{m}}{r}-(\vb{m}\vdot\vb{r})\vb{r})\\
+=&\frac{i\mu_0e^{ikr}}{4\pi r^2}\qty(\frac{1}{r}-ik)\vb{r}\cross\qty(\omega\vb{p}+\frac{k}{r}\vb{m}\cross\vb{r})\\
+&+\frac{i\mu_0ke^{ikr}}{4\pi r^2}\qty(\frac{\vb{m}}{r}-(\vb{m}\vdot\vb{r})\vb{r})
+\end{split}
+\end{align}
+
+Recalling Maxwell's equation
+\begin{equation}
+\curl{\vb{B}}(\vb{r},t)=\mu_0\qty(\vb{J}(\vb{r},t)+\epsilon_0\pdv{\vb{E}}{t}(\vb{r},t))=\frac{1}{c^2}\pdv{\vb{E}}{t}(\vb{r},t)
+\end{equation}
+assuming that the fields are localized and thus, in the far zone, there are no sources and the current is null. Assuming the inverse Fourier transforms exist and that we can exchange orders of differentiation and integration
+\begin{align}
+\begin{split}
+\frac{1}{2\pi}\int\dd{\omega}e^{-i\omega t}\curl{\vb{B}}(\vb{r},\omega)=&\curl\frac{1}{2\pi}\int\dd{\omega}e^{-i\omega t}\vb{B}(\vb{r},\omega)\\
+=&\curl{\vb{B}}(\vb{r},t)=\frac{1}{c^2}\pdv{\vb{E}}{t}(\vb{r},t)\\
+=&\frac{1}{c^2}\pdv{t}\frac{1}{2\pi}\int\dd{\omega}e^{-i\omega t}\vb{E}(\vb{r},\omega)\\
+=&\frac{-i\omega}{2\pi c^2}\int\dd{\omega}e^{-i\omega t}\vb{E}(\vb{r},\omega).
+\end{split}
+\end{align}
+Assuming the Fourier transform is unique we obtain
+\begin{equation}
+\vb{E}(\vb{r},\omega)=\frac{ic}{k}\curl{\vb{B}}(\vb{r},\omega).
+\end{equation}
+This is once again a vector calculus exercise. To avoid more cumbersome calculations we instead take a more physical approach. As shown in elementary classes, monochromatic electromagnetic waves satisfy that the propagation vector, electric field and magnetic field form a proper orthogonal system. This must remain true for our Fourier transforms since they are precisely the amplitudes of such waves. If the sources are localized we may assume that at the far zone the propagation of the field coincides with $\vb{r}$. Therefore,
+\begin{align}
+\begin{split}
+\vb{E}(\vb{r},\omega)=c\vb{B}(\vb{r},\omega)\cross\frac{\vb{r}}{r}.
+\end{split}
+\end{align}
 
 \end{enumerate}
 
