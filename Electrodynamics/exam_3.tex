@@ -203,7 +203,7 @@ Given that $\vb{p}$ has no spatial dependence this can be reduced to
 \end{split}
 \end{align}
 Notice that given that $\vb{m}$ has no spatial dependence if $\vb{F}$ is a function of space
-\begin{align}
+\begin{align}\label{ec:product_rule}
 \begin{split}
 \curl(\vb{m}\cross\vb{F})=&\epsilon_{ijk}\partial_j(\epsilon_{klm}m_lF_m)\vu{e}_i=\epsilon_{ijk}\epsilon_{klm}m_l\partial_jF_m\vu{e}_i\\
 =&(\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl})m_l\partial_jF_m\vu{e}_i\\
@@ -219,30 +219,37 @@ Since
 \partial_ir=\partial_i\sqrt{(x_1)^2+(x_2)^2+(x_3)^2}=\frac{2x_i}{2\sqrt{(x_1)^2+(x_2)^2+(x_3)^2}}=\frac{x_i}{r}
 \end{equation}
 we obtain
-\begin{equation}
+\begin{equation}\label{ec:other_gradient}
 \grad(\frac{e^{ikr}}{r})=\frac{ike^{ikr}x_i-e^{ikr}x_i/r}{r^2}\vu{e}_i=e^{ikr}\qty(ik-\frac{1}{r})\frac{\vb{r}}{r^2}.
 \end{equation}
 On the other hand, 
-\begin{equation}
+\begin{equation}\label{ec:divergence}
 \div(\frac{\vb{r}}{r})=\partial_i\qty(\frac{x_i}{r})=\frac{r-x_i\partial_ir}{r^2}=\frac{r-x_ix_i/r}{r^2}=\frac{r-r^2/r}{r^2}=0.
 \end{equation}
 Finally
 \begin{equation}
-\partial_i\qty(\frac{x_j}{r})=\frac{\delta_{ij}r-x_j\partial_ir}{r^2}=\frac{\delta_{ij}r-x_jx_i/r}{r^2}=\frac{\delta_{ij}}{r^2}-\frac{x_jx_i}{r^2}
+\partial_i\qty(\frac{x_j}{r})=\frac{\delta_{ij}r-x_j\partial_ir}{r^2}=\frac{\delta_{ij}r-x_jx_i/r}{r^2}=\frac{\delta_{ij}}{r}-\frac{x_jx_i}{r^3}
 \end{equation}
 and thus
-\begin{equation}
-(\vb{m}\vdot\grad)\frac{\vb{r}}{r}=m_i\partial_i\qty(\frac{x_j}{r})\vu{e}_j=m_i\qty(\frac{\delta_{ij}}{r^2}-\frac{x_jx_i}{r^2})\vu{e}_j=\frac{\vb{m}}{r^2}-(\vb{m}\vdot\vb{r})\frac{\vb{r}}{r}.
+\begin{equation}\label{ec:weird_divergence}
+(\vb{m}\vdot\grad)\frac{\vb{r}}{r}=m_i\partial_i\qty(\frac{x_j}{r})\vu{e}_j=m_i\qty(\frac{\delta_{ij}}{r}-\frac{x_jx_i}{r^2})\vu{e}_j=\frac{\vb{m}}{r}-(\vb{m}\vdot\vb{r})\frac{\vb{r}}{r^3}.
 \end{equation}
 Putting it all together we conclude
 \begin{align}
 \begin{split}
 \vb{B}(\vb{r},\omega)=&\frac{i\mu_0e^{ikr}}{4\pi r^2}\qty(\frac{1}{r}-ik)\vb{r}\cross\qty(\omega\vb{p}+\frac{k}{r}\vb{m}\cross\vb{r})\\
-&+\frac{i\mu_0ke^{ikr}}{4\pi r^2}\qty(\frac{\vb{m}}{r}-(\vb{m}\vdot\vb{r})\vb{r})\\
+&+\frac{i\mu_0ke^{ikr}}{4\pi r^2}\qty(\vb{m}-(\vb{m}\vdot\vb{r})\frac{\vb{r}}{r^2})\\
 =&\frac{i\mu_0e^{ikr}}{4\pi r^2}\qty(\frac{1}{r}-ik)\vb{r}\cross\qty(\omega\vb{p}+\frac{k}{r}\vb{m}\cross\vb{r})\\
-&+\frac{i\mu_0ke^{ikr}}{4\pi r^2}\qty(\frac{\vb{m}}{r}-(\vb{m}\vdot\vb{r})\vb{r})
+&+\frac{i\mu_0ke^{ikr}}{4\pi r^2}\qty(\vb{m}-(\vb{m}\vdot\vb{r})\frac{\vb{r}}{r^2})\\
+=&\frac{i\mu_0e^{ikr}}{4\pi r^2}\qty(\frac{1}{r}-ik)\vb{r}\cross\qty(\omega\vb{p}+\frac{k}{r}\vb{m}\cross\vb{r})\\
+&+\frac{i\mu_0ke^{ikr}}{4\pi r^2}\qty(\vb{m}-(\vb{m}\vdot\vb{r})\frac{\vb{r}}{r^2})\\
+=&\frac{i\mu_0}{4\pi}\left(\omega\frac{e^{ikr}}{r}\qty(\frac{1}{r}-ik)\frac{\vb{r}}{r}\cross\vb{p}\right.\\
++&\left.k\frac{e^{ikr}}{r}\qty(\frac{1}{r}-ik)\frac{\vb{r}}{r}\cross\qty(\vb{m}\cross\frac{\vb{r}}{r})+k\frac{e^{ikr}}{r^2}\vb{m}\right.\\
+&\left.-k\frac{e^{ikr}}{r^2}\qty(\vb{m}\vdot\frac{\vb{r}}{r})\frac{\vb{r}}{r}\right)\\
+\approx&\frac{\mu_0k}{4\pi}\frac{e^{ikr}}{r}\qty(\omega\frac{\vb{r}}{r}\cross\vb{p}+k\frac{\vb{r}}{r}\cross\qty(\vb{m}\cross\frac{\vb{r}}{r}))
 \end{split}
 \end{align}
+when only keeping the terms of leading order in $r^{-1}$ given that we are in the radiation zone and to remain consistent with the order of our previous approximations.
 
 Recalling Maxwell's equation
 \begin{equation}
@@ -261,12 +268,32 @@ Assuming the Fourier transform is unique we obtain
 \begin{equation}
 \vb{E}(\vb{r},\omega)=\frac{ic}{k}\curl{\vb{B}}(\vb{r},\omega).
 \end{equation}
-This is once again a vector calculus exercise. To avoid more cumbersome calculations we instead take a more physical approach. As shown in elementary classes, monochromatic electromagnetic waves satisfy that the propagation vector, electric field and magnetic field form a proper orthogonal system. This must remain true for our Fourier transforms since they are precisely the amplitudes of such waves. If the sources are localized we may assume that at the far zone the propagation of the field coincides with $\vb{r}$. Therefore,
+Recalling \eqref{ec:other_gradient}, \eqref{ec:product_rule}, \eqref{ec:divergence}, and \eqref{ec:weird_divergence} we may perform this derivative to obtain
 \begin{align}
 \begin{split}
-\vb{E}(\vb{r},\omega)=c\vb{B}(\vb{r},\omega)\cross\frac{\vb{r}}{r}.
+\vb{E}(\vb{r},\omega)=&\frac{ic\mu_0}{4\pi}\grad(\frac{e^{ikr}}{r})\cross\qty(\omega\frac{\vb{r}}{r}\cross\vb{p}+k\frac{\vb{r}}{r}\cross\qty(\vb{m}\cross\frac{\vb{r}}{r}))\\
+&+\frac{ic\mu_0}{4\pi}\frac{e^{ikr}}{r}\curl(\omega\frac{\vb{r}}{r}\cross\vb{p}+k\frac{\vb{r}}{r}\cross\qty(\vb{m}\cross\frac{\vb{r}}{r}))\\
+\approx&-\frac{\mu_0\omega}{4\pi}\frac{e^{ikr}}{r}\frac{\vb{r}}{r}\cross\qty(\omega\frac{\vb{r}}{r}\cross\vb{p}+k\frac{\vb{r}}{r}\cross\qty(\vb{m}\cross\frac{\vb{r}}{r}))\\
+=&\frac{\mu_0\omega}{4\pi}\frac{e^{ikr}}{r}\qty(\omega\frac{\vb{r}}{r}\cross\vb{p}+k\frac{\vb{r}}{r}\cross\qty(\vb{m}\cross\frac{\vb{r}}{r}))\cross\frac{\vb{r}}{r}\\
 \end{split}
 \end{align}
+up to leading order in $r^{-1}$. Notice that it is not even worth to calculate the curl once the product rule is done since it will be of higher order in $r^{-1}$ as we learned from the calculation of the magnetic field. Moreover, we obtain that $\vb{E}$, $\vb{B}$, and the direction of propagation (which in the far zone is expected to be $\vb{r}/r$ if the sources are local) form an orthogonal proper system. We expected this from the elementary theory of radiation. Using the triple product
+\begin{align}
+\begin{split}
+\vb{A}\cross(\vb{B}\cross\vb{C})=&\epsilon_{ijk}A_j\epsilon_{klm}B_lC_m\vu{e}_i=(\delta_{il}\delta_{jm}-\delta_{im}\delta{jl})A_jB_lC_m\vu{e}_i\\
+=&A_jB_iC_j\vu{e}_i-A_jB_jC_i\vu{e}_i=(\vb{A}\vdot\vb{C})\vb{B}-(\vb{A}\vdot\vb{B})\vb{C}
+\end{split}
+\end{align} 
+we have
+\begin{align}
+\begin{split}
+(\vb{A}\cross(\vb{B}\cross\vb{A}))\cross\vb{A}=(A^2\vb{B}-(\vb{A}\vdot\vb{B})\vb{A})\cross\vb{A}=A^2\vb{B}\cross\vb{A}.
+\end{split}
+\end{align}
+Therefore, by setting $\vb{A}=\vb{r}/r$, $\vb{B}=\vb{m}$, and noticing that $A^2=1$, we have
+\begin{equation}
+\vb{E}(\vb{r},\omega)=\frac{\mu_0\omega}{4\pi}\frac{e^{ikr}}{r}\qty(\omega\frac{\vb{r}}{r}\cross\vb{p}+k\vb{m})\cross\frac{\vb{r}}{r}.
+\end{equation}
 
 \end{enumerate}
 
