@@ -1,0 +1,103 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{physics}
+
+\title{Electrodynamics: Homework 2}
+\author{Iván Mauricio Burbano Aldana}
+
+\begin{document}
+
+\maketitle
+
+1. In this exercise I will consider spacetime to be an affine space. Given a chart $x$ and a vector $v$ (which may be considered equivalently as an element of the tangent bundle or of the vector space after which spacetime is modeled), $v^\mu_x$ will be the components of $v$ in the coordinate induced basis. We set $\gamma=\qty(1-\beta^2)^{-1/2}$ and $\beta=\frac{v}{c}$.
+
+1.1. Let us consider two events $p$ and $q$ which correspond to the endpoints of the bar at equal times according to observer $S'$. Let $x$ be the coordinates according to observer $S$ and $y$ the coordinates according to $S'$. Assume that the coordinates are taken such that the rod is in the 12-plane, that is, $(p-q)^3_y=0$. The lengths can be calculated according to the formulae
+\begin{align}
+\begin{split}
+L&=\sqrt{\sum_{i=1}^3 ((p-q)^i_x)^2}\\
+(p-q)^1_y&=L'\cos(\theta')\\
+(p-q)^2_y&=L'\sin(\theta')
+\end{split}
+\end{align}
+Using the Lorentz transformation
+\begin{equation}
+\frac{\partial x^\mu}{\partial y^\nu}=\Lambda^\mu_\nu=\mqty[\gamma & \gamma\beta & 0 & 0 \\
+\gamma\beta & \gamma & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1].
+\end{equation}
+we have
+\begin{align}
+\begin{split}
+L&=\sqrt{\sum_{i=1}^3(\Lambda^i_\nu(p-q)^\nu_y)^2}\\
+&=\sqrt{(\gamma\beta(p-q)^0_y+\gamma(p-q)^1_y)^2+((p-q)^2_y)^2+((p-q)^3_y)^2}\\
+&=\sqrt{\gamma^2L'^2\cos^2(\theta')+L'^2\sin^2(\theta')}\\
+&=L'\sqrt{\gamma^2\cos^2(\theta')+\sin^2(\theta')}.
+\end{split}
+\end{align}
+
+1.2
+As in the previous point we have
+\begin{align}
+\begin{split}
+\tan(\theta)&=\frac{(p-q)^2_x}{(p-q)^1_x}=\frac{(p-q)^2_y}{\gamma\beta(p-q)^0_y+\gamma(p-q)^1_y}=\frac{1}{\gamma}\frac{(p-q)^2_y}{(p-q)^1_y}=\frac{1}{\gamma}\tan(\theta')
+\end{split}
+\end{align}
+
+2. We have by the definition of a Lorentz transformation that they preserve the metric, which in matrix notation reads $g_{\mu\nu}\Lambda^\mu_\sigma\Lambda^\nu_\lambda=g_{\sigma\lambda}$. Therefore 
+\begin{align}
+\begin{split}
+g_{\mu\nu}A'^\mu B'^\nu=g_{\mu\nu}\Lambda^\mu_\sigma A^\sigma \Lambda^\nu_\lambda B^\lambda=g_{\sigma\lambda}A^\sigma B^\lambda=g_{\mu\nu}A^\mu B^\nu.
+\end{split}
+\end{align}
+
+3. 
+
+(i) We set $c=1$. Through integration we find
+\begin{equation}
+\vb{p}(t)=\vb{p}(0)+\int_0^t \vb{p}'(u)du=\vb{p}_0+\int_0^t q(\mathcal{E},0,0)du=\frac{m\vb{v}_0}{\sqrt{1-\vb{v}_0^2}}+q\mathcal{E}t(1,0,0).
+\end{equation}
+
+(ii) The energy of the particle is then
+\begin{align}
+\begin{split}
+E(t)&=\sqrt{\vb{p}(t)^2+m^2}=\sqrt{\qty(\frac{m\vb{v}_0}{\sqrt{1-\vb{v}_0^2}}+q\mathcal{E}t(1,0,0))^2+m^2}\\
+&=\sqrt{\frac{m^2\vb{v}_0^2}{1-\vb{v}_0^2}+\frac{2mq\mathcal{E}t(\vb{v}_0)_x}{\sqrt{1-\vb{v}_0^2}}+q^2\mathcal{E}^2t^2+m^2}\\
+&=\sqrt{\frac{m^2\vb{v}_0^2+2mq\mathcal{E}t(\vb{v}_0)_x\sqrt{1-\vb{v}_0^2}+(q^2\mathcal{E}^2t^2+m^2)(1-\vb{v}_0^2)}{1-\vb{v}_0^2}}\\
+&=\sqrt{\frac{m^2+2mq\mathcal{E}t(\vb{v}_0)_x\sqrt{1-\vb{v}_0^2}+q^2\mathcal{E}^2t^2(1-\vb{v}_0^2)}{1-\vb{v}_0^2}}.
+\end{split}
+\end{align}
+
+(iii) We thus obtain for the velocity
+\begin{align}
+\begin{split}
+\vb{v}(t)&=\frac{\vb{p}(t)}{E(t)}=\frac{m\vb{v}_0+q\mathcal{E}t\sqrt{1-\vb{v}_0^2}}{\sqrt{m^2+2mq\mathcal{E}t(\vb{v}_0)_x\sqrt{1-\vb{v}_0^2}+q^2\mathcal{E}^2t^2(1-\vb{v}_0^2)}}\\
+\end{split}
+\end{align}
+
+which we can directly integrate for the position. It is the nevertheless easier to begin with a less developed form where we have more control for the time dependence.
+
+\begin{align}
+\begin{split}
+\vb{r}(t)&=\vb{r}(0)+\int_0^t du r\vb{r}'(u)=\vb{r}_0+\int_0^t du \frac{\vb{p}(u)}{\sqrt{\vb{p}(u)^2+m^2}}\\
+&=\vb{r}_0+\int_0^t du \frac{\sum_{i=1}^3\vb{p}(u)_i\vu
+{e}_i}{\sqrt{\sum_{i=1}^3\vb{p}(u)_i^2+m^2}}\\
+&=\vb{r}_0+\int_0^t du \frac{\vb{p}(u)_1\vu{e}_1+\sum_{i=2}^3\vb{p}(0)_i\vu{e}_i}{\sqrt{\vb{p}(u)_1^2+\sum_{i=2}^3\vb{p}(0)_i^2+m^2}}\\
+&=\vb{r}_0+\int_{\vb{p}(0)_1}^{\vb{p}(t)_1} dv \frac{1}{\vb{p}_1'(\vb{p}_1^{-1}(v))}\frac{v\vu{e}_1+\sum_{i=2}^3\vb{p}(0)_i\vu{e}_i}{\sqrt{v^2+\sum_{i=2}^3\vb{p}(0)_i^2+m^2}}\\
+&=\vb{r}_0+\frac{1}{q\mathcal{E}}\int_{\vb{p}(0)_1}^{\vb{p}(t)_1} dv \frac{v\vu{e}_1+\sum_{i=2}^3\vb{p}(0)_i\vu{e}_i}{\sqrt{v^2+\sum_{i=2}^3\vb{p}(0)_i^2+m^2}}\\
+&=\vb{r}_0+\frac{1}{2q\mathcal{E}}\int_{\vb{p}(0)_1^2}^{\vb{p}(t)_1^2} dw \frac{\vu{e}_1}{\sqrt{w+\sum_{i=2}^3\vb{p}(0)_i^2+m^2}}\\
+&+\frac{1}{q\mathcal{E}}\sum_{i=2}^3\vb{p}(0)_i\vu{e}_i\int_{\vb{p}(0)_1}^{\vb{p}(t)_1} dv \frac{1}{\sqrt{v^2+\sum_{i=2}^3\vb{p}(0)_i^2+m^2}}\\
+&=\vb{r}_0+\frac{\vu{e}_1}{q\mathcal{E}}\qty(\sqrt{\vb{p}(t)_1^2+\sum_{i=2}^3\vb{p}(0)_i^2+m^2}-\sqrt{\vb{p}(0)^2_1+\sum_{i=2}^3\vb{p}(0)_i^2+m^2})\\
+&+\frac{1}{q\mathcal{E}}\sum_{i=2}^3\vb{p}(0)_i\vu{e}_i\ln(\frac{\sqrt{\vb{p}(t)_1^2+\sum_{i=2}^3\vb{p}(0)_i^2+m^2}+\vb{p}(t)_1}{\sqrt{\vb{p}(0)_1^2+\sum_{i=2}^3\vb{p}(0)_i^2+m^2}+\vb{p}(0)_1})\\
+&=\vb{r}_0+\frac{\vu{e}_1}{q\mathcal{E}}\qty(\sqrt{\vb{p}(t)^2+m^2}-\sqrt{\vb{p}(0)^2+m^2})\\
+&+\frac{1}{q\mathcal{E}}\sum_{i=2}^3\vb{p}(0)_i\vu{e}_i\ln(\frac{\sqrt{\vb{p}(t)^2+m^2}+\vb{p}(0)_1+q\mathcal{E}t}{\sqrt{\vb{p}(0)^2+m^2}+\vb{p}(0)_1})\\
+&=\vb{r}_0+\frac{\vu{e}_1}{q\mathcal{E}}\qty(E(t)-E(0))\\
+&+\frac{1}{q\mathcal{E}}\sum_{i=2}^3\vb{p}(0)_i\vu{e}_i\ln(\frac{E(t)+\vb{p}(0)_1+q\mathcal{E}t}{E(0)+\vb{p}(0)_1})\\
+\end{split}
+\end{align}
+
+Conveniently expressed using our previous results.
+
+\end{document}
