@@ -1,0 +1,318 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{physics}
+
+\DeclareMathOperator{\id}{id}
+
+\title{Tarea 3: Aplicaciones de mecánica estadística cuántica}
+\author{Iván Mauricio Burbano Aldana\\Universidad de los Andes}
+
+\begin{document}
+
+\maketitle
+
+\section{El modelo XY cuántico en una dimensión}
+
+\subsection{El modelo y preliminares}
+
+De la forma explicita de los operadores de spin vemos que podemos tomar como espacio de Hilbert de una partícula $\mathbb{C}^2$. El espacio de Hilbert total es $\mathcal{H}=\bigotimes\limits_{n=1}^N\mathbb{C}^2$ y los operadores de spin son
+\begin{equation}
+S_n^{i}=\id_{\mathbb{C}^2}\otimes\cdots\otimes\id_{\mathbb{C}^2}\otimes\underbrace{S^i}_{\text{n-ésimo termino}}\otimes\id_{\mathbb{C}^2}\otimes\cdots\otimes\id_\mathbb{C}^2
+\end{equation}
+para todo $n\in\{1,\dots,N\}$ e $i\in\{x,y,z,+,-\}$. Entonces podemos escoger $\ket{+}=(1,0)$ y $\ket{-}=(0,1)$. Denotaremos para $s_1,\dots,s_N\in\{+,-\}$
+\begin{equation}
+\ket{s_1\cdots s_N}=\ket{s_1}\otimes\cdots\otimes\ket{s_N}.
+\end{equation}
+
+1. Calculando se obtiene
+\begin{align}
+\begin{split}
+S^+\ket{-}=&(S^x+iS^y)\ket{-}=\frac{1}{2}\qty(\mqty[0 & 1 \\ 1 & 0]+i\mqty[0 & -i \\ i & 0])\mqty[0 \\ 1]\\
+=&\frac{1}{2}\mqty[0 & 2 \\ 0 & 0]\mqty[0 \\ 1]=\mqty[1\\0]=\ket{+}\\
+S^-\ket{-}=&(S^x-iS^y)\ket{-}=\frac{1}{2}\qty(\mqty[0 & 1 \\ 1 & 0]-i\mqty[0 & -i \\ i & 0])\mqty[0 \\ 1]\\
+=&\frac{1}{2}\mqty[0 & 0 \\ 2 & 0]\mqty[0 \\ 1]=\mqty[0\\0]=0\\
+S^+\ket{+}=&\mqty[0 & 1 \\ 0 & 0]\mqty[1 \\ 0]=\mqty[0\\0]=0\\
+S^-\ket{+}=&\mqty[0 & 0 \\ 1 & 0]\mqty[1 \\ 0]=\mqty[0\\1]=\ket{-}.
+\end{split}
+\end{align}
+
+\subsection{Desarrollo}
+
+1. Se tiene
+\begin{align}
+\begin{split}
+\{S^+,S^-\}\ket{+}=&(S^+S^-+S^-S^+)\ket{+}=\ket{+}+0=\ket{+}\\
+\{S^+,S^-\}\ket{-}=&(S^+S^-+S^-S^+)\ket{-}=0+\ket{-}=\ket{-},
+\end{split}
+\end{align}
+es decir, $\{S^+,S^-\}=\id_{\mathbb{C}^2}$. Entonces para todo $n\in\{1,\dots,N\}$ se tiene
+\begin{align}\label{eq:anti-commutator}
+\begin{split}
+\{S^+_n,S^-_n\}=&(S_n^+S_n^-+S_n^-S_n^+)\\
+=&\id_{\mathbb{C}^2}\otimes\cdots\otimes\id_{\mathbb{C}^2}\otimes\underbrace{S^+S^-+S^-S^+}_{\text{n-ésimo termino}}\otimes\id_{\mathbb{C}^2}\otimes\cdots\otimes\id_\mathbb{C}^2\\
+=&\id_\mathcal{H}.
+\end{split}
+\end{align}
+
+2. Se tiene
+\begin{align}
+\begin{split}
+2S^+S^--\id_{\mathbb{C}^2}=2S^+S^--\{S^+,S^-\}=[S^+,S^-] 
+\end{split}
+\end{align}
+y 
+\begin{align}
+\begin{split}
+[S^+,S^-]\ket{+}=&(S^+S^--S^-S^+)\ket{+}=\ket{+}\\
+[S^+,S^-]\ket{-}=&(S^+S^--S^-S^+)\ket{-}=-\ket{-}.
+\end{split}
+\end{align}
+Se concluye entonces que $2S^+S^--\id_{\mathbb{C}^2}=[S^+,S^-]=2S^z$. Tensorizando la ecuación a ambos lados con identidades es claro que
+\begin{equation}\label{eq:commutators}
+2S^+_nS^-_n-\id_\mathcal{H}=[S^+_n,S^-_n]=2S^z_n.
+\end{equation}
+
+3. Note que para todo $n\in\{1,\dots,N-1\}$
+\begin{align}
+\begin{split}
+&S_n^+S_{n+1}^-+S_n^-S_{n+1}^+\\
+&=(S_n^x+iS_n^y)(S_{n+1}^x-iS_{n+1}^y)+(S_n^x-iS_n^y)(S_{n+1}^x+iS_{n+1}^y)\\
+&=S_n^xS_{n+1}^x-iS_n^xS_{n+1}^y+iS_n^yS_{n+1}^x+S_n^yS_{n+1}^y\\
+&+S_n^xS_{n+1}^x+iS_n^xS_{n+1}^y-iS_n^yS_{n+1}^x+S_n^yS_{n+1}^y\\
+&=2S_n^xS_{n+1}^x+2S_n^yS_{n+1}^y.
+\end{split}
+\end{align}
+Entonces, en vista de \eqref{eq:commutators}, es claro que 
+\begin{equation}\label{eq:hamiltoniano}
+H=\frac{J}{2}\sum_{i=1}^{N-1}\qty(S_n^+S_{n+1}^-+S_n^-S_{n+1}^+)-h\sum_{n=1}^N\qty[S_n^+,S_n^-].
+\end{equation}
+
+4. Note que para todo $n\in\{1,\dots,N\}$ el operador $\epsilon_n$ está bien definido ya que en vista de \eqref{eq:commutators} los terminos en la productoria son $2S_1^z,\dots,2S_{n-1}^z$ y conmutan. Entonces se tiene para $n\in\{1,\dots,N\}$ y $s_1,\dots,s_N\in\{+,-\}$
+\begin{align}
+\begin{split}
+\epsilon_n\ket{s_1\cdots s_N}=&\prod_{j=1}^{n-1}S_j^z\ket{s_1\cdots s_N}=\prod_{j=1}^{n-1}\qty{\mqty{
+1 & s_j=+\\
+-1 & s_j=-}}\ket{s_1\cdots s_N}\\
+=&(-1)^{|\{j\in\{1,\dots,n-1\}|s_j=-\}|}\ket{s_1\cdots s_N}=(-1)^A\ket{s_1\cdots s_N}.
+\end{split}
+\end{align}
+
+5. Se tiene que para todo $n\in\{1,\dots,N\}$ y $s_1,\dots,s_N\in\{+,-\}$
+\begin{equation}\label{eq:idempotencia}
+\epsilon_n^2\ket{s_1\cdots s_N}=(-1)^{2A}\ket{s_1\cdots s_N}=\ket{s_1\cdots s_N}.
+\end{equation}
+Ya que $\{\ket{s_1\cdots s_N}|s_1,\dots,s_N\in\{+,-\}\}$ genera $\mathcal{H}$ se concluye que $\epsilon_n^2=\id_\mathcal{H}$. Por otra parte, se tiene que 
+\begin{align}
+\begin{split}
+2S^z2S^z\ket{+}=&\ket{+}\\
+2S^z2S^z\ket{-}=&(-1)^2\ket{-}=\ket{-}.
+\end{split}
+\end{align}
+Entonces es claro que $(2S^z)^2=\id_{\mathbb{C}^2}$ y por lo tanto $(2S^+_jS^-_j-\id_\mathcal{H})^2=(2S^z_j)^2=\id_\mathcal{H}$ para todo $j\in\{1,\dots,N\}$. 
+
+6. Note que
+\begin{align}
+\begin{split}
+(S^+)^2\ket{-}=&S^+\ket{+}=0\\
+(S^-)^2\ket{-}=&0\\
+(S^+)^2\ket{+}=&0\\
+(S^-)^2\ket{+}=&S^-\ket{-}=0,
+\end{split}
+\end{align}
+es decir, $(S^+)^2=(S^-)^2=0$. Por otra parte
+\begin{align}
+\begin{split}
+\{2S^z,S^+\}\ket{+}=&(2S^zS^++2S^+ S^z)\ket{+}=0\\
+\{2S^z,S^+\}\ket{-}=&(2S^zS^++2S^+ S^z)\ket{-}=\ket{+}-\ket{+}=0\\
+\{2S^z,S^-\}\ket{+}=&(2S^zS^-+2S^- S^z)\ket{+}=-\ket{-}+\ket{-}=0\\
+\{2S^z,S^-\}\ket{-}=&(2S^zS^-+2S^- S^z)\ket{-}=0,
+\end{split}
+\end{align}
+es decir, para todo $n\in\{1,\dots,N\}$ se tiene $\{2S_n^z,S_n^\pm\}=0$.
+
+Dado que operadores en distintos sitios conmutan, los operadores $S_n^i$ conmutan con $\epsilon_m$ para $n,m\in\{1,\dots,N\}$, $m\geq n$ e $i\in\{x,y,z,+,-\}$. Se tiene entonces $c_n^2=\epsilon_n^2(S_n^+)^2=0=(S_n^-)^2\epsilon_n^2=(c_n^\dagger)^2$, $c_n^\dagger c_n=S_n^-S_n^+\epsilon_n^2=S_n^-S_n^+$, $c_nc_n^\dagger =S_n^+S_n^-\epsilon_n^2=S_n^+S_n^-$ y $\{c_n^\dagger,c_n\}=\{S_n^-,S_n^+\}=\id_\mathcal{H}$ para todo $n\in\{1,\dots,N\}$. Tome $n,m\in\{1,\dots,N\}$ y suponga que $n>m$. Luego
+\begin{align}
+\begin{split}
+\{c_n^\dagger ,c_m\}=&S_n^-\epsilon_n\epsilon_mS_m^++\epsilon_mS_m^+S_n^-\epsilon_n\\
+=&S_n^-\qty(\prod_{j=1}^{n-1}2S^z_j)S_m^+\epsilon_m+\epsilon_mS_n^-S_m^+\qty(\prod_{j=1}^{n-1}2S^z_j)\\
+=&S_n^-\qty(\prod_{\overset{j=1}{j\neq m}}^{n-1}2S^z_j)2S_m^zS_m^+\epsilon_m+\epsilon_mS_n^-S_m^+2S_m^z\qty(\prod_{\overset{j=1}{j\neq m}}^{n-1}2S^z_j)\\
+=&S_n^-\qty(\prod_{\overset{j=1}{j\neq m}}^{n-1}2S^z_j)\epsilon_m2S_m^zS_m^++S_n^-\qty(\prod_{\overset{j=1}{j\neq m}}^{n-1}2S^z_j)\epsilon_mS_m^+2S_m^z\\
+=&S_n^-\qty(\prod_{\overset{j=1}{j\neq m}}^{n-1}2S^z_j)\epsilon_m\{2S_m^z,S_m^+\}=0
+\end{split}
+\end{align}
+\begin{align}
+\begin{split}
+\{c_n^\dagger ,c_m^\dagger\}=&S_n^-\epsilon_nS_m^-\epsilon_m+S_m^-\epsilon_mS_n^-\epsilon_n\\
+=&S_n^-\qty(\prod_{j=1}^{n-1}2S^z_j)S_m^-\epsilon_m+\epsilon_mS_n^-S_m^-\qty(\prod_{j=1}^{n-1}2S^z_j)\\
+=&S_n^-\qty(\prod_{\overset{j=1}{j\neq m}}^{n-1}2S^z_j)2S_m^zS_m^-\epsilon_m+\epsilon_mS_n^-S_m^-2S_m^z\qty(\prod_{\overset{j=1}{j\neq m}}^{n-1}2S^z_j)\\
+=&S_n^-\qty(\prod_{\overset{j=1}{j\neq m}}^{n-1}2S^z_j)\epsilon_m2S_m^zS_m^-+S_n^-\qty(\prod_{\overset{j=1}{j\neq m}}^{n-1}2S^z_j)\epsilon_mS_m^-2S_m^z\\
+=&S_n^-\qty(\prod_{\overset{j=1}{j\neq m}}^{n-1}2S^z_j)\epsilon_m\{2S_m^z,S_m^-\}=0
+\end{split}
+\end{align}
+\begin{align}
+\begin{split}
+\{c_n,c_m\}=&\epsilon_nS_n^+\epsilon_mS_m^++\epsilon_mS_m^+\epsilon_nS_n^+\\
+=&\qty(\prod_{j=1}^{n-1}2S^z_j)S_m^+S_n^+\epsilon_m+\epsilon_mS_m^+\qty(\prod_{j=1}^{n-1}2S^z_j)S_n^+\\
+=&\qty(\prod_{\overset{j=1}{j\neq m}}^{n-1}2S^z_j)2S_m^zS_m^+S_n^+\epsilon_m+\epsilon_mS_m^+2S_m^z\qty(\prod_{\overset{j=1}{j\neq m}}^{n-1}2S^z_j)S_n^+\\
+=&S_n^+\qty(\prod_{\overset{j=1}{j\neq m}}^{n-1}2S^z_j)\epsilon_m2S_m^zS_m^++S_n^+\qty(\prod_{\overset{j=1}{j\neq m}}^{n-1}2S^z_j)\epsilon_mS_m^+2S_m^z\\
+=&S_n^+\qty(\prod_{\overset{j=1}{j\neq m}}^{n-1}2S^z_j)\epsilon_m\{2S_m^z,S_m^+\}=0.
+\end{split}
+\end{align}
+Las mismas relaciones son validas si $m>n$ pues
+\begin{equation}
+\{c_n^\dagger,c_m\}=(c_n^\dagger c_m+c_mc_n^\dagger)=((c_m^\dagger c_n)^\dagger+(c_nc_m^\dagger)^\dagger)=\{c_m^\dagger,c_n\}^\dagger=0
+\end{equation}
+y el anticonmutador es simétrico. Se concluye entonces que se satisfacen la relaciones de anticonmutación canónicas para $n,m\in\{1,\dots,N\}$
+\begin{align}
+\begin{split}
+\{c_n^\dagger,c_m\}=&\delta_{nm}\id_\mathcal{H}\\
+\{c_n^\dagger,c_m^\dagger\}=&0=\{c_n,c_m\}.
+\end{split}
+\end{align}
+
+7. En el punto anterior se demostró que para todo $n\in\{1,\dots,N\}$ se tiene $c_nc_n^\dagger=S_n^+S_n^-$ debido a que $S_n^\pm$ conmuta con $\epsilon_n$. Entonces
+\begin{align}
+\begin{split}
+\qty(\prod_{j=1}^{n-1}(\id_\mathcal{H}-2c_j^\dagger c_j))c_n=&\qty(\prod_{j=1}^{n-1}(\id_\mathcal{H}-2c_j^\dagger c_j))\qty(\prod_{k=1}^{n-1}(2c_k c_k^\dagger-\id_\mathcal{H}))S_n^+.
+\end{split}
+\end{align}
+Note que para $j,k\in\{1,\dots,N\}$ si $j\neq k$
+\begin{align}
+\begin{split}
+(\id_\mathcal{H}-2c_j^\dagger c_j)(2c_kc_k^\dagger-\id_\mathcal{H})=&2c_kc_k^\dagger-\id_\mathcal{H}-4c_j^\dagger c_jc_kc_k^\dagger + 2c_j^\dagger c_j\\
+=&2c_kc_k^\dagger-\id_\mathcal{H}-4c_k^\dagger c_kc_jc_j^\dagger + 2c_j^\dagger c_j\\
+=&(2c_kc_k^\dagger-\id_\mathcal{H})(\id_\mathcal{H}-2c_j^\dagger c_j).
+\end{split}
+\end{align}
+Entonces podemos reorganizar de manera que 
+\begin{align}
+\begin{split}
+\qty(\prod_{j=1}^{n-1}(\id_\mathcal{H}-2c_j^\dagger c_j))c_n=&\qty(\prod_{j=1}^{n-1}(\id_\mathcal{H}-2c_j^\dagger c_j)(2c_j c_j^\dagger-\id_\mathcal{H}))S_n^+.
+\end{split}
+\end{align}
+Ahora bien, si $j\in\{1,\dots,N\}$ se tiene
+\begin{align}
+\begin{split}
+(\id_\mathcal{H}-2c_j^\dagger c_j)(2c_j c_j^\dagger-\id_\mathcal{H})=&2c_jc_j^\dagger-\id_\mathcal{H}-4c_j^\dagger c_jc_jc_j^\dagger + 2c_j^\dagger c_j=2\{c_j^\dagger,c_j\}-\id_\mathcal{H}\\
+=&\id_\mathcal{H}\\
+\end{split}
+\end{align}
+donde se utilizó que $c_jc_j=c_j^\dagger c_j^\dagger=0$ consecuancia de las relaciones de anticonmutación canónicas. Se confirma que
+\begin{equation}\label{eq:S+}
+\qty(\prod_{j=1}^{n-1}(\id_\mathcal{H}-2c_j^\dagger c_j))c_n=S_n^+.
+\end{equation}
+De manera análoga tenemos
+\begin{align}\label{eq:S-}
+\begin{split}
+\qty(\prod_{j=1}^{n-1}(\id_\mathcal{H}-2c_j^\dagger c_j))c_n^\dagger=&\qty(\prod_{j=1}^{n-1}(\id_\mathcal{H}-2c_j^\dagger c_j))S_n^-\qty(\prod_{k=1}^{n-1}(2c_k c_k^\dagger-\id_\mathcal{H}))\\
+=&S_n^-\qty(\prod_{j=1}^{n-1}(\id_\mathcal{H}-2c_j^\dagger c_j))\qty(\prod_{k=1}^{n-1}(2c_k c_k^\dagger-\id_\mathcal{H}))\\
+=&S_n^-\qty(\prod_{j=1}^{n-1}(\id_\mathcal{H}-2c_j^\dagger c_j)(2c_j c_j^\dagger-\id_\mathcal{H}))\\
+=&S_n^-\qty(\prod_{j=1}^{n-1}\id_\mathcal{H})=S_n^-.
+\end{split}
+\end{align}
+
+8. Reemplazando \eqref{eq:S+} y \eqref{eq:S-} en \eqref{eq:hamiltoniano}, notando que $c_j^\dagger c_j c_n^\dagger=(-1)^2c_n^\dagger c_j^\dagger c_j=c_n^\dagger c_j^\dagger c_j$ y $c_n c_j^\dagger c_j=(-1)^2c_j^\dagger c_j c_n=c_j^\dagger c_j c_n$ para todo $n,j\in\{0,\dots,N\}$ distintos, y calculando
+\begin{align}
+\begin{split}
+(\id_\mathcal{H}-2c_j^\dagger c_j)^2=&\id_\mathcal{H}-4c_j^\dagger c_j+4c_j^\dagger c_j c_j^\dagger c_j\\
+=&\id_\mathcal{H}-4c_j^\dagger c_j+4c_j^\dagger c_j (\{c_j^\dagger,c_j\}-c_jc_j^\dagger)\\
+=&\id_\mathcal{H}-4c_j^\dagger c_j+4c_j^\dagger c_j-4c_j^\dagger c_j c_jc_j^\dagger=\id_\mathcal{H}
+\end{split}
+\end{align} 
+obtiene
+\begin{align}\label{eq:hamiltoniano_2}
+\begin{split}
+H=&\frac{J}{2}\sum_{n=1}^{N-1}\left(\qty(\prod_{j=1}^{n-1}(\id_\mathcal{H}-2c_j^\dagger c_j))c_n\qty(\prod_{j=1}^{n}(\id_\mathcal{H}-2c_j^\dagger c_j))c_{n+1}^\dagger\right.\\
+&+\left.\qty(\prod_{j=1}^{n-1}(\id_\mathcal{H}-2c_j^\dagger c_j))c_n^\dagger\qty(\prod_{j=1}^{n}(\id_\mathcal{H}-2c_j^\dagger c_j))c_{n+1}\right)-h\sum_{n=1}^N(2c_nc_n^\dagger-\id_\mathcal{H})\\
+=&\frac{J}{2}\sum_{n=1}^{N-1}\left(c_n\qty(\prod_{j=1}^{n-1}(\id_\mathcal{H}-2c_j^\dagger c_j))\qty(\prod_{j=1}^{n}(\id_\mathcal{H}-2c_j^\dagger c_j))c_{n+1}^\dagger\right.\\
+&+\left.c_n^\dagger\qty(\prod_{j=1}^{n-1}(\id_\mathcal{H}-2c_j^\dagger c_j))\qty(\prod_{j=1}^{n}(\id_\mathcal{H}-2c_j^\dagger c_j))c_{n+1}\right)-h\sum_{n=1}^N(2c_nc_n^\dagger-\id_\mathcal{H})\\
+=&\frac{J}{2}\sum_{n=1}^{N-1}\left(c_n\qty(\prod_{j=1}^{n-1}(\id_\mathcal{H}-2c_j^\dagger c_j)(\id_\mathcal{H}-2c_j^\dagger c_j))(\id_\mathcal{H}-2c_n^\dagger c_n)c_{n+1}^\dagger\right.\\
+&+\left.c_n^\dagger\qty(\prod_{j=1}^{n-1}(\id_\mathcal{H}-2c_j^\dagger c_j)(\id_\mathcal{H}-2c_j^\dagger c_j))(\id_\mathcal{H}-2c_n^\dagger c_n)c_{n+1}\right)\\
+&-h\sum_{n=1}^N(2c_nc_n^\dagger-\id_\mathcal{H})\\
+=&\frac{J}{2}\sum_{n=1}^{N-1}\qty(c_n(\id_\mathcal{H}-2c_n^\dagger c_n)c_{n+1}^\dagger+c_n^\dagger(\id_\mathcal{H}-2c_n^\dagger c_n)c_{n+1})\\
+&-2h\sum_{n=1}^Nc_nc_n^\dagger-hN\id_\mathcal{H}\\
+=&\frac{J}{2}\sum_{n=1}^{N-1}\qty(c_nc_{n+1}^\dagger-2c_nc_n^\dagger c_nc_{n+1}^\dagger+c_n^\dagger c_{n+1}-2c_n^\dagger c_n^\dagger c_nc_{n+1})\\
+&-2h\sum_{n=1}^Nc_nc_n^\dagger-hN\id_\mathcal{H}\\
+=&\frac{J}{2}\sum_{n=1}^{N-1}\qty(c_nc_{n+1}^\dagger-2(\id_\mathcal{H}-c_n^\dagger c_n) c_nc_{n+1}^\dagger+c_n^\dagger c_{n+1})-2h\sum_{n=1}^Nc_nc_n^\dagger-hN\id_\mathcal{H}\\
+=&\frac{J}{2}\sum_{n=1}^{N-1}\qty(-c_nc_{n+1}^\dagger+c_n^\dagger c_{n+1})-2h\sum_{n=1}^Nc_nc_n^\dagger-hN\id_\mathcal{H}\\
+=&\frac{J}{2}\sum_{n=1}^{N-1}\qty(c_{n+1}^\dagger c_n+c_n^\dagger c_{n+1})-2h\sum_{n=1}^Nc_nc_n^\dagger-hN\id_\mathcal{H}.\\
+\end{split}
+\end{align}
+
+9. El Hamiltoniano \eqref{eq:hamiltoniano_2} se puede reescribir con la cotransformada de Fourier
+\begin{align}\label{eq:Hamiltoniano_fourier}
+\begin{split}
+H=&-hN\id_\mathcal{H}+\frac{J}{2}\sum_{n=1}^{N}\left(\frac{1}{N}\sum_{p=1}^{N} e^{ik_p(n+1)}\hat{c}_{k_p}^\dagger\sum_{p'=1}^{N} e^{-ik_{p'}n}\hat{c}_{k_{p'}}\right.\\
+&\left.+\frac{1}{N}\sum_{p=1}^{N} e^{ik_pn}\hat{c}_{k_p}^\dagger\sum_{p'=1}^{N} e^{-ik_{p'}(n+1)}\hat{c}_{k_{p'}}\right)\\
+&+2h\sum_{n=1}^N\frac{1}{N}\sum_{p=1}^{N} e^{ik_pn}\hat{c}_{k_p}^\dagger\sum_{p'=1}^{N} e^{-ik_{p'}n}\hat{c}_{k_{p'}}\\
+=&-hN\id_\mathcal{H}+\frac{1}{N}\sum_{n=1}^{N}\sum_{p=1}^{N}\sum_{p'=1}^{N}\left(\frac{J}{2}\left( e^{ik_p(n+1)}\hat{c}_{k_p}^\dagger e^{-ik_{p'}n}\hat{c}_{k_{p'}}\right.\right.\\
+&\left.\left.+e^{ik_pn}\hat{c}_{k_p}^\dagger e^{-ik_{p'}(n+1)}\hat{c}_{k_{p'}}\right)+2h e^{ik_pn}\hat{c}_{k_p}^\dagger e^{-ik_{p'}n}\hat{c}_{k_{p'}}\right)\\
+=&-hN\id_\mathcal{H}+\frac{1}{N}\sum_{n=1}^{N}\sum_{p=1}^{N}\sum_{p'=1}^{N}\left(\frac{J}{2}\left( e^{ik_p} e^{i(k_p-k_{p'})n}\right.\right.\\
+&\left.\left.+e^{i(k_p-k_{p'})n} e^{-ik_{p'}}\right)+2h e^{i(k_p-k_{p'})n} \right)\hat{c}_{k_p}^\dagger\hat{c}_{k_{p'}}\\
+=&-hN\id_\mathcal{H}+\frac{1}{N}\sum_{n=1}^{N}\sum_{p=1}^{N}\sum_{p'=1}^{N}e^{i(k_p-k_{p'})n}\left(\frac{J}{2}\left( e^{ik_p}+ e^{-ik_{p'}}\right)+2h \right)\hat{c}_{k_p}^\dagger\hat{c}_{k_{p'}}\\
+=&-hN\id_\mathcal{H}+\frac{1}{N}\sum_{p=1}^{N}\sum_{p'=1}^{N}N\delta_{k_pk_{p'}}\left(2h+J\cos(k_p) \right)\hat{c}_{k_p}^\dagger\hat{c}_{k_{p'}}\\
+=&-hN\id_\mathcal{H}+\sum_{p=1}^{N}\left(2h+J\cos(k_p) \right)\hat{c}_{k_p}^\dagger\hat{c}_{k_p}
+\end{split}
+\end{align}
+donde se utilizó $k_p:=\flatfrac{2\pi p}{N}$ para todo $p\in\{1,\dots,N\}$.
+
+10. Note que para $p\in\{0,\dots,N\}$
+\begin{align}
+\begin{split}
+H\hat{c}_{k_p}^\dagger\ket{0}=&-hN\hat{c}_{k_p}^\dagger\ket{0}+\sum_{p'=1}^{N}\left(2h+J\cos(k_{p'}) \right)\hat{c}_{k_{p'}}^\dagger\hat{c}_{k_{p'}}\hat{c}_{k_p}^\dagger\ket{0}\\
+=&-hN\hat{c}_{k_p}^\dagger\ket{0}+\sum_{\substack{p'=1\\p'\neq p}}^{N}\left(2h+J\cos(k_{p'}) \right)(-1)^2\hat{c}_{k_p}^\dagger\hat{c}_{k_{p'}}^\dagger\hat{c}_{k_{p'}}\ket{0}\\
+&+\left(2h+J\cos(k_p) \right)\hat{c}_{k_p}^\dagger\hat{c}_{k_p}\hat{c}_{k_p}^\dagger\ket{0}\\
+=&-hN\hat{c}_{k_p}^\dagger\ket{0}+\left(2h+J\cos(k_p) \right)\hat{c}_{k_p}^\dagger(1-\hat{c}_{k_p}^\dagger \hat{c}_{k_p})\ket{0}\\
+=&-hN\hat{c}_{k_p}^\dagger\ket{0}+\left(2h+J\cos(k_p) \right)\hat{c}_{k_p}^\dagger\ket{0}\\
+=&\qty(-hN+2h+J\cos(k_p))\hat{c}_{k_p}^\dagger\ket{0}.\\
+\end{split}
+\end{align}
+Luego la energía propia correspondiente al número de onda $k_p$ es $2h+J\cos(k_p)$.
+
+11. Los vectores propios del operador número de ocupación son aquellos de la forma $\qty(\hat{c}_{k_1}^\dagger)^{n_1}\cdots\qty(\hat{c}_{k_N}^\dagger)^{n_N}\ket{0}$ para $n_1,\dots,n_N\in\mathbb{N}$. Más aún, las relaciones canónicas de anticonmutación aseguran que $n_1,\dots,n_N\in\{0,1\}$ ya que $\qty(\hat{c}_{k_p}^\dagger)^2=0$ para todo $p\in\{1,\dots,N\}$. Para $p\in\{1,\dots,N\}$ se tiene
+\begin{align}
+\begin{split}
+&\hat{c}_{k_p}^\dagger \hat{c}_{k_p}\qty(\hat{c}_{k_1}^\dagger)^{n_1}\cdots\qty(\hat{c}_{k_N}^\dagger)^{n_N}\ket{0}\\
+=&\qty(\hat{c}_{k_1}^\dagger)^{n_1}\cdots\qty(\hat{c}_{k_{p-1}}^\dagger)^{n_{p-1}}\hat{c}_{k_p}^\dagger \hat{c}_{k_p}\qty(\hat{c}_{k_p}^\dagger)^{n_p}\qty(\hat{c}_{k_{p+1}}^\dagger)^{n_{p+1}}\cdots\qty(\hat{c}_{k_N}^\dagger)^{n_N}\ket{0}\\
+=&\qty(\hat{c}_{k_1}^\dagger)^{n_1}\cdots\qty(\hat{c}_{k_{p-1}}^\dagger)^{n_{p-1}}\hat{c}_{k_p}^\dagger\\
+&(1-\hat{c}_{k_p}^\dagger\hat{c}_{k_p})\qty(\hat{c}_{k_p}^\dagger)^{n_p-1}\qty(\hat{c}_{k_{p+1}}^\dagger)^{n_{p+1}}\cdots\qty(\hat{c}_{k_N}^\dagger)^{n_N}\ket{0}\\
+=&\qty(\hat{c}_{k_1}^\dagger)^{n_1}\cdots\qty(\hat{c}_{k_{p-1}}^\dagger)^{n_{p-1}}\hat{c}_{k_p}^\dagger\qty(\hat{c}_{k_p}^\dagger)^{n_p-1}\qty(\hat{c}_{k_{p+1}}^\dagger)^{n_{p+1}}\cdots\qty(\hat{c}_{k_N}^\dagger)^{n_N}\ket{0}\\
+=&\qty(\hat{c}_{k_1}^\dagger)^{n_1}\cdots\qty(\hat{c}_{k_N}^\dagger)^{n_N}\ket{0}
+\end{split}
+\end{align}
+si $n_p=1$ y 
+\begin{align}
+\begin{split}
+&\hat{c}_{k_p}^\dagger \hat{c}_{k_p}\qty(\hat{c}_{k_1}^\dagger)^{n_1}\cdots\qty(\hat{c}_{k_N}^\dagger)^{n_N}\ket{0}\\
+=&\qty(\hat{c}_{k_1}^\dagger)^{n_1}\cdots\qty(\hat{c}_{k_{p-1}}^\dagger)^{n_{p-1}}\hat{c}_{k_p}^\dagger\qty(\hat{c}_{k_{p+1}}^\dagger)^{n_{p+1}}\cdots\qty(\hat{c}_{k_N}^\dagger)^{n_N}\hat{c}_{k_p}\ket{0}=0\\
+\end{split}
+\end{align}
+si $n_p=0$. Luego los valores propios del operador número de ocupación son $0$ o $1$ como es de esperarse para fermiones. Al notar que los vectores propios de el operador número de ocupación son los del Hamiltoniano por la expresión \eqref{eq:Hamiltoniano_fourier} se tiene
+\begin{align}
+\begin{split}
+Z(\beta)=&\tr(e^{-\beta H})=\sum_{n_1=0}^1\cdots\sum_{n_N=0}^1\exp(\beta hN-\beta\sum_{p=1}^N(2h+J\cos{k_p})n_p)\\
+=&e^{\beta hN}\sum_{n_1=0}^1\cdots\sum_{n_N=0}^1\prod_{p=1}^Ne^{-\beta(2h+J\cos{k_p})n_p}\\
+=&e^{\beta hN}\prod_{p=1}^N\sum_{n=0}^1e^{-\beta(2h+J\cos{k_p})n}=e^{\beta hN}\prod_{p=1}^N\qty(1+e^{-\beta(2h+J\cos{k_p})})
+\end{split}
+\end{align}
+
+12. Se tiene que la energía libre por spin del sistema es
+\begin{align}
+\begin{split}
+f(\beta):=&-\frac{1}{\beta N}\ln(Z(\beta))=-\frac{1}{\beta N}\qty(\beta hN+\sum_{p=1}^N\ln(1+e^{-\beta(2h+J\cos{k_p})}))\\
+=&-h-\frac{1}{\beta N}\sum_{p=1}^N\ln(1+e^{-\beta(2h+J\cos{k_p})}).
+\end{split}
+\end{align}
+En el límite termodinámico se tiene la densidad de estados
+\begin{equation}
+\frac{1}{N}\sum_{p=1}^N\rightarrow\int\frac{dk}{2\pi}.
+\end{equation}
+Se concluye entonces
+\begin{equation}
+f(\beta)=-h-k_B T\int \ln(1+e^{-\beta(2h+J\cos{k})})\frac{dk}{2\pi}.
+\end{equation}
+\end{document}

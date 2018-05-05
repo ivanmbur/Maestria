@@ -1,0 +1,594 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{physics}
+\usepackage{amssymb}
+
+\DeclareMathOperator{\id}{id}
+
+\author{Iván Mauricio Burbano Aldana\\Universidad de los Andes}
+\title{Mecánica Estadística\\Tarea 2: Mecánica Estadística Cuántica}
+
+\begin{document}
+
+\maketitle
+
+\section*{Límite clásico y efectos de intercambio}
+
+1. Por definición del operador de momento tenemos la ecuación diferencial
+\begin{equation}
+-i\hbar\grad{\ip{\vb{r}}{\vb{p}}}=\mel{\vb{r}}{\hat{\vb{p}}}{\vb{p}}=\vb{p}\ip{\vb{r}}{\vb{p}}.
+\end{equation}
+Entonces a los largo de un camino $\gamma$ que empieza en $\vb{r}_1$ y termina en $\vb{r}_2$ se tiene
+\begin{equation}
+\frac{i}{\hbar}\vb{p}\vdot(\vb{r}_2-\vb{r}_1)=\int_\gamma\frac{1}{\ip{\vb{r}}{\vb{p}}}\grad{\ip{\vb{r}}{\vb{p}}}\vdot d\vb{r}=\int_\gamma\grad(\ln{\ip{\vb{r}}{\vb{p}}})\vdot d\vb{r}=\ln(\frac{\ip{\vb{r}_2}{\vb{p}}}{\ip{\vb{r}_1}{\vb{p}}}).
+\end{equation}
+Se concluye que existe una constante $A\in\mathbb{C}$ tal que
+\begin{equation}
+\ip{\vb{r}}{\vb{p}}=Ae^{i\vb{p}\vdot\vb{r}/\hbar}
+\end{equation}
+Nuestra convención de normalización exige que para todo $\vb{p}\in\mathbb{R}^3$
+\begin{equation}
+\ket{\vb{p}}=\int \frac{d^3{\vb{p}'}}{h}\ket{\vb{p}'}\ip{\vb{p}'}{\vb{p}}.
+\end{equation}
+Por lo tanto $\ip{\vb{p}'}{\vb{p}}=h\delta(\vb{p}'-\vb{p})$. Se concluye que
+\begin{align}
+\begin{split}
+1&=\int \frac{d^3\vb{p}'}{h}\ip{\vb{p}'}{\vb{p}}=\int \frac{d^3\vb{p}'}{h}\bra{\vb{p}'}\int d^3\vb{r}\ket{\vb{r}}\ip{\vb{r}}{\vb{p}}=\int d^3\vb{r}\frac{d^3\vb{p}'}{h}\bra{\vb{p}'}\ket{\vb{r}}\ip{\vb{r}}{\vb{p}}\\
+&=\int d^3\vb{r}\frac{d^3\vb{p}'}{h}|A|^2e^{-i\vb{p}'\vdot\vb{r}/\hbar}e^{i\vb{p}\vdot\vb{r}/\hbar}=\int d^3\vb{p}'\frac{d^3\vb{r}}{h}|A|^2e^{2\pi i(\vb{p}-\vb{p}')\vdot\vb{r}/h}\\
+&=2\pi|A|^2\int d^3\vb{p}'\delta(2\pi(\vb{p}-\vb{p}'))=|A|^2.
+\end{split}
+\end{align}
+Por lo tanto podemos escoger $A=1$ y tenemos
+\begin{equation}
+\ip{\vb{r}}{\vb{p}}=e^{i\vb{p}\vdot\vb{r}/\hbar}.
+\end{equation}
+
+2. Tomando la traza en el espacio simetrizado o antisimetrizado tenemos 
+
+\begin{align}
+\begin{split}
+Z&=\frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N{}^{S,A}\bra{\vb{r}_{1},\dots,\vb{r}_{N}}e^{-\beta H}\ket{\vb{r}_{1},\dots,\vb{r}_{N}}^{S,A}\\
+&=\frac{1}{N!^2}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{\sigma\in S_N}\sum_{\sigma'\in S_N}\epsilon(\sigma)\epsilon(\sigma')\\
+&\mel{\vb{r}_{\sigma(1)},\dots,\vb{r}_{\sigma(N)}}{e^{-\beta H}}{\vb{r}_{\sigma'(1)},\dots,\vb{r}_{\sigma'(N)}}.
+\end{split}
+\end{align}
+Recordando que en un grupo la multiplicación por un elemento es una biyección podemos cambiar la suma por
+\begin{align}
+\begin{split}
+Z&=\frac{1}{N!^2}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{\sigma\in S_N}\sum_{\sigma'\in S_N}\epsilon(\sigma\circ\sigma'^{-1})\epsilon(\sigma'\circ\sigma'^{-1})\\
+&\mel{\vb{r}_{\sigma\circ\sigma'^{-1}(1)},\dots,\vb{r}_{\sigma\circ\sigma'^{-1}(N)}}{e^{-\beta H}}{\vb{r}_{\sigma'\circ\sigma'^{-1}(1)},\dots,\vb{r}_{\sigma'\circ\sigma'^{-1}(N)}}\\
+&=\frac{1}{N!^2}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{\sigma\in S_N}\sum_{\sigma'\in S_N}\
+\epsilon(\sigma)\\
+&\mel{\vb{r}_{\sigma(1)},\dots,\vb{r}_{\sigma(N)}}{e^{-\beta H}}{\vb{r}_{1},\dots,\vb{r}_{N}}\\
+&=\frac{N!}{N!^2}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{\sigma\in S_N}
+\epsilon(\sigma)\mel{\vb{r}_{\sigma(1)},\dots,\vb{r}_{\sigma(N)}}{e^{-\beta H}}{\vb{r}_{1},\dots,\vb{r}_{N}}\\
+&=\frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{\sigma\in S_N}
+\epsilon(\sigma)\mel{\vb{r}_{\sigma(1)},\dots,\vb{r}_{\sigma(N)}}{e^{-\beta H}}{\vb{r}_{1},\dots,\vb{r}_{N}}.
+\end{split}
+\end{align}
+
+3. Podemos aplicar la fórmula de Baker-Campbell-Hausdorff de manera truncada pues los terminos superiores dependen de potencias del operador de momento y por lo tanto de $\hbar$. En efecto
+\begin{align}
+\begin{split}
+&\exp(-\beta\sum_{j=1}^N\frac{\hat{\vb{p}}_j^2}{2m})\exp(-\beta V(\hat{\vb{r}}_1,\dots,\hat{\vb{r}}_N))\\
+&=\exp \left(-\beta\sum_{j=1}^N\frac{\hat{\vb{p}}_j^2}{2m}-\beta V(\hat{\vb{r}}_1,\dots,\hat{\vb{r}}_N)\right.\\
+&\left.+\frac{1}{2}\qty[-\beta\sum_{j=1}^N\frac{\hat{\vb{p}}_j^2}{2m},-\beta V(\hat{\vb{r}}_1,\dots,\hat{\vb{r}}_N)]+\cdots\right)\\
+&=\exp \left(-\beta\qty(\sum_{j=1}^N\frac{\hat{\vb{p}}_j^2}{2m}+ V(\hat{\vb{r}}_1,\dots,\hat{\vb{r}}_N)) \right.\\
+&\left.+\frac{\beta^2\hbar^2}{4m}\sum_{j=1}^N\qty[\Delta_j^2, V(\hat{\vb{r}}_1,\dots,\hat{\vb{r}}_N)]+\mathcal{O}(\hbar^4)\right)\\
+&=\exp(-\beta\hat{H}+\mathcal{O}(\hbar^2))\cong e^{-\beta\hat{H}}\\
+\end{split}
+\end{align}
+en el límite clásico, es decir, $\hbar\rightarrow 0
+$.
+
+4. Tenemos en la aproximación clásica
+\begin{align}
+\begin{split}
+Z&=\frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{\sigma\in S_N}\epsilon(\sigma)\\
+&\mel{\vb{r}_{\sigma(1)},\dots,\vb{r}_{\sigma(N)}}{\exp(-\beta\sum_{j=1}^N\frac{\hat{\vb{p}}_j^2}{2m})\exp(-\beta V(\hat{\vb{r}}_1,\dots,\hat{\vb{r}}_N))}{\vb{r}_{1},\dots,\vb{r}_{N}}\\
+&=\frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{\sigma\in S_N}\epsilon(\sigma)\exp(-\beta V(\vb{r}_1,\dots,\vb{r}_N))\\
+&\mel{\vb{r}_{\sigma(1)},\dots,\vb{r}_{\sigma(N)}}{\exp(-\beta\sum_{j=1}^N\frac{\hat{\vb{p}}_j^2}{2m})}{\vb{r}_{1},\dots,\vb{r}_{N}}\\
+&=\frac{1}{N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N\sum_{\sigma\in S_N}\epsilon(\sigma)\exp(-\beta V(\vb{r}_1,\dots,\vb{r}_N))\\
+&\bra{\vb{r}_{\sigma(1)},\dots,\vb{r}_{\sigma(N)}}\exp(-\beta\sum_{j=1}^N\frac{\hat{\vb{p}}_j^2}{2m})\\
+&\int \frac{d^3\vb{p}_1\cdots d^3\vb{p}_N}{h^{3N}}\ket{\vb{p}_{1},\dots,\vb{p}_{N}}\ip{\vb{p}_{1},\dots,\vb{p}_{N}}{\vb{r}_{1},\dots,\vb{r}_{N}}\\
+&=\frac{1}{h^{3N}N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N d^3\vb{p}_1\cdots d^3\vb{p}_N\sum_{\sigma\in S_N}\epsilon(\sigma)\\
+&\exp(-\beta V(\vb{r}_1,\dots,\vb{r}_N))\exp(-\beta\sum_{j=1}^N\frac{\vb{p}_j^2}{2m})\bra{\vb{r}_{\sigma(1)},\dots,\vb{r}_{\sigma(N)}}\ket{\vb{p}_{1},\dots,\vb{p}_{N}}\\
+&\ip{\vb{p}_{1},\dots,\vb{p}_{N}}{\vb{r}_{1},\dots,\vb{r}_{N}}\\
+&=\frac{1}{h^{3N}N!}\sum_{\sigma\in S_N}\epsilon(\sigma)\int d^3\vb{r}_1\cdots d^3\vb{r}_N d^3\vb{p}_1\cdots d^3\vb{p}_Ne^{-\beta H_{\text{clas}}}\\
+&\ip{\vb{r}_{\sigma(1)},\dots,\vb{r}_{\sigma(N)}}{\vb{p}_{1},\dots,\vb{p}_{N}}\ip{\vb{p}_{1},\dots,\vb{p}_{N}}{\vb{r}_{1},\dots,\vb{r}_{N}}\\
+&=\frac{1}{h^{3N}N!}\sum_{\sigma\in S_N}\epsilon(\sigma)\int d^3\vb{r}_1\cdots d^3\vb{r}_N d^3\vb{p}_1\cdots d^3\vb{p}_Ne^{-\beta H_{\text{clas}}}\\
+&\prod_{n=1}^Ne^{i\vb{p}_n\vdot\vb{r}_{\sigma(n)}/\hbar}\prod_{m=1}^Ne^{-i\vb{p}_m\vdot\vb{r}_m/\hbar}\\
+&=\frac{1}{h^{3N}N!}\sum_{\sigma\in S_N}\epsilon(\sigma)\int d^3\vb{r}_1\cdots d^3\vb{r}_N d^3\vb{p}_1\cdots d^3\vb{p}_Ne^{-\beta H_{\text{clas}}}\\
+&\exp(-i\sum_{n=1}^N\qty(\vb{p}_n\vdot(\vb{r}_m-\vb{r}_{\sigma(n)}))/\hbar)\\
+\end{split}
+\end{align}
+
+5. 
+
+\begin{align}
+\begin{split}
+Z&=\frac{1}{h^{3N}N!}\sum_{\sigma\in S_N}\epsilon(\sigma)\int d^3\vb{r}_1\cdots d^3\vb{r}_N d^3\vb{p}_1\cdots d^3\vb{p}_Ne^{-\beta H_{\text{clas}}}\\
+&\exp(-i\sum_{n=1}^N\vb{p}_n\vdot\qty(\vb{r}_n-\vb{r}_{\sigma(n)})/\hbar)\\
+&=\frac{1}{h^{3N}N!}\sum_{\sigma\in S_N}\epsilon(\sigma)\int d^3\vb{r}_1\cdots d^3\vb{r}_N d^3\vb{p}_1\cdots d^3\vb{p}_Ne^{-\beta V(\vb{r}_1,\dots,\vb{r}_N)}\\
+&\exp(\sum_{n=1}^N\qty(-\beta\frac{\vb{p}_n^2}{2m}-i\vb{p}_n\vdot\qty(\vb{r}_n-\vb{r}_{\sigma(n)})/\hbar))\\
+&=\frac{1}{h^{3N}N!}\sum_{\sigma\in S_N}\epsilon(\sigma)\int d^3\vb{r}_1\cdots d^3\vb{r}_N d^3\vb{p}_1\cdots d^3\vb{p}_Ne^{-\beta V(\vb{r}_1,\dots,\vb{r}_N)}\\
+&\prod_{n=1}^N\prod_{j=1}^3\exp(-\beta\frac{(\vb{p}_n)_j^2}{2m}-i(\vb{p}_n)_j\qty((\vb{r}_n)_j-(\vb{r}_{\sigma(n)})_j)/\hbar)\\
+&=\frac{1}{h^{3N}N!}\sum_{\sigma\in S_N}\epsilon(\sigma)\int d^3\vb{r}_1\cdots d^3\vb{r}_N e^{-\beta V(\vb{r}_1,\dots,\vb{r}_N)}\\
+&\prod_{n=1}^N\prod_{j=1}^3\int du\exp(-\beta\frac{u^2}{2m}-iu\qty((\vb{r}_n)_j-(\vb{r}_{\sigma(n)})_j)/\hbar)\\
+&=\frac{1}{h^{3N}N!}\sum_{\sigma\in S_N}\epsilon(\sigma)\int d^3\vb{r}_1\cdots d^3\vb{r}_N e^{-\beta V(\vb{r}_1,\dots,\vb{r}_N)}\\
+&\prod_{n=1}^N\prod_{j=1}^3\sqrt{\frac{2m\pi}{\beta}}\exp(-\frac{m((\vb{r}_n)_j-(\vb{r}_{\sigma(n)})_j)^2}{2\beta\hbar^2})\\
+&=\frac{1}{h^{3N}N!}\sum_{\sigma\in S_N}\epsilon(\sigma)\int d^3\vb{r}_1\cdots d^3\vb{r}_N e^{-\beta V(\vb{r}_1,\dots,\vb{r}_N)}\\
+&\qty(\frac{h}{\lambda})^{3N}\exp(-\frac{\pi}{\lambda^2}\sum_{n=1}^N(\vb{r}_n-\vb{r}_{\sigma(n)})^2)\\
+&=\frac{1}{\lambda^{3N}N!}\sum_{\sigma\in S_N}\epsilon(\sigma)\int d^3\vb{r}_1\cdots d^3\vb{r}_N e^{-\beta V(\vb{r}_1,\dots,\vb{r}_N)}e^{-\frac{\pi}{\lambda^2}\sum_{n=1}^N(\vb{r}_n-\vb{r}_{\sigma(n)})^2}.
+\end{split}
+\end{align}
+
+6. Vemos que el término en la suma que corresponde a la premutación $\id_{\{1,\dots,n\}}$ hace que
+\begin{align}
+\begin{split}
+Z&=\frac{1}{\lambda^{3N}N!}\epsilon(\id_{\{1,\dots,n\}})\int d^3\vb{r}_1\cdots d^3\vb{r}_N e^{-\beta V(\vb{r}_1,\dots,\vb{r}_N)}\\
+&e^{-\frac{\pi}{\lambda^2}\sum_{n=1}^N(\vb{r}_n-\vb{r}_{\id_{\{1,\dots,n\}}(n)})^2}\\
+&=\frac{1}{\lambda^{3N}N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N e^{-\beta V(\vb{r}_1,\dots,\vb{r}_N)}e^{-\frac{\pi}{\lambda^2}\sum_{n=1}^N(\vb{r}_n-\vb{r}_n)^2}\\
+&=\frac{1}{\lambda^{3N}N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N e^{-\beta V(\vb{r}_1,\dots,\vb{r}_N)}.
+\end{split}
+\end{align}
+lo cual corresponde a la función de partición clásica.
+
+7. Recordemos que el significado físico de la longitud de onda termal de Broglie $\lambda$ es la de el tamaño promedio de la función de onda de una partícula en nuestro sistema. Los efectos de intercambio solo deberían ser notables entre partículas cuyas funciones de onda se encuentran superpuestas. Por lo tanto se espera que solo aporten a este efecto las partículas que esten más cercanas. En el límite clásico $\lambda\rightarrow 0$ se tiene que eventualmente la distancia media entre partículas se va a hacer mucho mayor que $\lambda$. Esto significa que si $i\neq j$ e $i,j\in\{1,\dots,n\}$ entonces
+\begin{equation}
+\frac{\|\vb{r}_i-\vb{r}_j\|}{\lambda}\gg 1.
+\end{equation}
+Definiendo $S_N|_m=\{\sigma\in S_N||\{k\in\{1,\dots,N\}|\sigma(k)\neq k\}|=m\}$ para $m\in\{1,\dots,n\}$ vemos que forman una familia disjunta cuya union es $S_N$. Luego 
+\begin{align}
+\begin{split}
+Z&=\frac{1}{\lambda^{3N}N!}\sum_{\sigma\in S_N}\epsilon(\sigma)\int d^3\vb{r}_1\cdots d^3\vb{r}_N e^{-\beta V(\vb{r}_1,\dots,\vb{r}_N)}e^{-\frac{\pi}{\lambda^2}\sum_{n=1}^N(\vb{r}_n-\vb{r}_{\sigma(n)})^2}\\
+&=\frac{1}{\lambda^{3N}N!}\sum_{m=1}^N\sum_{\sigma\in S_N|_m}\epsilon(\sigma)\int d^3\vb{r}_1\cdots d^3\vb{r}_N e^{-\beta V(\vb{r}_1,\dots,\vb{r}_N)}\\
+&e^{-\frac{\pi}{\lambda^2}\sum_{n=1}^N(\vb{r}_n-\vb{r}_{\sigma(n)})^2}.
+\end{split}
+\end{align}
+Ahora bien, es claro que a medida que aumenta $m$ se tiene que 
+\begin{equation}
+\sum_{n=1}^N(\vb{r}_n-\vb{r}_{\sigma(n)})^2/\lambda^2
+\end{equation}
+con $\sigma\in S_N|_m$ aumenta pues el número de $n\in\{1,\dots,n\}$ tal que $n\neq\sigma(n)$ aumenta. Por lo tanto, a medida que aumenta $m$ se tiene que el termino
+\begin{equation}
+\sum_{\sigma\in S_N|_m}\epsilon(\sigma)e^{-\frac{\pi}{\lambda^2}\sum_{n=1}^N(\vb{r}_n-\vb{r}_{\sigma(n)})^2}
+\end{equation}
+disminuye. Por lo tanto, si se quieren estudiar las primeras correcciones cuánticas se puede empezar considerando $m\in\{0,1,2\}$, es decir, las permutaciones de 2 partículas.
+
+8. En tal caso tenemos notando que para transposiciones $\sigma$ se tiene $\epsilon(\sigma)=1$ para bosones y $-1$ para fermiones y que $S_N|_1=\varnothing$, y denotando $k_\sigma=\max\{n\in\{1,\dots,N\}|\sigma(n)\neq n\}$ para todo $\sigma\in S_N|_2$
+\begin{align}
+\begin{split}
+Z&=\frac{1}{\lambda^{3N}N!}\sum_{m=0}^2\sum_{\sigma\in S_N|_m}\epsilon(\sigma)\int d^3\vb{r}_1\cdots d^3\vb{r}_N e^{-\beta V(\vb{r}_1,\dots,\vb{r}_N)}\\
+&e^{-\frac{\pi}{\lambda^2}\sum_{n=1}^N(\vb{r}_n-\vb{r}_{\sigma(n)})^2}\\
+&=\frac{1}{\lambda^{3N}N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N e^{-\beta V(\vb{r}_1,\dots,\vb{r}_N)}\\
+&\qty(1\pm\sum_{\sigma\in S_N|_2}e^{-\frac{\pi}{\lambda^2}\sum_{n=1}^N(\vb{r}_n-\vb{r}_{\sigma(n)})^2})\\
+&=\frac{1}{\lambda^{3N}N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N e^{-\beta V(\vb{r}_1,\dots,\vb{r}_N)}\\
+&\qty(1\pm\sum_{\sigma\in S_N|_2} e^{-\frac{2\pi}{\lambda^2}(\vb{r}_{k_\sigma}-\vb{r}_{\sigma(k_\sigma)})^2})\\
+&=\frac{1}{\lambda^{3N}N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N e^{-\beta V(\vb{r}_1,\dots,\vb{r}_N)}\qty(1\pm\sum_{i=1}^N\sum_{\overset{j=1}{j<i}}^N e^{-\frac{2\pi}{\lambda^2}(\vb{r}_i-\vb{r}_j)^2})\\
+&=\frac{1}{\lambda^{3N}N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N e^{-\beta V(\vb{r}_1,\dots,\vb{r}_N)}\\
+&\qty(1-\sum_{i=1}^N\sum_{\overset{j=1}{j<i}}^N \beta v_{\text{exch}}(\|\vb{r}_i-\vb{r}_j\|))\\
+\end{split}
+\end{align}
+Donde $\beta v_{\text{exch}}(r)=\pm e^{-2\pi r^2/\lambda^2}$ con $+$ para fermiones y $-$ para bosones. En la aproximación $\lambda\rightarrow 0$ el punto anterior justifica que $v_{\text{exch}}(\|\vb{r}_i-\vb{r}_j\|)$ es muy pequeño. Por lo tanto podemos hacer la aproximación
+\begin{equation}
+1-\sum_{i=1}^N\sum_{\overset{j=1}{j<i}}^N \beta v_{\text{exch}}(\|\vb{r}_i-\vb{r}_j\|)\cong e^{-\sum_{i=1}^N\sum_{\overset{j=1}{j<i}}^N \beta v_{\text{exch}}(\|\vb{r}_i-\vb{r}_j\|)}.
+\end{equation}
+Concluimos que 
+\begin{equation}
+Z=\frac{1}{\lambda^{3N}N!}\int d^3\vb{r}_1\cdots d^3\vb{r}_N e^{-\beta \qty(V(\vb{r}_1,\dots,\vb{r}_N)+\sum_{i=1}^N\sum_{\overset{j=1}{j<i}}^N v_{\text{exch}}(\|\vb{r}_i-\vb{r}_j\|))}.
+\end{equation}
+
+9. Dado que es exponencial, nuestras experiencias con profundidades de piel en electromagnetismo o del estudio de la interacción de Yukawa hacen natural caracterizar el alcance con el factor que hace adimensional el exponente. Concluimos entonces que el alcance es del orden de $\lambda/\sqrt{\pi}$.
+
+10. El principio de exclusión de Pauli garantiza que dos fermiones no se pueden encontrar en el mismo estado. En la aproximación clásica, el potential de intercambio es un potencial repelente para fermiones (gracias al signo positivo) que nos permite modelar tal repulsión cuántica de manera clásica.  
+
+\section*{Formalismo de la segunda cuantización}
+
+1. Se tiene que
+\begin{align}
+\begin{split}
+\hat{N}&=\sum_\alpha a^\dagger_\alpha a_\alpha=\sum_\alpha \sum_\beta a^\dagger_\alpha a_\beta\delta_{\alpha\beta}=\sum_\alpha \sum_\beta a^\dagger_\alpha a_\beta\int d^3\vb{r}\phi^*_\alpha(\vb{r})\phi_\beta(\vb{r})\\
+&=\int d^3\vb{r}\sum_\alpha \phi_\alpha^*(\vb{r})a_\alpha^\dagger\sum_\beta\phi_\beta(\vb{r})a_\beta=\int d^3\vb{r}\psi^\dagger (\vb{r})\psi(\vb{r}).
+\end{split}
+\end{align}
+
+2. Para bosones 
+\begin{align}
+\begin{split}
+[\psi(\vb{r}),\hat{N}]&=\psi(\vb{r})\hat{N}-\hat{N}\psi(\vb{r})=\psi(\vb{r})\hat{N}-\int d^3\vb{r}'\psi^\dagger(\vb{r}')\psi(\vb{r}')\psi(\vb{r})\\
+&=\psi(\vb{r})\hat{N}-\int d^3\vb{r}'\psi^\dagger(\vb{r}')\psi(\vb{r})\psi(\vb{r}')\\
+&=\psi(\vb{r})\hat{N}-\int d^3\vb{r}'(\psi(\vb{r})\psi^\dagger(\vb{r}')-\delta(\vb{r}-\vb{r}'))\psi(\vb{r}')\\
+&=\psi(\vb{r})\hat{N}-\psi(\vb{r})\hat{N}+\psi(\vb{r})=\psi(\vb{r})
+\end{split}
+\end{align}
+y
+\begin{align}
+\begin{split}
+[\psi^\dagger(\vb{r}),\hat{N}]&=\psi^\dagger(\vb{r})\hat{N}-\hat{N}\psi^\dagger(\vb{r})=\psi^\dagger(\vb{r})\hat{N}-\int d^3\vb{r}'\psi^\dagger(\vb{r}')\psi(\vb{r}')\psi^\dagger(\vb{r})\\
+&=\psi^\dagger(\vb{r})\hat{N}-\int d^3\vb{r}'\psi^\dagger(\vb{r}')(\psi^\dagger(\vb{r})\psi(\vb{r}')+\delta(\vb{r}'-\vb{r}))\\
+&=\psi^\dagger(\vb{r})\hat{N}-\psi^\dagger(\vb{r})\hat{N}-\psi^\dagger(\vb{r})=-\psi^\dagger(\vb{r}).
+\end{split}
+\end{align}
+Para fermiones se tiene
+\begin{align}
+\begin{split}
+[\psi(\vb{r}),\hat{N}]&=\psi(\vb{r})\hat{N}-\hat{N}\psi(\vb{r})=\psi(\vb{r})\hat{N}-\int d^3\vb{r}'\psi^\dagger(\vb{r}')\psi(\vb{r}')\psi(\vb{r})\\
+&=\psi(\vb{r})\hat{N}+\int d^3\vb{r}'\psi^\dagger(\vb{r}')\psi(\vb{r})\psi(\vb{r}')\\
+&=\psi(\vb{r})\hat{N}+\int d^3\vb{r}'(-\psi(\vb{r})\psi^\dagger(\vb{r}')+\delta(\vb{r}-\vb{r}'))\psi(\vb{r}')\\
+&=\psi(\vb{r})\hat{N}-\psi(\vb{r})\hat{N}+\psi(\vb{r})=\psi(\vb{r})
+\end{split}
+\end{align}
+y
+\begin{align}
+\begin{split}
+[\psi^\dagger(\vb{r}),\hat{N}]&=\psi^\dagger(\vb{r})\hat{N}-\hat{N}\psi^\dagger(\vb{r})=\psi^\dagger(\vb{r})\hat{N}-\int d^3\vb{r}'\psi^\dagger(\vb{r}')\psi(\vb{r}')\psi^\dagger(\vb{r})\\
+&=\psi^\dagger(\vb{r})\hat{N}-\int d^3\vb{r}'\psi^\dagger(\vb{r}')(-\psi^\dagger(\vb{r})\psi(\vb{r}')+\delta(\vb{r}'-\vb{r}))\\
+&=\psi^\dagger(\vb{r})\hat{N}+\int d^3\vb{r}'\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r})\psi(\vb{r}')-\psi^\dagger(\vb{r})\\
+&=\psi^\dagger(\vb{r})\hat{N}- \psi^\dagger(\vb{r})\int d^3\vb{r}'\psi^\dagger(\vb{r'})\psi(\vb{r}')-\psi^\dagger(\vb{r})\\
+&=\psi^\dagger(\vb{r})\hat{N}-\psi^\dagger(\vb{r})\hat{N}-\psi^\dagger(\vb{r})=-\psi^\dagger(\vb{r}).
+\end{split}
+\end{align}
+
+3. Se tiene
+\begin{align}
+\begin{split}
+\hat{N}\psi(\vb{r})\ket{E,N}&=(\psi(\vb{r})\hat{N}-\psi(\vb{r}))\ket{E,N}=(\psi(\vb{r})N-\psi(\vb{r}))\ket{E,N}\\
+&=(N-1)\psi(\vb{r})\ket{E,N}.
+\end{split}
+\end{align}
+Se concluye que $\psi(\vb{r})\ket{E,N}$ corresponde a un estado con un número definitivo de $N-1$ partículas. De manera análoga
+\begin{align}
+\begin{split}
+\hat{N}\psi^\dagger(\vb{r})\ket{E,N}&=(\psi^\dagger(\vb{r})\hat{N}+\psi^\dagger(\vb{r}))\ket{E,N}=(\psi^\dagger(\vb{r})N+\psi^\dagger(\vb{r}))\ket{E,N}\\
+&=(N+1)\psi^\dagger(\vb{r})\ket{E,N}.
+\end{split}
+\end{align}
+Se concluye que $\psi^\dagger(\vb{r})\ket{E,N}$ corresponde a un estado con un número definitivo de $N+1$ partículas.
+
+4. Siguiendo a Altland y Simons considere un operador $o$ que actua sobre el espacio de Hilbert de una partícula y el operador $O=\sum_i o_i$ que actua sobre el espacio de Fock, donde $o_i=\id_\mathcal{H}\otimes\id_\mathcal{H}\otimes\cdots\otimes o \otimes\id_\mathcal{H}\otimes\cdots$. Suponga aún más que $o$ admite $\{\ket{\lambda}\}$ un conjunto contable completo ortogonal de vectores propios con valores propios $o_\lambda$. Entonces se tiene
+\begin{align}
+\begin{split}
+\mel{n'_{\lambda_1},n'_{\lambda_2},\dots}{O}{n_{\lambda_1},n_{\lambda_2},\dots}&=\sum_i o_{\lambda_i}n_{\lambda_i}\ip{n'_{\lambda_1},n'_{\lambda_2},\dots}{n_{\lambda_1},n_{\lambda_2},\dots}\\
+&=\mel{n'_{\lambda_1},n'_{\lambda_2},\dots}{\sum_i o_{\lambda_i}\hat{n}_{\lambda_i}}{n_{\lambda_1},n_{\lambda_2},\dots}
+\end{split}
+\end{align}
+concluyendo
+\begin{equation}
+O=\sum_\lambda o_{\lambda}\hat{n}_{\lambda}=\sum_\lambda o_{\lambda}a_{\lambda}^\dagger a_\lambda =\sum_\lambda \ev{o}{\lambda}a_{\lambda}^\dagger a_{\lambda}.
+\end{equation}
+Ahora bien, si $\ket{\mu}$ es una base arbitraria, se tiene que 
+\begin{equation}
+a_\mu^\dagger\ket{0}=\ket{\mu}=\sum_\lambda \ip{\lambda}{\mu}\ket{\lambda}=\sum_\lambda\ip{\lambda}{\mu}a_\lambda^\dagger\ket{0}
+\end{equation}
+de lo que se obtiene que 
+\begin{equation}
+a_\mu^\dagger=\sum_\lambda\ip{\lambda}{\mu}a_\lambda^\dagger.
+\end{equation}
+Por lo tanto, en una base arbitraria
+\begin{align}
+\begin{split}
+O&=\sum_{\lambda\lambda'} \mel{\lambda'}{o}{\lambda}a_{\lambda'}^\dagger a_{\lambda}=\sum_{\mu,\mu'}\sum_{\lambda\lambda'}\ip{\lambda'}{\mu}\mel{\mu}{o}{\mu'}\ip{\mu'}{\lambda}a_{\lambda'}^\dagger a_{\lambda}\\
+&=\sum_{\mu,\mu'}\mel{\mu}{o}{\mu'}a_{\mu}^\dagger a_{\mu'}.
+\end{split}
+\end{align}
+Ahora, podemos introducir los operadores de campo
+\begin{align}
+\begin{split}
+O&=\int d^3\vb{r}d^3\vb{r}'\sum_{\mu,\mu'}\ip{\mu}{\vb{r}}\mel{\vb{r}}{o}{\vb{r}'}\ip{\vb{r}'}{\mu'}a_{\mu}^\dagger a_{\mu'}\\
+&=\int d^3\vb{r}d^3\vb{r}'\sum_{\mu,\mu'}\phi_\mu^*(\vb{r})\mel{\vb{r}}{o}{\vb{r}'}\phi_{\mu'}(\vb{r}')a_{\mu}^\dagger a_{\mu'}\\
+&=\int d^3\vb{r}d^3\vb{r}'\psi^\dagger(\vb{r})\mel{\vb{r}}{o}{\vb{r}'}\psi(\vb{r'}).\\
+\end{split}
+\end{align}
+En nuestro caso particular se tiene
+\begin{align}
+\begin{split}
+\sum_i\frac{\vb{p}_i^2}{2m}+\sum_i u(\vb{r}_i)&=\int d^3\vb{r}d^3\vb{r}'\psi^\dagger(\vb{r})\mel{\vb{r}}{\qty(\frac{\vb{p}^2}{2m}+u(\vb{r}'))}{\vb{r}'}\psi(\vb{r'})\\
+&=\int d^3\vb{r}d^3\vb{r}'\psi^\dagger(\vb{r})\qty(\frac{-\hbar^2}{2m}\Delta_{'}+u(\vb{r}'))\delta(\vb{r}-\vb{r}')\psi(\vb{r'})\\
+&=\int d^3\vb{r}\psi^\dagger(\vb{r})\qty(\frac{-\hbar^2}{2m}\Delta+u(\vb{r}))\psi(\vb{r}).
+\end{split}
+\end{align}
+
+Para un operador de dos cuerpos que es sumado sobre todas las posibles combinaciones tenemos una fórmula similar. En efecto, note que un sistema de dos cuerpos puede ser visto como un sistema de un cuerpo con un espacio de Hilbert generado por productos tensoriales. Luego si $\{\ket{\lambda}\}$ es una base para el espacio de un cuerpo, $\{\ket{\lambda,\lambda'}\}$ es una base para el espacio de dos. Es fácil convenserse entonces que el operador de creación es $a_{\lambda,\lambda'}^\dagger=a_\lambda^\dagger a_{\lambda'}^\dagger$. Entonces extendemos nuestro resultado previo de manera obvia para un operador $O=\frac{1}{2}\sum_{i,j}o_{i,j}$ donde $o$ es un operador en el espacio de dos partículas
+\begin{equation}
+O=\sum_{\lambda,\lambda',\lambda'',\lambda'''}\mel{\lambda\lambda'}{o}{\lambda''\lambda'''}a_{\lambda}^\dagger a_{\lambda'}^\dagger a_{\lambda''}a_{\lambda '''}
+\end{equation}
+Introduciendo los operadores de campo tenemos
+\begin{align}
+\begin{split}
+O=&\int d^3\vb{r}d^3\vb{r}'d^3\vb{r}''d^3\vb{r}'''\sum_{\lambda,\lambda',\lambda'',\lambda'''}\\
+&\ip{\lambda\lambda'}{\vb{r}\vb{r}'}\mel{\vb{r}\vb{r}'}{o}{\vb{r}''\vb{r}'''}\ip{\vb{r}''\vb{r}'''}{\lambda''\lambda'''}a_{\lambda}^\dagger a_{\lambda'}^\dagger a_{\lambda''}a_{\lambda '''}\\
+=&\int d^3\vb{r}d^3\vb{r}'d^3\vb{r}''d^3\vb{r}'''\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')\mel{\vb{r}\vb{r}'}{o}{\vb{r}''\vb{r}'''}\psi(\vb{r}'')\psi(\vb{r}''')\\
+=&\int d^3\vb{r}d^3\vb{r}'\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')o\psi(\vb{r}')\psi(\vb{r})\\
+\end{split}
+\end{align}
+
+Se concluye que el Hamiltoniano es
+\begin{align}
+\begin{split}
+H&=-\frac{\hbar^2}{2m}\int d^3\vb{r} \psi^\dagger(\vb{r})\Delta\psi(\vb{r})+\int d^3\vb{r}\psi^\dagger(\vb{r})u(\vb{r})\psi(\vb{r})\\
+&+\frac{1}{2}\int d^3\vb{r}d^3\vb{r}'\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})
+\end{split}
+\end{align}
+
+5. Se tiene
+\begin{align}
+\begin{split}
+[\hat{N},H]=&\hat{N}\left(-\frac{\hbar^2}{2m}\int d^3\vb{r} \psi^\dagger(\vb{r})\Delta\psi(\vb{r})+\int d^3\vb{r}\psi^\dagger(\vb{r})u(\vb{r})\psi(\vb{r})\right.\\
+&\left.+\frac{1}{2}\int d^3\vb{r}d^3\vb{r}'\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\right)\\
+&-\left(-\frac{\hbar^2}{2m}\int d^3\vb{r} \psi^\dagger(\vb{r})\Delta\psi(\vb{r})+\int d^3\vb{r}\psi^\dagger(\vb{r})u(\vb{r})\psi(\vb{r})\right.\\
+&\left.+\frac{1}{2}\int d^3\vb{r}d^3\vb{r}'\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\right)\hat{N}\\
+&=-\frac{\hbar^2}{2m}\int d^3\vb{r}(\hat{N}\psi^\dagger(\vb{r})\Delta\psi(\vb{r})-\psi^\dagger(\vb{r})\Delta\psi(\vb{r})\hat{N})\\
+&+\int d^3\vb{r}(\hat{N}\psi^\dagger(\vb{r})u(\vb{r})\psi(\vb{r})-\psi^\dagger(\vb{r})u(\vb{r})\psi(\vb{r})\hat{N})\\
+&+\frac{1}{2}\int d^3\vb{r}d^3\vb{r}'(\hat{N}\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\\
+&-\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\hat{N})\\
+&=-\frac{\hbar^2}{2m}\int d^3\vb{r}((\psi^\dagger(\vb{r})\hat{N}+\psi^\dagger(\vb{r}))\Delta\psi(\vb{r})-\psi^\dagger(\vb{r})\Delta\psi(\vb{r})\hat{N})\\
+&+\int d^3\vb{r}((\psi^\dagger(\vb{r})\hat{N}+\psi^\dagger(\vb{r}))u(\vb{r})\psi(\vb{r})-\psi^\dagger(\vb{r})u(\vb{r})\psi(\vb{r})\hat{N})\\
+&+\frac{1}{2}\int d^3\vb{r}d^3\vb{r}'((\psi^\dagger(\vb{r})\hat{N}+\psi^\dagger(\vb{r}))\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\\
+&-\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\hat{N})\\
+&=-\frac{\hbar^2}{2m}\int d^3\vb{r}(\psi^\dagger(\vb{r})\Delta\hat{N}\psi(\vb{r})+\psi^\dagger(\vb{r})\Delta\psi(\vb{r})-\psi^\dagger(\vb{r})\Delta\psi(\vb{r})\hat{N})\\
+&+\int d^3\vb{r}(\psi^\dagger(\vb{r})u(\vb{r})\hat{N}\psi(\vb{r})+\psi^\dagger(\vb{r})u(\vb{r})\psi(\vb{r})-\psi^\dagger(\vb{r})u(\vb{r})\psi(\vb{r})\hat{N})\\
+&+\frac{1}{2}\int d^3\vb{r}d^3\vb{r}'(\psi^\dagger(\vb{r})\hat{N}\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\\
+&+\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\\
+&-\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\hat{N})\\
+&=-\frac{\hbar^2}{2m}\int d^3\vb{r}(\psi^\dagger(\vb{r})\Delta(\psi(\vb{r})\hat{N}-\psi(\vb{r}))\\
+&+\psi^\dagger(\vb{r})\Delta\psi(\vb{r})-\psi^\dagger(\vb{r})\Delta\psi(\vb{r})\hat{N})\\
+&+\int d^3\vb{r}(\psi^\dagger(\vb{r})u(\vb{r})(\psi(\vb{r})\hat{N}-\psi(\vb{r}))\\
+&+\psi^\dagger(\vb{r})u(\vb{r})\psi(\vb{r})-\psi^\dagger(\vb{r})u(\vb{r})\psi(\vb{r})\hat{N})\\
+&+\frac{1}{2}\int d^3\vb{r}d^3\vb{r}'(\psi^\dagger(\vb{r})(\psi^\dagger(\vb{r}')\hat{N}+\psi^\dagger(\vb{r}'))v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\\
+&+\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\\
+&-\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\hat{N})\\
+\end{split}
+\end{align}
+\begin{align*}
+&=-\frac{\hbar^2}{2m}\int d^3\vb{r}(\psi^\dagger(\vb{r})\Delta(\psi(\vb{r})\hat{N}-\psi(\vb{r}))\\
+&+\psi^\dagger(\vb{r})\Delta\psi(\vb{r})-\psi^\dagger(\vb{r})\Delta\psi(\vb{r})\hat{N})\\
+&+\int d^3\vb{r}(\psi^\dagger(\vb{r})u(\vb{r})(\psi(\vb{r})\hat{N}-\psi(\vb{r}))\\
+&+\psi^\dagger(\vb{r})u(\vb{r})\psi(\vb{r})-\psi^\dagger(\vb{r})u(\vb{r})\psi(\vb{r})\hat{N})\\
+&+\frac{1}{2}\int d^3\vb{r}d^3\vb{r}'(\psi^\dagger(\vb{r})(\psi^\dagger(\vb{r}')\hat{N}+\psi^\dagger(\vb{r}'))v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\\
+&+\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\\
+&-\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\hat{N})\\
+&=-\frac{\hbar^2}{2m}\int d^3\vb{r}(\psi^\dagger(\vb{r})\Delta\psi(\vb{r})\hat{N}-\psi^\dagger(\vb{r})\Delta\psi(\vb{r})\\
+&+\psi^\dagger(\vb{r})\Delta\psi(\vb{r})-\psi^\dagger(\vb{r})\Delta\psi(\vb{r})\hat{N})\\
+&+\int d^3\vb{r}(\psi^\dagger(\vb{r})u(\vb{r})\psi(\vb{r})\hat{N}-\psi^\dagger(\vb{r})u(\vb{r})\psi(\vb{r})\\
+&+\psi^\dagger(\vb{r})u(\vb{r})\psi(\vb{r})-\psi^\dagger(\vb{r})u(\vb{r})\psi(\vb{r})\hat{N})\\
+&+\frac{1}{2}\int d^3\vb{r}d^3\vb{r}'(\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\hat{N}\psi(\vb{r}')\psi(\vb{r})\\
+&+\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\\
+&+\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\\
+&-\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\hat{N})\\
+&=\frac{1}{2}\int d^3\vb{r}d^3\vb{r}'(\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)(\psi(\vb{r}')\hat{N}-\psi(\vb{r}'))\psi(\vb{r})\\
+&+2\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\\
+&-\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\hat{N})\\
+&=\frac{1}{2}\int d^3\vb{r}d^3\vb{r}'(\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\hat{N}\psi(\vb{r})\\
+&-\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\\
+&+2\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\\
+&-\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\hat{N})\\
+&=\frac{1}{2}\int d^3\vb{r}d^3\vb{r}'(\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')(\psi(\vb{r})\hat{N}-\psi(\vb{r}))\\
+&+\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\\
+&-\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\hat{N})
+\end{align*}
+\begin{align*}
+&=\frac{1}{2}\int d^3\vb{r}d^3\vb{r}'(\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\hat{N}\\
+&-\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\\
+&+\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\\
+&-\psi^\dagger(\vb{r})\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\hat{N})=0.
+\end{align*}
+Note que el cálculo es idéntico para bosones y fermiones pues las relaciones de conmutación entre los operadores de campo y el operador número de partículas lo son. Este conmutador tiene el significado físico de que el número de partículas se conserva. En efecto, ya que el Hamiltoniano es el generador de translaciones temporales, cualquier observable que conmuta con el es conservado.
+
+6. En general tenemos
+\begin{align}
+\begin{split}
+[\psi(\vb{r}),H]=&\psi(\vb{r})\left(-\frac{\hbar^2}{2m}\int d^3\vb{r}' \psi^\dagger(\vb{r}')\Delta\psi(\vb{r}')+\int d^3\vb{r}'\psi^\dagger(\vb{r}')u(\vb{r}')\psi(\vb{r}')\right.\\
+&\left.+\frac{1}{2}\int d^3\vb{r}'d^3\vb{r}''\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\right)\\
+&-\left(-\frac{\hbar^2}{2m}\int d^3\vb{r}' \psi^\dagger(\vb{r}')\Delta\psi(\vb{r}')+\int d^3\vb{r}'\psi^\dagger(\vb{r}')u(\vb{r}')\psi(\vb{r}')\right.\\
+&\left.+\frac{1}{2}\int d^3\vb{r}'d^3\vb{r}''\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\right)\psi(\vb{r})\\
+&=-\frac{\hbar^2}{2m}\int d^3\vb{r}'(\psi(\vb{r})\psi^\dagger(\vb{r}')\Delta\psi(\vb{r}')-\psi^\dagger(\vb{r}')\Delta\psi(\vb{r}')\psi(\vb{r}))\\
+&+\int d^3\vb{r}'(\psi(\vb{r})\psi^\dagger(\vb{r}')u(\vb{r}')\psi(\vb{r}')-\psi^\dagger(\vb{r}')u(\vb{r}')\psi(\vb{r}')\psi(\vb{r}))\\
+&+\frac{1}{2}\int d^3\vb{r}'d^3\vb{r}''(\psi(\vb{r})\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\psi(\vb{r})).
+\end{split}
+\end{align}
+En el caso particular de bosones se tiene
+\begin{align}
+\begin{split}
+[\psi(\vb{r}),H]&=-\frac{\hbar^2}{2m}\int d^3\vb{r}'((\psi^\dagger(\vb{r}')\psi(\vb{r})+\delta(\vb{r}-\vb{r}'))\Delta\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')\Delta\psi(\vb{r}')\psi(\vb{r}))\\
+&+\int d^3\vb{r}'((\psi^\dagger(\vb{r}')\psi(\vb{r})+\delta(\vb{r}-\vb{r}'))u(\vb{r}')\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')u(\vb{r}')\psi(\vb{r}')\psi(\vb{r}))\\
+&+\frac{1}{2}\int d^3\vb{r}'d^3\vb{r}''((\psi^\dagger(\vb{r}')\psi(\vb{r})+\delta(\vb{r}-\vb{r}'))\\
+&\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\psi(\vb{r}))
+\end{split}
+\end{align}
+\begin{align*}
+&=-\frac{\hbar^2}{2m}\int d^3\vb{r}'(\psi^\dagger(\vb{r}')\Delta\psi(\vb{r}')\psi(\vb{r})+\delta(\vb{r}-\vb{r}')\Delta\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')\Delta\psi(\vb{r}')\psi(\vb{r}))\\
+&+\int d^3\vb{r}'(\psi^\dagger(\vb{r}')u(\vb{r}')\psi(\vb{r}')\psi(\vb{r})+\delta(\vb{r}-\vb{r}')u(\vb{r}')\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')u(\vb{r}')\psi(\vb{r}')\psi(\vb{r}))\\
+&+\frac{1}{2}\int d^3\vb{r}'d^3\vb{r}''(\psi^\dagger(\vb{r}')\psi(\vb{r})\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\\
+&+\delta(\vb{r}-\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\psi(\vb{r}))\\
+&=-\frac{\hbar^2}{2m}\Delta\psi(\vb{r})+u(\vb{r})\psi(\vb{r})\\
+&+\frac{1}{2}\int d^3\vb{r}'d^3\vb{r}''(\psi^\dagger(\vb{r}')(\psi^\dagger(\vb{r}'')\psi(\vb{r})+\delta(\vb{r}-\vb{r}''))\\
+&v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\psi(\vb{r}))\\
+&+\frac{1}{2}\int d^3\vb{r}''\psi^\dagger(\vb{r}'')v(\|\vb{r}-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r})\\
+&=-\frac{\hbar^2}{2m}\Delta\psi(\vb{r})+u(\vb{r})\psi(\vb{r})\\
+&+\frac{1}{2}\int d^3\vb{r}'d^3\vb{r}''(\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')\psi(\vb{r})v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\\
+&+\psi^\dagger(\vb{r}')\delta(\vb{r}-\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\psi(\vb{r}))\\
+&+\frac{1}{2}\int d^3\vb{r}''\psi^\dagger(\vb{r}'')v(\|\vb{r}-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r})\\
+&=-\frac{\hbar^2}{2m}\Delta\psi(\vb{r})+u(\vb{r})\psi(\vb{r})\\
+&+\frac{1}{2}\int d^3\vb{r}'d^3\vb{r}''(\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\psi(\vb{r})\\
+&-\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\psi(\vb{r}))\\
+&+\int d^3\vb{r}''\psi^\dagger(\vb{r}'')v(\|\vb{r}-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r})\\
+&=-\frac{\hbar^2}{2m}\Delta\psi(\vb{r})+u(\vb{r})\psi(\vb{r})+\int d^3\vb{r}'\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r}).
+\end{align*}
+En el caso de fermiones
+\begin{align}
+\begin{split}
+[\psi(\vb{r}),H]&=-\frac{\hbar^2}{2m}\int d^3\vb{r}'((-\psi^\dagger(\vb{r}')\psi(\vb{r})+\delta(\vb{r}-\vb{r}'))\Delta\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')\Delta\psi(\vb{r}')\psi(\vb{r}))\\
+&+\int d^3\vb{r}'((-\psi^\dagger(\vb{r}')\psi(\vb{r})+\delta(\vb{r}-\vb{r}'))u(\vb{r}')\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')u(\vb{r}')\psi(\vb{r}')\psi(\vb{r}))\\
+&+\frac{1}{2}\int d^3\vb{r}'d^3\vb{r}''((-\psi^\dagger(\vb{r}')\psi(\vb{r})+\delta(\vb{r}-\vb{r}'))\\
+&\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\psi(\vb{r}))\\
+&=-\frac{\hbar^2}{2m}\int d^3\vb{r}'(-\psi^\dagger(\vb{r}')\Delta(-\psi(\vb{r}')\psi(\vb{r}))+\delta(\vb{r}-\vb{r}')\Delta\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')\Delta\psi(\vb{r}')\psi(\vb{r}))\\
+&+\int d^3\vb{r}'(-\psi^\dagger(\vb{r}')u(\vb{r}')(-\psi(\vb{r}')\psi(\vb{r}))+\delta(\vb{r}-\vb{r}')u(\vb{r}')\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')u(\vb{r}')\psi(\vb{r}')\psi(\vb{r}))\\
+&+\frac{1}{2}\int d^3\vb{r}'d^3\vb{r}''(-\psi^\dagger(\vb{r}')\psi(\vb{r})\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\\
+&+\delta(\vb{r}-\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\psi(\vb{r}))\\
+&=-\frac{\hbar^2}{2m}\Delta\psi(\vb{r})+u(\vb{r})\psi(\vb{r})\\
+&+\frac{1}{2}\int d^3\vb{r}'d^3\vb{r}''(-\psi^\dagger(\vb{r}')(-\psi^\dagger(\vb{r}'')\psi(\vb{r})+\delta(\vb{r}-\vb{r}''))\\
+&v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\psi(\vb{r}))\\
+&+\frac{1}{2}\int d^3\vb{r}''\psi^\dagger(\vb{r}'')v(\|\vb{r}-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r})\\
+&=-\frac{\hbar^2}{2m}\Delta\psi(\vb{r})+u(\vb{r})\psi(\vb{r})\\
+&+\frac{1}{2}\int d^3\vb{r}'d^3\vb{r}''(\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')\psi(\vb{r})v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')\delta(\vb{r}-\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\\
+&-\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\psi(\vb{r}))\\
+&+\frac{1}{2}\int d^3\vb{r}''\psi^\dagger(\vb{r}'')v(\|\vb{r}-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r})
+\end{split}
+\end{align}
+\begin{align*}
+&=-\frac{\hbar^2}{2m}\Delta\psi(\vb{r})+u(\vb{r})\psi(\vb{r})\\
+&+\frac{1}{2}\int d^3\vb{r}'d^3\vb{r}''(\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\psi(\vb{r})\\
+&+\psi^\dagger(\vb{r}')\delta(\vb{r}-\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}')\psi(\vb{r}'')\\
+&-\psi^\dagger(\vb{r}')\psi^\dagger(\vb{r}'')v(\|\vb{r}'-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r}')\psi(\vb{r}))\\
+&+\frac{1}{2}\int d^3\vb{r}''\psi^\dagger(\vb{r}'')v(\|\vb{r}-\vb{r}''\|)\psi(\vb{r}'')\psi(\vb{r})\\
+&=-\frac{\hbar^2}{2m}\Delta\psi(\vb{r})+u(\vb{r})\psi(\vb{r})+\int d^3\vb{r}'\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r}).
+\end{align*}
+
+7. Tenemos
+\begin{align}
+\begin{split}
+E\psi_E(\vb{r}_1,\dots\vb{r}_N)&=E\mel{0}{\psi(\vb{r}_1)\cdots\psi(\vb{r}_N)}{E,N}\\
+&=\mel{0}{\psi(\vb{r}_1)\cdots\psi(\vb{r}_N)E}{E,N}\\
+&=\mel{0}{\psi(\vb{r}_1)\cdots\psi(\vb{r}_N)H}{E,N}\\
+&=\mel{0}{\qty(H\psi(\vb{r}_1)\cdots\psi(\vb{r}_N)+[\psi(\vb{r}_1)\cdots\psi(\vb{r}_N),H])}{E,N}\\
+&=\mel{0}{[\psi(\vb{r}_1)\cdots\psi(\vb{r}_N),H]}{E,N}\\
+\end{split}
+\end{align}
+Este conmutador es la suma de elementos que genéricamente son de la forma
+\begin{align}
+\begin{split}
+&\psi(\vb{r}_1)\cdots\psi(\vb{r}_{i-1})[\psi(\vb{r}_i),H]\psi(\vb{r}_{i+1})\cdots\psi(\vb{r}_N)\\
+=&\psi(\vb{r}_1)\cdots\psi(\vb{r}_{i-1})\\
+&\qty(-\frac{\hbar^2}{2m}\Delta_i\psi(\vb{r}_i)+u(\vb{r}_i)\psi(\vb{r}_i)+\int d^3\vb{r}'\psi^\dagger(\vb{r}')v(\|\vb{r}_i-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r}_i))\\
+&\psi(\vb{r}_{i+1})\cdots\psi(\vb{r}_N)\\
+=&\psi(\vb{r}_1)\cdots\psi(\vb{r}_{i-2})\\
+&\left(- \frac{\hbar^2}{2m}\Delta_i\psi(\vb{r}_{i-1})\psi(\vb{r}_i)+ u(\vb{r}_i)\psi(\vb{r}_{i-1})\psi(\vb{r}_i)\right.\\
+&\left.+\int d^3\vb{r}'\psi(\vb{r}_{i-1})\psi^\dagger(\vb{r}')v(\|\vb{r}_i-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r}_i)\right)\\
+&\psi(\vb{r}_{i+1})\cdots\psi(\vb{r}_N)\\
+=&\psi(\vb{r}_1)\cdots\psi(\vb{r}_{i-2})\\
+&\left(- \frac{\hbar^2}{2m}\Delta_i\psi(\vb{r}_{i-1})\psi(\vb{r}_i)+ u(\vb{r}_i)\psi(\vb{r}_{i-1})\psi(\vb{r}_i)\right.\\
+&\left.+\int d^3\vb{r}'((-1)^\rho \psi^\dagger(\vb{r}')\psi(\vb{r}_{i-1})+\delta(\vb{r}'-\vb{r}_{i-1}))v(\|\vb{r}_i-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r}_i)\right)\\
+&\psi(\vb{r}_{i+1})\cdots\psi(\vb{r}_N)\\
+=&\psi(\vb{r}_1)\cdots\psi(\vb{r}_{i-2})\\
+&\left(- \frac{\hbar^2}{2m}\Delta_i\psi(\vb{r}_{i-1})\psi(\vb{r}_i)+ u(\vb{r}_i)\psi(\vb{r}_{i-1})\psi(\vb{r}_i)\right.\\
+&\left.+v(\|\vb{r}_i-\vb{r}_{i-1}\|)\psi(\vb{r}_{i-1})\psi(\vb{r}_i)\right.\\
+&\left.+ \int d^3\vb{r}'(-1)^\rho\psi^\dagger(\vb{r}')v(\|\vb{r}_i-\vb{r}'\|)(-1)^\rho\psi(\vb{r}') \psi(\vb{r}_{i-1})\psi(\vb{r}_i)\right)\\
+&\psi(\vb{r}_{i+1})\cdots\psi(\vb{r}_N)\\
+=&\psi(\vb{r}_1)\cdots\psi(\vb{r}_{i-2})\\
+&\left(- \frac{\hbar^2}{2m}\Delta_i\psi(\vb{r}_{i-1})\psi(\vb{r}_i)+ u(\vb{r}_i)\psi(\vb{r}_{i-1})\psi(\vb{r}_i)\right.\\
+&\left.+v(\|\vb{r}_i-\vb{r}_{i-1}\|)\psi(\vb{r}_{i-1})\psi(\vb{r}_i)\right.\\
+&\left.+ \int d^3\vb{r}'\psi^\dagger(\vb{r}')v(\|\vb{r}_i-\vb{r}'\|)\psi(\vb{r}') \psi(\vb{r}_{i-1})\psi(\vb{r}_i)\right)\\
+&\psi(\vb{r}_{i+1})\cdots\psi(\vb{r}_N).
+\end{split}
+\end{align}
+donde
+\begin{equation}
+\rho=\begin{cases}
+0 & \text{bosones}\\
+1 & \text{fermiones}.
+\end{cases}
+\end{equation}
+Continuando con este cálculo es claro que 
+\begin{align}
+\begin{split}
+&\psi(\vb{r}_1)\cdots\psi(\vb{r}_{i-1})[\psi(\vb{r}_i),H]\psi(\vb{r}_{i+1})\cdots\psi(\vb{r}_N)\\
+=&- \frac{\hbar^2}{2m}\Delta_i\psi(\vb{r}_1)\cdots\psi(\vb{r}_N)+ u(\vb{r}_i)\psi(\vb{r}_1)\cdots\psi(\vb{r}_N)\\
+&+\sum_{j=1}^{i-1} v(\|\vb{r}_i-\vb{r}_{j}\|)\psi(\vb{r}_1)\cdots\psi(\vb{r}_N)\\
+&+ \int d^3\vb{r}'\psi^\dagger(\vb{r}')v(\|\vb{r}_i-\vb{r}'\|)\psi(\vb{r}') \psi(\vb{r}_1)\cdots\psi(\vb{r}_N).
+\end{split}
+\end{align}
+Por lo tanto
+\begin{align}
+\begin{split}
+E\psi_E(\vb{r}_1,\dots,\vb{r}_N)&=\bra{0}\sum_{i=1}^N\left(- \frac{\hbar^2}{2m}\Delta_i\psi(\vb{r}_1)\cdots\psi(\vb{r}_N)\right.\\
+&+ u(\vb{r}_i)\psi(\vb{r}_1)\cdots\psi(\vb{r}_N)\\
+&+\sum_{j=1}^{i-1} v(\|\vb{r}_i-\vb{r}_{j}\|)\psi(\vb{r}_1)\cdots\psi(\vb{r}_N)\\
+&\left.+ \int d^3\vb{r}'\psi^\dagger(\vb{r}')v(\|\vb{r}_i-\vb{r}'\|)\psi(\vb{r}') \psi(\vb{r}_1)\cdots\psi(\vb{r}_N)\right)\\
+&\ket{E,N}\\
+&=\bra{0}\left(- \frac{\hbar^2}{2m}\sum_{i=1}^N\Delta_i\psi(\vb{r}_1)\cdots\psi(\vb{r}_N)\right.\\
+&+ \sum_{i=1}^Nu(\vb{r}_i)\psi(\vb{r}_1)\cdots\psi(\vb{r}_N)\\
+&+\sum_{i=1}^N\sum_{j=1}^{i-1} v(\|\vb{r}_i-\vb{r}_{j}\|)\psi(\vb{r}_1)\cdots\psi(\vb{r}_N)\\
+&\left.+ \sum_{i=1}^N\int d^3\vb{r}'\psi^\dagger(\vb{r}')v(\|\vb{r}_i-\vb{r}'\|)\psi(\vb{r}') \psi(\vb{r}_1)\cdots\psi(\vb{r}_N)\right)\\
+&\ket{E,N}\\
+&=\bra{0}\left(- \frac{\hbar^2}{2m}\sum_{i=1}^N\Delta_i\psi(\vb{r}_1)\cdots\psi(\vb{r}_N)\right.\\
+&+ \sum_{i=1}^Nu(\vb{r}_i)\psi(\vb{r}_1)\cdots\psi(\vb{r}_N)\\
+&+\frac{1}{2}\sum_{i=1}^N\sum_{\overset{j=1}{j\neq i}}^N v(\|\vb{r}_i-\vb{r}_{j}\|)\psi(\vb{r}_1)\cdots\psi(\vb{r}_N)\\
+&\left.+ \int d^3\vb{r}'\psi^\dagger(\vb{r}')\sum_{i=1}^Nv(\|\vb{r}_i-\vb{r}'\|)\psi(\vb{r}') \psi(\vb{r}_1)\cdots\psi(\vb{r}_N)\right)\\
+&\ket{E,N}\\
+&=\qty(- \frac{\hbar^2}{2m}\sum_{i=1}^N\Delta_i+ \sum_{i=1}^Nu(\vb{r}_i)+\frac{1}{2}\sum_{i=1}^N\sum_{\overset{j=1}{j\neq i}}^N v(\|\vb{r}_i-\vb{r}_{j}\|))\\
+&\mel{0}{\psi(\vb{r}_1)\cdots\psi(\vb{r}_N)}{E,N}
+\end{split}
+\end{align}
+\begin{align*}
+=&\qty(- \frac{\hbar^2}{2m}\sum_{i=1}^N\Delta_i+ \sum_{i=1}^Nu(\vb{r}_i)+\frac{1}{2}\sum_{i=1}^N\sum_{\overset{j=1}{j\neq i}}^N v(\|\vb{r}_i-\vb{r}_{j}\|))\\
+&\psi_E(\vb{r}_1,\dots,\vb{r}_N).
+\end{align*}
+
+8. Podemos interpretar ambos lados de la ecuación (2.8) del taller. El módulo al cuadrado del lado izquierdo representa la densidad de probabilidad de hallar $N$ partículas en $\vb{r}_1,\dots,\vb{r}_N$. Por otr parte, el módulo al cuadrado del lado derecho representa la densidad de probabilidad de que al quitar particulas en las posiciones $\vb{r}_1,\dots,\vb{r}_N$ se obtenga el vacío. Estos dos son replanteamientos de la misma proposición.
+
+9. Se tiene
+\begin{align}
+\begin{split}
+i\hbar\frac{\partial\psi(\vb{r},t)}{\partial t}&=i\hbar\frac{\partial}{\partial t}\qty(e^{iHt/\hbar}\psi(\vb{r})e^{-iHt/\hbar})\\
+&=i\hbar\qty(\frac{i}{\hbar}He^{iHt/\hbar}\psi(\vb{r})e^{-iHt/\hbar}-\frac{i}{\hbar}e^{iHt/\hbar}\psi(\vb{r})He^{-iHt/\hbar})\\
+&=e^{iHt/\hbar}[\psi(\vb{r}),H]e^{-iHt/\hbar}\\
+&=e^{iHt/\hbar}\left(-\frac{\hbar^2}{2m}\Delta\psi(\vb{r})+u(\vb{r})\psi(\vb{r})\right.\\
+&\left.+\int d^3\vb{r}'\psi^\dagger(\vb{r}')v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}')\psi(\vb{r})\right)e^{-iHt/\hbar}\\
+&=-\frac{\hbar^2}{2m}\Delta e^{iHt/\hbar}\psi(\vb{r})e^{-iHt/\hbar}+u(\vb{r})e^{iHt/\hbar}\psi(\vb{r})e^{-iHt/\hbar}\\
+&+\int d^3\vb{r}'e^{iHt/\hbar}\psi^\dagger(\vb{r}')e^{-iHt/\hbar}v(\|\vb{r}-\vb{r}'\|)e^{iHt/\hbar}\psi(\vb{r}')e^{-iHt/\hbar}\\
+&e^{iHt/\hbar}\psi(\vb{r})e^{-iHt/\hbar}\\
+&=-\frac{\hbar^2}{2m}\Delta\psi(\vb{r},t)+u(\vb{r})\psi(\vb{r},t)\\
+&+\int d^3\vb{r}'\psi^\dagger(\vb{r}',t)v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}',t)\psi(\vb{r},t)
+\end{split}
+\end{align}
+
+10. Se tiene
+\begin{align}
+\begin{split}
+\frac{\partial \hat{n}(\vb{r},t)}{\partial t}&=\frac{\partial\psi^\dagger(\vb{r},t)}{\partial t}\psi(\vb{r},t)+\psi^\dagger(\vb{r},t)\frac{\partial\psi(\vb{r},t)}{\partial t}\\
+&=\qty(\frac{\partial\psi(\vb{r},t)}{\partial t})^\dagger\psi(\vb{r},t)+\psi^\dagger(\vb{r},t)\frac{\partial\psi(\vb{r},t)}{\partial t}\\
+&=\left(\frac{i\hbar}{2m}\Delta\psi(\vb{r},t)-\frac{i}{\hbar}u(\vb{r})\psi(\vb{r},t)\right.\\
+&\left.-\frac{i}{\hbar}\int d^3\vb{r}'\psi^\dagger(\vb{r}',t)v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}',t)\psi(\vb{r},t)\right)^\dagger\psi(\vb{r},t)\\
+&+\psi^\dagger(\vb{r},t)\left(\frac{i\hbar}{2m}\Delta\psi(\vb{r},t)-\frac{i}{\hbar}u(\vb{r})\psi(\vb{r},t)\right.\\
+&\left.-\frac{i}{\hbar}\int d^3\vb{r}'\psi^\dagger(\vb{r}',t)v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}',t)\psi(\vb{r},t)\right)\\
+\end{split}
+\end{align}
+\begin{align*}
+&=\left(-\frac{i\hbar}{2m}\Delta\psi^\dagger(\vb{r},t)+\frac{i}{\hbar}u(\vb{r})\psi^\dagger(\vb{r},t)\right.\\
+&\left.+\frac{i}{\hbar}\int d^3\vb{r}'\psi^\dagger(\vb{r},t)\psi^\dagger(\vb{r}',t)v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}',t)\right)\psi(\vb{r},t)\\
+&+\psi^\dagger(\vb{r},t)\left(\frac{i\hbar}{2m}\Delta\psi(\vb{r},t)-\frac{i}{\hbar}u(\vb{r})\psi(\vb{r},t)\right.\\
+&\left.-\frac{i}{\hbar}\int d^3\vb{r}'\psi^\dagger(\vb{r}',t)v(\|\vb{r}-\vb{r}'\|)\psi(\vb{r}',t)\psi(\vb{r},t)\right)\\
+&=-\frac{i\hbar}{2m}\qty((\Delta\psi^\dagger(\vb{r},t))\psi(\vb{r},t)-\psi^\dagger(\vb{r},t)\Delta\psi(\vb{r},t))\\
+&=-\frac{i\hbar}{2m}((\Delta\psi^\dagger(\vb{r},t))\psi(\vb{r},t)+\grad(\psi^\dagger(\vb{r},t))\vdot\grad(\psi(\vb{r},t))\\
+&-\grad(\psi^\dagger(\vb{r},t))\vdot\grad(\psi(\vb{r},t))-\psi^\dagger(\vb{r},t)\Delta\psi(\vb{r},t))\\
+&=-\div(\frac{i\hbar}{2m}((\grad{\psi^\dagger}(\vb{r},t))\psi(\vb{r},t)-\psi^\dagger(\vb{r},t)\grad{\psi(\vb{r},t)})).
+\end{align*}
+Se concluye entonces que
+\begin{equation}
+\frac{\partial \hat{n}(\vb{r},t)}{\partial t}+\div{\vb{j}}(\vb{r},t)=0
+\end{equation}
+donde
+\begin{equation}
+\vb{j}(\vb{r},t)=\frac{i\hbar}{2m}\qty((\grad{\psi^\dagger}(\vb{r},t))\psi(\vb{r},t)-\psi^\dagger(\vb{r},t)\grad{\psi(\vb{r},t)}).
+\end{equation}
+\end{document}
