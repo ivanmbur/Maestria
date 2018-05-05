@@ -1,0 +1,138 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{physics}
+\usepackage{latexsym}
+
+\title{Mecánica Cuantica Avanzada: Tarea 3}
+\author{Iván Mauricio Burbano Aldana}
+
+\begin{document}
+
+\maketitle
+
+2.1 En primer lugar tenemos gracias a que el tensor métrico es covariantemente conservado que
+\begin{equation}
+F_{\sigma\rho}=\partial_\sigma A_\rho-\partial_\rho A_\sigma=g_{\lambda\rho}\partial_\sigma A^{\lambda}-g_{\lambda\sigma} \partial_\rho A^{\lambda}.
+\end{equation}
+Por lo tanto
+\begin{equation}
+\pdv{F_{\sigma\rho}}{(\partial_\mu A^\nu)}=\delta^\mu_\sigma g_{\nu\rho}-\delta^\mu_\rho g_{\nu\sigma}
+\end{equation}
+y
+\begin{align}
+\begin{split}
+\pdv{F^{\lambda\gamma}}{(\partial_\mu A^\nu)}=&\pdv{g^{\lambda\sigma}g^{\gamma\rho}F_{\sigma\rho}}{(\partial_\mu A^\nu)}=g^{\lambda\sigma}g^{\gamma\rho}\pdv{F_{\sigma\rho}}{(\partial_\mu A^\nu)}=g^{\lambda\sigma}g^{\gamma\rho}(\delta^\mu_\sigma g_{\nu\rho}-\delta^\mu_\rho g_{\nu\sigma})\\
+=&\delta^\mu_\sigma\delta^\gamma_\nu g^{\lambda\sigma}-\delta^\mu_\rho\delta^\lambda_\nu g^{\gamma\rho}=\delta^\gamma_\nu g^{\lambda\mu}-\delta^\lambda_\nu g^{\gamma\mu}.
+\end{split}
+\end{align}
+Entonces se tiene
+\begin{align}
+\begin{split}
+\pdv{F^{\sigma\rho}F_{\sigma\rho}}{(\partial_\mu A^\nu)}=&F^{\sigma\rho}\pdv{F_{\sigma\rho}}{(\partial_\mu A^\nu)}+\pdv{F^{\sigma\rho}}{(\partial_\mu A^\nu)}F_{\sigma\rho}\\
+=&F^{\sigma\rho}(\delta^\mu_\sigma g_{\nu\rho}-\delta^\mu_\rho g_{\nu\sigma})+(\delta^\rho_\nu g^{\sigma\mu}-\delta^\sigma_\nu g^{\rho\mu})F_{\sigma\rho}\\
+=&F^{\mu\rho}g_{\nu\rho}-F^{\sigma\mu}g_{\nu\sigma}+F_{\sigma\nu}g^{\sigma\mu}-F_{\nu\rho}g^{\rho\mu}.
+\end{split}
+\end{align}
+Utilizando el hecho de que $F^{\mu\nu}$ es antisimétrico y cambiando el nombre del indice mudo
+\begin{equation}
+\sigma\rightarrow\rho
+\end{equation}
+se tiene
+\begin{equation}
+\pdv{F^{\sigma\rho}F_{\sigma\rho}}{(\partial_\mu A^\nu)}=2(g_{\nu\rho}F^{\mu\rho}+g^{\rho\mu}F_{\rho\nu}).
+\end{equation}
+Finalmente note que nombrando el indice mudo
+\begin{equation}
+\sigma\rightarrow\rho
+\end{equation}
+en
+\begin{equation}
+g^{\rho\mu}F_{\rho\nu}=\delta^\lambda_\nu g^{\rho\mu}F_{\rho\lambda}=g_{\nu\sigma}g^{\sigma\lambda}g^{\rho\mu}F_{\rho\lambda}=g_{\nu\sigma}F^{\mu\sigma}
+\end{equation}
+se obtiene que 
+\begin{equation}\label{ec:momento}
+\pdv{F^{\sigma\rho}F_{\sigma\rho}}{(\partial_\mu A^\nu)}=4g_{\nu\rho}F^{\mu\rho}.
+\end{equation}
+
+Con esta información concluimos que la ecuación de Euler-Lagrange es  
+\begin{equation}
+-j_\nu=\pdv{\mathcal{L}}{A^\nu}=\partial_\mu\qty(\pdv{\mathcal{L}}{(\partial_\mu A^\nu)})=-\frac{1}{4}\partial_\mu\qty(\pdv{F^{\sigma\rho}F_{\sigma\rho}}{(\partial_\mu A^\nu)})=-g_{\nu\rho}\partial_\mu F^{\mu\rho}.
+\end{equation}
+Multiplicando por $g^{\sigma\nu}$ se obtiene
+\begin{equation}
+j^\sigma=g^{\sigma\nu}j_\nu=g^{\sigma\nu}g_{\nu\rho}\partial_\mu F^{\mu\rho}=\delta^\sigma_\rho\partial_\mu F^{\mu\rho}=\partial_\mu F^{\mu \sigma},
+\end{equation}
+es decir, la ecuación de Maxwell no homogénea
+\begin{equation}
+\partial_\mu F^{\mu\nu}=j^{\nu}.
+\end{equation}
+
+2.2 Note que
+\begin{equation}
+\partial^\mu\phi\partial_\mu\phi=g^{\mu\nu}\partial_\mu\phi\partial_\nu\phi=(\partial_0\phi)^2-\sum_{i=1}^3(\partial_i\phi)^2.
+\end{equation}
+Entonces
+\begin{equation}
+\pdv{\partial^\mu\phi\partial_\mu\phi}{(\partial_\sigma\phi)}=2\begin{cases}
+\partial_0\phi & \sigma=0\\
+-\partial_i\phi & \sigma=i\in\{1,2,3\}
+\end{cases}=2\partial^\mu\phi.
+\end{equation}
+Por lo tanto, las ecuaciones de Euler-Lagrange son
+\begin{equation}
+-m^2\phi-V'(\phi)=\pdv{\mathcal{L}}{\phi}=\partial_\mu\qty(\pdv{\mathcal{L}}{(\partial_\mu\phi)})=\partial_\mu\partial^\mu\phi=\Box\phi,
+\end{equation}
+o de manera más familiar,
+\begin{equation}
+(\Box+m^2)\phi=-V'(\phi).
+\end{equation}
+
+2.4 Debemos realizar la derivada funcional
+\begin{align}
+\begin{split}
+\Pi_\mu(t,\vb{x})=&\fdv{L}{\dot{A}^\mu(t,\vb{x})}=\fdv{\dot{A}^\mu(t,\vb{x})}\int \dd[3]{\vb{y}}\mathcal{L}(A^\sigma(t,\vb{y}),\partial_\sigma A^\rho(t,\vb{y}))\\
+=&\int\dd[3]{x}\left(\pdv{\mathcal{L}(A^\lambda(t,\vb{y}),\partial_\gamma A^\kappa(t,\vb{y}))}{A^\rho}\fdv{A^\rho(t,\vb{y})}{\dot{A}^\mu(t,\vb{x})}\right.\\
+&\left.+\pdv{\mathcal{L}(A^\lambda(t,\vb{y}),\partial_\gamma A^\kappa(t,\vb{y}))}{(\partial_\sigma A^\rho)}\fdv{(\partial_\sigma A^\rho(t,\vb{y}))}{\dot{A}^\mu(t,\vb{x})}\right).
+\end{split}
+\end{align}
+Se tiene que
+\begin{equation}
+\fdv{A^\rho(t,\vb{y})}{\dot{A}^\mu(t,\vb{x})}=0=\fdv{(\partial_i{A}^\rho(t,\vb{y}))}{\dot{A}^\mu(t,\vb{x})}
+\end{equation}
+para todo $i\in\{1,2,3\}$. Por lo tanto
+\begin{align}
+\begin{split}
+\Pi_\mu(t,\vb{x})=&\int\dd[3]{x}\pdv{\mathcal{L}(A^\lambda(t,\vb{y}),\partial_\gamma A^\kappa(t,\vb{y}))}{(\partial_\sigma A^\rho)}\fdv{(\partial_\sigma A^\rho(t,\vb{y}))}{\dot{A}^\mu(t,\vb{x})}\\
+=&\int\dd[3]{x}\left(\pdv{\mathcal{L}(A^\lambda(t,\vb{y}),\partial_\gamma A^\kappa(t,\vb{y}))}{\dot{A}^\rho}\fdv{\dot{A}^\rho(t,\vb{y})}{\dot{A}^\mu(t,\vb{x})}\right.\\
+&\left.\sum_{i=1}^3\pdv{\mathcal{L}(A^\lambda(t,\vb{y}),\partial_\gamma A^\kappa(t,\vb{y}))}{(\partial_i A^\rho)}\fdv{(\partial_i A^\rho(t,\vb{y}))}{\dot{A}^\mu(t,\vb{x})}\right)\\
+=&\int\dd[3]{x}\pdv{\mathcal{L}(A^\lambda(t,\vb{y}),\partial_\gamma A^\kappa(t,\vb{y}))}{\dot{A}^\rho}\fdv{\dot{A}^\rho(t,\vb{y})}{\dot{A}^\mu(t,\vb{x})}.
+\end{split}
+\end{align}
+Ya que
+\begin{equation}
+\fdv{\dot{A}^\rho(t,\vb{y})}{\dot{A}^\mu(t,\vb{x})}=\delta^\rho_\mu\delta^{(3)}(\vb{x}-\vb{y})
+\end{equation}
+concluimos que 
+\begin{align}
+\begin{split}
+\Pi_\mu(t,\vb{x})=&\int\dd[3]{x}\pdv{\mathcal{L}(A^\lambda(t,\vb{y}),\partial_\gamma A^\kappa(t,\vb{y}))}{\dot{A}^\rho}\delta^\rho_\mu\delta^{(3)}(\vb{x}-\vb{y})\\
+=&\delta^\rho_\mu\pdv{\mathcal{L}(A^\lambda(t,\vb{x}),\partial_\gamma A^\kappa(t,\vb{x}))}{\dot{A}^\rho}=\pdv{\mathcal{L}(A^\lambda(t,\vb{x}),\partial_\gamma A^\kappa(t,\vb{x}))}{\dot{A}^\mu}.
+\end{split}
+\end{align}
+Haciendo uso de la expresión \eqref{ec:momento} y la antisimetría de $F^{\mu\nu}$ concluimos que
+\begin{equation}
+\Pi_\mu=\pdv{\mathcal{L}}{\dot{A}^\mu}=-\frac{1}{4}\pdv{F^{\sigma\rho}F_{\sigma\rho}}{(\partial_0A^\mu)}=-\frac{1}{4}4g_{\mu\rho}F^{0\rho}=g_{\mu\rho} F^{\rho 0}.
+\end{equation}
+Podemos expresar este resultado de manera más natural notando
+\begin{equation}
+\Pi^\mu=g^{\mu\nu}\Pi_\nu=g^{\mu\nu}g_{\nu\rho}F^{\rho 0}=\delta^\mu_\rho F^{\rho 0}=F^{\mu 0}.
+\end{equation}
+Se concluye que el momento conjugado canónico es
+\begin{equation}
+\Pi^\mu=F^{\mu 0}.
+\end{equation}
+Estas ecuaciones no se pueden invertir ya que $\Pi^0=0$. Es claro que sin más restricciones es imposible expresar el cuadrivector $A^\mu$ en términos de un $\Pi^\mu$ cuya primera componente se desvanece idénticamente.
+
+\end{document}

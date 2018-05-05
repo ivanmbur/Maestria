@@ -1,0 +1,94 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{physics}
+\usepackage{amssymb}
+
+\DeclareMathOperator{\Span}{span}
+
+\author{Iván Mauricio Burbano Aldana\\Universidad de los Andes}
+\title{Tarea 2\\Mecánica Cuántica Avanzada}
+
+\begin{document}
+
+\maketitle
+
+1. Suponga que $B\ket{\psi}=b\ket{\psi}$ y $C\ket{\psi}=c\ket{\psi}$. Entonces
+\begin{equation}
+bc\ket{\psi}=BC\ket{\psi}=-CB\ket{\psi}=-bc\ket{\psi}.
+\end{equation}
+Luego $bc\ket{\psi}=0$. Por definición de vector propio $\ket{\psi}\neq 0$. Se tiene entonces que $b=0$ o $c=0$.
+
+En el caso donde $B$ es el operador de número bariónico y $C$ el de conjugación de carga se tiene que $\ket{\psi}=C^2\ket{\psi}=c^2\ket{\psi}$. Entonces $c\in\{-1,1\}$ y se concluye que $b=0$. Esto significa que en esta teoría cualquier estado con una paridad definida y un número bariónico definido debe tener número bariónico 0.
+
+2.\begin{enumerate}
+\item \begin{enumerate}
+\item \begin{align}
+\begin{split}
+\mel{p'}{\hat{x}}{\alpha}&=\mel{p'}{\int dx \dyad{x}\hat{x}}{\alpha}=\int dx  x \ip{p'}{x}\ip{x}{\alpha}\\
+&=\int dx x\frac{1}{\sqrt{2\pi\hbar}}e^{-ip'x/\hbar}\ip{x}{\alpha}\\
+&=\int dx i\hbar\frac{\partial}{\partial p'}\qty(\frac{1}{\sqrt{2\pi\hbar}}e^{-ip'x/\hbar})\ip{x}{\alpha}\\
+&=i\hbar\frac{\partial}{\partial p'}\int dx \frac{1}{\sqrt{2\pi\hbar}}e^{-ip'x/\hbar}\ip{x}{\alpha}\\
+&=i\hbar\frac{\partial}{\partial p'}\int dx \ip{p'}{x}\ip{x}{\alpha}=i\hbar\frac{\partial}{\partial p'}\ip{p'}{\alpha}\\
+\end{split}
+\end{align}
+\item\begin{align}
+\begin{split}
+\mel{\beta}{\hat{x}}{\alpha}&=\mel{\beta}{\int dp'\dyad{p'}\hat{x}}{\alpha}=\int dp'\ip{\beta}{p'}\mel{p'}{\hat{x}}{\alpha}\\
+&=\int dp'\phi_\beta^*(p')i\hbar\frac{\partial}{\partial p'}\ip{p'}{\alpha}=\int dp'\phi_\beta^*(p')i\hbar\frac{\partial}{\partial p'}\phi_\alpha(p')
+\end{split}
+\end{align}
+\end{enumerate}
+\item Podemos calcularlo explicitamente utilizando la definición de función de observable de Dirac
+\begin{equation}
+\exp(\frac{i\hat{x}\Xi}{\hbar})\ket{x}=\exp(\frac{ix\Xi}{\hbar})\ket{x}.
+\end{equation}
+Por lo tanto el operador $\exp(\frac{i\hat{x}\Xi}{\hbar})$ corresponde a la simetría de fases en mecánica cuántica. Esta simetría refleja que dos vectores que difieren por una fase representan el mismo estado físico. La forma del operador nos hace notar que $\hat{x}$ es el generador de estas simetrías. 
+\end{enumerate}
+
+3. Suponemos que por ``todos los demas vectores de estado del sistema'' se refiere a que $\{\ket{\Psi},\ket{\Phi},\ket{\Gamma_n}|n\in I\}$, donde $I$ es el conjunto de indices, es una base de Schauder del espacio de Hilbert $\mathcal{H}$. Entonces para todos los vectores $\ket{\alpha},\ket{\beta}\in\mathcal{H}$ existen $a,b,c,d,\alpha_n,\beta_n\in\mathbb{C}$ para cada $n\in I$ tal que \begin{align}
+\begin{split}
+\ket{\alpha}&=a\ket{\Psi}+b\ket{\Phi}+\sum_{n\in I} \alpha_n\ket{\Gamma_n}\\ 
+\ket{\beta}&=c\ket{\Psi}+d\ket{\Phi}+\sum_{n\in I}\beta_n\ket{\Gamma_n}.
+\end{split}
+\end{align}
+Claramente podemos asumir que $H$ es acotado extendiendolo por continuidad. El Hamiltoniano es hermítico si y solo si para todos los $\ket{\alpha},\ket{\beta}\in\mathcal{H}$ se tiene
+\begin{align}
+\begin{split}
+&agd^*+agc^*\ip{\Psi}{\Phi}+bg^*c^*+bg^*d^*\ip{\Phi}{\Psi}\\
+&=ag(d^*+c^*\ip{\Psi}{\Phi})+bg^*(c^*+d^*\ip{\Phi}{\Psi})\\
+&=ag\ip{\beta}{\Phi}+bg^*\ip{\beta}{\Psi}\\
+&=\bra{\beta}(ag\ket{\Phi}+bg^*\ket{\Psi})=\mel{\beta}{H}{\alpha}=\langle \ket{\beta},H\ket{\alpha}\rangle\\
+&=\langle H\ket{\beta},\ket{\alpha}\rangle=(c^*g^*\bra{\Phi}+d^*g\bra{\Psi})\ket{\alpha}\\
+&=c^*g^*\ip{\Phi}{\alpha}+d^*g\ip{\Psi}{\alpha}\\
+&=c^*g^*(b+a\ip{\Phi}{\Psi})+d^*g(a+b\ip{\Psi}{\Phi})\\
+&=c^*g^*b+c^*g^*a\ip{\Phi}{\Psi}+d^*ga+d^*gb\ip{\Psi}{\Phi},
+\end{split}
+\end{align}
+lo que sucede si y solo si para todo $a,b,c,d\in\mathbb{C}$
+\begin{equation}
+agc^*\ip{\Psi}{\Phi}+bg^*d^*\ip{\Phi}{\Psi}=c^*g^*a\ip{\Phi}{\Psi}+d^*gb\ip{\Psi}{\Phi}.
+\end{equation}
+Luego se tiene que $H$ es hermítico si y solo si para todo $a,b,c,d\in\mathbb{C}$
+\begin{equation}
+(ac^*-bd^*)(g\ip{\Psi}{\Phi}-g^*\ip{\Phi}{\Psi})=0.
+\end{equation}
+Es fácil ver que esto sucede si y solo si $g\ip{\Psi}{\Phi}=g^*\ip{\Phi}{\Psi}=\overline{g\ip{\Psi}{\Phi}}$. Entonces vemos que una condición necesaria y suficiente para que $H$ sea hermítico es que $g\ip{\Psi}{\Phi}\in\mathbb{R}$. Es claro para todo $n\in I$ se tiene que $\ket{\Gamma_n}$ es un vector propio de $H$ con valor propio $0$. Además, el subespacio $\Span\{\ket{\Psi},\ket{\Phi}\}$ es $H$-invariante. La restricción a este de $H$ tiene una representación matricial en la base $\gamma=\{\ket{\Psi},\ket{\Phi}\}$ dada por
+\begin{equation}
+[H]_\gamma=\mqty[0 & g^*\\ g & 0 ]
+\end{equation}
+El polinomio característico de esta restricción es
+\begin{equation}
+\det([H]_\gamma-\lambda)=\lambda^2-|g|^2=(\lambda-|g|)(\lambda+|g|).
+\end{equation}
+Por lo tanto, los valores propios son $|g|$ y $-|g|$. Los siguientes cálculos
+\begin{align}
+\begin{split}
+\mqty(-|g| & g^* & 0\\g & -|g| & 0)\rightarrow&\mqty(1 & -g^*/|g| & 0\\g & -|g| & 0)\rightarrow\mqty(1 & -g^*/|g| & 0\\0 & 0 & 0)\\
+\mqty(|g| & g^* & 0\\g & |g| & 0)\rightarrow&\mqty(1 & g^*/|g| & 0\\g & |g| & 0)\rightarrow\mqty(1 & g^*/|g| & 0\\0 & 0 & 0)\\
+\end{split}
+\end{align}
+nos muestran que $g^*\ket{\Psi}+|g|\ket{\Phi}$ es un vector propio con valor propio $|g|$
+
+\end{document}
