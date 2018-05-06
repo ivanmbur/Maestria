@@ -109,6 +109,8 @@ para todo $x,y\in\mathbb{R}$. De estas observaciones se hacen evidentes las rela
 
 \section{Teorema de fluctuación-disipación cuántico}
 
+Para evitar exceso de formalismo, vamos a asumir que todos los operadores involucrados son acotados. La existencia de una norma permite hablar de continuidad y convergencia de manera simple. En particular, la exponencial de un operador está dada por su serie de Taylor.
+
 \begin{enumerate}
 
 \item Tenemos la ecuación de von Neumann
@@ -125,13 +127,323 @@ Recordando que $\rho_{\text{eq}}$ es independiente del tiempo e ignorando como d
 \end{equation} 
 Se obtiene entonces la ecuación diferencial
 \begin{equation}
-\pdv{\rho}{t} (t)-[H_0,\rho_1(t)]=\frac{1}{i\hbar}[H_1(t),\rho_{\text{eq}}].
+\pdv{\rho_1}{t} (t)-[H_0,\rho_1(t)]=\frac{1}{i\hbar}[H_1(t),\rho_{\text{eq}}]=-\frac{F(t)}{i\hbar}[B,\rho_{\text{eq}}].
 \end{equation}
-Esta induce una ecuación diferencial sobre los valores esperados.
+En analogía con lo hecho en clase, definimos el operador de Liouville
+\begin{equation}
+\mathcal{L}_0(O)=\frac{1}{i\hbar}[H_0,O].
+\end{equation}
+Entonces la ecuación se vuelve
+\begin{equation}
+\pdv{\rho_1}{t} (t)-\mathcal{L}_0(\rho_1(t))=\frac{1}{i\hbar}[H_1(t),\rho_{\text{eq}}]=-\frac{F(t)}{i\hbar}[B,\rho_{\text{eq}}]
+\end{equation}
+con la solución
+\begin{equation}
+\rho_1(t)=-\frac{1}{i\hbar}\int_{t_0}^t\dd{t'}F(t')e^{(t-t')\mathcal{L}_0}[B,\rho_{\text{eq}}]
+\end{equation}
+donde $t_0$ es el instante donde empieza la perturbación. En efecto se satisface la condición inicial y mediante el uso de diferenciación bajo el signo de integración
+\begin{align}
+\begin{split}
+\rho_1(t_0)=&-\frac{1}{i\hbar}\int_{t_0}^{t_0}\dd{t'}F(t')e^{(t-t')\mathcal{L}_0}[B,\rho_{\text{eq}}]=0,\\
+\pdv{\rho_1}{t}(t)=&-\frac{1}{i\hbar}F(t)e^{(t-t)\mathcal{L}_0}[B,\rho_{\text{eq}}]-\frac{1}{i\hbar}\int_{t_0}^t\dd{t'}F(t')\mathcal{L}_0e^{(t-t')\mathcal{L}_0}[B,\rho_{\text{eq}}]\\
+=&-\frac{1}{i\hbar}F(t)[B,\rho_{\text{eq}}]-\mathcal{L}_0\frac{1}{i\hbar}\int_{t_0}^t\dd{t'}F(t')e^{(t-t')\mathcal{L}_0}[B,\rho_{\text{eq}}]\\
+=&-\frac{1}{i\hbar}F(t)[B,\rho_{\text{eq}}]+\mathcal{L}_0(\rho_1(t)).
+\end{split}
+\end{align}
+Por lo tanto, el valor esperado de un operador $A$ en esta aproximación es
+\begin{align}
+\begin{split}
+\ev{A}_{\rho(t)}=&\tr(\rho(t)A)=\tr((\rho_\text{eq}+\rho_1(t))A)=\tr(\rho_\text{eq}A)+\tr(\rho_1(t)A)\\
+=&\ev{A}_{\rho_\text{eq}}-\frac{1}{i\hbar}\int_{t_0}^t\dd{t'}F(t')\tr(e^{(t-t')\mathcal{L}_0}([B,\rho_{\text{eq}}])A)
+\end{split}
+\end{align}
+donde se utilizó la linealidad de la traza junto con su continuidad para sacar la integral. Ahora bien, recordamos la ecuación de Heisenberg
+\begin{equation}
+B'(t)=-\frac{1}{i\hbar}[H_0,B(t)]=-\mathcal{L}_0(B(t))
+\end{equation}
+cuya solución es 
+\begin{equation}\label{ec:evolucion_temporal}
+B(t)=e^{-t\mathcal{L}_0}B(0)=e^{-t\mathcal{L}_0}B
+\end{equation}
+donde $B(t)$ está en la representación de Heisenberg del sistema en equilibrio y $B$ en la de Schrödinger. Entonces, ya que en la representación de Heisenberg los estados no evolucionan
+\begin{align}
+\begin{split}
+e^{(t-t')\mathcal{L}_0}[B,\rho_{\text{eq}}]=&e^{t\mathcal{L}_0}e^{-t'\mathcal{L}_0}[B,\rho_{\text{eq}}]=e^{t\mathcal{L}_0}[e^{-t'\mathcal{L}_0}B,\rho_{\text{eq}}]\\
+=&e^{t\mathcal{L}_0}[B(t'),\rho_{\text{eq}}].
+\end{split}
+\end{align}
+Luego la respuesta a la perturbación es 
+\begin{equation}
+\ev{A}_{\rho(t)}-\ev{A}_{\rho_\text{eq}}=-\frac{1}{i\hbar}\int_{t_0}^t\dd{t'}F(t')\tr(e^{t\mathcal{L}_0}([B(t'),\rho_{\text{eq}}])A).
+\end{equation}
+Recordando \eqref{ec:evolucion_temporal} se tiene
+\begin{equation}
+e^{t\mathcal{L}_0}C=C(-t)=e^{-itH_0/\hbar}Ce^{itH_0/\hbar}
+\end{equation}
+y por lo tanto haciendo uso de la ciclicidad de la traza
+\begin{align}
+\begin{split}
+&\ev{A}_{\rho(t)}-\ev{A}_{\rho_\text{eq}}\\
+=&-\frac{1}{i\hbar}\int_{t_0}^t\dd{t'}F(t')\tr(e^{-itH_0/\hbar}[B(t'),\rho_{\text{eq}}]e^{itH_0/\hbar}A)\\
+=&-\frac{1}{i\hbar}\int_{t_0}^t\dd{t'}F(t')\tr([B(t'),\rho_{\text{eq}}]e^{itH_0/\hbar}Ae^{-itH_0/\hbar})\\
+=&-\frac{1}{i\hbar}\int_{t_0}^t\dd{t'}F(t')\tr([B(t'),\rho_{\text{eq}}]A(t))\\
+=&-\frac{1}{i\hbar}\int_{t_0}^t\dd{t'}F(t')\qty(\tr(B(t')\rho_{\text{eq}}A(t))-\tr(\rho_{\text{eq}}B(t')A(t)))\\
+=&-\frac{1}{i\hbar}\int_{t_0}^t\dd{t'}F(t')\qty(\tr(\rho_{\text{eq}}A(t)B(t'))-\tr(\rho_{\text{eq}}B(t')A(t)))\\
+=&-\frac{1}{i\hbar}\int_{t_0}^t\dd{t'}F(t')\qty(\ev{A(t)B(t')}_{\rho_{\text{eq}}}-\ev{B(t')A(t)}_{\rho_{\text{eq}}})\\
+=&-\frac{1}{i\hbar}\int_{t_0}^t\dd{t'}F(t')\ev{[A(t),B(t'),]}_{\rho_{\text{eq}}}.
+\end{split}
+\end{align}
+Como las distribuciones de equilibrio son invariantes bajo traslaciones temporales
+\begin{align}
+\begin{split}
+\ev{A}_{\rho(t)}-\ev{A}_{\rho_\text{eq}}=&-\frac{1}{i\hbar}\int_{t_0}^t\dd{t'}F(t')\ev{[A(t-t'),B(0)]}_{\rho_{\text{eq}}}\\
+=&\int_{t_0}^t\dd{t'}F(t')\chi_{AB}(t-t')\\
+=&\int_{-\infty}^\infty\dd{t'}F(t')\Theta(t-t')\chi_{AB}(t-t').
+\end{split}
+\end{align}
+donde $\Theta$ es la función Heaviside si la perturbación siempre ha estado. Denotando por $\ev{\hat{A}(\vdot)}$ a la transformada de Fourier de $\ev{A}_{\rho(\vdot)}-\ev{A}_{\rho_\text{eq}}$ se tiene por el teorema de convolución que
+\begin{equation}
+\ev{\hat{A}(\omega)}=\hat{\chi_{AB}}(\omega)\hat{F}(\omega)
+\end{equation}
+ya que
+\begin{equation}
+\hat{\chi}_{AB}(\omega)=\int_0^\infty\dd{t}e^{i\omega t}\chi_{AB}(t)=\int_{-\infty}^\infty\dd{t}e^{i\omega t}\Theta(t)\chi_{AB}(t).
+\end{equation}
 
 \end{enumerate}
 
-\bibliography{../../Mendeley/library}
+\begin{enumerate}
+
+\item Se tiene
+\begin{align}
+\begin{split}
+C_{AB}(t)=&\frac{\tr(e^{-\beta H_0}A(t)B)}{\tr(e^{-\beta H_0})}\\
+=&\sum_m\bra{m}\frac{e^{-\beta H_0}}{\tr(e^{-\beta H_0})}e^{iH_0t/\hbar}Ae^{-iH_0t/\hbar}B\ket{m}\\
+=&\sum_m\bra{m}\frac{e^{-\beta E_m}}{\tr(e^{-\beta H_0})}e^{iH_0t/\hbar}Ae^{-iH_0t/\hbar}B\ket{m}\\
+=&\sum_m\rho_m\bra{m}e^{iH_0t/\hbar}Ae^{-iH_0t/\hbar}B\ket{m}\\
+=&\sum_m\rho_m\bra{m}e^{iE_mt/\hbar}Ae^{-iH_0t/\hbar}B\ket{m}\\
+=&\sum_m\rho_me^{iE_mt/\hbar}\bra{m}A\sum_n\ket{n}\bra{n}e^{-iH_0t/\hbar}B\ket{m}\\
+=&\sum_{mn}\rho_me^{iE_mt/\hbar}\bra{m}A\ket{n}\bra{n}e^{-iE_nt/\hbar}B\ket{m}\\
+=&\sum_{mn}\rho_me^{i(E_m-E_n)t/\hbar}\bra{m}A\ket{n}\bra{n}B\ket{m}\\
+=&\sum_{mn}\rho_me^{-i\omega_{nm}t}A_{mn}B_{nm}.
+\end{split}
+\end{align}
+
+\item Haciendo uso de la representación del delta de dirac en términos de ondas planas
+\begin{align}
+\begin{split}
+\hat{C}_{AB}(\omega)=&\int_{-\infty}^\infty\dd{t}e^{i\omega t}\sum_{mn}\rho_me^{-i\omega_{nm}t}A_{mn}B_{nm}\\
+=&\sum_{mn}\rho_mA_{mn}B_{nm}\int_{-\infty}^\infty\dd{t}e^{i(\omega-\omega_{nm})t}\\
+=&2\pi\sum_{mn}\rho_mA_{mn}B_{nm}\delta(\omega-\omega_{nm}).
+\end{split}
+\end{align}
+
+\item Note que
+\begin{equation}
+\chi_{AB}(t)=-\frac{1}{i\hbar}\tr(\rho_\text{eq}[A(t),B])=-\frac{1}{i\hbar}(C_{AB}(t)-\tr(\rho_\text{eq}BA(t)).
+\end{equation}
+Mediante una traslación temporal se tiene
+\begin{equation}
+\chi_{AB}(t)=-\frac{1}{i\hbar}(C_{AB}(t)-\tr(\rho_\text{eq}B(-t)A)=-\frac{1}{i\hbar}(C_{AB}(t)-C_{BA}(-t)).
+\end{equation}
+Haciendo uso de los resultados del punto 1 se tiene
+\begin{align}
+\begin{split}
+\chi_{AB}(t)=&-\frac{1}{i\hbar}\qty(\sum_{mn}\rho_me^{-i\omega_{nm}t}A_{mn}B_{nm}-\sum_{mn}\rho_ne^{i\omega_{mn}t}B_{nm}A_{mn})\\
+=&-\frac{1}{i\hbar}\sum_{mn}\qty(\rho_me^{-i\omega_{nm}t}-\rho_ne^{i\omega_{mn}t})A_{mn}B_{nm}\\
+=&-\frac{1}{i\hbar}\sum_{mn}e^{-i\omega_{nm}t}A_{mn}B_{nm}\rho_m\qty(1-\frac{\rho_ne^{i\omega_{mn}t}}{\rho_me^{-i\omega_{nm}t}})\\
+=&-\frac{1}{i\hbar}\sum_{mn}e^{-i\omega_{nm}t}A_{mn}B_{nm}\rho_m\qty(1-\frac{e^{i\omega_{mn}t-\beta E_n}}{e^{-i\omega_{nm}t-\beta E_m}})\\
+=&-\frac{1}{i\hbar}\sum_{mn}e^{-i\omega_{nm}t}A_{mn}B_{nm}\rho_m\qty(1-\frac{e^{i\omega_{mn}t-\beta E_n}}{e^{i\omega_{mn}t-\beta E_m}})\\
+=&-\frac{1}{i\hbar}\sum_{mn}e^{-i\omega_{nm}t}A_{mn}B_{nm}\rho_m\qty(1-e^{-\beta (E_n-E_m)})\\
+=&-\frac{1}{i\hbar}\sum_{mn}e^{-i\omega_{nm}t}A_{mn}B_{nm}\rho_m\qty(1-e^{-\beta\hbar\omega_{nm}}).
+\end{split}
+\end{align}
+
+\item Note que la transformada es formalmente
+\begin{align}
+\begin{split}
+\hat{\chi}_{AB}(\omega)=&-\frac{1}{i\hbar}\sum_{mn}\int_0^\infty\dd{t}e^{i\omega t}e^{-i\omega_{nm}t}A_{mn}B_{nm}\rho_m\qty(1-e^{-\beta\hbar\omega_{nm}})\\
+=&-\frac{1}{i\hbar}\sum_{mn}A_{mn}B_{nm}\rho_m\qty(1-e^{-\beta\hbar\omega_{nm}})\int_0^\infty\dd{t}e^{i(\omega-\omega_{nm})t}.
+\end{split}
+\end{align}
+Si $\omega\in\mathbb{R}$ la integral es oscilatoria y no converge. Sin embargo, al considerar $\omega=\omega_0+i\epsilon$ con $\epsilon>0$ y $\omega_0\in\mathbb{R}$ se tiene
+\begin{equation}
+-\frac{1}{i\hbar}\sum_{mn}A_{mn}B_{nm}\rho_m\qty(1-e^{-\beta\hbar\omega_{nm}})\int_0^\infty\dd{t}e^{i(\omega_0-\omega_{nm})t}e^{-\epsilon t}.
+\end{equation}
+El termino $e^{-\epsilon t}$ asegura la convergencia de esta integral. 
+
+\item Se tiene
+\begin{align}
+\begin{split}
+\hat{\chi}_{AB}(\omega)=&-\frac{1}{i\hbar}\sum_{mn}A_{mn}B_{nm}\rho_m\qty(1-e^{-\beta\hbar\omega_{nm}})\int_0^\infty\dd{t}e^{i(\omega-\omega_{nm})t}\\
+=&-\frac{1}{i\hbar}\sum_{mn}A_{mn}B_{nm}\rho_m\qty(1-e^{-\beta\hbar\omega_{nm}})\times\\
+&\frac{1}{i(\omega-\omega_{nm})}\qty[e^{i(\omega_0-\omega_{nm})t}e^{-\epsilon t}]_0^\infty\\
+=&\frac{1}{i\hbar}\sum_{mn}A_{mn}B_{nm}\rho_m\qty(1-e^{-\beta\hbar\omega_{nm}})\frac{1}{i(\omega-\omega_{nm})}\\
+=&-\frac{1}{\hbar}\sum_{mn}A_{mn}B_{nm}\rho_m\frac{1-e^{-\beta\hbar\omega_{nm}}}{\omega-\omega_{nm}}.
+\end{split}
+\end{align}
+
+\item Se calcula recordando que $\rho_eq$ es autoadjunto
+\begin{align}
+\begin{split}
+&\frac{1}{2i}(\hat{\chi}_{AB}(\omega_0)-\overline{\hat{\chi}_{B^\dagger A^\dagger}(\omega_0)}\\
+=&\frac{1}{2i}\left(-\frac{1}{\hbar}\sum_{mn}A_{mn}B_{nm}\rho_m\qty(1-e^{-\beta\hbar\omega_{nm}})\times\right.\\
+&\left.\qty(P\frac{1}{\omega_0-\omega_{nm}}-i\pi\delta(\omega_0-\omega_{nm}))\right.+\\
+&\left.\overline{\frac{1}{\hbar}\sum_{mn}B_{nm}^*A_{mn}^*\rho_m\qty(1-e^{-\beta\hbar\omega_{nm}})\times}\right.\\
+&\left.\overline{\qty(P\frac{1}{\omega_0-\omega_{nm}}-i\pi\delta(\omega_0-\omega_{nm}))}\right)\\
+=&\frac{1}{2i}\left(-\frac{1}{\hbar}\sum_{mn}A_{mn}B_{nm}\rho_m\qty(1-e^{-\beta\hbar\omega_{nm}})\times\right.\\
+&\left.\qty(P\frac{1}{\omega_0-\omega_{nm}}-i\pi\delta(\omega_0-\omega_{nm}))\right.+\\
+&\left.\frac{1}{\hbar}\sum_{mn}B_{nm}A_{mn}\rho_m\qty(1-e^{-\beta\hbar\omega_{nm}})\times\right.\\
+&\left.\qty(P\frac{1}{\omega_0-\omega_{nm}}+i\pi\delta(\omega_0-\omega_{nm}))\right)
+\end{split}
+\end{align}
+Es claro que los coeficientes de $P\frac{1}{\omega_0-\omega_{nm}}$ se cancelan y por lo tanto
+\begin{align}
+\begin{split}
+&\frac{1}{2i}(\hat{\chi}_{AB}(\omega_0)-\overline{\hat{\chi}_{B^\dagger A^\dagger}(\omega_0)}\\
+=&\frac{\pi}{2}\left(\frac{1}{\hbar}\sum_{mn}A_{mn}B_{nm}\rho_m\qty(1-e^{-\beta\hbar\omega_{nm}})\delta(\omega_0-\omega_{nm})\right.+\\
+&\left.\frac{1}{\hbar}\sum_{mn}B_{nm}A_{mn}\rho_m\qty(1-e^{-\beta\hbar\omega_{nm}})\delta(\omega_0-\omega_{nm})\right)\\
+=&\qty(\frac{\pi}{\hbar}\sum_{mn}A_{mn}B_{nm}\rho_m\qty(1-e^{-\beta\hbar\omega_{nm}})\delta(\omega_0-\omega_{nm}))\\
+=&\frac{\pi}{\hbar}\qty(1-e^{-\beta\hbar\omega_0})\sum_{mn}A_{mn}B_{nm}\rho_m\delta(\omega_0-\omega_{nm})\\
+=&\frac{\pi}{\hbar}\qty(1-e^{-\beta\hbar\omega_0})\frac{1}{2\pi}\hat{C}_{AB}(\omega_0)\\
+=&\frac{1-e^{-\beta\hbar\omega_0}}{2\hbar}\hat{C}_{AB}(\omega_0).
+\end{split}
+\end{align}
+
+\item Poniendo $A=B=B^\dagger=A^\dagger$ en la ecuación anterior, se observa que se está calculando $\Im\hat{\chi}_{BB}(\omega_0)$ y por lo tanto
+\begin{equation}
+\Im\hat{\chi}_{BB}(\omega_0)=\frac{1-e^{-\beta\hbar\omega_0}}{2\hbar}\hat{C}_{BB}(\omega_0)
+\end{equation}
+
+\item Cuando $\hbar$ es pequeño se tiene al ignorar términos $\mathcal{O}(\hbar^2)$
+\begin{equation}
+\Im\hat{\chi}_{BB}(\omega_0)=\frac{1-1+\beta\hbar\omega_0}{2\hbar}\hat{C}_{BB}(\omega_0)=\frac{\beta\omega_0}{2}\hat{C}_{BB}(\omega_0).
+\end{equation}
+
+\item Se tiene que y por lo tanto
+\begin{align}
+\begin{split}
+\dv{U}{t}=\tr(\dv{rho}{t}H+\rho\dv{H}{t})=\tr(\pdv{rho_1}{t}H-\rho F'(t)B)
+\end{split}
+\end{align}
+
+\end{enumerate}
+
+\section{Marcha aleatoria sobre red hipercúbica}
+
+\begin{enumerate}
+
+\item Tenemos que la probabilidad de que la partícula salte de $\vb{r}$ a $\vb{r}'$ está dada por
+\begin{equation}
+W(\vb{r}'|\vb{r})=\begin{cases}
+\frac{1}{2d} & \text{existe }\mu\in\{1,\dots,d\}\text{ tal que }\vb{r}'=\vb{r}+\vb{e}_\mu\\
+0 & \text{de lo contrario}. 
+\end{cases}
+\end{equation}
+Es obvio que esta es simétrica. Ya que los intervalos de tiempo están a distancia $1$, las derivadas en la ecuación desarrollada en clase se reemplazan por diferencias. Así mismo, ya que el codominio de la variable aleatoria de posición es discreto, se equipa con la medida de contar y las integrales se vuelven sumas. Por lo tanto la ecuación maestra toma la forma
+\begin{align}
+\begin{split}
+&P(\vb{r},t+1)-P(\vb{r},t)=\\
+&\sum_{\vb{r}'\in\mathbb{Z}^d}(W(\vb{r}'|\vb{r})P(\vb{r}',t)-W(\vb{r}'|\vb{r})P(\vb{r},t))=\\
+&\sum_{\vb{r}'\in\mathbb{Z}^d}W(\vb{r}'|\vb{r})(P(\vb{r}',t)-P(\vb{r},t))=\\
+&\frac{1}{2d}\sum_{\mu\in\{1,\dots,d\}}(P(\vb{r}+\vb{e}_\mu,t)-P(\vb{r},t)+P(\vb{r}-\vb{e}_\mu,t)-P(\vb{r},t))=\\
+&\frac{1}{2d}\sum_{\mu\in\{1,\dots,d\}}(P(\vb{r}+\vb{e}_\mu,t)+P(\vb{r}-\vb{e}_\mu,t)-2P(\vb{r},t))=\\
+&\frac{1}{2d}\sum_{\mu\in\{1,\dots,d\}}(P(\vb{r}+\vb{e}_\mu,t)+P(\vb{r}-\vb{e}_\mu,t))-P(\vb{r},t).
+\end{split}
+\end{align}
+Se concluye que
+\begin{equation}\label{ec:maestra}
+P(\vb{r},t+1)=\frac{1}{2d}\sum_{\mu\in\{1,\dots,d\}}(P(\vb{r}+\vb{e}_\mu,t)+P(\vb{r}-\vb{e}_\mu,t)).
+\end{equation}
+
+\item Podemos tomar la función generatriz de $P(\vb{r},\vdot +1)$
+\begin{align}
+\begin{split}
+\sum_{t=0}^\infty z^t P(\vb{r},t+1)=&\sum_{t=0}^\infty \frac{1}{z}z^{t+1}P(\vb{r},t+1)=\frac{1}{z}\sum_{t=0}^\infty z^{t+1}P(\vb{r},t+1)\\
+=&\frac{1}{z}\sum_{t=1}^\infty z^{t}P(\vb{r},t)=\frac{1}{z}(\sum_{t=0}^\infty z^{t}P(\vb{r},t)-P(\vb{r},0))\\
+=&\frac{1}{z}\qty(\hat{P}(\vb{r},z)-P(\vb{r},0)).
+\end{split}
+\end{align}
+donde $\hat{P}(\vb{r},\vdot)$ es la función generatriz de $P(\vb{r},\vdot)$. Tomando la transformada de Fourier de la función generatriz de $P(\vb{r},\vdot +1)$ obtenemos
+\begin{align}
+\begin{split}
+&\sum_{\vb{r}\in\mathbb{Z}^d}e^{i\vb{k}\vdot\vb{r}}\sum_{t=0}^\infty z^t P(\vb{r},t+1)=\sum_{\vb{r}\in\mathbb{Z}^d}e^{i\vb{k}\vdot\vb{r}}\qty(\frac{1}{z}(\hat{P}(\vb{r},z)-P(\vb{r},0)))=\\
+&\frac{1}{z}\qty(\sum_{\vb{r}\in\mathbb{Z}^d}e^{i\vb{k}\vdot\vb{r}}\hat{P}(\vb{r},z)-\sum_{\vb{r}\in\mathbb{Z}^d}e^{i\vb{k}\vdot\vb{r}}\delta_{\vb{r},0})=\frac{1}{z}(\tilde{\hat{P}}(\vb{k},z)-1).
+\end{split}
+\end{align}
+donde $\tilde{\hat{P}}(\vdot,z)$ es la transformada de Fourier de $\hat{P}(\vdot,\vb{z})$ y se utilizaron las condiciones iniciales $P(\vb{r},0)=\delta_{\vb{r},0}$. Note que
+\begin{align}
+\begin{split}
+&\sum_{\vb{r}\in\mathbb{Z}^d}e^{i\vb{k}\vdot\vb{r}}\sum_{t=0}^\infty z^t\frac{1}{2d}\sum_{\mu\in\{1,\dots,d\}}(P(\vb{r}+\vb{e}_\mu,t)+P(\vb{r}-\vb{e}_\mu,t))=\\
+&\frac{1}{2d}\sum_{\mu\in\{1,\dots,d\}}\left(\sum_{\vb{r}\in\mathbb{Z}^d}e^{i\vb{k}\vdot\vb{r}}\sum_{t=0}^\infty z^tP(\vb{r}+\vb{e}_\mu,t)\right.\\
+&\left.+\sum_{\vb{r}\in\mathbb{Z}^d}e^{i\vb{k}\vdot\vb{r}}\sum_{t=0}^\infty z^tP(\vb{r}-\vb{e}_\mu,t)\right)=\\
+&\frac{1}{2d}\sum_{\mu\in\{1,\dots,d\}}\qty(\sum_{\vb{r}\in\mathbb{Z}^d}e^{i\vb{k}\vdot\vb{r}}\hat{P}(\vb{r}+\vb{e}_\mu,z)+\sum_{\vb{r}\in\mathbb{Z}^d}e^{i\vb{k}\vdot\vb{r}}\hat{P}(\vb{r}-\vb{e}_\mu,z))=\\
+&\frac{1}{2d}\sum_{\mu\in\{1,\dots,d\}}\qty(\sum_{\vb{r}\in\mathbb{Z}^d}e^{i\vb{k}\vdot(\vb{r}-\vb{e}_\mu)}\hat{P}(\vb{r},z)+\sum_{\vb{r}\in\mathbb{Z}^d}e^{i\vb{k}\vdot(\vb{r}+\vb{e}_\mu)}\hat{P}(\vb{r},z))=\\
+&\frac{1}{2d}\sum_{\mu\in\{1,\dots,d\}}\qty(e^{-i\vb{k}\vdot\vb{e}_\mu}\sum_{\vb{r}\in\mathbb{Z}^d}e^{i\vb{k}\vdot\vb{r}}\hat{P}(\vb{r},z)+e^{i\vb{k}\vdot\vb{e}_\mu}\sum_{\vb{r}\in\mathbb{Z}^d}e^{i\vb{k}\vdot\vb{r}}\hat{P}(\vb{r},z))=\\
+&\frac{1}{2d}\sum_{\mu\in\{1,\dots,d\}}\qty(e^{-i\vb{k}\vdot\vb{e}_\mu}+e^{i\vb{k}\vdot\vb{e}_\mu})\sum_{\vb{r}\in\mathbb{Z}^d}e^{i\vb{k}\vdot\vb{r}}\hat{P}(\vb{r},z)=\\
+&\frac{1}{d}\sum_{\mu\in\{1,\dots,d\}}\cos(\vb{k}\vdot\vb{e}_\mu)\tilde{\hat{P}}(\vb{k},z)=\frac{1}{d}\sum_{\mu\in\{1,\dots,d\}}\cos(\vb{k}_\mu)\tilde{\hat{P}}(\vb{k},z).
+\end{split}
+\end{align}
+Entonces por \eqref{ec:maestra} se tiene que
+\begin{equation}\label{ec:maestra_fourier}
+\frac{1}{z}\qty(\tilde{\hat{P}}(\vb{k},z)-1)=\frac{1}{d}\sum_{\mu\in\{1,\dots,d\}}\cos(\vb{k}_\mu)\tilde{\hat{P}}(\vb{k},z).
+\end{equation}
+Esta ecuación es lineal en $\tilde{\hat{P}}(\vb{k},z)$ y su respuesta es sencillamente
+\begin{equation}
+\tilde{\hat{P}}(\vb{k},z)=\frac{1}{1-\frac{z}{d}\sum_{\mu\in\{1,\dots,d\}}\cos(\vb{k}_\mu)}.
+\end{equation}
+
+\item Ver \eqref{ec:maestra_fourier}.
+
+\item Se tiene que
+\begin{align}
+\begin{split}
+\Delta g(\vb{r})=&\sum_{\mu\in\{1,\dots,d\}}(g(\vb{r}+\vb{e_\mu})+g(\vb{r}-\vb{e_\mu})-2g(\vb{r}))\\
+=&\lim_{z\rightarrow 1}\sum_{\mu\in\{1,\dots,d\}}\qty(-\hat{P}(\vb{r}+\vb{e}_\mu,z)-\hat{P}(\vb{r}-\vb{e}_\mu,z)+2\hat{P}(\vb{r},z))\\
+=&\lim_{z\rightarrow 1}\qty(2d\hat{P}(\vb{r},z)-\sum_{\mu\in\{1,\dots,d\}}(\hat{P}(\vb{r}+\vb{e}_\mu,z)+\hat{P}(\vb{r}-\vb{e}_\mu,z))).
+\end{split}
+\end{align}
+Ahora bien
+\begin{align}
+\begin{split}
+\hat{P}(\vb{r},z)=&\sum_{t=0}^\infty z^tP(\vb{r},t)=P(\vb{r},0)+\sum_{t=1}^\infty z^t P(\vb{r},t)\\
+=&P(\vb{r},0)+\sum_{t=0}^\infty z^{t+1} P(\vb{r},t+1)\\
+=&P(\vb{r},0)+z\sum_{t=0}^\infty z^{t} P(\vb{r},t+1).
+\end{split}
+\end{align}
+En vista de \eqref{ec:maestra}  y las condiciones iniciales se tiene
+\begin{align}
+\begin{split}
+\hat{P}(\vb{r},z)=&\delta_{\vb{r},0}+\frac{z}{2d}\sum_{\mu\in\{1,\dots,d\}}\sum_{t=0}^\infty z^t(P(\vb{r}+\vb{e}_\mu,t)+P(\vb{r}-\vb{e}_\mu,t))\\
+=&\delta_{\vb{r},0}+\frac{z}{2d}\sum_{\mu\in\{1,\dots,d\}}(\hat{P}(\vb{r}+\vb{e}_\mu,z)+\hat{P}(\vb{r}-\vb{e}_\mu,z)).
+\end{split}
+\end{align}
+Por lo tanto
+\begin{align}
+\begin{split}
+\Delta g(\vb{r})=&\lim_{z\rightarrow 1}\left(2d\delta_{\vb{r},0}+z\sum_{\mu\in\{1,\dots,d\}}(\hat{P}(\vb{r}+\vb{e}_\mu,z)+\hat{P}(\vb{r}-\vb{e}_\mu,z))\right.\\
+&\left.-\sum_{\mu\in\{1,\dots,d\}}(\hat{P}(\vb{r}+\vb{e}_\mu,z)+\hat{P}(\vb{r}-\vb{e}_\mu,z))\right)=2d\delta_{\vb{r},0}
+\end{split}
+\end{align}
+
+\item Note que
+\begin{equation}
+\Delta g(\vb{r})=\sum_{\mu\in\{1,\dots,d\}}\frac{\frac{g(\vb{r}+\vb{e}_\mu)-g(\vb{r})}{1}-\frac{g(\vb{r})-g(\vb{r}-\vb{e}_\mu)}{1}}{1}
+\end{equation} 
+es una versión discreta del Laplaciano. Si $\|\vb{r}\|$ es mucho mayor al espaciamiento entre cada sitio, podemos aproximar al caso continuo obteniendo $\Delta g(\vb{r})=2d\delta(\vb{r})$, donde $\Delta$ es el Laplaciano. La solución de esta ecuación es bien conocida de la teoría del electromagnetismo. Se tiene
+\begin{equation}
+g(\vb{r})\propto\begin{cases}
+\|\vb{r}\| & d=1\\
+\ln(\|\vb{r}\|) & d=2\\
+\frac{1}{r^{d-2}} & d\geq 3.
+\end{cases}
+\end{equation}
+
+\item Tomando $z=1$ en la definición de la función generatriz de $F$ significa sumar todos lo valores de $F$. En el caso de $P(\vb{r},\vdot)$ esto corresponde a la probabilidad de que la partícula pase por $\vb{r}$ en algún momento. 
+
+\end{enumerate}
+
+\bibliography{../Mendeley/library}
 \bibliographystyle{ieeetr}
 
 \end{document}
