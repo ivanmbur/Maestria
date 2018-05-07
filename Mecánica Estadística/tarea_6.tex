@@ -169,7 +169,7 @@ donde $B(t)$ está en la representación de Heisenberg del sistema en equilibrio
 \begin{align}
 \begin{split}
 e^{(t-t')\mathcal{L}_0}[B,\rho_{\text{eq}}]=&e^{t\mathcal{L}_0}e^{-t'\mathcal{L}_0}[B,\rho_{\text{eq}}]=e^{t\mathcal{L}_0}[e^{-t'\mathcal{L}_0}B,\rho_{\text{eq}}]\\
-=&e^{t\mathcal{L}_0}[B(t'),\rho_{\text{eq}}].
+=&e^{t\mathcal{L}_0}[B(t')\tr(\dv{\rho}{t}H+\rho\dv{H}{t}),\rho_{\text{eq}}].
 \end{split}
 \end{align}
 Luego la respuesta a la perturbación es 
@@ -311,7 +311,7 @@ Es claro que los coeficientes de $P\frac{1}{\omega_0-\omega_{nm}}$ se cancelan y
 \end{align}
 
 \item Poniendo $A=B=B^\dagger=A^\dagger$ en la ecuación anterior, se observa que se está calculando $\Im\hat{\chi}_{BB}(\omega_0)$ y por lo tanto
-\begin{equation}
+\begin{equation}\label{ec:chi_C}
 \Im\hat{\chi}_{BB}(\omega_0)=\frac{1-e^{-\beta\hbar\omega_0}}{2\hbar}\hat{C}_{BB}(\omega_0)
 \end{equation}
 
@@ -320,21 +320,63 @@ Es claro que los coeficientes de $P\frac{1}{\omega_0-\omega_{nm}}$ se cancelan y
 \Im\hat{\chi}_{BB}(\omega_0)=\frac{1-1+\beta\hbar\omega_0}{2\hbar}\hat{C}_{BB}(\omega_0)=\frac{\beta\omega_0}{2}\hat{C}_{BB}(\omega_0).
 \end{equation}
 
-\item En el esquema de Heisenberg en el cual el operador densidad es constante
-\begin{equation}
-\dv{U}{t}=\tr(\rho\dv{H}{t})=\tr(-\rho F'(t)B)=-F'(t)\ev{B}
-\end{equation}
+\item Se tiene con la ecuación de von Neumann y la ciclicidad de ka traza
+\begin{align}
+\begin{split}
+\dv{U}{t} (t)=&\tr(\dv{\rho}{t} (t)H(t)+\rho(t)\dv{H}{t} (t))\\
+=&\tr(\frac{1}{i\hbar}[H(t),\rho(t)]H(t)+\rho(t)\dv{H}{t} (t))\\
+=&\frac{1}{i\hbar}\qty(\tr(H(t)\rho(t)H(t))-\tr(\rho(t)H(t)^2))+\tr(\rho(t)\dv{H}{t} (t))\\
+=&\frac{1}{i\hbar}\qty(\tr(\rho(t)H(t)^2)-\tr(\rho(t)H(t)^2))+\tr(\rho(t)\dv{H}{t} (t))\\
+=&\tr(\rho(t)\dv{H}{t} (t))=-\dv{F}{t}(t)\tr(\rho(t)B)=-\dv{F}{t}(t)\ev{B}_{\rho(t)}.
+\end{split}
+\end{align}
 
 \item Utilizando \eqref{ec:valores_esperados} se tiene
 \begin{align}
 \begin{split}
-\dv{U}{t}=&-\int_{-\infty}^t\dd{t'}\chi_{BB}(t-t')F_0\cos(\omega_0t')F_0\omega_0\sin(\omega_0t)\\
-=&-\int_{\infty}^0\dd{t'}\chi_{BB}(t')\qty(e^{i\omega_0(t-t')}+e^{-i\omega_0(t-t')})\frac{F_0^2}{2}\omega_0\sin(\omega_0t)\\
-=&\int_0^\infty\dd{t'}\chi_{BB}(t')\qty(e^{i\omega_0t}e^{-i\omega_0t'}+e^{-i\omega_0t}e^{i\omega_0t'})\frac{F_0^2}{2}\omega_0\sin(\omega_0t)\\
-=&\qty(e^{i\omega_0t}\overline{\hat{\chi}_{BB}(\omega_0)}+e^{-i\omega_0t}\hat{\chi}_{BB}(\omega_0))\frac{F_0^2}{2}\omega_0\sin(\omega_0t)\\
-=&\Im(e^{-i\omega_0t}\hat{\chi}_{BB}(\omega_0))\frac{F_0^2}{2}\omega_0\sin(\omega_0t)
+\dv{U}{t} =&F_0\omega_0\sin(\omega_0t)\qty(\int_{-\infty}^t\dd{t'}\chi_{BB}(t-t')F_0\cos(\omega_0t')+\ev{B}_{\rho_\text{eq}})\\
+=&F_0\omega_0\sin(\omega_0t)\int_{-\infty}^t\dd{t'}\chi_{BB}(t-t')\frac{F_0}{2}\qty(e^{i\omega_0t'}+e^{-i\omega_0t'})\\
+&+F_0\ev{B}_{\rho_\text{eq}}\omega_0\sin(\omega_0t)\\
+=&-F_0\omega_0\sin(\omega_0t)\int_\infty^0\dd{t'}\chi_{BB}(t')\frac{F_0}{2}\qty(e^{i\omega_0(t-t')}+e^{-i\omega_0(t-t')})\\
+&+F_0\ev{B}_{\rho_\text{eq}}\omega_0\sin(\omega_0t)\\
+=&\frac{F_0^2\omega_0}{2}\sin(\omega_0t)\int_0^\infty\dd{t'}\chi_{BB}(t')\qty(e^{i\omega_0t}e^{-i\omega_0t'}+e^{-i\omega_0t}e^{i\omega_0t'})\\
+&+F_0\ev{B}_{\rho_\text{eq}}\omega_0\sin(\omega_0t)\\
+=&\frac{F_0^2\omega_0}{2}\sin(\omega_0t)\qty(\hat{\chi}_{BB}(-\omega_0)e^{i\omega_0t}+\hat{\chi}_{BB}(\omega_0)e^{-i\omega_0t})\\
+&+F_0\ev{B}_{\rho_\text{eq}}\omega_0\sin(\omega_0t)\\
+=&\frac{F_0^2\omega_0}{4i}\qty(e^{i\omega_0t}-e^{-i\omega_0t})\qty(\hat{\chi}_{BB}(-\omega_0)e^{i\omega_0t}+\hat{\chi}_{BB}(\omega_0)e^{-i\omega_0t})\\
+&+F_0\ev{B}_{\rho_\text{eq}}\omega_0\sin(\omega_0t)\\
+=&\frac{F_0^2\omega_0}{4i}\left.(\hat{\chi}_{BB}(-\omega_0)e^{2i\omega_0t}+\hat{\chi}_{BB}(\omega_0)\right.\\
+&\left.-\hat{\chi}_{BB}(-\omega_0)-\hat{\chi}_{BB}(\omega_0)e^{-2i\omega_0t}\right)+F_0\ev{B}_{\rho_\text{eq}}\omega_0\sin(\omega_0t).
 \end{split}
 \end{align}
+Notando que para $\omega_0\in\mathbb{R}$ como $\chi_{BB}$ es real se tiene que $\hat{\chi}(-\omega_0)=\overline{\hat{\chi}(\omega_0)}$. Por lo tanto
+\begin{align}
+\begin{split}
+\dv{U}{t} (t)=&\frac{F_0^2\omega_0}{4i}\left.(\hat{\chi}_{BB}(\omega_0)-\hat{\chi}_{BB}(\omega_0)e^{-2i\omega_0t}\right.\\
+&\left.-\overline{\hat{\chi}_{BB}(\omega_0)-\hat{\chi}_{BB}(\omega_0)e^{-2i\omega_0t}}\right)+F_0\ev{B}_{\rho_\text{eq}}\omega_0\sin(\omega_0t)\\
+=&\frac{F_0^2\omega_0}{2}\Im(\hat{\chi}_{BB}(\omega_0)(1-e^{-2i\omega_0t}))\\
+&+F_0\ev{B}_{\rho_\text{eq}}\omega_0\sin(\omega_0t).
+\end{split}
+\end{align}
+Notando que 
+\begin{align}
+\begin{split}
+\frac{\omega_0}{2\pi}\int_0^{\frac{2\pi}{\omega_0}}\dd{t}e^{-2i\omega_0t}=&\frac{\omega_0}{2\pi}\frac{1}{-2i\omega_0}\qty[e^{-2i\omega_0t}]_{t=0}^{\frac{2\pi}{\omega_0}}=0\\
+\frac{\omega_0}{2\pi}\int_0^{\frac{2\pi}{\omega_0}}\dd{t}\sin(\omega_0 t)=&\frac{\omega_0}{2\pi}\frac{1}{\omega_0}\qty[-\cos(\omega_0t)]_{t=0}^{\frac{2\pi}{\omega_0}}=0,
+\end{split}
+\end{align}
+obtenemos que el promedio temporal es
+\begin{equation}
+\begin{split}
+\dv{U}{t}=&\frac{F_0^2\omega_0}{2}\Im\hat{\chi}_{BB}(\omega_0).
+\end{split}
+\end{equation}
+Recordando \eqref{ec:chi_C} se obtiene
+\begin{equation}\label{ec:fluctuacion_disipacion}
+\dv{U}{t}=\frac{F_0^2\omega_0}{4\hbar}\qty(1-e^{-\beta\hbar\omega_0})\hat{C}_{BB}(\omega_0)
+\end{equation}
+
+\item Al lado izquierdo de \eqref{ec:fluctuacion_disipacion} tenemos la disipación de la energía. Al lado derecho, sin embargo, tenemos la amplitud de la correlación de $B$ con sigo mismo bajo oscilaciones de frequencia $\omega_0$. Esto corresponde a las fluctuaciones debido la fuerza interactuante $H_1$. De esta manera se relaciona la disipación de energía con fluctuaciones debidas a un agente externo.
 
 \end{enumerate}
 
