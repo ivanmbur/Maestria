@@ -127,7 +127,7 @@ Recordando que $\rho_{\text{eq}}$ es independiente del tiempo e ignorando como d
 \end{equation} 
 Se obtiene entonces la ecuación diferencial
 \begin{equation}
-\pdv{\rho_1}{t} (t)-[H_0,\rho_1(t)]=\frac{1}{i\hbar}[H_1(t),\rho_{\text{eq}}]=-\frac{F(t)}{i\hbar}[B,\rho_{\text{eq}}].
+\pdv{\rho_1}{t} (t)-\frac{1}{i\hbar}[H_0,\rho_1(t)]=\frac{1}{i\hbar}[H_1(t),\rho_{\text{eq}}]=-\frac{F(t)}{i\hbar}[B,\rho_{\text{eq}}].
 \end{equation}
 En analogía con lo hecho en clase, definimos el operador de Liouville
 \begin{equation}
@@ -194,7 +194,7 @@ y por lo tanto haciendo uso de la ciclicidad de la traza
 \end{split}
 \end{align}
 Como las distribuciones de equilibrio son invariantes bajo traslaciones temporales
-\begin{align}
+\begin{align}\label{ec:valores_esperados}
 \begin{split}
 \ev{A}_{\rho(t)}-\ev{A}_{\rho_\text{eq}}=&-\frac{1}{i\hbar}\int_{t_0}^t\dd{t'}F(t')\ev{[A(t-t'),B(0)]}_{\rho_{\text{eq}}}\\
 =&\int_{t_0}^t\dd{t'}F(t')\chi_{AB}(t-t')\\
@@ -320,10 +320,19 @@ Es claro que los coeficientes de $P\frac{1}{\omega_0-\omega_{nm}}$ se cancelan y
 \Im\hat{\chi}_{BB}(\omega_0)=\frac{1-1+\beta\hbar\omega_0}{2\hbar}\hat{C}_{BB}(\omega_0)=\frac{\beta\omega_0}{2}\hat{C}_{BB}(\omega_0).
 \end{equation}
 
-\item Se tiene que y por lo tanto
+\item En el esquema de Heisenberg en el cual el operador densidad es constante
+\begin{equation}
+\dv{U}{t}=\tr(\rho\dv{H}{t})=\tr(-\rho F'(t)B)=-F'(t)\ev{B}
+\end{equation}
+
+\item Utilizando \eqref{ec:valores_esperados} se tiene
 \begin{align}
 \begin{split}
-\dv{U}{t}=\tr(\dv{rho}{t}H+\rho\dv{H}{t})=\tr(\pdv{rho_1}{t}H-\rho F'(t)B)
+\dv{U}{t}=&-\int_{-\infty}^t\dd{t'}\chi_{BB}(t-t')F_0\cos(\omega_0t')F_0\omega_0\sin(\omega_0t)\\
+=&-\int_{\infty}^0\dd{t'}\chi_{BB}(t')\qty(e^{i\omega_0(t-t')}+e^{-i\omega_0(t-t')})\frac{F_0^2}{2}\omega_0\sin(\omega_0t)\\
+=&\int_0^\infty\dd{t'}\chi_{BB}(t')\qty(e^{i\omega_0t}e^{-i\omega_0t'}+e^{-i\omega_0t}e^{i\omega_0t'})\frac{F_0^2}{2}\omega_0\sin(\omega_0t)\\
+=&\qty(e^{i\omega_0t}\overline{\hat{\chi}_{BB}(\omega_0)}+e^{-i\omega_0t}\hat{\chi}_{BB}(\omega_0))\frac{F_0^2}{2}\omega_0\sin(\omega_0t)\\
+=&\Im(e^{-i\omega_0t}\hat{\chi}_{BB}(\omega_0))\frac{F_0^2}{2}\omega_0\sin(\omega_0t)
 \end{split}
 \end{align}
 
