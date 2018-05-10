@@ -1,0 +1,94 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{enumerate}
+\usepackage{physics}
+\usepackage{amssymb}
+
+\title{Mecánica Cuántica Avanzada:\\
+Examen 3}
+\author{Iván Mauricio Burbano Aldana\\
+201423205}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problema 2}
+
+\begin{enumerate}[(a)]
+
+\item Se tiene que
+\begin{align}
+\begin{split}
+\pdv{\mathcal{L}}{\partial_\mu\phi^\dagger}=&\pdv{\partial_\mu\phi^\dagger}((\partial_\nu\phi^\dagger)(\partial^\nu\phi))=\partial^\nu\phi\pdv{\partial_\mu\phi^\dagger}(\partial_\nu\phi^\dagger)=\partial^\nu\phi\delta^\mu_\nu=\partial^\mu\phi,\\
+\pdv{\mathcal{L}}{\phi^\dagger}=&-m^2\phi.
+\end{split}
+\end{align}
+Por lo tanto, las ecuaciones de Euler-Lagrange entregan la de Klein-Gordon
+\begin{equation}
+0=\partial_\mu\pdv{\mathcal{L}}{\partial_\mu\phi^\dagger}-\pdv{\mathcal{L}}{\phi^\dagger}=\partial_\mu\partial^\mu\phi+m^2\phi=(\Box+m^2)\phi.
+\end{equation}
+
+\item Bajo esta transformación $\phi\mapsto (e^{-iq\theta}\phi)^\dagger=e^{iq\theta}\phi^\dagger$ y el Lagrangiano es
+\begin{align}
+\begin{split}
+\mathcal{L}(e^{-iq\theta}\phi,e^{iq\theta}\phi^\dagger)=&(\partial_\mu(e^{iq\theta}\phi^\dagger))(\partial^\mu(e^{-iq\theta}\phi))-m^2e^{iq\theta}\phi^\dagger e^{-iq\theta}\phi\\
+=&(e^{iq\theta}\partial_\mu\phi^\dagger)(e^{-iq\theta}\partial^\mu\phi)-m^2\phi^\dagger\phi\\
+=&(\partial_\mu\phi^\dagger)(\partial^\mu\phi)-m^2\phi^\dagger\phi=\mathcal{L}(\phi,\phi^\dagger).
+\end{split}
+\end{align}
+Se concluye que en efecto el Lagrangiano es invariante.
+
+\item Asumiendo $q\theta$ como pequeño se tiene $\phi\mapsto\phi-iq\theta\phi$ y $\phi^\dagger\mapsto\phi^\dagger+iq\theta\phi^\dagger$. Ya que el Lagrangiano es invariante, la corriente de Noether obtenida es particularmente sencilla
+\begin{equation}\label{ec:corriente_escalar}
+j^\mu=\pdv{\mathcal{L}}{\partial_\mu\phi} (-iq\theta\phi)+\pdv{\mathcal{L}}{\partial_\mu\phi^\dagger} (iq\theta\phi^\dagger)=iq\theta\qty(\phi^\dagger\partial^\mu\phi-\qty(\partial^\mu\phi^\dagger)\phi).
+\end{equation}
+El orden en el que se presentan los terminos es tal que uno es el complejo conjugado del otro. Esto nos va a ser util una vez cuanticemos el campo. Ahora bien, a partir de la ecuación del enunciado
+\begin{align}
+\begin{split}
+\phi^\dagger(x)=&\int\frac{\dd[3]{\vb{p}}}{(2\pi)^{3/2}}\frac{1}{\sqrt{2E_{\vb{p}}}}\qty(a^\dagger(\vb{p})e^{ip\vdot x}+\hat{a}(\vb{p})e^{-ip\vdot x}),\\
+\partial^\mu\phi(x)=&\int\frac{\dd[3]{\vb{p}}}{(2\pi)^{3/2}}\frac{1}{\sqrt{2E_{\vb{p}}}}ip^\mu\qty(-a(\vb{p})e^{-ip\vdot x}+\hat{a}^\dagger(\vb{p})e^{ip\vdot x}).
+\end{split}
+\end{align}
+Entonces, en terminos de los operadores de creación y destrucción se obtiene
+\begin{align}\label{ec:corriente_escalar_1}
+\begin{split}
+\phi^\dagger(x)\partial^\mu\phi(x)=&\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{q}}}{(2\pi)^3}\frac{1}{2\sqrt{E_{\vb{p}}E_{\vb{q}}}}iq^\mu\\
+&\qty(a^\dagger(\vb{p})e^{ip\vdot x}+\hat{a}(\vb{p})e^{-ip\vdot x})\qty(-a(\vb{q})e^{-iq\vdot x}+\hat{a}^\dagger(\vb{q})e^{iq\vdot x})\\
+=&\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{q}}}{(2\pi)^3}\frac{1}{2\sqrt{E_{\vb{p}}E_{\vb{q}}}}iq^\mu\\
+&\left(-a^\dagger(\vb{p})a(\vb{q})e^{i(p-q)\vdot x}+\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})e^{i(q-p)\vdot x}\right.\\
+&\left.+a^\dagger(\vb{p})\hat{a}^\dagger(\vb{q})e^{i(p+q)\vdot x}-\hat{a}(\vb{p})a(\vb{q})e^{-i(p+q)\vdot x}\right).
+\end{split}
+\end{align}
+El otro termino en la corriente se puede obtener mediante conjugación compleja. Esto consiste en agregar un signo negativo debido al termino $iq^\mu$, cambiar el signo de cada exponencial, intercambiar los operadores en cada termino y reemplazar todos lo operadores de destrucción por operadores de creación y viceversa.
+\begin{align}
+\begin{split}
+\partial^\mu\phi^\dagger\phi=&\qty(\phi^\dagger(x)\partial^\mu\phi(x))^\dagger\\
+=&\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{q}}}{(2\pi)^3}\frac{1}{2\sqrt{E_{\vb{p}}E_{\vb{q}}}}iq^\mu\\
+&\left(a^\dagger(\vb{q})a(\vb{p})e^{-i(p-q)\vdot x}-\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})e^{-i(q-p)\vdot x}\right.\\
+&\left.-\hat{a}(\vb{q})a(\vb{p})e^{-i(p+q)\vdot x}+a^\dagger(\vb{q})\hat{a}^\dagger(\vb{p})e^{i(p+q)\vdot x}\right).
+\end{split}
+\end{align}
+Podems renombrar las etiquetas mudas $\vb{p}\leftrightarrow\vb{q}$. De esta manera, aplicando el teorema de Fubini para cambiar los ordenes de integración, se obtiene 
+\begin{align}\label{ec:corriente_escalar_2}
+\begin{split}
+\partial^\mu\phi^\dagger\phi=&\qty(\phi^\dagger(x)\partial^\mu\phi(x))^\dagger\\
+=&\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{q}}}{(2\pi)^3}\frac{1}{2\sqrt{E_{\vb{p}}E_{\vb{q}}}}ip^\mu\\
+&\left(a^\dagger(\vb{p})a(\vb{q})e^{i(p-q)\vdot x}-\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})e^{i(q-p)\vdot x}\right.\\
+&\left.-\hat{a}(\vb{p})a(\vb{q})e^{-i(p+q)\vdot x}+a^\dagger(\vb{p})\hat{a}^\dagger(\vb{q})e^{i(p+q)\vdot x}\right).
+\end{split}
+\end{align}
+Uno puede estar preocupado por renombrar $q^0$ por $p^0$. Sin embargo, esto es valido notanto que en esta notación $q^0=E_{\vb{q}}$. No hay mucho más que se pueda hacer para el cálculo de $j^\mu$. Incluimos la fórmula ya que se demanda en el enunciado aunque no dice mucho acerca de la física del problema
+\begin{align}
+\begin{split}
+j^\mu=&q\theta\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{q}}}{(2\pi)^3}\frac{1}{2\sqrt{E_{\vb{p}}E_{\vb{q}}}}ip^\mu\\
+&\left(a^\dagger(\vb{p})a(\vb{q})e^{i(p-q)\vdot x}-\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})e^{i(q-p)\vdot x}\right.\\
+&\left.-\hat{a}(\vb{p})a(\vb{q})e^{-i(p+q)\vdot x}+a^\dagger(\vb{p})\hat{a}^\dagger(\vb{q})e^{i(p+q)\vdot x}\right)
+\end{split}
+\end{align}
+
+\end{enumerate}
+
+\end{document}
