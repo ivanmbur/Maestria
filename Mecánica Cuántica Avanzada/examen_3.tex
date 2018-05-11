@@ -5,15 +5,121 @@
 \usepackage{enumerate}
 \usepackage{physics}
 \usepackage{amssymb}
+\usepackage{slashed}
 
 \title{Mecánica Cuántica Avanzada:\\
 Examen 3}
 \author{Iván Mauricio Burbano Aldana\\
-201423205}
+Código: 201423205\\
+Maestría en Física}
 
 \begin{document}
 
 \maketitle
+
+\section*{Problema 1}
+
+Vamos a asumir que la transición es entre un punto $x_i$ a $x_f$ en un tiempo $T$.  Entonces la amplitud es
+\begin{equation}
+U(x_i,x_f,T)=\int\mathcal{D}xe^{iS(x)}.
+\end{equation}
+En vez de sumar sobre los caminos $x$ podemos sumar sobre desviaciones del camino clásico $x_c$. Entonces
+\begin{equation}
+U(x_i,x_f,T)=\int\mathcal{D}ye^{iS(x_c+y)}.
+\end{equation}
+donde la suma se toma sobre caminos que satisfacen $y(0)=y(T)=0$. Note que en vista de esta condición de frontera y de que las soluciones clásicas satisfacen la ecuación del oscilador armónico $m\ddot{x}+m\omega^2x=0$
+\begin{align}
+\begin{split}
+S(x_c+y)=&\int_0^T\dd{t}\qty(\frac{1}{2}m(\dot{x}_c(t)+\dot{y}(t))^2-\frac{1}{2}m\omega^2(x_c(t)+y(t))^2)\\
+=&\int_0^T\dd{t}\left(\frac{1}{2}m\dot{x}_c(t)^2-\frac{1}{2}m\omega^2x_c(t)^2+\frac{1}{2}m\dot{y}(t)^2-\frac{1}{2}m\omega^2y(t)^2\right.\\
+&\left.+m\dot{x}_c(t)\dot{y}(t)-m\omega^2x_c(t)y(t)\right)\\
+=&S(x_c)+S(y_c)+\int_0^T\dd{t}\qty(m\dot{x}_c(t)\dot{y}(t)-m\omega^2x_c(t)y(t))\\
+=&S(x_c)+S(y_c)+\int_0^T\dd{t}\qty(-m\ddot{x}_c(t)y(t)-m\omega^2x_c(t)y(t))\\
+&+m\dot{x}_c(T)y(T)-m\dot{x}_c(0)y(0)\\
+=&S(x_c)+S(y_c)-\int_0^T\dd{t}\qty(m\ddot{x}_c(t)+m\omega^2x_c(t))y(t)\\
+=&S(x_c)+S(y).
+\end{split}
+\end{align} 
+Por lo tanto, nuestra amplitud queda 
+\begin{equation}
+U(x_i,x_f,T)=\int\mathcal{D}ye^{iS(x_c)+iS(y)}=e^{iS(x_c)}\int\mathcal{D}ye^{iS(y)}.
+\end{equation}
+En esta amplitud, toda la dependencia sobre los puntos iniciales se encuentra en el termino $e^{iS(x_c)}$. Ahora bien, esta integral se puede ver como una gaussiana pues integrando por partes
+\begin{align}\label{ec:accion_gaussiana}
+\begin{split}
+S(y)=&\int_0^T\dd{T}\qty(\frac{1}{2}m\dot{y}(t)^2-\frac{1}{2}m\omega^2y(t)^2)\\
+=&\int_0^T\dd{T}\qty(-\frac{1}{2}m\ddot{y}(t)y(t)-\frac{1}{2}m\omega^2y(t)^2)+\frac{1}{2}m\qty(\dot{y}(T)y(T)-\dot{y}(0)y(0))\\
+=&-\frac{1}{2}m\int_0^T\dd{T}\qty(\ddot{y}(t)y(t)+\omega^2y(t)^2)\\
+=&-\frac{1}{2}m\int_0^T\dd{T}\qty(\partial^2y(t)y(t)+\omega^2y(t)^2)\\
+=&-\frac{1}{2}m\int_0^T\dd{T}\qty(y\qty(\partial^2+\omega^2)y)(t).
+\end{split}
+\end{align}
+En efecto, la amplitud queda de forma gaussiana
+\begin{align}
+\begin{split}
+U(x_i,x_f,T)=&\int\mathcal{D}ye^{iS(x_c)+iS(y)}\\
+=&e^{iS(x_c)}\int\mathcal{D}y\exp(-\frac{1}{2}im\int_0^T\dd{T}\qty(y\qty(\partial^2+\omega^2)y)(t)).
+\end{split}
+\end{align}
+Extendiendo el resultado de matrices
+\begin{equation}
+\int_{\mathbb{R}^n}\dd[n]{\vb{x}}e^{-\frac{1}{2}\vb{x}^t A\vb{x}}=\frac{(2\pi)^{n/2}}{\sqrt{\det A}}
+\end{equation}
+se obtiene
+\begin{align}
+\begin{split}
+U(x_i,x_f,T)=&e^{iS(x_c)}\lim_{n\rightarrow\infty}(2\pi)^{n/2}(\det(im(\partial^2+\omega^2)))^{-1/2}\\
+=&e^{iS(x_c)}B(\det(\partial^2+\omega^2))^{-1/2}
+\end{split}
+\end{align}
+donde $B$ es una constante que no depende de $\omega$. Note que las soluciones a la ecuación de valores propios
+\begin{equation}
+(\partial^2+\omega^2)y=\lambda y,
+\end{equation}
+es decir, la ecuación del oscilador
+\begin{equation}
+\ddot{y}+(\omega^2-\lambda)y=0
+\end{equation}
+de frecuencia $\omega_\lambda=\sqrt(\omega^2-\lambda)$ que satisfacen $y(0)=y(T)=0$ y son no triviales son de la forma
+\begin{equation}
+y(t)\propto\sin(\omega_\lambda t)
+\end{equation}
+con las condiciones $\omega^2-\lambda>0$ para asegurar que en efecto la solución sea oscilatoria y 
+\begin{equation}
+\frac{\omega_\lambda T}{\pi}\in\mathbb{N}^*:=\mathbb{N}\setminus\{0\}
+\end{equation}
+que garantizan las condiciones de frontera. Estas condiciones determinan la familia de valores propios $\{\lambda_n|n\in\mathbb{N}^*\}$ con
+\begin{equation}
+\lambda_n:=\omega^2-\frac{\pi^2n^2}{T^2}.
+\end{equation}
+Note que las restricciones en los caminos que estamos considerando debidas a que son desviaciones hacen que el operador $\partial^2+\omega^2$ sea compacto y su espectro discreto. Entonces
+\begin{equation}
+U(x_i,x_f,T)=e^{iS(x_c)}B\prod_{n=1}^\infty\qty(\omega^2-\frac{\pi^2n^2}{T^2})^{-1/2}.
+\end{equation}
+Para terminar este cálculo, recuerde que como se muestra \cite{MacKenzie2000} la solución para una partícula libre con condiciones de frontera periódicas es
+\begin{equation}
+\sqrt{\frac{m}{2\pi i T}}
+\end{equation}.
+Por otra parte, uno debería poder recuperar esta solución considerando $\omega=0$. Entonces, multiplicando por $1$ se tiene
+\begin{align}
+\begin{split}
+U(x_i,x_f,T)=&e^{iS(x_c)}B\prod_{n=1}^\infty\qty(\omega^2-\frac{\pi^2n^2}{T^2})^{-1/2}\frac{\sqrt{\frac{m}{2\pi i T}}}{B\prod_{n=1}^\infty\qty(-\frac{\pi^2n^2}{T^2})^{-1/2}}\\
+=&e^{iS(x_c)}\prod_{n=1}^\infty\qty(1-\frac{\omega^2T^2}{\pi^2n^2})^{-1/2}\sqrt{\frac{m}{2\pi i T}}.
+\end{split}
+\end{align}
+Ahora podemos utilizar la famosa fórmula de Euler
+\begin{equation}
+\frac{\sin(x)}{x}=\prod_{n=1}^\infty\qty(1-\frac{x^2}{n^2\pi^2})
+\end{equation}
+para concluir que
+\begin{equation}
+U(x_i,x_f,T)=e^{iS(x_c)}\sqrt{\frac{m\omega}{2\pi i\sin(\omega T)}}.
+\end{equation}
+Para terminar el cálculo es necesario calcular la acción clásica. Para esto recuerde la segunda linea de \eqref{ec:accion_gaussiana} y aplíquela al camino clásico $m\ddot{x}_c=-m\omega^2x_c$. Es claro entonces que la integral se anula y
+\begin{equation}
+S(x_c)=\frac{1}{2}m(\dot{x}_c(T)x_c(T)-\dot{x}_c(0)x_c(0)).
+\end{equation}
+Esto se puede calcular explicitamente ya que las soluciones bien comportadas de la segunda ley de Newton están completamente determinadas por dos condiciones iniciales. Sin embargo, hacerlo con completa generalidad es puramente algebraico y no dice mucho.
 
 \section*{Problema 2}
 
@@ -155,18 +261,60 @@ Q=\int\dd[3]{\vb{p}}\qty(a^\dagger(\vb{p})a(\vb{p})-\hat{a}^\dagger(\vb{p})\hat{
 Podemos definir los operadores
 \begin{align}
 \begin{split}
-\mathcal{N}_a:=&a^\dagger(\vb{p})a(\vb{p}),\\
-\mathcal{N}_{\hat{a}}:=&\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p}).
+\mathcal{N}_a(\vb{p}):=&a^\dagger(\vb{p})a(\vb{p}),\\
+\mathcal{N}_{\hat{a}}(\vb{p}):=&\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p}).
 \end{split}
 \end{align}
-de manera que
+Sus integrales corresponden a los operadores número que cuentan el número de partículas $a$ y $\hat{a}$ respectivamente. Se concluye entonces que la siguiente carga es conservada.
 \begin{equation}
-Q=\int\dd[3]{\vb{p}}\qty(\mathcal{N}_a-\mathcal{N}_{\hat{a}}).
+Q=\int\dd[3]{\vb{p}}\qty(\mathcal{N}_a(\vb{p})-\mathcal{N}_{\hat{a}}(\vb{p})).
 \end{equation}
-En la interpretación de partículas esto corresponde a que estas se crean de a pares.
+En la interpretación de partículas esto corresponde a que estas se crean de a pares. En efecto, cualquier aumento de partículas de tipo $a$ debe ser compensado con un aumento igual de partículas de tipo $\hat{a}$ de manera que la diferencia se conserve. Es precisamente por esta razón que las partículas de tipo $\hat{a}$ se interpretan como las antipartículas de las de tipo $a$.
 
 \end{enumerate}
 
 \section*{Problema 3}
+
+Se tiene que
+\begin{align}
+\begin{split}
+\pdv{\mathcal{L}'}{(\partial_\mu\bar{\psi})}=&-\frac{i}{2}\gamma^\mu\psi,\\
+\pdv{\mathcal{L}'}{(\partial_\mu\psi)}=&\frac{i}{2}\bar{\psi}\gamma^\mu,\\
+\pdv{\mathcal{L}'}{\bar{\psi}}=&\frac{i}{2}\gamma^\mu\partial_\mu\psi-m\psi,\\
+\pdv{\mathcal{L}'}{\psi}=&-\frac{i}{2}(\partial_\mu\bar{\psi})\gamma^\mu-m\bar{\psi}.
+\end{split}
+\end{align}
+Por lo tanto las ecuaciones de movimiento son
+\begin{align}
+\begin{split}
+0=&\partial_\mu\pdv{\mathcal{L}'}{(\partial_\mu\bar{\psi})}-\pdv{\mathcal{L}'}{\bar{\psi}}=-\frac{i}{2}\gamma^\mu\partial_\mu\psi-\frac{i}{2}\gamma^\mu\partial_\mu\psi+m\psi=-i\gamma^\mu\partial_\mu\psi+m\psi\\
+=&-\qty(i\gamma^\mu\partial_\mu-m)\psi,\\
+0=&\pdv{\mathcal{L}'}{(\partial_\mu\psi)}-\pdv{\mathcal{L}'}{\psi}=\frac{i}{2}\bar{\psi}\gamma^\mu+\frac{i}{2}(\partial_\mu\bar{\psi})\gamma^\mu+m\bar{\psi}=i\bar{\psi}\gamma^\mu+m\bar{\psi}.
+\end{split}
+\end{align}
+La segunda ecuación se puede encontrar de la primera mediante el adjunto de Dirac. Por lo tanto la ecuación de movimiento es la de Dirac
+\begin{equation}
+(i\slashed{\partial}-m)\psi=0.
+\end{equation}
+Considere una vez más, una transformación de la forma $\psi\mapsto e^{-i\alpha}\psi$. Bajo esta transformación $\bar{\psi}\mapsto e^{i\alpha}\bar{\psi}$ y el Lagrangiano se transfoma como
+\begin{align}
+\begin{split}
+&\mathcal{L}'(e^{-i\alpha}\psi,e^{i\alpha}\bar{\psi},\partial\qty(e^{-i\alpha}\psi),\partial(e^{i\alpha}\bar{\psi}))\\
+=&\frac{i}{2}e^{i\alpha}\bar{\psi}\gamma^\mu\partial_\mu\qty(e^{-i\alpha}\psi)-\frac{i}{2}\partial_\mu(e^{i\alpha}\bar{\psi})\gamma^\mu e^{-i\alpha}\psi-me^{i\alpha}\bar{\psi}e^{-i\alpha}\psi\\
+=&\frac{i}{2}e^{i\alpha}\bar{\psi}\gamma^\mu e^{-i\alpha}\partial_\mu\qty\psi-\frac{i}{2}e^{i\alpha}\partial_\mu\bar{\psi}\gamma^\mu e^{-i\alpha}\psi-me^{i\alpha}\bar{\psi}e^{-i\alpha}\psi\\
+=&\frac{i}{2}\bar{\psi}\gamma^\mu\partial_\mu\qty\psi-\frac{i}{2}\partial_\mu\bar{\psi}\gamma^\mu\psi-m\bar{\psi}\psi=\mathcal{L}'(\psi,\bar{\psi},\partial\psi,\partial\bar{\psi}).
+\end{split}
+\end{align}
+Entonces el Lagrangiano es invariante y en particular esta transformación es una simetría. Bajo transformaciones infinitesimales se tiene $\psi\mapsto\psi-i\alpha\psi$ y $\bar{\psi}\mapsto\bar{\psi}+i\alpha\bar{\psi}$. Entonces, la corriente conservada asociada a estas transformaciones es
+\begin{equation}
+j^\mu=\pdv{\mathcal{L}'}{(\partial_\mu\psi)}(-i\alpha\psi)+i\alpha\bar{\psi}\pdv{\mathcal{L}'}{(\partial_\mu\bar{\psi})}=\frac{\alpha}{2}\bar{\psi}\gamma^\mu\psi+\bar{\psi}\frac{\alpha}{2}\gamma^\mu\psi=\alpha\bar{\psi}\gamma^\mu\psi.
+\end{equation}
+Una vez más, la constante $\alpha$ es arbitraria y la corriente conservada se puede redefinir como
+\begin{equation}
+j^\mu=\bar{\psi}\gamma^\mu\psi.
+\end{equation}
+
+\bibliography{../Mendeley/library}
+\bibliographystyle{ieeetr}
 
 \end{document}
