@@ -43,52 +43,130 @@ Se concluye que en efecto el Lagrangiano es invariante.
 
 \item Asumiendo $q\theta$ como pequeño se tiene $\phi\mapsto\phi-iq\theta\phi$ y $\phi^\dagger\mapsto\phi^\dagger+iq\theta\phi^\dagger$. Ya que el Lagrangiano es invariante, la corriente de Noether obtenida es particularmente sencilla
 \begin{equation}\label{ec:corriente_escalar}
-j^\mu=\pdv{\mathcal{L}}{\partial_\mu\phi} (-iq\theta\phi)+\pdv{\mathcal{L}}{\partial_\mu\phi^\dagger} (iq\theta\phi^\dagger)=iq\theta\qty(\phi^\dagger\partial^\mu\phi-\qty(\partial^\mu\phi^\dagger)\phi).
+j^\mu=\pdv{\mathcal{L}}{\partial_\mu\phi} (-iq\theta\phi)+\pdv{\mathcal{L}}{\partial_\mu\phi^\dagger} (iq\theta\phi^\dagger)=iq\theta\qty((\partial^\mu\phi)\phi^\dagger-\qty(\partial^\mu\phi^\dagger)\phi).
 \end{equation}
-El orden en el que se presentan los terminos es tal que uno es el complejo conjugado del otro. Esto nos va a ser util una vez cuanticemos el campo. Ahora bien, a partir de la ecuación del enunciado
+Esto nos va a ser util una vez cuanticemos el campo. Ahora bien, a partir de la ecuación del enunciado
 \begin{align}
 \begin{split}
 \phi^\dagger(x)=&\int\frac{\dd[3]{\vb{p}}}{(2\pi)^{3/2}}\frac{1}{\sqrt{2E_{\vb{p}}}}\qty(a^\dagger(\vb{p})e^{ip\vdot x}+\hat{a}(\vb{p})e^{-ip\vdot x}),\\
-\partial^\mu\phi(x)=&\int\frac{\dd[3]{\vb{p}}}{(2\pi)^{3/2}}\frac{1}{\sqrt{2E_{\vb{p}}}}ip^\mu\qty(-a(\vb{p})e^{-ip\vdot x}+\hat{a}^\dagger(\vb{p})e^{ip\vdot x}).
+\partial^\mu\phi(x)=&\int\frac{\dd[3]{\vb{p}}}{(2\pi)^{3/2}}\frac{1}{\sqrt{2E_{\vb{p}}}}ip^\mu(-a(p)e^{-ip\vdot x}+\hat{a}^\dagger(p)e^{ip\vdot x}),\\
+\partial^\mu\phi^\dagger(x)=&\int\frac{\dd[3]{\vb{p}}}{(2\pi)^{3/2}}\frac{1}{\sqrt{2E_{\vb{p}}}}ip^\mu\qty(a^\dagger(\vb{p})e^{ip\vdot x}-\hat{a}(\vb{p})e^{-ip\vdot x}).
 \end{split}
 \end{align}
 Entonces, en terminos de los operadores de creación y destrucción se obtiene
-\begin{align}\label{ec:corriente_escalar_1}
-\begin{split}
-\phi^\dagger(x)\partial^\mu\phi(x)=&\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{q}}}{(2\pi)^3}\frac{1}{2\sqrt{E_{\vb{p}}E_{\vb{q}}}}iq^\mu\\
-&\qty(a^\dagger(\vb{p})e^{ip\vdot x}+\hat{a}(\vb{p})e^{-ip\vdot x})\qty(-a(\vb{q})e^{-iq\vdot x}+\hat{a}^\dagger(\vb{q})e^{iq\vdot x})\\
-=&\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{q}}}{(2\pi)^3}\frac{1}{2\sqrt{E_{\vb{p}}E_{\vb{q}}}}iq^\mu\\
-&\left(-a^\dagger(\vb{p})a(\vb{q})e^{i(p-q)\vdot x}+\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})e^{i(q-p)\vdot x}\right.\\
-&\left.+a^\dagger(\vb{p})\hat{a}^\dagger(\vb{q})e^{i(p+q)\vdot x}-\hat{a}(\vb{p})a(\vb{q})e^{-i(p+q)\vdot x}\right).
-\end{split}
-\end{align}
-El otro termino en la corriente se puede obtener mediante conjugación compleja. Esto consiste en agregar un signo negativo debido al termino $iq^\mu$, cambiar el signo de cada exponencial, intercambiar los operadores en cada termino y reemplazar todos lo operadores de destrucción por operadores de creación y viceversa.
 \begin{align}
 \begin{split}
-\partial^\mu\phi^\dagger\phi=&\qty(\phi^\dagger(x)\partial^\mu\phi(x))^\dagger\\
-=&\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{q}}}{(2\pi)^3}\frac{1}{2\sqrt{E_{\vb{p}}E_{\vb{q}}}}iq^\mu\\
-&\left(a^\dagger(\vb{q})a(\vb{p})e^{-i(p-q)\vdot x}-\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})e^{-i(q-p)\vdot x}\right.\\
-&\left.-\hat{a}(\vb{q})a(\vb{p})e^{-i(p+q)\vdot x}+a^\dagger(\vb{q})\hat{a}^\dagger(\vb{p})e^{i(p+q)\vdot x}\right).
-\end{split}
-\end{align}
-Podems renombrar las etiquetas mudas $\vb{p}\leftrightarrow\vb{q}$. De esta manera, aplicando el teorema de Fubini para cambiar los ordenes de integración, se obtiene 
-\begin{align}\label{ec:corriente_escalar_2}
-\begin{split}
-\partial^\mu\phi^\dagger\phi=&\qty(\phi^\dagger(x)\partial^\mu\phi(x))^\dagger\\
-=&\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{q}}}{(2\pi)^3}\frac{1}{2\sqrt{E_{\vb{p}}E_{\vb{q}}}}ip^\mu\\
-&\left(a^\dagger(\vb{p})a(\vb{q})e^{i(p-q)\vdot x}-\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})e^{i(q-p)\vdot x}\right.\\
+(\partial^\mu\phi(x))\phi^\dagger(x)=&\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{q}}}{(2\pi)^3}\frac{1}{2\sqrt{E_{\vb{p}}E_{\vb{q}}}}ip^\mu\\
+&\left(-a(\vb{p})a^\dagger(\vb{q})e^{-i(p-q)\vdot x}+\hat{a}^\dagger(\vb{p})\hat{a}(\vb{q})e^{i(p-q)\vdot x}\right.\\
+&\left.-a(\vb{p})\hat{a}(\vb{q})e^{-i(p+q)\vdot x}+\hat{a}^\dagger(\vb{p})a^\dagger(\vb{q})e^{i(p+q)\vdot x}\right),\\
+(\partial^\mu\phi^\dagger(x))\phi(x)=&\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{q}}}{(2\pi)^3}\frac{1}{2\sqrt{E_{\vb{p}}E_{\vb{q}}}}ip^\mu\\
+&\left(a^\dagger(\vb{p})a(\vb{q})e^{i(p-q)\vdot x}-\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})e^{-i(p-q)\vdot x}\right.\\
 &\left.-\hat{a}(\vb{p})a(\vb{q})e^{-i(p+q)\vdot x}+a^\dagger(\vb{p})\hat{a}^\dagger(\vb{q})e^{i(p+q)\vdot x}\right).
 \end{split}
 \end{align}
-Uno puede estar preocupado por renombrar $q^0$ por $p^0$. Sin embargo, esto es valido notanto que en esta notación $q^0=E_{\vb{q}}$. No hay mucho más que se pueda hacer para el cálculo de $j^\mu$. Incluimos la fórmula ya que se demanda en el enunciado aunque no dice mucho acerca de la física del problema
+Al restar estos términos se pueden factorizar las exponenciales comunes de manera que se obtiene
 \begin{align}
 \begin{split}
-j^\mu=&q\theta\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{q}}}{(2\pi)^3}\frac{1}{2\sqrt{E_{\vb{p}}E_{\vb{q}}}}ip^\mu\\
-&\left(a^\dagger(\vb{p})a(\vb{q})e^{i(p-q)\vdot x}-\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})e^{i(q-p)\vdot x}\right.\\
-&\left.-\hat{a}(\vb{p})a(\vb{q})e^{-i(p+q)\vdot x}+a^\dagger(\vb{p})\hat{a}^\dagger(\vb{q})e^{i(p+q)\vdot x}\right)
+j^\mu(x)=&iq\theta\int\frac{\dd[3]{\vb{p}}\dd[3]{\vb{q}}}{(2\pi)^3}\frac{1}{2\sqrt{E_{\vb{p}}E_{\vb{q}}}}ip^\mu\\
+&\left(\qty(\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})-a(\vb{p})a^\dagger(\vb{q}))e^{-i(p-q)\vdot x}+\right.\\
+&\left.\qty(\hat{a}^\dagger(\vb{p})\hat{a}(\vb{q})-a^\dagger(\vb{p})a(\vb{q}))e^{i(p-q)\vdot x}\right.\\
+&\left.\qty(\hat{a}(\vb{p})a(\vb{q})-a(\vb{p})\hat{a}(\vb{q}))e^{-i(p+q)\vdot x}+\right.\\
+&\left.\qty(\hat{a}^\dagger(\vb{p})a^\dagger(\vb{q})-a^\dagger(\vb{p})\hat{a}^\dagger(\vb{q}))e^{i(p+q)\vdot x}\right).
 \end{split}
 \end{align}
+Para el cálculo de la carga conservada note que 
+\begin{align}
+\begin{split}
+\int\dd[3]{\vb{x}}e^{\pm i(p\pm q)\vdot x}=&\int\dd[3]{\vb{x}}e^{\pm i(E_{\vb{p}}\pm E_{\vb{q}})t}e^{\mp i(\vb{p}\pm\vb{q})\vdot\vb{x}}\\
+=&(2\pi)^3e^{\pm i(E_{\vb{p}}\pm E_{\vb{q}})t}\delta^{(3)}(\vb{p}\pm\vb{q}).
+\end{split}
+\end{align}
+Por lo tanto
+\begin{align}
+\begin{split}
+\int\dd[3]{\vb{x}}j^\mu(x)=&iq\theta\int\dd[3]{\vb{p}}\dd[3]{\vb{q}}\frac{1}{2\sqrt{E_{\vb{p}}E_{\vb{q}}}}ip^\mu\\
+&\left(\qty(\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})-a(\vb{p})a^\dagger(\vb{q}))e^{-i(E_{\vb{p}}-E_{\vb{q}})t}\delta^{(3)}(\vb{p}-\vb{q})+\right.\\
+&\left.\qty(\hat{a}^\dagger(\vb{p})\hat{a}(\vb{q})-a^\dagger(\vb{p})a(\vb{q}))e^{i(E_{\vb{p}}-E_{\vb{q}})t}\delta^{(3)}(\vb{p}-\vb{q})\right.\\
+&\left.\qty(\hat{a}(\vb{p})a(\vb{q})-a(\vb{p})\hat{a}(\vb{q}))e^{-i(E_{\vb{p}}+E_{\vb{q}})t}\delta^{(3)}(\vb{p}+\vb{q})+\right.\\
+&\left.\qty(\hat{a}^\dagger(\vb{p})a^\dagger(\vb{q})-a^\dagger(\vb{p})\hat{a}^\dagger(\vb{q}))e^{i(E_{\vb{p}}+E_{\vb{q}})t}\delta^{(3)}(\vb{p}+\vb{q})\right).
+\end{split}
+\end{align}
+Más aún, ya que $E_{\vb{p}}=\sqrt{m^2+\vb{p}^2}=\sqrt{m^2+(-\vb{p})^2}=E_{-\vb{p}}$ el coeficiente de cada termino va a ser igual para $\vb{q}=\pm\vb{p}$ y podemos realizar la integración sobre $\vb{q}$
+\begin{align}
+\begin{split}
+\int\dd[3]{\vb{x}}j^\mu(x)=&iq\theta\int\dd[3]{\vb{p}}\frac{1}{2E_{\vb{p}}}ip^\mu\\
+&\left(\qty(\hat{a}(\vb{p})\hat{a}^\dagger(\vb{p})-a(\vb{p})a^\dagger(\vb{p}))+\qty(\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})-a^\dagger(\vb{p})a(\vb{p}))\right.\\
+&\left.\qty(\hat{a}(\vb{p})a(-\vb{p})-a(\vb{p})\hat{a}(-\vb{p}))e^{-2iE_{\vb{p}}t}+\right.\\
+&\left.\qty(\hat{a}^\dagger(\vb{p})a^\dagger(-\vb{p})-a^\dagger(\vb{p})\hat{a}^\dagger(-\vb{p}))e^{2iE_{\vb{p}}t}\right).
+\end{split}
+\end{align}
+En particular, la carga conservada se obtiene al poner $\mu=0$
+\begin{align}
+\begin{split}
+Q=&iq\theta\int\dd[3]{\vb{p}}\frac{i}{2}\\
+&\left(\qty(\hat{a}(\vb{p})\hat{a}^\dagger(\vb{p})-a(\vb{p})a^\dagger(\vb{p}))+\qty(\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})-a^\dagger(\vb{p})a(\vb{p}))\right.\\
+&\left.\qty(\hat{a}(\vb{p})a(-\vb{p})-a(\vb{p})\hat{a}(-\vb{p}))e^{-2iE_{\vb{p}}t}+\right.\\
+&\left.\qty(\hat{a}^\dagger(\vb{p})a^\dagger(-\vb{p})-a^\dagger(\vb{p})\hat{a}^\dagger(-\vb{p}))e^{2iE_{\vb{p}}t}\right).
+\end{split}
+\end{align}
+Ya que $[a(\vb{p}),\hat{a}(\vb{q})]=[a^\dagger(\vb{p}),\hat{a}^\dagger(\vb{q})]=0$ esto se puede reescribir de manera más sugestiva
+\begin{align}
+\begin{split}
+Q=&iq\theta\int\dd[3]{\vb{p}}\frac{i}{2}\\
+&\left(\qty(\hat{a}(\vb{p})\hat{a}^\dagger(\vb{p})-a(\vb{p})a^\dagger(\vb{p}))+\qty(\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})-a^\dagger(\vb{p})a(\vb{p}))\right.\\
+&\left.\qty(\hat{a}(\vb{p})a(-\vb{p})-\hat{a}(-\vb{p})a(\vb{p}))e^{-2iE_{\vb{p}}t}+\right.\\
+&\left.\qty(\hat{a}^\dagger(\vb{p})a^\dagger(-\vb{p})-\hat{a}^\dagger(-\vb{p})a^\dagger(\vb{p}))e^{2iE_{\vb{p}}t}\right).
+\end{split}
+\end{align}
+Esta forma sugiere considerar el cambio de variable $\vb{p}\mapsto -\vb{p}$ bajo el cual la integral se mantiene invariante debido a que la energía lo hace y el cambio en los diferenciales se compensa con el de la orientación de la región de integración
+\begin{align}
+\begin{split}
+\int_{\mathbb{R}^3}\dd[3]{\vb{p}}\hat{a}(-\vb{p})a(\vb{p})e^{-2iE_{\vb{p}}t}=&\int_{-\mathbb{R}^3}\dd[3](-\vb{p})\hat{a}(\vb{p})a(-\vb{p})e^{-2iE_{-\vb{p}}t}\\
+=&(-1)^3\int_{-\mathbb{R}^3}\dd[3]{\vb{p}}\hat{a}(\vb{p})a(-\vb{p})e^{-2iE_{\vb{p}}t}\\
+=&\int_{\mathbb{R}^3}\dd[3]{\vb{p}}\hat{a}(\vb{p})a(-\vb{p})e^{-2iE_{\vb{p}}t},\\
+\int_{\mathbb{R}^3}\dd[3]{\vb{p}}\hat{a}^\dagger(-\vb{p})a^\dagger(\vb{p})e^{-2iE_{\vb{p}}t}=&\int_{-\mathbb{R}^3}\dd[3](-\vb{p})\hat{a}^\dagger(\vb{p})a^\dagger(-\vb{p})e^{-2iE_{-\vb{p}}t}\\
+=&(-1)^3\int_{-\mathbb{R}^3}\dd[3]{\vb{p}}\hat{a}^\dagger(\vb{p})a^\dagger(-\vb{p})e^{-2iE_{\vb{p}}t}\\
+=&\int_{\mathbb{R}^3}\dd[3]{\vb{p}}\hat{a}^\dagger(\vb{p})a^\dagger(-\vb{p})e^{-2iE_{\vb{p}}t}.
+\end{split}
+\end{align}
+Entonces los coeficientes de las exponenciales se anulan de manera que al sacar el factor $i/2$ de la integral obtenemos
+\begin{align}
+\begin{split}
+Q=&\frac{q}{2}\theta\int\dd[3]{\vb{p}}\\
+&\qty(\qty(a(\vb{p})a^\dagger(\vb{p})-\hat{a}(\vb{p})\hat{a}^\dagger(\vb{p}))+\qty(a^\dagger(\vb{p})a(\vb{p})-\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})))
+\end{split}
+\end{align}
+Ya que $[a(\vb{p}),a^\dagger(\vb{q})]=\delta^{(3)}(\vb{p}-\vb{q})=[\hat{a}(\vb{p}),\hat{a}^\dagger(\vb{q})]$ se obtiene que
+\begin{align}
+\begin{split}
+&a(\vb{p})a^\dagger(\vb{q})-\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})\\
+=&a^\dagger(\vb{q})a(\vb{p})+[a(\vb{p}),a^\dagger(\vb{q})]-\hat{a}^\dagger(\vb{q})\hat{a}(\vb{p})-[\hat{a}(\vb{p}),\hat{a}^\dagger(\vb{q})]\\
+=&a^\dagger(\vb{q})a(\vb{p})-\hat{a}^\dagger(\vb{q})\hat{a}(\vb{p}).
+\end{split}
+\end{align}
+Poniendo $\vb{q}=\vb{p}$ vemos que los dos términos de la suma son iguales y se obtiene una carga conservada
+\begin{equation}
+Q=q\theta\int\dd[3]{\vb{p}}\qty(a^\dagger(\vb{p})a(\vb{p})-\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})).
+\end{equation}
+Si una cantidad se conserva es claro que cualquier múltiplo de ella también. Ya que el parámetro de la transformación $q\theta$ no tiene una interpretación clara por el momento, podemos redefinir la carga de Noether a 
+\begin{equation}
+Q=\int\dd[3]{\vb{p}}\qty(a^\dagger(\vb{p})a(\vb{p})-\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})).
+\end{equation}
+Podemos definir los operadores
+\begin{align}
+\begin{split}
+\mathcal{N}_a:=&a^\dagger(\vb{p})a(\vb{p}),\\
+\mathcal{N}_{\hat{a}}:=&\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p}).
+\end{split}
+\end{align}
+de manera que
+\begin{equation}
+Q=\int\dd[3]{\vb{p}}\qty(\mathcal{N}_a-\mathcal{N}_{\hat{a}}).
+\end{equation}
+En la interpretación de partículas esto corresponde a que estas se crean de a pares.
 
 \end{enumerate}
+
+\section*{Problema 3}
 
 \end{document}
