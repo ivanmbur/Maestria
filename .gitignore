@@ -4,3 +4,7 @@
 *.blg
 *.gz
 *.out
+*.nav
+*.snm
+*.toc
+*.vrb
