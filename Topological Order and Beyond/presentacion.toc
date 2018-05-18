@@ -1,5 +1,0 @@
-\beamer@sectionintoc {1}{Classical and Quantum Theories}{5}{0}{1}
-\beamer@sectionintoc {2}{Algebraic Quantum Mechanics}{14}{0}{2}
-\beamer@sectionintoc {3}{KMS States}{24}{0}{3}
-\beamer@sectionintoc {4}{Tomita-Takesaki Theory}{26}{0}{4}
-\beamer@sectionintoc {5}{The Canonical Time Evolution}{28}{0}{5}

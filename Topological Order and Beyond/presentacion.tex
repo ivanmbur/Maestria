@@ -5,12 +5,14 @@
 \usepackage{tikz-cd}
 \usepackage{wasysym}
 \usepackage{physics}
+\usepackage{tikz}
+\usepackage{xcolor}
 
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Span}{span}
 
 \title{KMS states and Tomita-Takesaki Theory}
-\author[Iván Burbano]{Iván Mauricio Burbano Aldana\\[1cm]{\small Advised by: Prof. Andrés Fernando Reyes Lega}}
+\author[Iván Burbano]{Iván Mauricio Burbano Aldana}
 \institute{Universidad de los Andes}
 \date{\today}
 
@@ -53,7 +55,7 @@
 			\item<1-> Auxiliary space: locally compact Hausdorff space $X$;
 			\item<2-> Observables: continuous functions $C(X)$ on $X$;
 			\item<3-> States: probability measures $P$ on $X$;
-			\item<4-> Expected values: $\int fdP$.
+			\item<4-> Expectation values: $\int fdP$.
 		\end{itemize}
 		\column{0.5\textwidth}
 		Quantum theories
@@ -61,7 +63,7 @@
 			\item<1-> Auxiliary space: separable Hilbert space $\mathcal{H}$
 			\item<2-> Observables: self-adjoint operators on $\mathcal{H}$
 			\item<3-> States: positive, self-adjoint, normalized and trace-class operators $\rho$ on $\mathcal{H}$;
-			\item<4-> Expected values: $\tr(A\rho)$.
+			\item<4-> Expectation values: $\tr(A\rho)$.
 		\end{itemize}
 	\end{columns}
 \end{frame}
@@ -87,11 +89,11 @@
 		\begin{itemize}
 			\item Complete normed vector space with product and involution;
 			\item $C^*$ property: $\|A^*A\|=\|A\|^2$;
-			\item A $C^*$-algebra can always be realized as a uniformly closed subset of the bounded operators on a Hilbert space\cite{Bratteli1987}. It is called a von Neumann algebra or $W^*$-algebra if $\mathcal{A}''=\mathcal{A}$ where the commutant $\mathfrak{A}'$ of a set $\mathfrak{A}$ of bounded operators on a Hilbert space is defined as the set of all bounded operatos which commute with every element of $\mathfrak{A}$.
 			\item We will assume that all the algebras we discuss are unital.
 		\end{itemize}
-		\item States:  Linear functionals $\omega:\mathcal{A}\rightarrow\mathbb{C}$ which are non-negative ($\omega(A^*A)\geq 0$ and normalized ($\omega(1)=1$).
+		\item States:  Linear functionals $\omega:\mathcal{A}\rightarrow\mathbb{C}$ which are non-negative ($\omega(A^*A)\geq 0$) and normalized ($\omega(1)=1$).
 	\end{itemize}
+	Remark: The auxiliary Hilbert space will now be an emergent concept.
 \end{frame}
 
 \begin{frame}
@@ -141,7 +143,7 @@
 	Consider $\lambda\in(0,1)$. We have for $e_{ij}=[E_{ij}]$, $\lambda_1:=\lambda$, and $\lambda_2:=1-\lambda$
 	\begin{align}
 	\begin{split}
-		\langle e_{ij},e_{kl}\rangle=\omega(E_{ij}^*E_{kl})=\omega(E_{ji}E_{kl})=\omega(\delta_{ik}E_{jl})=\delta_{ik}\delta{jl}\lambda_l
+		\langle e_{ij},e_{kl}\rangle=\omega(E_{ij}^*E_{kl})=\omega(E_{ji}E_{kl})=\omega(\delta_{ik}E_{jl})=\delta_{ik}\delta_{jl}\lambda_l
 	\end{split}
 	\end{align}
 	Therefore the basis $\{e_i^{(\alpha)}:=[E_{i\alpha}]/\sqrt{\lambda_\alpha}|i,\alpha\in\{1,2\}\}$ is an orthonormal basis for $\mathcal{H}_\lambda$. Moreover, the representation splits as
@@ -159,7 +161,7 @@
 	\frametitle{Constructing a Density Operator from Decompositions}
 	\begin{align}
 	\begin{split}
-		\omega_\lambda(A)=&\langle\Omega_\lambda,\pi_\omega(A)\Omega_\omega\rangle=\langle\Omega_\omega,\sum_{\alpha\in I}P^{(\alpha)}\pi_\omega(A)\Omega_\omega\rangle\\
+		\omega(A)=&\langle\Omega_\omega,\pi_\omega(A)\Omega_\omega\rangle=\langle\Omega_\omega,\sum_{\alpha\in I}P^{(\alpha)}\pi_\omega(A)\Omega_\omega\rangle\\
 		=&\langle\Omega_\omega,\sum_{\alpha\in I}P^{(\alpha)}\pi_\omega(A)P^{(\alpha)}\Omega_\omega\rangle\\
 		=&\langle\Omega_\omega,\sum_{n\in J}\langle e_n,\sum_{\alpha\in I}P^{(\alpha)}\pi_\omega(A)P^{(\alpha)}\Omega_\omega\rangle e_n\rangle\\
 		=&\sum_{n\in J}\langle e_n,\sum_{\alpha\in I}P^{(\alpha)}\pi_\omega(A)P^{(\alpha)}\langle\Omega_\omega,e_n\rangle\Omega_\omega\rangle\\
@@ -181,26 +183,60 @@
 	\end{align}
 	Therefore, in the ordered basis $\mathcal{B}=\{e_1^{(1)},e_2^{(1)},e_1^{(2)},e_2^{(2)}\}$ we have
 	\begin{equation}
-		[\rho_\lambda]_\mathcal{B}=\mqty[\lambda & 0 & 0 & 0\\ 0 & 0 & 0&0\\0&0&0&0\\0&0&0&\sqrt{1-\lambda}]
+		[\rho_\lambda]_\mathcal{B}=\mqty[\lambda & 0 & 0 & 0\\ 0 & 0 & 0&0\\0&0&0&0\\0&0&0&1-\lambda]
 	\end{equation}
 \end{frame}
 
 \begin{frame}
-	\frametitle{The representation}
+	\frametitle{The Representation}
 	Finally we explicitly need the GNS representatives. Using the same approach
 	\begin{equation*}
 		\pi_\lambda(A)e_i^{(\alpha)}=\frac{1}{\sqrt{\lambda_\alpha}}[AE_{i\alpha}]=\frac{1}{\sqrt{\lambda_\alpha}}[A_{jk}\delta_{ki}\delta_{\beta\alpha}E_{j\beta}]=\frac{1}{\sqrt{\lambda_\alpha}}A_{ji}[E_{j\alpha}]=A_{ji}e_j^{(\alpha)}.
 	\end{equation*}
 	Therefore
 	\begin{equation}
-		[\pi_\lambda(A)]_\mathcal{B}=\mqty[A & 0\\0 &  A]
+		[\pi_\lambda(A)]_\mathcal{B}=\mqty[A & 0\\0 &  A](=A\otimes I_2)
 	\end{equation}
 	and we explicitly check that neither $\rho_{\Omega_\lambda}$ or $\rho_\lambda$ have an interpretation as observables.
 \end{frame}
 
 \begin{frame}
 	\frametitle{Ambiguity in functions of states}
-	Consider the von Neumann entropy $S(\rho)=-\tr(\rho\log(\rho))$ of a density matrix $\rho$. In our example the entropy of our initial density matrix describing the state is $-\lambda\log(\lambda)-(1-\lambda)\log(1-\lambda)=S(\rho)=\omega(\log(\rho))$. This is in particular the expected value of an observable! However, in the GNS representation we have encountered two density matrices which also do the job $\rho_{\Omega_\lambda}$ and $\rho_\lambda$ but are not observables. The first has a null entropy since it is a vector state $S(\rho_{\Omega_\lambda})=0$. On the other hand $S(\rho_\lambda)=S(\rho)$. What is going on here? In reality, the ambiguity is much more dramatic. Redefining the orthonormal basis by $e_i^{\alpha}(U)=\sum_\beta=1^2e_i^{(\beta)}U_{\beta\alpha}$ for $U$ unitary yields a new decomposition and thus a new density operator $\rho_\lambda(U)$. More about this will be discussed in Souad's lecture right after this!
+	Consider the von Neumann entropy 
+	\begin{equation}
+		S(\rho)=-\tr(\rho\log(\rho))
+	\end{equation}
+	 of a density matrix $\rho$. In our example the entropy of our initial density matrix describing the state is 
+	 \begin{equation}
+	 	-\lambda\log(\lambda)-(1-\lambda)\log(1-\lambda)=S(\rho)=\omega(\log(\rho)).
+	 \end{equation} 
+	 This is in particular the expected value of an observable! However, in the GNS representation we have encountered two density operators $\rho_{\Omega_\lambda}$ and $\rho_\lambda$ which also do the job but are not observables. However their entropies differ!
+	 \begin{equation}
+	 	S(\rho_{\Omega_\lambda})=0\neq S(\rho)=S(\rho_\lambda).
+	 \end{equation}
+\end{frame}
+
+\begin{frame}
+	\frametitle{The ambiguity is worse}	
+	What is going on here? In reality, the ambiguity is much more dramatic. Redefining the orthonormal basis by $e_i^{\alpha}(U)=\sum_{\beta=1}^2e_i^{(\beta)}U_{\beta\alpha}$ for $U$ unitary yields a new decomposition and thus a new density operator
+	\begin{align}
+	\begin{split}
+		\rho_\lambda\textcolor{red}{(U)}=\sum_{\alpha\in I}P^{(\alpha)}\textcolor{red}{(U)}\rho_{\Omega_\omega}P^{(\alpha)}\textcolor{red}{(U)}.
+	\end{split}
+	\end{align}	 
+	The spectrum of the density operator will depend on $U$ and therefore the entropy as well. As it turns out, such a shift in the decomposition of the representation can be understood as the action of the gauge group through Tomita-Takesaki theory.
+	More about this will be discussed in Souad's lecture right after this!
+\end{frame}
+
+\begin{frame}
+	\frametitle{$W^*$-algebras}
+	What is Tomita-Takesaki theory? To understand this we must specialize our algebras. A $C^*$-algebra can always be realized as a uniformly closed subset of the bounded operators on a Hilbert space\cite{Bratteli1987}. 
+	\begin{definition}
+		A $C^*$-algebra $\mathcal{A}$ on a Hilbert space $\mathcal{H}$ is called a von Neumann algebra or $W^*$-algebra if $\mathcal{A}''=\mathcal{A}$ where 
+		\begin{equation}
+			\mathcal{A}'=\{B\in\mathcal{B}(\mathcal{H})|AB=BA\text{ for all }A\in\mathcal{A}\}.
+		\end{equation}
+	\end{definition}
 \end{frame}
 
 \begin{frame}
@@ -234,14 +270,18 @@ If $\mathfrak{M}$ is a $W^*$-algebra and $\omega$ is a faithful ($\omega(A^*A)=0
 
 \section{KMS States}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{KMS States}
 	\begin{definition}
-	Let $(\mathcal{A},\alpha)$ be a dynamical system. $\phi$ is said to be a KMS state if for all $A,B\in\mathcal{A}$ there exists an analytic $F$ on the strip which satisfies
-	\begin{figure}
-		\includegraphics[width=0.6\textwidth]{images/kms.png}
-		\caption{Taken from \cite{Connes1994}.}
-	\end{figure}
+		Let $(\mathcal{A},\tau)$ be a dynamical system. $\omega$ is said to be a $(\tau,\beta)$-KMS state if for all $A,B\in\mathcal{A}$ there exists a bounded continuous $F$ on the strip analytic on its interior such that for all for all $t\in\mathbb{R}$
+		\begin{figure}
+			\begin{tikzpicture}
+				\fill[gray!30] (-4,0) rectangle (4,3);
+				\draw[->, thick] (-4,0) -- (4,0) node [below] {$F(t)=\omega(A\tau_t(B))$};
+				\draw[->, thick] (0,-0.3) -- (0,3.3);
+				\draw[dashed] (-4,3) -- (4,3) node [above] {$F(t+i\beta)=\omega(\tau_t(B)A)$};
+			\end{tikzpicture}
+		\end{figure}
 	\end{definition}
 \end{frame}
 
@@ -263,7 +303,14 @@ If $\mathfrak{M}$ is a $W^*$-algebra and $\omega$ is a faithful ($\omega(A^*A)=0
 
 \begin{frame}
 	\frametitle{Tomita-Takesaki Theory}
-	For a $W^*$-algebra $\mathfrak{M}$ equipped with a cyclic and separating vector $\Omega$ Tomita-Takesaki theory yields:
+	For a $W^*$-algebra $\mathfrak{M}$ equipped with a cyclic and separating vector $\Omega$ the polar decomposition of the closure of
+	\begin{align}
+	\begin{split}
+		S_0:\mathfrak{M}\Omega&\rightarrow\mathcal{H}\\
+		A\Omega&\mapsto A^*\Omega
+	\end{split}
+	\end{align}
+	yields:
 	\begin{itemize}
 		\item a one-parameter unitary group $t\mapsto\Delta^{it}$;
 		\item a modular conjugation $J$.
@@ -274,9 +321,6 @@ If $\mathfrak{M}$ is a $W^*$-algebra and $\omega$ is a faithful ($\omega(A^*A)=0
 			\item $\Delta^{it}\mathfrak{M}\Delta^{-it}=\mathfrak{M}$ for all $t\in\mathbb{R}$. 	
 		\end{itemize}
 	\end{theorem}
-	\begin{proof}
-		\cite{Bratteli1987}
-	\end{proof}
 \end{frame}
 
 \begin{frame}
