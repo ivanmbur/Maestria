@@ -87,6 +87,10 @@
 
 	\frametitle{Two Photons}
 	
+	\begin{figure}
+		\includegraphics[width=0.7\textwidth]{bell_experiment.png}
+	\end{figure}		
+	
 	We emmit two photons in the state
 	\begin{align}
 	\begin{split}
@@ -94,7 +98,7 @@
 		=&\frac{1}{\sqrt{2}}(\ket{\pi/4}\otimes\ket{3\pi/4}-\ket{3\pi/4}\otimes\ket{\pi/4})\in\mathbb{C}^2\otimes\mathbb{C}^2.
 	\end{split}
 	\end{align}
-	Alice measures the first component $P_A(\theta)=P(\theta)\otimes\id_{\mathbb{C}^2}$ and Bob the second $P_B(\theta)=\id_{\mathbb{C}^2}\otimes P(\theta)$. Such a state can be prepared through the decay of a Calcium atom\cite{Reyes2013}.
+	Alice measures the first component $P_A(\varphi)=P(\varphi)\otimes\id_{\mathbb{C}^2}$ and Bob the second $P_B(\theta)=\id_{\mathbb{C}^2}\otimes P(\theta)$. Such a state can be prepared through the decay of a Calcium atom\cite{Reyes2013}.
 
 \end{frame}
 
@@ -132,23 +136,17 @@
 		\end{itemize}			
 	
 	\end{definition}
-
-\end{frame}	
 	
-\begin{frame}
-
-	\frametitle{Examples of Partially Ordered Sets}
-
 	\begin{example}	
 	
 		\begin{itemize}
 	
-			\item $(\mathbb{R},\leq)$;
-			\item $(P(X),\subseteq)$;
+			\item $(\mathbb{R},\leq)$
+			\item $(P(X),\subseteq)$
 			\item $(\text{Propositions},\Rightarrow)$!	
 	
 		\end{itemize}
-
+	
 	\end{example}
 
 \end{frame}	
@@ -181,9 +179,13 @@
 	
 		\begin{itemize}
 		
-			\item $(\mathbb{R},\leq)$ is an unbounded lattice where $x\wedge y$ is the smallest of the two and $x\vee y$ the biggest.
+			\item $(\mathbb{R},\leq)$ is an unbounded lattice where $x\wedge y=\min\{x,y\}$ and $x\vee y=\max\{x,y\}$.
 		
 			\item $(P(X),\subseteq)$ is a bounded lattice where $A\wedge B=A\cap B$, $A\vee B=A\cup B$, $0=\emptyset=A\cap A^c$, and $1=X=A\cup A^c$.
+			
+			\begin{figure}
+			\includegraphics[width=0.3\textwidth]{intersection_of_sets_A_and_B.png}
+			\end{figure}		
 			
 			\item $(\text{Propositions},\Rightarrow)$ form a bounded lattice where $p\wedge q$ is the conjunction of the propositions, $p\vee q$ is the disjunction, $0$ is always true, and $1$ is always false. The complement of $p$ is its negation $\neg p$.
 		
@@ -202,13 +204,7 @@
 		A lattice $(L,\leq)$ is said to be distributive if $p\wedge(q\vee r)=(p\wedge q)\vee(p\wedge r)$ and $p\vee (q\wedge r)=(p\vee q)\wedge (p\vee r)$ for all $p,q,r\in L$.	
 	
 	\end{definition}
-
-\end{frame}
-
-\begin{frame}
-
-	\frametitle{Distributivity in Propositions}
-
+	
 	\center
 	\begin{tabular}{|c|c|c|c|c|c|c|c|}
 	\hline
@@ -331,7 +327,7 @@
 
 	\frametitle{Geometry on Hilbert Spaces}
 	
-	Once again, much like mathematicians, given that it is not clear how to define a poset structure on $L(\mathcal{H})$ we have to proceed by analogy.
+	Once again, much like mathematicians, given that it is not clear how to define a poset structure on $L(\mathcal{H})$ we have to proceed by duality.
 	
 	\begin{theorem}
 	
@@ -368,9 +364,35 @@ This forms a bounded lattice:
 	
 	\begin{theorem}
 		
-		If $P,Q\in L(\mathcal{H})$ are orthogonal, that is, commute, then $P\wedge Q=PQ$.		
+		If $P,Q\in L(\mathcal{H})$ commute $P\wedge Q=PQ$ and $P\vee Q=P+Q-PQ$.		
 		
 	\end{theorem}
+	
+	\begin{proof}
+		\cite{Wilce2012}	
+	\end{proof}
+
+\end{frame}
+
+\begin{frame}
+
+	\frametitle{Degrees of Plausibility in Quantum Mechanics}
+	
+	In quantum mechanics every state determines a degree of plausibility on $L(\mathcal{H}),\subseteq)$. In particular, vector states $\ket{\psi}\in\mathcal{H}$ determine the degree of plausibility
+	\begin{equation}
+		P_\psi(P)=\ev{P}{\psi}.
+	\end{equation}
+	One verifies that if $P\leq Q$ then
+	\begin{align}
+	\begin{split}
+		\|P\ket{\psi}\|^2=&\ev{P^2}{\psi}=\ev{P}{\psi}=P_\psi(P)=P(PQ)\\
+		=&\ev{PQ}{\psi}\leq\|P\ket{\psi}\|\|Q\ket{\psi}\|\leq\|Q\ket{\psi}\|^2=P_\psi(Q).
+	\end{split}
+	\end{align}
+	Moreover, one can check that
+	\begin{equation}
+		P_\psi(P\vee Q)\leq P_\psi(P)+P_\psi(Q).
+	\end{equation}
 
 \end{frame}
 
@@ -378,10 +400,10 @@ This forms a bounded lattice:
 
 	\frametitle{Back to EPR}
 	
-	Notice that $[P_A(\theta),P_B(\phi)]=0$. Thus the proposition we assign to their conjunction ``Alice measures polarization at an angle $\theta$ while Bob at an angle $\phi$'' is $P_A(\theta)P_B(\phi)=P(\theta)\otimes P(\phi)$. The expected values are
+	Notice that $[P_A(\theta),P_B(\phi)]=0$. Thus the proposition we assign to their conjunction ``Alice measures polarization at an angle $\theta$ while Bob at an angle $\phi$'' is $P_A(\theta)\wedge P_B(\phi)=P_A(\theta)P_B(\phi)=P(\theta)\otimes P(\phi)$. The expected values are
 	\begin{align}
 	\begin{split}
-		\ev{P_A(\theta)P_B(\phi)}{\psi}&=\\
+		P(P_A(\theta)\wedge P_B(\phi))=\ev{P_A(\theta)P_B(\phi)}{\psi}&=\\
 		\frac{1}{\sqrt{2}}\bra{\psi}\qty(P(\theta)\ket{0}\otimes P(\phi)\ket{\pi/2}-P(\theta)\ket{\pi/2}\otimes P(\phi)\ket{0})&=\\
 		\frac{1}{\sqrt{2}}\bra{\psi}\qty(\cos(\theta)\ket{\theta}\otimes \sin(\phi)\ket{\phi}-\sin(\theta)\ket{\theta}\otimes\cos(\phi)\ket{\phi})&=\\
 		\frac{1}{2}\qty(\cos(\theta)\sin(\phi)-\sin(\theta)\cos(\phi))^2&=\\
@@ -395,7 +417,33 @@ This forms a bounded lattice:
 
 	\frametitle{Violation of Bell's Inequalities}
 	
-	It makes sense to choose as complements $P_A(\theta)'=P_A(\theta+\pi/2)$ and $P_B(\theta)'=P_B(\theta+\pi/2)$. Therefore $P(f(P_A(\theta),P_B(\phi)))=\sin(\theta-\phi)^2$. Thus Bell's inequalities dictate
+	It makes sense to choose as complements $P_A(\theta)'=P_A(\theta+\pi/2)$ and $P_B(\theta)'=P_B(\theta+\pi/2)$. It is clear then that 
+	\begin{equation}
+		P(P_A(\theta)'\wedge P_B(\phi)')=\frac{1}{2}\sin(\theta-\phi)^2.
+	\end{equation}
+	On the other hand, notice that
+	\begin{align}
+	\begin{split}
+		(P_A(\theta)'\wedge P_B(\phi)')(P_A(\theta)\wedge P_B(\phi))&=\\
+		P_A(\theta+\pi/2)P_B(\phi+\pi/2)P_A(\theta)P_B(\phi)&=\\
+		(P(\theta+\pi/2)\otimes P(\phi+\pi/2))(P(\theta)\otimes P(\phi)))&=\\
+		P(\theta+\pi/2)P(\theta)\otimes P(\phi+\pi/2)P(\phi)&=\\
+		0=(P_A(\theta)\wedge P_B(\phi))(P_A(\theta)'\wedge P_B(\phi)')&.
+	\end{split}
+	\end{align}	 
+	Thus, we obtain
+	\begin{align}
+	\begin{split}
+	f(P_A(\theta),P_B(\phi))=&(P_A(\theta)\wedge P_B(\phi))\vee(P_A(\theta)'\wedge P_B(\phi)')\\
+	=&P_A(\theta)\wedge P_B(\phi)+P_A(\theta)'\wedge P_B(\phi)'.
+	\end{split}
+	\end{align}
+
+\end{frame}
+
+\begin{frame}
+
+	Since expected values are linear, $P(f(P_A(\theta),P_B(\phi)))=\sin(\theta-\phi)^2$. Thus Bell's inequalities dictate
 	
 	\begin{align}
 	\begin{split}
