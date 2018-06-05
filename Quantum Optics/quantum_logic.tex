@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amssymb}
 \usepackage{physics}
+\usepackage{tikz}
 
 \setbeamertemplate{navigation symbols}{}
 
@@ -63,25 +64,39 @@
 
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
 
 	\frametitle{Photon Polarization}
 
 	As an example consider the linear polarization of a photon.
 	
-	\begin{itemize}
+	\begin{columns}
 	
-		\item Hilbert space $\mathbb{C}^2$;
-		\item Vector state describing polarization along the angle $\theta$ 
-		\begin{equation}
-			\ket{\theta}=(\cos(\theta),\sin(\theta));
-		\end{equation}
-		\item Operator describing ``The polarization of the photon is along $\theta$''
-		\begin{equation}
-			P(\theta)=\dyad{\theta}.
-		\end{equation}
+		\column{0.5\textwidth}
+		\begin{itemize}
 	
-	\end{itemize}
+			\item Hilbert space $\mathbb{C}^2$;
+			\item Vector state describing polarization along the angle $\theta$ 
+			\begin{equation}
+				\ket{\theta}=(\cos(\theta),\sin(\theta));
+			\end{equation}
+			\item Operator describing ``The polarization of the photon is along $\theta$''
+			\begin{equation}
+				P(\theta)=\dyad{\theta}.
+			\end{equation}
+					
+		\end{itemize}
+	
+		\column{0.5\textwidth}
+		\begin{tikzpicture}
+			\draw[thin, ->] (-2,0) -- (2,0) node[right]{$\mathbb{C}$};
+			\draw[thin, ->] (0,-2) -- (0,2) node[above]{$\mathbb{C}$};
+			\draw[thick, ->] (0,0) -- (1.3, 1.7) node[right]{$\ket{\theta}$};
+			\draw (0.25 ,0) arc (0:atan(1.7/1.3):0.25);
+			\draw (0.3, 0.3) node [right] {$\theta$};
+		\end{tikzpicture}	
+
+	\end{columns}
 
 \end{frame}
 
@@ -139,16 +154,35 @@
 	
 	\end{definition}
 	
+\end{frame}
+
+\begin{frame}	
+	
+
 	\begin{example}	
+		\begin{columns}	
 	
-		\begin{itemize}
+			\column{0.5\textwidth}
+			\begin{itemize}
 	
-			\item $(\mathbb{R},\leq)$
-			\item $(P(X),\subseteq)$
-			\item $(\text{Propositions},\Rightarrow)$!	
+				\item $(\mathbb{R},\leq)$
+				\item $(P(X),\subseteq)$
+				\item $(\text{Propositions},\Rightarrow)$!	
 	
-		\end{itemize}
-	
+			\end{itemize}
+		
+			\column{0.5\textwidth}
+			\begin{tikzpicture}
+				\draw (-2,-2) -- (2,-2) -- (2,2) node[right]{$X$} -- (-2,2) -- (-2,-2);
+				\filldraw[cyan] (0,0) circle [radius=1];
+				\filldraw[red!20] (0,0) circle [radius=0.5];
+				\filldraw[yellow!20, rotate = 30] (1,1) ellipse (0.7 and 0.5);
+				\draw (0.5,1.4) node{$C$};
+				\draw (0,0) node{$A$};
+				\draw (0.7,0) node{$B$};
+			\end{tikzpicture}		
+		
+		\end{columns}
 	\end{example}
 
 \end{frame}	
@@ -353,16 +387,31 @@
 	
 	\end{definition}
 
-This forms a bounded lattice:
+This forms a bounded lattice in which every element has a complement:
 
-	\begin{itemize}
+	\begin{columns}
+
+		\column{0.5\textwidth}
+		\begin{itemize}
 	
-		\item $P\wedge Q=P\cap Q$;
-		\item $P\vee Q = \overline{\Span (P\cup Q)}$;
-		\item $0=\{0\}$;
-		\item $1=\mathcal{H}$.
+			\item $P\wedge Q=P\cap Q$
+			\item $P\vee Q = \overline{\Span (P\cup Q)}$
+			\item $0=\{0\}$
+			\item $1=\mathcal{H}$
+			\item $P'$ is the projection onto $P^\bot$
 	
-	\end{itemize}
+		\end{itemize}
+
+		\column{0.5\textwidth}
+		\begin{tikzpicture}
+			\draw[thin, ->] (-1,0) -- (1,0);
+			\draw[thin, ->] (0,-1) -- (0,1);
+			\draw[thick] (-1,-1) -- (1,1) node[above right]{$P$};
+			\draw[thick] (-1,1) -- (1,-1) node[below right]{$P'$};
+			\draw (-1, 0.3) node{$\mathbb{C}$};
+		\end{tikzpicture}
+
+	\end{columns}
 	
 	\begin{theorem}
 		
@@ -376,7 +425,7 @@ This forms a bounded lattice:
 
 	\frametitle{Degrees of Plausibility in Quantum Mechanics}
 	
-	In quantum mechanics every state determines a degree of plausibility on $L(\mathcal{H}),\subseteq)$. In particular, vector states $\ket{\psi}\in\mathcal{H}$ determine the degree of plausibility
+	In quantum mechanics every state determines a degree of plausibility on $(L(\mathcal{H}),\subseteq)$. In particular, vector states $\ket{\psi}\in\mathcal{H}$ determine the degree of plausibility
 	\begin{equation}
 		P_\psi(P)=\ev{P}{\psi}.
 	\end{equation}
