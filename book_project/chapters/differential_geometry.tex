@@ -1,0 +1,21 @@
+\section{Manifolds and their Philosophy}
+
+In differential geometry we are interested in the study of spaces that locally resemble finite dimensional vector spaces. Of course, the implementation of locality is done through a topological structure. 
+
+\begin{definition}
+
+	A locally euclidean space is a topological space $X$ for which there exists an $n\in\mathbb{N}$ such that every point $p\in M$ has an open neighborhood homeomorphic to an open subset of $\mathbb{R}^n$. The number $\dim M:=n$ is called the dimension of $M$.
+
+\end{definition}
+
+Some remarks regarding the restrictions done in our definition are in order. You could be worried since $\mathbb{R}^n$ is a very special $n$-dimensional vector space. However, all finite dimensional vector spaces are isomorphic to $\mathbb{R}^n$ for some $n$. This remains true if we consider the natural topological and differential structures on these vector spaces. Although these isomorphisms are not canonical, the physically meaningful object will be the locally Euclidean space. The role of the homeomorphisms will be to give mathematical structure to these spaces and will not have any actual physical interpretation.
+
+You may also wonder if we could extend this definition to allow for the dimension to change from point to point. Suppose $M$ is a topological space. Further, assume $p,q\in M$ have open neighborhoods $U$ and $V$ respectively such that $\phi:U\rightarrow\phi(U)\subseteq\mathbb{R}^n$ and $\psi:V\rightarrow\psi(V)\subseteq\mathbb{R}^m$ are homeomorphisms. If $U\cap V\neq\varnothing$ we have a homeomorphism between open subsets 
+\begin{equation}
+\psi\circ\phi^{-1}:\phi(U\cap V)\subseteq\mathbb{R}^n\rightarrow \psi(U\cap V)\subseteq\mathbb{R}^m.
+\end{equation}
+Invariance of domain then guarantees that $n=m$. If we then demand $n\neq m$ we must have $U\cap V=\varnothing$. If every point in $M$ has an open neighborhood homeomorphic to an open neighborhood of $\mathbb{R}^n$ then $n$ must be a local invariant. Indeed, for every $\tilde{p}\in U$ the previous argument shows that every open neighborhood of $\tilde{p}$ homeomorphic to an open subset of $\mathbb{R}^k$ for some $k\in\mathbb{N}$ must satisfy $k=n$. Thus, the connected component containing $p$ is a locally Euclidean space. Similarly, the connected component containing $q$ is a locally Euclidean space. If we require $n\neq m$ we must then conclude that these connected components are disjoint. We conclude that the connected components of $M$ are always locally Euclidean spaces (with a fixed dimension) and $M$ can be studied by considering each connected component separately.
+
+Locally Euclidean spaces are useful because they can inherit the local structure of finite dimensional vector spaces. For example, 
+
+ 
