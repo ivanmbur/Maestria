@@ -5,13 +5,16 @@
 \usepackage{amssymb}
 \usepackage{physics}
 \usepackage{tikz}
-
-\setbeamertemplate{navigation symbols}{}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.pathreplacing}
 
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Span}{span}
 
-\title{Quantum Logic}
+\tikzset{photon/.style={decorate, decoration=snake, draw = yellow, ultra thick}}
+\tikzset{brace/.style={decorate, decoration=brace}}
+
+\title{Quantum Logic and the Orthocomplemented Lattice of Propositions}
 \subtitle{A logic based approach to Bell's inequalities\cite{Burbano2017}}
 \author[Iván Burbano]{Iván Mauricio Burbano Aldana}
 \institute{Universidad de los Andes}
@@ -104,10 +107,36 @@
 \begin{frame}
 
 	\frametitle{Two Photons}
-	
-	\begin{figure}
-		\includegraphics[width=0.7\textwidth]{bell_experiment.png}
-	\end{figure}		
+
+	\begin{center}
+		\begin{tikzpicture}
+			\draw(0,0)node{Source}circle(0.7);
+			\draw[photon](1,0)--(2.5,0);
+			\draw[photon](-1,0)--(-2.5,0);
+			\draw(3,0)ellipse(0.3 and 0.7);
+			\draw(-3,0)ellipse(0.3 and 0.7);
+			\begin{scope}
+				\clip(-3,0)ellipse(0.3 and 0.7);
+				\draw(-3,0)--(-2,2);
+				\draw[dashed, ultra thin](-3,0)--(-3,1);
+			\end{scope}
+			\begin{scope}
+				\clip(3,0)ellipse(0.3 and 0.7);
+				\draw(3,0)--(4,1);
+				\draw[dashed, ultra thin](3,0)--(3,1);
+			\end{scope}
+			\draw(-2.6,0.65)node{$\theta$};
+			\draw(3.45,0.45)node{$\phi$};
+			\draw(4,-0.7)rectangle(5.4,0.7);
+			\draw(-4,-0.7)rectangle(-5.4,0.7);
+			\draw(-4.7,0)node{$A$};
+			\draw(4.7,0)node{$B$};
+			\draw[brace](-5.4,1)--(-2.7,1);
+			\draw[brace](2.7,1)--(5.4,1);
+			\draw(-4.05,1.5)node{$P_A(\theta):=P(\theta)\otimes\id_{\mathbb{C}^2}$};
+			\draw(4.05,1.5)node{$P_B(\phi):=\id_{\mathbb{C}^2}\otimes P(\phi)$};
+	\end{tikzpicture}
+	\end{center}
 	
 	We emmit two photons in the state
 	\begin{align}
@@ -116,15 +145,29 @@
 		=&\frac{1}{\sqrt{2}}(\ket{\pi/4}\otimes\ket{3\pi/4}-\ket{3\pi/4}\otimes\ket{\pi/4})\in\mathbb{C}^2\otimes\mathbb{C}^2.
 	\end{split}
 	\end{align}
-	Alice measures the first component $P_A(\varphi)=P(\varphi)\otimes\id_{\mathbb{C}^2}$ and Bob the second $P_B(\theta)=\id_{\mathbb{C}^2}\otimes P(\theta)$. Such a state can be prepared through the decay of a Calcium atom\cite{Reyes2013}.
 
+\end{frame}
+
+\begin{frame}
+
+	\frametitle{Defeating Heisenberg's Uncertainty Principle}
+
+	\begin{itemize}
+	
+		\item Knowledge of $P_B(0)\Rightarrow$ Knowledge of $P_A(0)$.		
+		\item Knowledge of $P_B(\pi/4)\Rightarrow$ Knowledge of $P_A(\pi/4)$.
+	
+	\end{itemize}		
+
+	Since $A$ and $B$ don't interact measurements of $B$ can't affect measurements of $A$!
+	
 \end{frame}
 
 \begin{frame}
 
 	\frametitle{Contradiction!}
 	
-	Through Bob's measurements we may acquire information of Alice's system due to the process known as collapse of the wave function. Indeed, if Bob measures $P_B(0)$ then we can predict what the result of Alice's $P_A(0)$ measurement will be. Since Bob's measurements cannot affect Alice's system $P_A(0)$ becomes and element of physical reality. The same is true for $P_B(\pi/4)$ and $P_A(\pi/4)$. Thus $P_A(0)$ and $P_A(\pi/4)$ both have a simultaneous reality! Since $[P_A(0),P_A(\pi/4)]\neq 0$ we've arrived to a contradiction. 
+	$P_A(0)$ and $P_A(\pi/4)$ have a simultaneous physical reality although $[P_A(0),P_A(\pi/4)]=0$!
 
 \end{frame}
 
@@ -175,16 +218,16 @@
 			\column{0.5\textwidth}
 			\begin{tikzpicture}
 				\draw (-2,-2) -- (2,-2) -- (2,2) node[right]{$X$} -- (-2,2) -- (-2,-2);
-				\filldraw[color = cyan!20] (0,0) circle [radius=1];
-				\filldraw[red!20] (0,0) circle [radius=0.5];
-				\filldraw[yellow!20, rotate = 30] (1,1) ellipse (0.7 and 0.5);
+				\filldraw[color = cyan!20] (0,-0.7) circle [radius=1];
+				\filldraw[red!20] (0,-0.7) circle [radius=0.5];
+				\filldraw[yellow!20, rotate = 30] (1,0) ellipse (0.7 and 0.5);
 				\begin{scope}
-					\clip (0,0) circle [radius=1];
-					\fill[blue!15, rotate = 30] (1,1) ellipse (0.7 and 0.5);
+					\clip (0,-0.7) circle [radius=1];
+					\fill[blue!15, rotate = 30] (1,0) ellipse (0.7 and 0.5);
 				\end{scope}				
-				\draw (0.5,1.4) node{$C$};
-				\draw (0,0) node{$A$};
-				\draw (0.7,0) node{$B$};
+				\draw (0.5,0.5) node{$C$};
+				\draw (0,-0.7) node{$A$};
+				\draw (0.7,-0.7) node{$B$};
 			\end{tikzpicture}		
 		
 		\end{columns}
@@ -198,16 +241,8 @@
 	
 	\begin{definition}
 	
-		Let $(P,\leq)$ be a poset and $p,q\in P$. We define $p\wedge q$ to be the greatest least bound of $\{p,q\}$ if it exists. Similarly $p\vee q$ is the lowest upper bound of $\{p,q\}$ if it exists.	If for every pair $p,q\in P$ both $p\wedge q$ and $p\vee q$ exist the poset is said to be a lattice.
+		Let $(P,\leq)$ be a poset and $p,q\in P$. We define $p\wedge q$ to be the greatest lower bound of $\{p,q\}$ if it exists. Similarly $p\vee q$ is the least upper bound of $\{p,q\}$ if it exists.	If for every pair $p,q\in P$ both $p\wedge q$ and $p\vee q$ exist the poset is said to be a lattice.
 	
-	\end{definition}
-
-	Notice that this definition can easily be extended to subsets with more than two elements.
-
-	\begin{definition}
-		
-		A poset $(P,\leq)$ is said to be bounded if there is a greatest lower bound $0$ and a least upper bound $1$. A complement of $p\in P$ is an element $q\in P$ such that $p\wedge q=0$ and $p\vee q=1$		
-		
 	\end{definition}
 
 \end{frame}
@@ -220,21 +255,20 @@
 		
 		\begin{columns}
 
-			\column{0.62\textwidth}
+			\column{0.5\textwidth}
 			\begin{itemize}
 		
-				\item $(\mathbb{R},\leq)$ is an unbounded lattice where $x\wedge y=\min\{x,y\}$ and $x\vee y=\max\{x,y\}$.
+				\item $(\mathbb{R},\leq)$ is a lattice where $x\wedge y=\min\{x,y\}$ and $x\vee y=\max\{x,y\}$.
 		
-				\item $(P(X),\subseteq)$ is a bounded lattice where $A\wedge B=A\cap B$, $A\vee B=A\cup B$, $0=\emptyset=A\cap A^c$, and $1=X=A\cup A^c$.
-			
-				\item $(\text{Propositions},\Rightarrow)$ form a bounded lattice where $p\wedge q$ is the conjunction of the propositions, $p\vee q$ is the disjunction, $0$ is always true, and $1$ is always false. The complement of $p$ is its negation $\neg p$.
+				\item $(P(X),\subseteq)$ is a lattice where $A\wedge B=A\cap B$ and $A\vee B=A\cup B$.
 		
 			\end{itemize}	
 			
-			\column{0.38\textwidth}
+			\column{0.5\textwidth}
 			
-				\begin{tikzpicture}
-				\draw(-1.8,-2.8)--(1.8,-2.8)--(1.8,2.8)node[above left]{$X$}--(-1.8,2.8)--(-1.8,-2.8);
+				\begin{center}
+				\begin{tikzpicture}[scale = 0.6]
+				\draw(-2.8,-2.8)--(2.8,-2.8)--(2.8,2.8)node[above right]{$X$}--(-2.8,2.8)--(-2.8,-2.8);
 				\fill[red!20](0,-1)circle[radius=1.6];
 				\fill[blue!20](0,1)circle[radius=1.6];
 				\begin{scope}
@@ -245,9 +279,24 @@
 				\draw(0,-1)node{$A$};
 				\draw(0,1)node{$B$};
 				\end{tikzpicture}		
+				\end{center}
 	
 		\end{columns}	
 		
+	\end{example}
+
+\end{frame}
+
+\begin{frame}
+
+	\frametitle{Meet and Join in $(\text{Propositions},\Rightarrow)$}
+	
+	\begin{example}
+		$(\text{Propositions},\Rightarrow)$ form a lattice where $p\wedge q$ is the conjunction of the propositions and $p\vee q$ is the disjunction. Indeed,
+		\begin{itemize}
+			\item $p\wedge q\rightarrow p$ and $p\wedge q\Rightarrow q$ showing that $p\wedge q$ is a lower bound;
+			\item if $r\Rightarrow p$ and $r\Rightarrow q$ then $r\Rightarrow p\wedge q$.
+		\end{itemize}
 	\end{example}
 
 \end{frame}
@@ -270,6 +319,43 @@
 
 \begin{frame}
 
+	\frametitle{Boundedness}
+	
+	\begin{definition}
+		
+		A poset $(P,\leq)$ is said to be bounded if there is a greatest lower bound $0$ and a least upper bound $1$. A complement of $p\in P$ is an element $q\in P$ such that $p\wedge q=0$ and $p\vee q=1$		
+		
+	\end{definition}
+
+\end{frame}
+
+\begin{frame}
+
+	\frametitle{Bounded and Unbounded Lattices}
+	
+	\begin{example}
+		\begin{columns}
+			\column{0.5\textwidth}
+			\begin{itemize}
+				\item $(\mathbb{R},\leq)$ is an unbounded lattice.
+				\item $(P(X),\subseteq)$ is a bounded lattice in which $0=\emptyset$, $1=X$, and the complement of $A$ is $X\setminus A$.
+				\item $(\text{Propositions},\Rightarrow)$ is a bounded lattice in which $0$ is always false, $1$ is always true, and the complement of a proposition $p$ is its negation $\neg p$.
+			\end{itemize}
+			\column{0.5\textwidth}
+			\begin{tikzpicture}
+				\fill[blue!20](-2,-2)rectangle(2,2);
+				\fill[red!20](0,0)circle(1);
+				\draw(-2,-2)node[above right]{$X\setminus A$};
+				\draw(2,2)node[above right]{$X$};
+				\draw(0,0)node{$A$};
+			\end{tikzpicture}
+		\end{columns}
+	\end{example}
+
+\end{frame}
+
+\begin{frame}
+
 	\frametitle{Distributivity}
 
 	\begin{definition}
@@ -277,7 +363,13 @@
 		A lattice $(L,\leq)$ is said to be distributive if $p\wedge(q\vee r)=(p\wedge q)\vee(p\wedge r)$ and $p\vee (q\wedge r)=(p\vee q)\wedge (p\vee r)$ for all $p,q,r\in L$.	
 	
 	\end{definition}
-	
+
+\end{frame}
+
+\begin{frame}
+
+	\frametitle{Distributivity in $(\text{Propositions},\Rightarrow)$}
+
 	\center
 	\begin{tabular}{|c|c|c|c|c|c|c|c|}
 	\hline
@@ -306,7 +398,7 @@
 	
 	\end{definition}
 
-	One can prove that in these algebras the complement is unique. Therefore, the complement of $p$ in a Boolean algebra will be denoted by $p'$.
+	The complement of $p$ in a Boolean algebra will be denoted by $p'$.
 
 	\begin{alertblock}{Interpretation}
 		We will interpret EPR's requirements of a complete physical theory to be that the set of propositions one may ask of the theory be a Boolean algebra.
@@ -316,15 +408,22 @@
 
 \begin{frame}
 
-	\frametitle{Bell's Inequalities I}
+	\frametitle{Coincidences}
 	
-	Let $(B,\leq)$ be a Boolean algebra. Define
+	Let $(B,\leq)$ be a Boolean algebra. Define the coincidence function
 	\begin{align}
 	\begin{split}
 		f:B\times B&\rightarrow B\\
 		(p,q)&\mapsto f(p,q):=(p\wedge q)\vee(p'\wedge q').
 	\end{split}
 	\end{align}
+	
+\end{frame}
+
+\begin{frame}
+
+	\frametitle{Distributivity in Coincidences}
+
 	Note that for all $p_1,q_1,p_2,q_2\in B$
 	\begin{align}
 	\begin{split}
@@ -339,7 +438,7 @@
 	
 \begin{frame}
 	
-	\frametitle{Bell's Inequalities II}
+	\frametitle{Bell's Inequalities in Boolean Algebras}
 	
 	We conclude
 	\begin{equation}
@@ -350,17 +449,36 @@
 		p_1'\wedge q_1'\leq(p_1'\wedge q_2')\vee(p_2\wedge q_2)\vee(p_2'\wedge q_1').
 	\end{equation}
 	Therefore
-	\begin{equation}
-		f(p_1,q_1)\leq f(p_1,q_2)\vee f(p_2,q_2)\vee f(p_2,q_1).
-	\end{equation}	 
+	\begin{theorem}[Bell's Inequalities for Boolean Algebras]
+	
+		Let $(B,\leq)$ be a Boolean algebra. For all $p_1,q_1,p_2,q_2$ we have
+		\begin{equation}
+			f(p_1,q_1)\leq f(p_1,q_2)\vee f(p_2,q_2)\vee f(p_2,q_1).
+		\end{equation}			
+	
+	\end{theorem}
 	
 \end{frame}		
 
 \begin{frame}
 
-	\frametitle{Bell's Inequalities III: Degrees of Plausibility}
+	\frametitle{Degrees of Plausibility}
 	
-	In quantum mechanics we are more comfortable with the assignment of probabilities to propositions\cite{Jaynes2003}. Any reasonable assignment $P:B\rightarrow [0,1]$ of degree of plausibility to physical propositions must be such that $P(p)\leq P(q)$ if $p\leq q$. Moreover, $P(p\vee q)\leq P(p)+P(q)$. We thus arrive at
+	In quantum mechanics we are more comfortable with the assignment of probabilities to propositions\cite{Jaynes2003}. Any reasonable assignment 
+	\begin{equation}
+		P:B\rightarrow [0,1]
+	\end{equation}
+	of degree of plausibility to physical propositions must be such that 
+	\begin{itemize}
+		\item $p\leq q\Rightarrow P(p)\leq P(q)$;
+		\item (sum rule) $P(p\vee q)\leq P(p)+P(q)$.
+	\end{itemize}.
+	
+\end{frame}
+
+\begin{frame}
+
+	\frametitle{Bell's Inequalities}
 
 	\begin{theorem}[Bell's Inequalities]
 	
@@ -442,18 +560,27 @@ This forms a bounded lattice in which every element has a complement:
 
 		\column{0.5\textwidth}
 		\begin{tikzpicture}
-			\draw[thin, ->] (-1,0) -- (1,0);
-			\draw[thin, ->] (0,-1) -- (0,1);
+			\draw[thin, ->] (-1,0) -- (1,0)node[right]{$\mathbb{C}$};
+			\draw[thin, ->] (0,-1) -- (0,1)node[above]{$\mathbb{C}$};
 			\draw[thick] (-1,-1) -- (1,1) node[above right]{$P$};
 			\draw[thick] (-1,1) -- (1,-1) node[below right]{$P'$};
-			\draw (-1, 0.3) node{$\mathbb{C}$};
 		\end{tikzpicture}
 
 	\end{columns}
 	
+\end{frame}
+
+\begin{frame}
+
+	\frametitle{Useful Theorems for Calculations}
+	
 	\begin{theorem}
 		
-		If $P,Q\in L(\mathcal{H})$ commute $P\wedge Q=PQ$ and $P\vee Q=P+Q-PQ$.		
+		Let $P,Q\in L(\mathcal{H})$. Then,
+		\begin{itemize}
+			\item $P\leq Q\Leftrightarrow P=PQ=QP$;
+			\item if $P$ and $Q$ commute $P\wedge Q=PQ$ and $P\vee Q=P+Q-PQ$.		
+		\end{itemize}
 		
 	\end{theorem}
 
@@ -482,28 +609,31 @@ This forms a bounded lattice in which every element has a complement:
 
 	\frametitle{Back to EPR}
 	
-	Notice that $[P_A(\theta),P_B(\phi)]=0$. Thus the proposition we assign to their conjunction ``Alice measures polarization at an angle $\theta$ while Bob at an angle $\phi$'' is $P_A(\theta)\wedge P_B(\phi)=P_A(\theta)P_B(\phi)=P(\theta)\otimes P(\phi)$. The expected values are
-	\begin{align}
-	\begin{split}
-		P(P_A(\theta)\wedge P_B(\phi))=\ev{P_A(\theta)P_B(\phi)}{\psi}&=\\
-		\frac{1}{\sqrt{2}}\bra{\psi}\qty(P(\theta)\ket{0}\otimes P(\phi)\ket{\pi/2}-P(\theta)\ket{\pi/2}\otimes P(\phi)\ket{0})&=\\
-		\frac{1}{\sqrt{2}}\bra{\psi}\qty(\cos(\theta)\ket{\theta}\otimes \sin(\phi)\ket{\phi}-\sin(\theta)\ket{\theta}\otimes\cos(\phi)\ket{\phi})&=\\
-		\frac{1}{2}\qty(\cos(\theta)\sin(\phi)-\sin(\theta)\cos(\phi))^2&=\\
-		\frac{1}{2}\sin(\theta-\phi)^2.&
-	\end{split}
-	\end{align}
-
+	Notice that $[P_A(\theta),P_B(\phi)]=0$. Thus the proposition we assign to their conjunction ``Alice measures polarization at an angle $\theta$ while Bob at an angle $\phi$'' is 
+	\begin{equation}
+		P_A(\theta)\wedge P_B(\phi)=P_A(\theta)P_B(\phi)=P(\theta)\otimes P(\phi)
+	\end{equation}
+	with an expected value
+	\begin{equation}
+		P_\psi(P_A(\theta)\wedge P_B(\phi))=\ev{P_A(\theta)P_B(\phi)}{\psi}=\frac{1}{2}\sin(\theta-\phi)^2.
+	\end{equation}
+	
 \end{frame}
 
 \begin{frame}
 
-	\frametitle{Coincidences in Quantum Mechanics}
+	\frametitle{Complements of Polarization}
 	
 	It makes sense to choose as complements $P_A(\theta)'=P_A(\theta+\pi/2)$ and $P_B(\theta)'=P_B(\theta+\pi/2)$. It is clear then that 
 	\begin{equation}
 		P(P_A(\theta)'\wedge P_B(\phi)')=\frac{1}{2}\sin(\theta-\phi)^2.
 	\end{equation}
-	On the other hand, notice that
+	
+\end{frame}
+
+\begin{frame}
+
+	To calculate de disjunction, notice that
 	\begin{align}
 	\begin{split}
 		(P_A(\theta)'\wedge P_B(\phi)')(P_A(\theta)\wedge P_B(\phi))&=\\
@@ -513,30 +643,39 @@ This forms a bounded lattice in which every element has a complement:
 		0=(P_A(\theta)\wedge P_B(\phi))(P_A(\theta)'\wedge P_B(\phi)')&.
 	\end{split}
 	\end{align}	 
-	Thus, we obtain
+
+\end{frame}
+
+\begin{frame}
+
+	\frametitle{Expectation of Coincidences}
+	
+	We obtain
 	\begin{align}
 	\begin{split}
 	f(P_A(\theta),P_B(\phi))=&(P_A(\theta)\wedge P_B(\phi))\vee(P_A(\theta)'\wedge P_B(\phi)')\\
 	=&P_A(\theta)\wedge P_B(\phi)+P_A(\theta)'\wedge P_B(\phi)'.
 	\end{split}
 	\end{align}
-
+	
+	Since expectation values are linear, 
+	\begin{equation}
+	P(f(P_A(\theta),P_B(\phi)))=\sin(\theta-\phi)^2.
+	\end{equation}
+	
 \end{frame}
 
 \begin{frame}
 
-	\frametitle{Violations of Bell's Inequalities}
-
-	Since expected values are linear, 
-	\begin{equation}
-	P(f(P_A(\theta),P_B(\phi)))=\sin(\theta-\phi)^2.
-	\end{equation}
+	\frametitle{Violation of Bell's Inequalities}
 	
 	Thus Bell's inequalities dictate	
 	\begin{align}
 	\begin{split}
 	1=&\sin(0-\pi/2)^2=P(f(P_A(0),P_B(\pi/2)))\\
-	\leq&\sin(0-\pi/6)^2+\sin(\pi/3-\pi/6)^2+\sin(\pi/3-\pi/2)^2\\
+	\leq&P(f(P_A(0),P_B(\pi/6)))+P(f(P_A(\pi/3),P_B(\pi/6)))\\
+	&+P(f(P_A(\pi/3),P_B(\pi/2)))\\
+	=&\sin(0-\pi/6)^2+\sin(\pi/3-\pi/6)^2+\sin(\pi/3-\pi/2)^2\\
 	=&3/4.
 	\end{split}
 	\end{align}
@@ -569,14 +708,41 @@ This forms a bounded lattice in which every element has a complement:
 		\end{equation}			
 		This $q\leq r$. Similarly one can show $r\leq q$. By anti-symmetry $q=r$.
 	\end{proof}
+	
+\end{frame}
 
-It is clear that in the bounded lattice $L(\mathcal{H})$ complements are not unique. Thus the lattice is not distributive.
+\begin{frame}
+
+	\frametitle{Many Complements!}
+
+	It is clear that in the bounded lattice $L(\mathcal{H})$ complements are not unique. Thus the lattice is not distributive.
+			
+	\begin{columns}
+		\column{0.5\textwidth}
+		\center
+		\begin{tikzpicture}
+			\draw[thin, ->] (-1,0) -- (1,0)node[right]{$\mathbb{C}$};
+			\draw[thin, ->] (0,-1) -- (0,1)node[above]{$\mathbb{C}$};
+			\draw[thick] (-1,-1) -- (1,1) node[above right]{$P$};
+			\draw[thick] (-1,1) -- (1,-1) node[below right]{$P'$};
+		\end{tikzpicture}
+		\column{0.5\textwidth}
+		\center
+		\begin{tikzpicture}
+			\draw[thin, ->] (-1,0) -- (1,0)node[right]{$\mathbb{C}$};
+			\draw[thin, ->] (0,-1) -- (0,1)node[above]{$\mathbb{C}$};
+			\draw[thick] (-1,-1) -- (1,1) node[above right]{$P$};
+			\draw[thick] (-1,0.5) -- (1,-0.5) node[below right]{$Q$};
+		\end{tikzpicture}
+	\end{columns}
 
 \end{frame}
 	
 \begin{frame}[allowframebreaks]
 	
 	\frametitle{References}
+	
+	\nocite{Reyes2013}
 
 	\bibliography{../Mendeley/library}
 	\bibliographystyle{apalike}
