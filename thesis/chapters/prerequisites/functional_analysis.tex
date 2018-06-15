@@ -1,0 +1,47 @@
+\subsection{Hilbert Spaces}
+
+A way to induce a topology compatible with the algebraic structure of a vector space is to consider the metric associated to a norm.
+
+\begin{theorem}
+	Let $V$ be a normed vector space. Then the function 
+	\begin{align}
+	\begin{split}
+		d:V\times V&\rightarrow V\\
+		(x,y)&\mapsto d(x,y):=\|x-y\|
+	\end{split}
+	\end{align}
+is a metric on $V$. Moreover, the topology on $V$ induced by this metric makes $V$ a topologival vector space.
+\end{theorem}
+
+\begin{proof}
+	Given that $\|\cdot\|:V\rightarrow\mathbb{R}^+_0$ we have that for all $x,y\in V$ 
+	\begin{equation}
+		d(x,y)=\|x-y\|\geq 0.
+	\end{equation}
+We also have from the definition of a norm that $\|kx\|=|k|\|x\|$ for all $k\in\mathbb{F}$ and $x\in V$. Thus, for all $x,y\in V$
+	\begin{equation}
+		d(x,y)=\|x-y\|=\|-(y-x)\|=|-1|\|y-x\|=\|y-x\|=d(y,x).
+	\end{equation}
+Finally, we have the triangle inequality $\|x+y\|\leq\|x\|+\|y\|$ for all $x,y\in V$. Therefore, for all $x,y,z\in V$
+	\begin{align}
+	\begin{split}
+		d(x,z)=&\|x-z\|=\|(x-y)+(y-z)\|\\
+		\leq&\|x-y\|+\|y-z\|=d(x,y)+d(y,z).
+	\end{split}
+	\end{align}
+We conclude that $d$ is a metric on $V$.
+
+	We now consider the topology induced by $d$ on $V$. Let $a,b\in V$ and $\epsilon\in\mathbb{R}^+$. For all $x,y\in V$ we have that if $\|x-a\|<\epsilon/2$ and $\|y-b\|<\epsilon/2$, then the triangle inequality guarantees
+	\begin{align}
+		\|(x+y)-(a+b)\|=&\|(x-a)+(y-b)\|\leq\|x-a\|+\|y-b\|\\
+		<&\epsilon/2+\epsilon/2=\epsilon.
+	\end{align}
+Thus, the sum is continuous. Now let $a\in V$, $k\in\mathbb{F}$ and $\epsilon\in\mathbb{R}^+$. For all $l\in\mathbb{F}$ and $x\in V$ if $|l-k|<\epsilon}$ and $\|x-a\|<\sqrt{\epsilon}$, then the triangle inequality once again guarantees
+	\begin{align}
+	\begin{split}
+		\|lx-ka\|=&\|(l-k)(x-a)+kx+la-ka-ka\|\\
+		=&\|(l-k)(x-a)+k(x-a)-(l-k)a\|\\
+		\leq&|l-k|\|x-a\|+|k|\|x-a\|+|l-k|\|a\|
+	\end{split}
+	\end{align}
+\end{proof}
