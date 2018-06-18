@@ -1,10 +1,10 @@
-\subsection{Hilbert Spaces}
+\subsection{Banach Spaces}
 
 A way to induce a topology compatible with the algebraic structure of a vector space is to consider the metric associated to a norm.
 
 \begin{theorem}
 	Let $V$ be a normed vector space. Then the function 
-	\begin{align}
+	\begin{align}\label{eq:norm_metric}
 	\begin{split}
 		d:V\times V&\rightarrow V\\
 		(x,y)&\mapsto d(x,y):=\|x-y\|
@@ -18,7 +18,7 @@ is a metric on $V$. Moreover, the topology on $V$ induced by this metric makes $
 	\begin{equation}
 		d(x,y)=\|x-y\|\geq 0.
 	\end{equation}
-We also have from the definition of a norm that $\|kx\|=|k|\|x\|$ for all $k\in\mathbb{F}$ and $x\in V$. Thus, for all $x,y\in V$
+Moreover, $\|x\|=0$ if and only if $x=0$ for all $x\in V$. This implies that $\|x-y\|=d(x,y)=0$ if and only if $x-y=0$, or in other words, $x=y$ for all $x,y\in V$. We also have from the definition of a norm that $\|kx\|=|k|\|x\|$ for all $k\in\mathbb{F}$ and $x\in V$. Thus, for all $x,y\in V$
 	\begin{equation}
 		d(x,y)=\|x-y\|=\|-(y-x)\|=|-1|\|y-x\|=\|y-x\|=d(y,x).
 	\end{equation}
@@ -36,12 +36,133 @@ We conclude that $d$ is a metric on $V$.
 		\|(x+y)-(a+b)\|=&\|(x-a)+(y-b)\|\leq\|x-a\|+\|y-b\|\\
 		<&\epsilon/2+\epsilon/2=\epsilon.
 	\end{align}
-Thus, the sum is continuous. Now let $a\in V$, $k\in\mathbb{F}$ and $\epsilon\in\mathbb{R}^+$. For all $l\in\mathbb{F}$ and $x\in V$ if $|l-k|<\epsilon}$ and $\|x-a\|<\sqrt{\epsilon}$, then the triangle inequality once again guarantees
+Thus, the sum is continuous. Now let $a\in V$, $k\in\mathbb{F}$ and $\epsilon\in\mathbb{R}^+$. For all $l\in\mathbb{F}$ and $x\in V$ if 
+	\begin{align}
+	\begin{split}
+		\|x-a\|<&\qty(\sqrt{1+\frac{\epsilon}{|k|\|a\|}}-1)\|a\|,\\
+		|l-k|<&\qty(\sqrt{1+\frac{\epsilon}{|k|\|a\|}}-1)|k|
+	\end{split}
+	\end{align}
+then the triangle inequality once again guarantees
 	\begin{align}
 	\begin{split}
 		\|lx-ka\|=&\|(l-k)(x-a)+kx+la-ka-ka\|\\
 		=&\|(l-k)(x-a)+k(x-a)-(l-k)a\|\\
-		\leq&|l-k|\|x-a\|+|k|\|x-a\|+|l-k|\|a\|
+		\leq&|l-k|\|x-a\|+|k|\|x-a\|+|l-k|\|a\|\\
+		<&\qty(\sqrt{1+\frac{\epsilon}{|k|\|a\|}}-1)^2\|a\||k|+2\qty(\sqrt{1+\frac{\epsilon}{|k|\|a\|}}-1)\|a\||k|\\
+		=&\qty(\sqrt{1+\frac{\epsilon}{|k|\|a\|}}+1)\qty(\sqrt{1+\frac{\epsilon}{|k|\|a\|}}-1)\|a\||k|\\
+		=&\qty(1+\frac{\epsilon}{|k|\|a\|}-1)\|a\||k|=\epsilon.
 	\end{split}
 	\end{align}
+This shows that scalar multiplication is also continuous and $V$ is a topological vector space when equipped with the topology induced by $d$. 
+\end{proof}
+
+\begin{definition}
+	Let $V$ be a normed space. Then the metric $d$ defined by \eqref{eq:norm_metric} is called the metric induced by the norm of $V$.
+\end{definition}
+
+Although metric spaces are usually provided with their metric topology, they are endowed with more structure than topological spaces. In particular, two metric spaces can be homeomorphic without both being complete. During this section we will focus on a particular type of topological vector spaces.
+
+\begin{definition}
+	A Banach space is a normed vector space which is complete when endowed with the metric induced by its norm.
+\end{definition}
+
+Recall that every metric space has a unique completion up to isomorphism of metric spaces. We will now see that the same is true for normed vector spaces. This implies that every normed vector space determines uniquely a Banach space which extends it.
+
+\begin{theorem}
+	Let $V$ be a normed vector space. Then, there exists a Banach space $\tilde{V}$ and a linear isometry $\phi:V\rightarrow\tilde{V}$ for which $overline{\phi(V)}=\tilde{V}$. Moreover, for every Banach space $W$ for which a linear isometry $\varphi:V\rightarrow W$ with $\overline{\varphi(V)}=W$ exists, there is a unique (canonical) isomorphism of normed spaces $\psi:\tilde{V}\rightarrow W$ for which $\psi\circ\phi=\varphi$, that is, the following diagram commutes
+	
+	\begin{center}
+		\begin{tikzcd}
+			V\arrow[r, "\phi"]\arrow[rd, "\varphi"]&\tilde{V}\arrow[d, dotted, "\psi"]\\
+			&W.
+		\end{tikzcd}
+	\end{center}
+\end{theorem}
+
+\begin{proof}
+	Let $\tilde{V}$ be the completion of $V$ when equipped with the metric induced by its norm. Recall that $\tilde{V}=C/{\sim}$ where $C$ is the set of Cauhy sequences in $V$ and $\sim$ is the equivalence relation defined by $(x_n)\sim(y_n)$ if and only if $\|x_n-y_n\|\rightarrow 0$ for all $(x_n),(y_n)\in C$. The metric on $\tilde{V}$ is given by
+\begin{align}\label{eq:metric_extension}
+\begin{split}
+d:\tilde{V}\times\tilde{V}&\rightarrow\tilde{V}\\
+([(x_n)]_\sim,[(y_n)]_\sim)&\mapsto \lim_{n\rightarrow\infty} \|x_n-y_n\|.
+\end{split}
+\end{align}
+To define a vector space structure on $\tilde{V}$ we need to begin by considering the behavior of the vector space structure of $V$ with respect to $\sim$.
+
+	Let $(x_n),(y_n)\in C$, $k\in\mathbb{F}$ and $\epsilon\in\mathbb{R}^+$. There exists an $N\in\mathbb{N}^+$ such that for all $n,m\in\mathbb{N}^{\geq N}$ we have
+	\begin{align}
+	\begin{split}
+	\|x_n-x_m\|<&\epsilon/2;\\
+	\|x_n-x_m\|<&\epsilon/|k|;\\
+	\|y_n-y_m\|<&\epsilon/2.
+	\end{split}
+	\end{align}
+Therefore, for all $n,m\in\mathbb{N}^{\geq N}$
+	\begin{align}
+	\begin{split}
+		\|(x_n+y_n)-(x_m+y_m)\|=&\|(x_n-x_m)+(y_n-y_m)\|\\
+		\leq&\|x_n-x_m\|+\|y_n-y_m\|<\epsilon/2+\epsilon/2=\epsilon;\\
+		\|kx_n-kx_m\|=&\|k(x_n-x_m)\|=|k|\|x_n-x_m\|\\
+		<&|k|\epsilon/|k|=\epsilon.
+	\end{split}
+	\end{align}
+This shows that the point-wise addition of the elements of Cauchy sequences and the multiplication of a Cauchy sequence by a scalar yield new Cauchy sequences. Assume now that for $(a_n),(b_n)\in C$ we have that $(x_n)\sim(a_n)$ and $(y_n)\sim(b_n)$.
+Therefore, for all $n\in\mathbb{N}^{\geq N}$
+	\begin{align}
+	\begin{split}
+		\|(x_n+y_n)-(a_n+b_n)\|=&\|(x_n-a_n)+(y_n-b_n)\|\\
+		\leq&\|x_n-a_n\|+\|y_n-b_n\|<\epsilon/2+\epsilon/2=\epsilon;\\
+		\|kx_n-ka_n\|=&\|k(x_n-a_n)\|=|k|\|x_n-a_n\|<|k|\epsilon/|k|=\epsilon.
+	\end{split}
+	\end{align}
+We conclude that $(x_n+y_n)\sim(a_n+b_n)$ and $(kx_n)\sim(ka_n)$. 
+
+	The previous argument shows that the maps
+		\begin{align}
+		\begin{split}
+			\tilde{V}\times\tilde{V}&\rightarrow\tilde{V}\\
+			([(x_n)]_\sim,[(y_n)]_\sim)&\mapsto[(x_n)]_\sim+[(y_n)]_\sim:=[(x_n+y_n)]_\sim\\
+			\mathbb{F}\times\tilde{V}&\rightarrow\tilde{V}\\
+			(k,[(x_n)]_\sim)&\mapsto k[(x_n)]_\sim:=[(kx_n)]_\sim
+		\end{split}
+		\end{align}
+are well defined. We now need to show this is a vector space structure over $\tilde{V}$. Let $k,l\in\mathbb{F}$ and $[(x_n)]_\sim,[(y_n)]_\sim,[(z_n)]_\sim\in\tilde{V}$. Then
+	\begin{align}
+	\begin{split}
+		([(x_n)]_\sim+[(y_n)]_\sim)+[(z_n)]_\sim=&[(x_n+y_n)]_\sim+[(z_n)]_\sim\\
+		=&[((x_n+y_n)+z_n)]_\sim\\
+		=&[(x_n+(y_n+z_n)]_\sim\\
+		=&[(x_n)]_\sim+[(y_n+z_n)]_\sim\\
+		=&[(x_n)]_\sim+([(y_n)]_\sim+[(z_n)]_\sim);\\
+		[(x_n)]_\sim+[(0)]_\sim=&[(x_n)+0]_\sim=[(x_n)]_\sim;\\
+		[(x_n)]_\sim+[(-x_n)]_\sim=&[(x_n-x+n)]_\sim=[(0)]_\sim;\\
+		[(x_n)]_\sim+[(y_n)]_\sim=&[(x_n+y_n)]_\sim=[(y_n+x_n)]_\sim\\
+		=&[(y_n)]_\sim+[(x_n)]_\sim;\\
+		1[(x_n)]_\sim=&[(1x_n)]_\sim=[(x_n)]_\sim;\\
+		k([(x_n)]_\sim+[(y_n)]_\sim)=&k[(x_n+y_n)]_\sim=[(k(x_n+y_n))]_\sim\\
+		=&[(kx_n+ky_n)]_\sim=[(kx_n)]_\sim+[(ky_n)]_\sim\\
+		=&k[(x_n)]_\sim+k[(y_n)]_\sim;\\
+		(k+l)[(x_n)]_\sim=&[((k+l)x_n)]_\sim=[(kx_n+lx_n)]_\sim\\
+		=&[(kx_n)]_\sim+[(lx_n)]_\sim\\
+		=&k[(x_n)]_\sim+l[(x_n)]_\sim.
+	\end{split}
+	\end{align}
+We see then that $\tilde{V}$ is a vector space over $\mathbb{F}$ where the additive neutral element is $0:=[(0)]_\sim$ and the additive inverse of a sequence $[(x_n)]_\sim\in V$ is $-[(x_n)]_\sim:=[(-x_n)]_\sim$.
+
+We would now like to give $\tilde{V}$ a norm which induces the metric \eqref{eq:metric_extension}. If such a norm exists, then the normed space $\tilde{V}$ is a Banach space. Recall that for two elements $x$ and $y$ in a normed space we have
+\begin{align}
+\begin{split}
+\|x\|=&\|x-y+y\|\leq\|x-y\|+\|y\|;\\
+\|y\|=&\|x-y-x\|\leq\|x-y\|+\|-x\|=\|x-y\|+\|x\|.
+\end{split}
+\end{align} 
+Therefore, $|\|x\|-\|y\||\leq\|x-y|$. Let $(x_n)\in C$ and $\epsilon\in\mathbb{R}^+$. Then there exists $N\in\mathbb{N}^+$ such that for all $n,m\in\mathbb{N}^{\geq N}$ we have that $|\|x_n\|-\|x_m\||\leq\|x_n-x_m\|<\epsilon$. This shows that $(\|x_n\|)$ is Cauchy for all $(x_n)\in C$ and, due to the completeness of $\mathbb{R}$,
+\begin{align}
+\begin{split}
+\|\cdot\|:\tilde{V}&\rightarrow\mathbb{R}^+\\
+[(x_n)]_\sim&\mapsto\|[(x_n)]_\sim\|:=\lim_{n\rightarrow\infty}\|x_n\|
+\end{split}
+\end{align}
+is well defined. 
 \end{proof}

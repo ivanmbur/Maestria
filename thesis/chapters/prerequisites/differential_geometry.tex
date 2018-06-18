@@ -1,3 +1,98 @@
+\subsection{Differential Structure of Vector Spaces}
+
+We will at first be interested in studying the usual concepts of differential calculus on finite dimensional vector spaces over a field $\mathbb{F}$ which is either $\mathbb{R}$ or $\mathbb{C}$. As we will see, the theory is completely equivalent to that of $\mathbb{R}^n$. Although this might at first seem to make the theory not worth studying, this is not the case. In fact, the study of differential structures on vector spaces makes the theory of multivariable differential calculus more transparent and shows that the ``coordinate driven'' example of $\mathbb{R}^n$ is not special amongst vector spaces. Only after this exercise is performed does the theory of multivariable calculus deserves the, usually misplaced name, \textit{vector calculus}.
+
+The usual definition of derivative in multivariable calculus requires the use of the standard norm on $\mathbb{R}^n$. Our first task will be to show that, as far as differential calculus is concerned, there is nothing special with this norm. We begin by defining an equivalence of norms through the same method equivalence of metrics is defined.
+
+\begin{definition}\label{eq:equivalence_norm}
+	Let $V$ be a vector space. A norm $\|\cdot\|$ on $V$ is said to be equivalent to a norm $\|\cdot\|'$ on $V$ if there exists constants $a,b\in\mathbb{R}^+$ such that
+	\begin{equation}
+		a\|v\|\leq\|v\|'\leq b\|v\|
+	\end{equation}
+for all $v\in V$.
+\end{definition}
+
+This is in fact an equivalence relation. 
+
+\begin{theorem}
+	The equivalence defined on definition \ref{eq:equivalence_norm} is an equivalence relation on the set of norms of $V$.
+\end{theorem}
+
+\begin{proof}
+	Let $\|\cdot\|$ be a norm on $V$. Then for all $v\in V$
+	\begin{equation}
+		1\|v\|\leq\|v\|\leq1\|v\|
+	\end{equation}
+showing that equivalence of norms is reflexive. If $\|\cdot\|'$ is a norm on $V$ to which $\|\cdot\|$ is equivalent there exists $a,b\in\mathbb{R}^+$ such that for all $v\in V$
+	\begin{equation}
+		a\|v\|\leq\|v\|'\leq b\|v\|.
+	\end{equation}
+Therefore, for all $v\in V$
+	\begin{equation}
+		\frac{1}{b}\|v\|'\leq\|v\|\leq\frac{1}{a}\|v\|'
+	\end{equation}
+showing that $\|\cdot\|'$ is equivalent to $\|\cdot\|$. Thus, the equivalence of norms is reflexive. Finally assume $\|\cdot\|''$ is a norm on $V$ equivalent to $\|\cdot\|'$. Then there exists $c,d\in\mathbb{R}^+$ such that for all $v\in V$
+	\begin{equation}
+		c\|v\|'\leq\|v\|''\leq d\|v\|'.
+	\end{equation}
+Therefore for all $v\in V$
+	\begin{equation}
+		ca\|v\|\leq c\|v\|'\leq\|v\|''\leq d\|v\|'\leq db\|v\|.
+	\end{equation}
+We conclude that $\|\cdot\|''$ is equivalent to $\|\cdot\|$ and the equivalence of norms in transitive.
+\end{proof}
+
+Now we are ready to show that all norms are equivalent on finite dimensional vector spaces.
+
+\begin{theorem}
+	Let $V$ be a finite dimensional vector space. Then all norms on $V$ are equivalent.
+\end{theorem}
+
+\begin{proof}
+	Given that equivalence of norms is an equivalence relation, we can fix a norm on $V$ and show that every other norm is equivalent to it. To construct this norm choose a basis $\{v_1,\dots,v_n\}$ of $V$. Define
+	\begin{align}
+	\begin{split}
+		\|\cdot\|:V&\rightarrow\mathbb{R}^+_0\\
+		v&\mapsto\sum_{i=1}^n|k_i|
+	\end{split}
+	\end{align}
+where $k_1,\dots,k_n\in\mathbb{F}$, the field over which $V$ is defined, are the unique scalars such that
+	\begin{equation}
+		v=\sum_{i=1}^n k_iv_i.
+	\end{equation}	 
+From the fact that the codomain of $|\cdot|$ is $\mathbb{R}^+_0$ we have that the codomain of $\|\cdot\|$ is $\mathbb{R}^+_0$ as well. Since $0=\sum_{i=1}^n0v_i$ we have $\|0\|=0$. Now let $v=\sum_{i=1}^nk_iv_i\in V$. If $0=\|v\|=\sum_{i=1}^n |k_i|$, we have that $k_1=\dots=k_n=0$ since the elements of the sum are non-negative. Thus $v =0$. If $k\in\mathbb{F}$ then
+	\begin{equation}
+		\|kv\|=\|\sum_{i=1}^nkk_iv_i\|=\sum_{i=1}^n|kk_i|=|k|\sum_{i=1}^n|k_i|=|k|\|v\|.
+	\end{equation}
+Finally, of $u=\sum_{i=1}^n l_iv_i\in V$ then
+	\begin{align}
+	\begin{split}
+		\|v+u\|=\|\sum_{i=1}^n(k_i+l_i)v_i\|=\sum_{i=1}^n|k_i+l_i|\leq\sum_{i=1}^n(|k_i|+|l_i|)=\|v\|+\|u\|.
+	\end{split}
+	\end{align}
+We have thus show that $\|\cdot\|$ is a norm on $V$.
+
+	Now let $\|\cdot\|'$ be any other norm on $V$. Let $M:=\max\{\|v_i\|'|i\in\{1,\dots,n\}\}$. Then for any vector $v=\sum_{i=1}^nk_iv_i\in V$ we have
+	\begin{align}
+	\begin{split}
+		\|v\|'=\|sum_{i=1}^nk_iv_i\|'\leq\sum_{i=1}^n|k_i|\|v_i\|'\leq M\sum_{i=1}^n|k_i|=M\|v\|.
+	\end{split}
+	\end{align}
+In particular, for any $u,v\in V$ we have
+	\begin{equation}
+		|\|u\|'-\|v\|'|\leq\|u-v\|'\leq M\|u-v\|.
+	\end{equation}
+Let $\epsilon\in\mathbb{R}^+$ and $v\in V$. Then for every $u\in V$ such that $\|u-v\|<\epsilon/M$ we have
+	\begin{equation}
+		|\|u\|-\|v\||\leq M\|u-v\|<M\epsilon/M=\epsilon.
+	\end{equation} 
+Therefore, $\|\cdot\|'$ is continuous with respect to the topology on $V$ induced by the metric induced by $\|\cdot\|$. Consider now the unit sphere $S:=\{v\in V|\|v\|=1\}$ centered at $0$ according to the metric induced by $\|\cdot\|$. It is compact. Therefore, the continuity of $\|\cdot\|'$ implies $a:=\inf\|S\|',b:=\sup\|S\|'\in\mathbb{R}$. Moreover, since $a$ and $b$ are both limit points of $\|S\|'\subseteq\mathbb{R}^+_0$, the fact that $\mathbb{R}^+_0$ is closed implies $a,b\in\mathbb{R}^+_0$. Finally, for all $v\in V$
+\begin{equation}
+a\|v\|\leq\|\frac{1}{\|v\|}v\|'\|v\|=\|v\|'=\|\frac{1}{\|v\|}v\|'\|v\|\leq b\|v\|.
+\end{equation}
+We conclude $\|\cdot\|$ and $\|\cdot\|'$ are equivalent.
+\end{proof}
+
 \subsection{Manifolds and their Philosophy}
 
 In differential geometry we are interested in the study of spaces that locally resemble finite dimensional vector spaces. Of course, the implementation of locality is done through a topological structure. 
