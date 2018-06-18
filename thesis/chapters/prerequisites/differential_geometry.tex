@@ -39,10 +39,71 @@ Therefore for all $v\in V$
 	\begin{equation}
 		ca\|v\|\leq c\|v\|'\leq\|v\|''\leq d\|v\|'\leq db\|v\|.
 	\end{equation}
-We conclude that $\|\cdot\|''$ is equivalent to $\|\cdot\|$ and the equivalence of norms in transitive.
+We conclude that $\|\cdot\|''$ is equivalent to $\|\cdot\|$ and the equivalence of norms is transitive.
 \end{proof}
 
-Now we are ready to show that all norms are equivalent on finite dimensional vector spaces.
+Another ingredient we are gonna need is the fact that every norm induces a metric and thus a topology.
+
+\begin{theorem}
+	Let $V$ be a normed vector space. Then the function 
+	\begin{align}\label{eq:norm_metric}
+	\begin{split}
+		d:V\times V&\rightarrow V\\
+		(x,y)&\mapsto d(x,y):=\|x-y\|
+	\end{split}
+	\end{align}
+is a metric on $V$. Moreover, the topology on $V$ induced by this metric makes $V$ a topological vector space.
+\end{theorem}
+
+\begin{proof}
+	Given that $\|\cdot\|:V\rightarrow\mathbb{R}^+_0$ we have that for all $x,y\in V$ 
+	\begin{equation}
+		d(x,y)=\|x-y\|\geq 0.
+	\end{equation}
+Moreover, $\|x\|=0$ if and only if $x=0$ for all $x\in V$. This implies that $\|x-y\|=d(x,y)=0$ if and only if $x-y=0$, or in other words, $x=y$ for all $x,y\in V$. We also have from the definition of a norm that $\|kx\|=|k|\|x\|$ for all $k\in\mathbb{F}$ and $x\in V$. Thus, for all $x,y\in V$
+	\begin{equation}
+		d(x,y)=\|x-y\|=\|-(y-x)\|=|-1|\|y-x\|=\|y-x\|=d(y,x).
+	\end{equation}
+Finally, we have the triangle inequality $\|x+y\|\leq\|x\|+\|y\|$ for all $x,y\in V$. Therefore, for all $x,y,z\in V$
+	\begin{align}
+	\begin{split}
+		d(x,z)=&\|x-z\|=\|(x-y)+(y-z)\|\\
+		\leq&\|x-y\|+\|y-z\|=d(x,y)+d(y,z).
+	\end{split}
+	\end{align}
+We conclude that $d$ is a metric on $V$.
+
+	We now consider the topology induced by $d$ on $V$. Let $a,b\in V$ and $\epsilon\in\mathbb{R}^+$. For all $x,y\in V$ we have that if $\|x-a\|<\epsilon/2$ and $\|y-b\|<\epsilon/2$, then the triangle inequality guarantees
+	\begin{align}
+		\|(x+y)-(a+b)\|=&\|(x-a)+(y-b)\|\leq\|x-a\|+\|y-b\|\\
+		<&\epsilon/2+\epsilon/2=\epsilon.
+	\end{align}
+Thus, the sum is continuous. Now let $a\in V$, $k\in\mathbb{F}$ and $\epsilon\in\mathbb{R}^+$. For all $l\in\mathbb{F}$ and $x\in V$ if 
+	\begin{align}
+	\begin{split}
+		\|x-a\|<&\qty(\sqrt{1+\frac{\epsilon}{|k|\|a\|}}-1)\|a\|,\\
+		|l-k|<&\qty(\sqrt{1+\frac{\epsilon}{|k|\|a\|}}-1)|k|
+	\end{split}
+	\end{align}
+then the triangle inequality once again guarantees
+	\begin{align}
+	\begin{split}
+		\|lx-ka\|=&\|(l-k)(x-a)+kx+la-ka-ka\|\\
+		=&\|(l-k)(x-a)+k(x-a)-(l-k)a\|\\
+		\leq&|l-k|\|x-a\|+|k|\|x-a\|+|l-k|\|a\|\\
+		<&\qty(\sqrt{1+\frac{\epsilon}{|k|\|a\|}}-1)^2\|a\||k|+2\qty(\sqrt{1+\frac{\epsilon}{|k|\|a\|}}-1)\|a\||k|\\
+		=&\qty(\sqrt{1+\frac{\epsilon}{|k|\|a\|}}+1)\qty(\sqrt{1+\frac{\epsilon}{|k|\|a\|}}-1)\|a\||k|\\
+		=&\qty(1+\frac{\epsilon}{|k|\|a\|}-1)\|a\||k|=\epsilon.
+	\end{split}
+	\end{align}
+This shows that scalar multiplication is also continuous and $V$ is a topological vector space when equipped with the topology induced by $d$. 
+\end{proof}
+
+\begin{definition}
+	Let $V$ be a normed space. Then the metric $d$ defined by \eqref{eq:norm_metric} is called the metric induced by the norm of $V$.
+\end{definition}
+
+In particular, we now see that equivalence of norms precisely corresponds to equivalence of metrics. This means that if two norms are equivalent, they induce equivalent metrics, and in particular, these metric induce the same topologies. Now we are ready to show that all norms are equivalent on finite dimensional vector spaces.
 
 \begin{theorem}
 	Let $V$ be a finite dimensional vector space. Then all norms on $V$ are equivalent.
@@ -67,7 +128,7 @@ From the fact that the codomain of $|\cdot|$ is $\mathbb{R}^+_0$ we have that th
 Finally, of $u=\sum_{i=1}^n l_iv_i\in V$ then
 	\begin{align}
 	\begin{split}
-		\|v+u\|=\|\sum_{i=1}^n(k_i+l_i)v_i\|=\sum_{i=1}^n|k_i+l_i|\leq\sum_{i=1}^n(|k_i|+|l_i|)=\|v\|+\|u\|.
+		\|v+u\|=\left\lVert\sum_{i=1}^n(k_i+l_i)v_i\right\rVert=\sum_{i=1}^n|k_i+l_i|\leq\sum_{i=1}^n(|k_i|+|l_i|)=\|v\|+\|u\|.
 	\end{split}
 	\end{align}
 We have thus show that $\|\cdot\|$ is a norm on $V$.
@@ -75,7 +136,7 @@ We have thus show that $\|\cdot\|$ is a norm on $V$.
 	Now let $\|\cdot\|'$ be any other norm on $V$. Let $M:=\max\{\|v_i\|'|i\in\{1,\dots,n\}\}$. Then for any vector $v=\sum_{i=1}^nk_iv_i\in V$ we have
 	\begin{align}
 	\begin{split}
-		\|v\|'=\|sum_{i=1}^nk_iv_i\|'\leq\sum_{i=1}^n|k_i|\|v_i\|'\leq M\sum_{i=1}^n|k_i|=M\|v\|.
+		\|v\|'=\left\lVert\sum_{i=1}^nk_iv_i\right\rVert'\leq\sum_{i=1}^n|k_i|\|v_i\|'\leq M\sum_{i=1}^n|k_i|=M\|v\|.
 	\end{split}
 	\end{align}
 In particular, for any $u,v\in V$ we have
@@ -86,11 +147,47 @@ Let $\epsilon\in\mathbb{R}^+$ and $v\in V$. Then for every $u\in V$ such that $\
 	\begin{equation}
 		|\|u\|-\|v\||\leq M\|u-v\|<M\epsilon/M=\epsilon.
 	\end{equation} 
-Therefore, $\|\cdot\|'$ is continuous with respect to the topology on $V$ induced by the metric induced by $\|\cdot\|$. Consider now the unit sphere $S:=\{v\in V|\|v\|=1\}$ centered at $0$ according to the metric induced by $\|\cdot\|$. It is compact. Therefore, the continuity of $\|\cdot\|'$ implies $a:=\inf\|S\|',b:=\sup\|S\|'\in\mathbb{R}$. Moreover, since $a$ and $b$ are both limit points of $\|S\|'\subseteq\mathbb{R}^+_0$, the fact that $\mathbb{R}^+_0$ is closed implies $a,b\in\mathbb{R}^+_0$. Finally, for all $v\in V$
+Therefore, $\|\cdot\|'$ is continuous with respect to the topology on $V$ induced by the metric induced by $\|\cdot\|$. Consider now the unit sphere $S:=\{v\in V|\|v\|=1\}=\|\cdot\|^{-1}(\{1\})$ centered at $0$ according to the metric induced by $\|\cdot\|$. It is clearly bounded in the metric induced by $\|\cdot\|$ and, given that it is the preimage of a closed set under a continuous function, closed in the topology induced by this metric. Therefore, $S$ is compact in this topology and the continuity of $\|\cdot\|'$ implies $a:=\inf\|S\|',b:=\sup\|S\|'\in\mathbb{R}$. Moreover, since $a$ and $b$ are both limit points of $\|S\|'\subseteq\mathbb{R}^+_0$, the fact that $\mathbb{R}^+_0$ is closed implies $a,b\in\mathbb{R}^+_0$. Finally, for all $v\in V$
 \begin{equation}
-a\|v\|\leq\|\frac{1}{\|v\|}v\|'\|v\|=\|v\|'=\|\frac{1}{\|v\|}v\|'\|v\|\leq b\|v\|.
+a\|v\|\leq\left\lVert\frac{1}{\|v\|}v\right\rvert'\|v\|=\|v\|'=\left\lvert\frac{1}{\|v\|}v\right\rvert'\|v\|\leq b\|v\|.
 \end{equation}
 We conclude $\|\cdot\|$ and $\|\cdot\|'$ are equivalent.
+\end{proof}
+
+To the usual definition of derivative in multivariable calculus to vector spaces we are gonna have to refer to a norm structure. As it turns out, the derivative is independent of the norm chosen.
+
+\begin{theorem}
+Let $V,W$ be finite dimensional vector spaces, $v\in S\subseteq V$, and $f:S\rightarrow W$. Suppose that $T:V\rightarrow W$ is a linear transformation such that 
+\begin{equation}
+	0=\lim_{h\rightarrow 0}\frac{f(v+h)-f(v)-Th}{\|h\|}
+\end{equation}
+where $\|\cdot\|$ is a norm on $V$. Then for any other norm $\|\cdot\|'$ on $V$
+\begin{equation}
+	0=\lim_{h\rightarrow 0}\frac{f(v+h)-f(v)-Th}{\|h\|'}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Equip $W$ with any norm $\|\cdot\|_V$. Since $\|\cdot\|'$ is equivalent to $\|\cdot\|$ there exists $a\in\mathbb{R}^+$ such that
+\begin{equation}
+	a\|h\|\leq\|h\|'
+\end{equation}
+for all $h\in V$. Therefore, for all $h\in V$
+\begin{equation}
+	\left\lVert\frac{f(v+h)-f(v)-Th}{\|h\|'}\right\rVert_V\leq\frac{1}{a}\left\lVert\frac{f(v+h)-f(v)-Th}{\|h\|}\right\rVert_V.
+\end{equation}
+Let $\epsilon,\delta\in\mathbb{R}^+$ such that for every $h\in V$ with $\|h\|<\delta$ we have
+\begin{equation}
+	\left\lVert\frac{f(v+h)-f(v)-Th}{\|h\|}\right\rVert<a\epsilon.
+\end{equation}
+Therefore, for every $h\in V$ with $\|h\|<\delta$
+\begin{equation}
+	\left\lVert\frac{f(v+h)-f(v)-Th}{\|h\|'}\right\rVert_V\leq\frac{1}{a}\left\lVert\frac{f(v+h)-f(v)-Th}{\|h\|}\right\rVert_V<\frac{1}{a}a\epsilon=\epsilon.
+\end{equation}
+We conclude that 
+\begin{equation}
+	0=\lim_{h\rightarrow 0}\frac{f(v+h)-f(v)-Th}{\|h\|'}.
+\end{equation}
 \end{proof}
 
 \subsection{Manifolds and their Philosophy}
