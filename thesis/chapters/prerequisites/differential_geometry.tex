@@ -1,6 +1,34 @@
-\subsection{Differential Structure of Vector Spaces}
+\subsection{Differential Structure of Finite Dimensional Vector Spaces}
 
 We will at first be interested in studying the usual concepts of differential calculus on finite dimensional vector spaces over a field $\mathbb{F}$ which is either $\mathbb{R}$ or $\mathbb{C}$. As we will see, the theory is completely equivalent to that of $\mathbb{R}^n$. Although this might at first seem to make the theory not worth studying, this is not the case. In fact, the study of differential structures on vector spaces makes the theory of multivariable differential calculus more transparent and shows that the ``coordinate driven'' example of $\mathbb{R}^n$ is not special amongst vector spaces. Only after this exercise is performed does the theory of multivariable calculus deserves the, usually misplaced name, \textit{vector calculus}.
+
+We begin our study of finite dimensional vector spaces inquiring about the topologies they can equipped with. Given that vector spaces have a linear structure, we want our topologies to respect it. Consider the following definition.
+
+\begin{definition}
+	Let $V$ be a vector space and $S\subseteq V$. We say $x$ is an internal point of $S$ if for every $y\in V$ there exists an $R\in\mathbb{R}^+$ such that for all $r\in(0,R)$ we have that $x+ry\in S$. 
+\end{definition}
+
+This of course resembles the notion of an interior point in topology. However, internal points are fully defined in terms of the linear structure. If we want to have a relationship between the notions of internal and interior points we have to restrict the topologies we consider. Therefore, in order to relate the algebraic and topologically induced geometries on a vector space we need to consider linear topologies.
+	
+\begin{definition}
+	A linear topology on a vector space $V$ is one in which both addition
+	\begin{align}
+	\begin{split}
+		+:V\times V&\rightarrow V\\
+		(v,u)&\mapsto v+u
+	\end{split}
+	\end{align}
+and multiplication
+	\begin{align}
+	\begin{split}
+		\mathbb{F}\times V&\rightarrow V\\
+		(k,v)&\mapsto kv
+	\end{split}
+	\end{align}
+are continuous. A vector space equipped with a linear topology is called a topological vector space.
+\end{definition}
+
+Topological vector spaces are at the heart of functional analysis. However, our main focus at the moment is the theory of finite dimensional vector spaces. In this case, we will see that the linear geometry of a vector space completely determines its topological structure. 
 
 The usual definition of derivative in multivariable calculus requires the use of the standard norm on $\mathbb{R}^n$. Our first task will be to show that, as far as differential calculus is concerned, there is nothing special with this norm. We begin by defining an equivalence of norms through the same method equivalence of metrics is defined.
 
@@ -196,18 +224,10 @@ In differential geometry we are interested in the study of spaces that locally r
 
 \begin{definition}
 
-	A locally euclidean space is a topological space $X$ for which there exists an $n\in\mathbb{N}$ such that every point $p\in M$ has an open neighborhood homeomorphic to an open subset of $\mathbb{R}^n$. The number $\dim M:=n$ is called the dimension of $M$.
+	A locally euclidean space is a topological space $X$ for which every point $p\in M$ has an open neighborhood homeomorphic to an open subset of a finite dimensional vector space $V$.
 
 \end{definition}
 
-Some remarks regarding the restrictions done in our definition are in order. You could be worried since $\mathbb{R}^n$ is a very special $n$-dimensional vector space. However, all finite dimensional vector spaces are isomorphic to $\mathbb{R}^n$ for some $n$. This remains true if we consider the natural topological and differential structures on these vector spaces. Although these isomorphisms are not canonical, the physically meaningful object will be the locally Euclidean space. The role of the homeomorphisms will be to give mathematical structure to these spaces and will not have any actual physical interpretation.
 
-You may also wonder if we could extend this definition to allow for the dimension to change from point to point. Suppose $M$ is a topological space. Further, assume $p,q\in M$ have open neighborhoods $U$ and $V$ respectively such that $\phi:U\rightarrow\phi(U)\subseteq\mathbb{R}^n$ and $\psi:V\rightarrow\psi(V)\subseteq\mathbb{R}^m$ are homeomorphisms. If $U\cap V\neq\varnothing$ we have a homeomorphism between open subsets 
-\begin{equation}
-\psi\circ\phi^{-1}:\phi(U\cap V)\subseteq\mathbb{R}^n\rightarrow \psi(U\cap V)\subseteq\mathbb{R}^m.
-\end{equation}
-Invariance of domain then guarantees that $n=m$. If we then demand $n\neq m$ we must have $U\cap V=\varnothing$. If every point in $M$ has an open neighborhood homeomorphic to an open neighborhood of $\mathbb{R}^n$ then $n$ must be a local invariant. Indeed, for every $\tilde{p}\in U$ the previous argument shows that every open neighborhood of $\tilde{p}$ homeomorphic to an open subset of $\mathbb{R}^k$ for some $k\in\mathbb{N}$ must satisfy $k=n$. Thus, the connected component containing $p$ is a locally Euclidean space. Similarly, the connected component containing $q$ is a locally Euclidean space. If we require $n\neq m$ we must then conclude that these connected components are disjoint. We conclude that the connected components of $M$ are always locally Euclidean spaces (with a fixed dimension) and $M$ can be studied by considering each connected component separately.
-
-Locally Euclidean spaces are useful because they can inherit the local structure of finite dimensional vector spaces. For example, 
 
  
