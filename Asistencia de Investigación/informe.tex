@@ -1,0 +1,134 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\newtheorem{theorem}{Theorem}
+
+\DeclareMathOperator{\A}{\mathcal{A}}
+\DeclareMathOperator{\Hil}{\mathcal{H}}
+\DeclareMathOperator{\BH}{\mathcal{B}(\Hil)}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\C}{\mathbb{C}}
+
+\title{Quantum Ambiguities in Entropy and Modular Theory\\
+{\small Final Report of Graduate Assistance for Research of the summer period of 2018}}
+
+\author{Iván Mauricio Burbano Aldana\\
+{\small ID: 201423295}\\
+{\small Advisor: Prof. Andrés Fernando Reyes Lega}}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+To be done.
+
+\end{abstract}
+
+\section{Finite Dimensional $C^*$-algebras}
+
+We will begin by exploring the mathematical structure of the algebras that are considered in this work. Already at this level various theorems appear which generalize to more general settings. Our treatment will be based on the work found in \cite{Sundar2012}.
+ Let us begin by recalling the definition of a $C^*$-algebra.
+
+\begin{definition}
+A $C^*$-algebra $\A$ is a complex Banach involutive algebra whose norm satisfies the $C^*$ property, i.e.,
+\begin{equation}
+\|a^*a\|=\|a\|^2
+\end{equation}
+for all $a\in\mathcal{A}$.
+\end{definition}
+
+To fix ideas let us consider some example of $C^*$-alegbras.
+
+\begin{example}
+Let $X$ be a locally compact Hausdorff topological space and $C_0(X)$ be the set of complex valued continuous functions on $X$ which vanish at infinity. $f:X\rightarrow\C$ vanishes a infinity if for every $\epsilon\in(0,\infty)$ there exists a compact $K\subseteq X$ such that $f(X\setminus K)\subseteq[0,\epsilon)$. We equip $C(X)$ with the pointwise sum, multiplication by scalars, and product. The involution is given by the pointwise complex conjugation. Finally a norm is given by
+\begin{equation}
+\|f\|=\sup f(X)
+\end{equation}
+for all $f\in C_0(X)$. Then $C_0(X)$ is a commutative $C^*$-algebra. It turns out that every commutative $C^*$-algebra is of this form.
+\end{example}
+
+\begin{example}
+Let $\Hil$ be a Hilbert space. Then the bounded operators $\BH$ form a $C^*$-algebra. If $\dim\Hil>1$ this algebra is guaranteed to be noncommutative. Moreover, every norm closed subalgebra is a $C^*$-alegbra. It turns out that every $C^*$-algebra is of this form. In here we will be interested on the case where our algebra is of the form $\oplus_{i=1}^r M_{n_i}(\C)$. This type of algebras are norm closed subalgebras of $M_{n_1+\dots+n_r}(\C)\cong\mathcal{B}(\C^{n_1+\dots+n_r})$. One of the objectives of this section is to show that every finite dimensional unital $C^*$-algebra is of this form. 
+\end{example}
+
+From now on we will restrict ourselves to finite-dimensional $C^*$-algebras. Our main tool for studying such algebras will be through their representations.
+
+\begin{definition}
+A representation of a $C^*$-alegbra $\A$ on a Hilbert space $\Hil$ is a $*-homomorphism$ (a linear map that preserves multiplications and involutions) $\pi:\A\rightarrow\BH$. The representation is said to be
+\begin{enumerate}[(a)]
+
+\item unital if $\A$ is unital (we will always denote the unit of $\A$ by $1$) and $\pi(1)=\id_{\Hil}$;
+
+\item faithful if it is injective.
+
+\end{enumerate}
+\end{definition}
+
+Since we are only considering finite dimensional $C^*$-algebras, we will restrict ourselves to representations on finite dimensional Hilbert spaces. The direct sum provides us of a way of building new representations out of old ones.
+
+\begin{definition}
+Let $\pi_1,\pi_2$ be representaitions of a $C^*$-algebra $\A$ on the Hilbert spaces $\Hil_1,\Hil_2$ respectively. We define the representation $\pi_1\oplus\pi_2$ of $\mathcal{A}$ on $\Hil_1\oplus\Hil_2$ by
+\begin{equation}
+\pi_1\oplus\pi_2(a):=\pi_1(a)\oplus\pi_2(a)
+\end{equation} 
+for all $a\in\A$.
+\end{definition}
+
+\begin{theorem}
+$\pi_1\oplus\pi_2$ as defined above is a representation of $\A$.
+\end{theorem}
+
+We can also find new representations within other representations by finding invariant subspaces.
+
+\begin{theorem}
+Let $\pi:\A\rightarrow\Hil$ be a representation and $W$ be a subspace of $\Hil$ which is invariant under $\pi(a)$ for all $a\in\A$. Then $\pi|_W:\A\rightarrow W$, defined by $\pi|_W(a):=\pi(a)|_W$ for all $a\in\A$, is a representation of $\A$ on $W$. 
+\end{theorem}
+
+As we will see, the \textit{atoms} for representations are those which hide no further nontrivial representations.
+
+\begin{definition}
+A representation $\pi:\A\rightarrow\Hil$ is said to be irreducible if the only subspaces of $\Hil$ invariant under $\pi(a)$ for all $a\in\A$ are the trivial ones $\{0\}$ and $\Hil$.
+\end{definition}
+
+The key to justifying the previous statement is in the following theorem. 
+
+\begin{theorem}
+Let $\pi:\A\rightarrow\Hil$ be a representation and $W$ be a subspace of $\Hil$ which is invariant under $\pi(a)$ for all $a\in\A$. Then $W^\bot$ is also invariant under $\pi(a)$ for all $a\in\A$.
+\end{theorem}
+\begin{proof}
+Let $w\in W$, $w^\bot\in W^\bot$, and $a\in\A$. Then
+\begin{equation}
+\langle w,\pi(a)w^\bot\rangle=\langle\pi(a)^*w,w^\bot\rangle=\langle\pi(a^*)w,w^\bot\rangle=0.
+\end{equation}
+\end{proof}
+
+Now we can see that irreducible representations are the fundamental building blocks for all representations.
+
+\begin{theorem}\label{thm:complete reducibility}
+Let $\pi:\A\rightarrow\Hil$ be a representation. Then there exist irreducible representations $\pi_1,\dots,\pi_r$ such that $\pi=\pi_1\oplus\cdots\oplus\pi_r$.
+\end{theorem}
+\begin{proof}
+Let $W$ be a subspace of $\Hil$ which is invariant under $\pi(a)$ for all $a\in\A$. If it is trivial we have proved the theorem. Otherwise, we have $\pi=\pi|_W\oplus\pi|_{W^\bot}$ where neither $\pi|_W$ or $\pi|_{W^\bot}$ are irreducible. Repeat this procedure to $W$ and $W^\bot$. This should evenetually end because $\Hil$ is finite dimensional. 
+\end{proof}
+
+Much like every other structure in mathematics, we want to \textit{identify} those representations that can not be distinguished by the structure they have.
+
+\begin{definition}
+Two representations $\pi_1:\A\rightarrow\Hil_1$ and $\pi_2:\A\rightarrow\Hil_2$ are said to be equivalent if there exists a unitary transformation $U:\Hil_1\rightarrow\Hil_2$ such that $U\pi_1(a)U^*=\pi_2(a)$ for all $a\in\A$. 
+\end{definition}
+
+It is useful to think of equivalent representations as the same except for a change of symbols. Thinking in this way, it is useful to group the decomposition in theorem \ref{thm:complete reducibility} as 
+
+\bibliography{../Mendeley/library}
+\bibliographystyle{ieeetr}
+
+\end{document}
