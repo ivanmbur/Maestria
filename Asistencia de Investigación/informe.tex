@@ -5,6 +5,7 @@
 \usepackage{enumerate}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{physics}
 
 \newtheorem{definition}{Definition}
 \newtheorem{example}{Example}
@@ -16,117 +17,56 @@
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\C}{\mathbb{C}}
 
-\title{Quantum Ambiguities in Entropy and Modular Theory\\
-{\small Final Report of Graduate Assistance for Research of the summer period of 2018}}
-
-\author{Iván Mauricio Burbano Aldana\\
-{\small ID: 201423295}\\
-{\small Advisor: Prof. Andrés Fernando Reyes Lega}}
+\title{Formato de Presentación de Informes para emisión de paz y salvos de Asistencias Intersemestrales (junio-julio 2018)
+\\
+Fecha de entrega: 15 de agosto 2018 (fecha de envío al profesor asesor)}
 
 \begin{document}
 
 \maketitle
 
-\begin{abstract}
+\section{Nombre del estudiante y código:}
 
-To be done.
+Iván Mauricio Burbano Aldana\\
+201423205
 
-\end{abstract}
+\section{Programa de posgrado al que pertenece}
 
-\section{Finite Dimensional $C^*$-algebras}
+Maestría en Ciencias-Física
 
-We will begin by exploring the mathematical structure of the algebras that are considered in this work. Already at this level various theorems appear which generalize to more general settings. Our treatment will be based on the work found in \cite{Sundar2012}.
- Let us begin by recalling the definition of a $C^*$-algebra.
+\section{Nombre del profesor asesor}
 
-\begin{definition}
-A $C^*$-algebra $\A$ is a complex Banach involutive algebra whose norm satisfies the $C^*$ property, i.e.,
+Andrés Fernando Reyes Lega
+
+\section{Título de la propuesta}
+
+Ambigüedades cuánticas en entropías y teoría modular
+
+\section{Objetivos propuestos}
+
+En este trabajo se pretende seguir trabajando en un artículo junto con el profesor Aiyalam Parameswaran Balachandran, de la Universidad de Syracuse, la candidata doctoral Souad Maria Tabban Sabbagh y el profesor Andrés Fernando Reyes Lega de la Universidad de los Andes. Este artículo estudia el papel del conmutante $\mathcal{A}'$ del álgebra de observables $\mathcal{A}$ en la caracterización de las distintas descomposiciones en irreducibles del espacio GNS $\mathcal{H}_\omega$. Se ha observado que el conmutante mantiene invariante el valor esperado de los observables y por lo tanto tiene interpretación de álgebra gauge. Esto permite entender esta ambigüedad en la entropía en términos de una simetría gauge emergente. El estudio de esta álgebra gauge se puede hacer mediante la teoría modular de Tomita-Takesaki. Esto provee una manera de relacionar la teoría modular con esta anomalía cuántica. Balachandran ha propuesto que tal relación no solamente se encuentra en las ambigüedades de entropía y puede ser extendida al estudio general de la anomalías cuánticas.
+
+Hasta el momento se ha logrado interpretar esta ambigüedad en términos de la teoría modular en el caso de estados normales sobre álgebras de operadores sobre espacios de Hilbert de dimensión finita. Se espera que mediante el estudio de la molécula de etileno\cite{Balachandran2013a} se pueda extender este resultado a los sistemas generados mediante la cuantización de espacios de configuración homogéneos. De esta manera podemos obtener más ejemplos que nos ayuden a entender el papel de la teoría modular en la anomalías cuánticas. De manera simultanea se va a estudiar el método de techos convexos para obtener una interpretación física más clara de esta ambigüedad\cite{Uhlmann2010}. En efecto, es necesario extender la idea de entropía de enredamiento a sistemas compuestos cuyo estado no es puro. Se ha observado que en estos sistemas la entropía es anómala para el operador densidad total y su reducción a la componente gauge. Esto indica que mediante la teoría modular podemos caracterizar el conjunto de estados en el sistema completo posibles a partir del conocimiento del estado en uno de los subsistemas.
+
+\section{Resultados encontrados}
+
+Se realizó un viaje a la escuela y congreso Noncommutative Geometry and Poisson Geometry Around Groupoids en Villa de Leyva. Durante este se hicieron dos avances importantes. Por una parte, mediante la discusión con el profesor Bas Janssens de TU Delft se encontró una descripción de los operadores modulares en álgebras matriciales de dimensión finita sin necesidad de bases. Una versión de esta descripción se puede ver en unas notas (no terminadas) del profesor \cite{Janssens2013}. Por otra parte, el profesor Eli Hawkins de University of York ofreció unas conferencias sobre cuantización geométrica y grupoides. En esta se trataron temas que son de relevancia para la cuantización del espacio de configuración de la molécula de etileno. Aunque el formalismo general de cuantización es bastante técnico, los temas importantes para su entendimiento quedaron claros y hay una idea de como proseguir.  En particular, es necesario continuar con el estudio de $C^*$-álgebras de grupos, polarizaciones, medias densidades y grupoides simplécticos.
+
+Debido a la complejidad del formalismo necesario para el tratamiento de la molécula de etileno, se decidió cambiar el foco al estudio del problema de una partícula en un círculo. Aunque este es un espacio homogeneo, el grupo de isotropía es abeliano y por lo tanto no se espera ver la misma anomalía en entropía de la molécula de etileno. Sin embargo, este ejemplo si presenta otros tipos de anomalías\cite{Balachandran2011}. Además, encontramos que la cuantización de este sistema es una subalgebra de la $C^*$-álgebra de Weyl de $\mathbb{R}^2$. Esta $C^*$-álgebra es bien conocida \cite{Moretti2013}. Debido a esto, hemos podido obtener resultados preliminares sobre su teoría de representaciones. En particular, considere el Hamiltoniano 
 \begin{equation}
-\|a^*a\|=\|a\|^2
-\end{equation}
-for all $a\in\mathcal{A}$.
-\end{definition}
-
-To fix ideas let us consider some example of $C^*$-alegbras.
-
-\begin{example}
-Let $X$ be a locally compact Hausdorff topological space and $C_0(X)$ be the set of complex valued continuous functions on $X$ which vanish at infinity. $f:X\rightarrow\C$ vanishes a infinity if for every $\epsilon\in(0,\infty)$ there exists a compact $K\subseteq X$ such that $f(X\setminus K)\subseteq[0,\epsilon)$. We equip $C(X)$ with the pointwise sum, multiplication by scalars, and product. The involution is given by the pointwise complex conjugation. Finally a norm is given by
-\begin{equation}
-\|f\|=\sup f(X)
-\end{equation}
-for all $f\in C_0(X)$. Then $C_0(X)$ is a commutative $C^*$-algebra. It turns out that every commutative $C^*$-algebra is of this form.
-\end{example}
-
-\begin{example}
-Let $\Hil$ be a Hilbert space. Then the bounded operators $\BH$ form a $C^*$-algebra. If $\dim\Hil>1$ this algebra is guaranteed to be noncommutative. Moreover, every norm closed subalgebra is a $C^*$-alegbra. It turns out that every $C^*$-algebra is of this form. In here we will be interested on the case where our algebra is of the form $\oplus_{i=1}^r M_{n_i}(\C)$. This type of algebras are norm closed subalgebras of $M_{n_1+\dots+n_r}(\C)\cong\mathcal{B}(\C^{n_1+\dots+n_r})$. One of the objectives of this section is to show that every finite dimensional unital $C^*$-algebra is of this form. 
-\end{example}
-
-From now on we will restrict ourselves to finite-dimensional $C^*$-algebras. Our main tool for studying such algebras will be through their representations.
-
-\begin{definition}
-A representation of a $C^*$-alegbra $\A$ on a Hilbert space $\Hil$ is a $*-homomorphism$ (a linear map that preserves multiplications and involutions) $\pi:\A\rightarrow\BH$. The representation is said to be
-\begin{enumerate}[(a)]
-
-\item unital if $\A$ is unital (we will always denote the unit of $\A$ by $1$) and $\pi(1)=\id_{\Hil}$;
-
-\item faithful if it is injective.
-
-\end{enumerate}
-\end{definition}
-
-Since we are only considering finite dimensional $C^*$-algebras, we will restrict ourselves to representations on finite dimensional Hilbert spaces. The direct sum provides us of a way of building new representations out of old ones.
-
-\begin{definition}
-Let $\pi_1,\pi_2$ be representaitions of a $C^*$-algebra $\A$ on the Hilbert spaces $\Hil_1,\Hil_2$ respectively. We define the representation $\pi_1\oplus\pi_2$ of $\mathcal{A}$ on $\Hil_1\oplus\Hil_2$ by
-\begin{equation}
-\pi_1\oplus\pi_2(a):=\pi_1(a)\oplus\pi_2(a)
+H=-\frac{1}{2}\dv[2]\phi
 \end{equation} 
-for all $a\in\A$.
-\end{definition}
+el dominio ${\psi\in L^2([0,2\pi])|\psi(2\pi)=e^{i\theta}\psi(0)}$ la construcción GNS de esta álgebra con respecto a los estados bases del Hamiltoniano con dominio 
 
-\begin{theorem}
-$\pi_1\oplus\pi_2$ as defined above is a representation of $\A$.
-\end{theorem}
+\section{Justificación de incumplimiento}
 
-We can also find new representations within other representations by finding invariant subspaces.
 
-\begin{theorem}
-Let $\pi:\A\rightarrow\Hil$ be a representation and $W$ be a subspace of $\Hil$ which is invariant under $\pi(a)$ for all $a\in\A$. Then $\pi|_W:\A\rightarrow W$, defined by $\pi|_W(a):=\pi(a)|_W$ for all $a\in\A$, is a representation of $\A$ on $W$. 
-\end{theorem}
 
-As we will see, the \textit{atoms} for representations are those which hide no further nontrivial representations.
+\vspace{1.5cm}
+Nombre y firma del estudiante
 
-\begin{definition}
-A representation $\pi:\A\rightarrow\Hil$ is said to be irreducible if the only subspaces of $\Hil$ invariant under $\pi(a)$ for all $a\in\A$ are the trivial ones $\{0\}$ and $\Hil$.
-\end{definition}
-
-The key to justifying the previous statement is in the following theorem. 
-
-\begin{theorem}
-Let $\pi:\A\rightarrow\Hil$ be a representation and $W$ be a subspace of $\Hil$ which is invariant under $\pi(a)$ for all $a\in\A$. Then $W^\bot$ is also invariant under $\pi(a)$ for all $a\in\A$.
-\end{theorem}
-\begin{proof}
-Let $w\in W$, $w^\bot\in W^\bot$, and $a\in\A$. Then
-\begin{equation}
-\langle w,\pi(a)w^\bot\rangle=\langle\pi(a)^*w,w^\bot\rangle=\langle\pi(a^*)w,w^\bot\rangle=0.
-\end{equation}
-\end{proof}
-
-Now we can see that irreducible representations are the fundamental building blocks for all representations.
-
-\begin{theorem}\label{thm:complete reducibility}
-Let $\pi:\A\rightarrow\Hil$ be a representation. Then there exist irreducible representations $\pi_1,\dots,\pi_r$ such that $\pi=\pi_1\oplus\cdots\oplus\pi_r$.
-\end{theorem}
-\begin{proof}
-Let $W$ be a subspace of $\Hil$ which is invariant under $\pi(a)$ for all $a\in\A$. If it is trivial we have proved the theorem. Otherwise, we have $\pi=\pi|_W\oplus\pi|_{W^\bot}$ where neither $\pi|_W$ or $\pi|_{W^\bot}$ are irreducible. Repeat this procedure to $W$ and $W^\bot$. This should evenetually end because $\Hil$ is finite dimensional. 
-\end{proof}
-
-Much like every other structure in mathematics, we want to \textit{identify} those representations that can not be distinguished by the structure they have.
-
-\begin{definition}
-Two representations $\pi_1:\A\rightarrow\Hil_1$ and $\pi_2:\A\rightarrow\Hil_2$ are said to be equivalent if there exists a unitary transformation $U:\Hil_1\rightarrow\Hil_2$ such that $U\pi_1(a)U^*=\pi_2(a)$ for all $a\in\A$. 
-\end{definition}
-
-It is useful to think of equivalent representations as the same except for a change of symbols. Thinking in this way, it is useful to group the decomposition in theorem \ref{thm:complete reducibility} as 
+\vspace{1.5cm}
+Vo.Bo. del profesor asesor
 
 \bibliography{../Mendeley/library}
 \bibliographystyle{ieeetr}
