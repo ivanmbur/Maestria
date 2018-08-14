@@ -22,6 +22,10 @@
 \\
 Fecha de entrega: 15 de agosto 2018 (fecha de envío al profesor asesor)}
 
+\author{}
+
+\date{}
+
 \begin{document}
 
 \maketitle
@@ -51,19 +55,34 @@ Hasta el momento se ha logrado interpretar esta ambigüedad en términos de la t
 
 \section{Resultados encontrados}
 
-Se realizó un viaje a la escuela y congreso Noncommutative Geometry and Poisson Geometry Around Groupoids en Villa de Leyva. Durante este se hicieron dos avances importantes. Por una parte, mediante la discusión con el profesor Bas Janssens de TU Delft se encontró una descripción de los operadores modulares en álgebras matriciales de dimensión finita sin necesidad de bases. Una versión de esta descripción se puede ver en unas notas (no terminadas) del profesor \cite{Janssens2013}. Por otra parte, el profesor Eli Hawkins de University of York ofreció unas conferencias sobre cuantización geométrica y grupoides. En esta se trataron temas que son de relevancia para la cuantización del espacio de configuración de la molécula de etileno. Aunque el formalismo general de cuantización es bastante técnico, los temas importantes para su entendimiento quedaron claros y hay una idea de como proseguir.  En particular, es necesario continuar con el estudio de $C^*$-álgebras de grupos, polarizaciones, medias densidades y grupoides simplécticos.
+Se realizó un viaje a la escuela y congreso Noncommutative Geometry and Poisson Geometry Around Groupoids en Villa de Leyva. Durante este se hicieron dos avances importantes. Por una parte, mediante la discusión con el profesor Bas Janssens de TU Delft se encontró una descripción de los operadores modulares en álgebras matriciales de dimensión finita sin necesidad de bases. Una versión de esta descripción se puede ver en unas notas (no terminadas) del profesor\cite{Janssens2013}. Por otra parte, el profesor Eli Hawkins de University of York ofreció unas conferencias sobre cuantización geométrica y grupoides. En esta se trataron temas que son de relevancia para la cuantización del espacio de configuración de la molécula de etileno. Aunque el formalismo general de cuantización es bastante técnico, los temas importantes para su entendimiento quedaron claros y hay una idea de como proseguir.  En particular, es necesario continuar con el estudio de $C^*$-álgebras de grupos, polarizaciones, medias densidades y grupoides simplécticos.
 
-Debido a la complejidad del formalismo necesario para el tratamiento de la molécula de etileno, se decidió cambiar el foco al estudio del problema de una partícula en un círculo. Aunque este es un espacio homogeneo, el grupo de isotropía es abeliano y por lo tanto no se espera ver la misma anomalía en entropía de la molécula de etileno. Sin embargo, este ejemplo si presenta otros tipos de anomalías\cite{Balachandran2011}. Además, encontramos que la cuantización de este sistema es una subalgebra $\mathcal{A}_{S^1}$ de la $C^*$-álgebra de Weyl de $T^*\mathbb{R}$. Esta $C^*$-álgebra es bien conocida \cite{Moretti2013}. Debido a esto, hemos podido obtener resultados preliminares sobre su teoría de representaciones. En particular, considere el Hamiltoniano 
+Debido a la complejidad del formalismo necesario para el tratamiento de la molécula de etileno, se decidió cambiar el foco al estudio del problema de una partícula en un círculo. Aunque este es un espacio homogeneo, el grupo de isotropía es abeliano y por lo tanto no se espera ver la misma anomalía en entropía de la molécula de etileno. Sin embargo, este ejemplo si presenta otros tipos de anomalías\cite{Balachandran2011}. Además, encontramos que la cuantización de este sistema es una subalgebra $\mathcal{A}_{S^1}$ de la $C^*$-álgebra de Weyl de $T^*\mathbb{R}$. Esta $C^*$-álgebra es bien conocida\cite{Moretti2013}. Debido a esto, hemos podido obtener resultados preliminares sobre su teoría de representaciones. En particular, considere el Hamiltoniano 
 \begin{equation}
 H_\theta=-\frac{1}{2}\dv[2]\phi
 \end{equation} 
 con dominio $D_\theta=\{\psi\in L^2([0,2\pi])|\psi(2\pi)=e^{i\theta}\psi(0)\}$. Hemos visto que la construcción GNS de $\mathcal{A}_{S^1}$ con respecto a los estados base de este Hamiltoniano llevan directamente a su dominio. Además, se tiene que $D_\theta$ no es invariante bajo el operador de paridad $P\psi(\phi)=\psi(\phi-2\pi)$. Sin embargo, introduciendo estados mixtos se restaura esta simetría. Hemos podido demostrar que estos son los únicos estados bases invariantes bajo paridad.
 
-Nuestra segunda aproximación al problema de etileno fue mediante el estudio de la teoría de representaciones del álgebra de grupo. En este nos planteamos el problema de, dado un grupo $G$ y una representación irreducible $\pi:G\rightarrow\mathcal{U}(V)$, hallar un operador densidad $\rho$ actuando en $L^2(G)$ tal que la representación GNS del estado inducido $\omega=\tr(\rho*\cdot)$ en el álgebra de grupo $\mathcal{A}(G)$ sea isomorfa a $\Hom(V)$. 
+Nuestra segunda aproximación al problema de etileno fue mediante el estudio de la teoría de representaciones del álgebra de grupo. En este nos planteamos el problema de, dado un grupo finito $G$ y una representación irreducible $\pi:G\rightarrow\mathcal{U}(V)$, hallar un operador densidad $\rho$ actuando en $L^2(G)$ tal que la representación GNS del estado inducido $\omega=\tr(\rho*\cdot)$ en el álgebra de grupo $\mathcal{A}(G)$ sea isomorfa a $\Hom V$. Es bien conocido que si $\{\pi^\alpha:G\rightarrow V^\alpha|\alpha\in\hat{G}\}$ son todas las representaciones irreducibles de $G$ salvo equivalencia entonces 
+\begin{equation}
+\mathcal{A}(G)\cong\bigoplus_{\alpha\in\hat{G}}\Hom V^\alpha.
+\end{equation}
+Se pudo ver que si se toma $\rho\in\Hom V^\alpha$ entonces $\mathcal{H}_\omega=\Hom V^\alpha$. Además, el ejemplo explicito para $G=S_3$ se llevó a cabo.
+
+En el problema de interpretación para la ambigüedad de la entropía surgió la idea de hacer uso de entropías relativas. La propuesta fue dada una vez más por el profesor Janssens. El argumentaba que la ambigüedad en la entropía que hemos encontrado se debe a un cambio en la noción de \textit{estado uniforme}. Usualmente se toma como estado uniforme al tracial. En mecánica clásica esto corresponde a tomar la medida de Liouville del espacio de fase como noción \textit{natural} de tamaño. Sin embargo, esto pierde sentido en sistemas infinitos. Es por esto necesaria la introducción de entropías de un estado con respecto a otro. Siguiendo esta idea, se intentó explicar la ambigüedad en terminos de una escogencia ambigüa en el estado de referencia de los cálculos en entropía. Esto es sin embrago todavía un trabajo en progreso.  
+
+Finalmente, asistí a la escuela Journeys into Theoretical Physics. Con esta participación se espera haber fortalecido las relaciones entre IFT-Perimeter-Saifr y la Universidad de los Andes.
+
 
 \section{Justificación de incumplimiento}
 
+\begin{itemize}
 
+\item No se ha logrado discutir en generalidad la ambigüedad en la entropía de sistemas con espacios de configuración homogeneos debido al nivel matemático necesario para atacar este problema. Sin embargo, nos hemos aproximado al problema aislando sus componentes importantes y reduciendolas a casos que podamos entender. Esto nos ha permitido obtener resultados parciales.
+
+\item El estudio del método de techos convexos fue interrumpida por la propuesta del profesor Janssens de entropías relativas. Sin embargo, otros proyectos han incentivado el estudio de temas en información cuántica que serán de utilidad para entender este tema.
+
+\end{itemize}
 
 \vspace{1.5cm}
 Nombre y firma del estudiante
