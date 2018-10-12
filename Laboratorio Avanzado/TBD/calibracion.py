@@ -6,16 +6,16 @@ plt.rc("text", usetex = True)
 plt.rc("text.latex", preamble = r"\usepackage[utf8]{inputenc} \usepackage{siunitx} \usepackage[version = 4]{mhchem} \usepackage{physics}")
 plt.rc("font", **{"family": "serif", "serif": ["Computer Modern"]})
 
-angles_raw = ["0", "0,3", "0,6", "1,2", "1,5", "1,8", "2,1", "2,4", "2,7"]
-angles = np.array([float(num.replace(",",".")) for num in angles_raw])
-photos = np.array([np.array(Image.open("haz("+angle+"grados).tif").convert("L")) for angle in angles_raw])
+angles = np.linspace(-9, 9, 31, endpoint = True)
+angles_raw = [str(theta).replace(".",",") for theta in angles]
+photos = np.array([np.array(Image.open("tercera_calibracion/" + angle + ".tif").convert("L")) for angle in angles_raw])
 
 #We take a naive approach towards the calculation of the centroid by splitting in half the picture. This should work relatively well after the fourth photo.
 
 centroids_L = np.zeros((len(angles), 2))
 centroids_R = np.zeros((len(angles), 2))
 
-for i in range(0,len(angles)):
+for i in range(11,len(angles)):
 
 	photo_L = photos[i,:,:640]
 	photo_R = photos[i,:,640:]
@@ -38,5 +38,5 @@ ax.plot(angles[3:], fit[0]*angles[3:]+fit[1], c = "k", label = r"$d = %.2f \si{p
 ax.set_xlabel(r"$\theta(\si{\degree})$")
 ax.set_ylabel(r"$d(\si{px})$")
 ax.legend()
-fig.savefig("calibracion.png")
+fig.savefig("calibracion_3.png")
 plt.close(fig)
