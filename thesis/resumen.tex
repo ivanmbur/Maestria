@@ -4,19 +4,13 @@
 \usepackage[english, spanish]{babel}
 \usepackage{authblk}
 \usepackage{hyperref}
+
+\title{Emergent Time from Quantum Variability\\{\small (Tiempo emergente de la variabilidad cuántica)}}
+
 \usepackage{amssymb}
 \usepackage{amsmath}
 
 \DeclareMathOperator{\Out}{Out}
-\DeclareMathOperator{\M}{\mathcal{M}}
-\DeclareMathOperator{\A}{\mathcal{A}}
-\DeclareMathOperator{\h}{\mathcal{H}}
-\DeclareMathOperator{\BH}{\mathcal{B}(\h)}
-\DeclareMathOperator{\Aut}{Aut}
-
-\newtheorem{definition}{Definition}[section]
-
-\title{Emergent Time from Quantum Variability\\{\small (Tiempo emergente de la variabilidad cuántica)}}
 
 \author{Iván Mauricio Burbano Aldana\thanks{\href{mailto:im.burbano10@uniandes.edu.co}{im.burbano10@uniandes.edu.co}}\\
 Code: 201423205
@@ -44,37 +38,6 @@ Las álgebras de operadores, como marcos generales para la descripción de obser
 \end{abstract}
 
 \selectlanguage{english}
-
-\section{State of the Art}
-
-\section{Objectives}
-
-\section{Theoretical Framework}
-
-In quantum mechanics observables are identified with operators on a separable Hilbert space $\h$. The spectrum of such an operator is then interpreted as the possible set of values the observation can yield. Therefore, the operators representing observables must be selfadjoint. Given that real observations are represented by concrete measurement devices whose range of outcomes is always bounded, we conclude that the observables must be in the bounded operators $\BH$\footnote{One can alternatively claim that, in light of the spectral theorem\cite{Hall2013}, every unbounded operator can be understood in terms of its spectral projections. These are in particular bounded operators. This point of view corresponds to adopting the position that every measurement can be ultimately broken down into a (possibly uncountably infinite) set of propositions.}. The following mathematical structures implement these requirements and are thus candidate structures for the algebra of observables of physical systems.    
-\begin{definition}
-	A $C^*$-algebra $\A$ is a Banach *-algebra which satisfies the $C^*$-condition, that is, for every $a\in\mathcal{A}$ we have
-	\begin{equation}
-		\|a^*a\|=\|a\|^2.
-	\end{equation}
-	A von Neumann algebra ($W^*$-algebra for short) $\M$ is a $C^*$-algebra for which there exists a predual, that is, a Banach space $\M_*$ such that $\M=(\M_*)^*$ as Banach spaces.
-\end{definition}
-On the other hand, physical states, which constitute the physical information required to evaluate the expected value of observables, can aslo be defined in this setting.
-\begin{definition}
-	Let $\A$ be a $C^*$-algebra. A state on $\A$ is a normalized positive linear functional $\omega:\A\rightarrow\mathbb{C}$. If $\M$ is a von Neumann algebra, a state $\omega$ on $\M$ is said to be normal if $\omega\in\M_*$ under the canonical embedding $\M_*\subseteq\M^*$.
-\end{definition}
-Note that in the context of von Neumann algebras and through the restriction to normal states, the structure of observables and states is complementary. This is evidence of the fact that each of them is meaningless without the other and, in fact, determines it. Finally, we can also consider dynamical evolutions in this framework. For definiteness we will work in the Heisenberg picture.
-\begin{definition}
-	A dynamical evolution on a $C^*$-algebra $\A$ is a strongly continuous representation $\alpha:\mathbb{R}\rightarrow\Aut\A$. A dynamical evolution on a $W^*$-algebra $\M$ is a weakly continuous representation $\alpha:\mathbb{R}\rightarrow\Aut\M$.
-\end{definition} 
-The relationship between this framework and the one usually used in classical and quantum formulations is given by the Gelfand-Naimark theorem and its commutative version\cite{Gelfand1943}, Sakai's theorem on the relation between abstract and concrete $W^*$-algebras\cite{Sakai1956}, its commutative analogue, Riez theorem\cite{Riesz1909, Kukutani1941, Hewitt1975}, Gleason's theorem\cite{Gleason1957}.   
-
-
-\section{Methodology}
-
-\section{Timetable}
-
-\section{Expected Results}
 
 \section*{Recommended Jury}
 
