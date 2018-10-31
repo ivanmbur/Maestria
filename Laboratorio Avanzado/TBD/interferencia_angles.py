@@ -13,8 +13,8 @@ def I(angle, offset, I_0, w, q, phi):
 data = np.genfromtxt("interferencia.txt", usecols = (0, 1))
 
 angles = np.linspace(np.min(data[:,0]),np.max(data[:,0]),1000)
-popt, pcov = curve_fit(I, data[:,0], data[:,1], p0 = [0.53, np.max(data[:,1]), 8, 8.7, np.pi])
-print(popt)
+popt, pcov = curve_fit(I, data[:,0], data[:,1], p0 = [0.55, np.max(data[:,1]), 8, 8.7, np.pi])
+print("[offset, I_0, w, q, phi]= ",popt)
 
 fig, ax = plt.subplots()
 ax.scatter(data[:,0], data[:,1], c = "k", alpha = 0.3)
@@ -22,5 +22,5 @@ ax.plot(angles, I(angles, *popt), c = "k")
 ax.set_xlabel(r"$\theta(\si{\degree})$")
 ax.set_ylabel(r"$I(\si{\micro\watt})$")
 ax.set_title(r"Patr\'on de Interferencia")
-fig.savefig("interferencia_2.png")
+fig.savefig("interferencia_angles.png")
 plt.close(fig)
