@@ -30,11 +30,20 @@ correr = (p_V[1]-p_H[1])/(p_V[0]-p_H[0])
 print("Vertical: d=%ftheta+%f" % (p_V[0],p_V[1]))
 print("Horizontal: d=%ftheta+%f" % (p_H[0],p_H[1]))
 
-sigma_d_V = np.sqrt(np.sum(centroids_V-p_V[1]-p_V[0]*angles)**2/(len(centroids_V)-2))
-sigma_d_H = np.sqrt(np.sum(centroids_H-p_H[1]-p_H[0]*angles)**2/(len(centroids_H)-2))
+sigma_d_V = np.sqrt(np.sum((centroids_V-p_V[1]-p_V[0]*angles)**2)/(len(centroids_V)-2))
+sigma_d_H = np.sqrt(np.sum((centroids_H-p_H[1]-p_H[0]*angles)**2)/(len(centroids_H)-2))
+Delta = len(centroids_V)*np.sum(centroids_V**2)-np.sum(centroids_V)**2
+sigma_A_V = sigma_d_V*np.sqrt(np.sum(centroids_V**2)/Delta)
+sigma_A_H = sigma_d_H*np.sqrt(np.sum(centroids_H**2)/Delta)
+sigma_B_V = sigma_d_V*np.sqrt(len(centroids_V)/Delta)
+sigma_B_H = sigma_d_H*np.sqrt(len(centroids_H)/Delta)
 
 print("sigma_d_V=%.10f" % sigma_d_V)
 print("sigma_d_H=%.10f" % sigma_d_H)
+print("sigma_A_V=%.10f" % sigma_A_V)
+print("sigma_A_H=%.10f" % sigma_A_H)
+print("sigma_B_V=%.10f" % sigma_B_V)
+print("sigma_B_H=%.10f" % sigma_B_H)
 
 fig, ax = plt.subplots()
 ax.scatter(angles, centroids_V, c = "b", alpha = 0.3, label = r"$\ket{V}$")
