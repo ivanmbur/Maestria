@@ -12,16 +12,22 @@ data = np.array([np.genfromtxt("actividad_2_%.1f.txt" % I) for I in I_B])
 B = [ufloat(fit[0],1)*ufloat(I,0.01) + ufloat(fit[1],1) for I in I_B]
 B_nom = np.array([b.nominal_value for b in B])
 
+for i in range(0,len(data)):
+	data[i][:,1] = -data[i][:,1]
+
 fit = np.array([np.polyfit(data[i][:,0], data[i][:,1], 1) for i in range(0,len(data))])
 sigma_V = np.array([np.sqrt(np.sum((data[i][:,1]-fit[i][1]-fit[i][0]*data[i][:,0])**2)/(len(data[i])-2)) for i in range(0,len(data))])
 Delta = np.array([len(data[i])*np.sum(data[i][:,0]**2)-np.sum(data[i][:,0])**2 for i in range(0,len(data))])
 sigma_pendiente = np.array([sigma_V[i]*np.sqrt(len(data[i])/Delta[i]) for i in range(0,len(data))])
 sigma_intercepto = np.array([sigma_V[i]*np.sqrt(np.sum(data[i][:,0]**2)/Delta[i]) for i in range(0,len(data))])
+print(fit)
+print(sigma_pendiente)
+print(B)
 
-R = np.array([ufloat(fit[i][0], sigma_pendiente[i])*ufloat(0.001, 0.0005)/(B[i]/1000) for i in range(0,len(B))])
+R = np.array([ufloat(fit[i][0], sigma_pendiente[i])*ufloat(0.001, 0)/(B[i]/1000) for i in range(0,len(B))])
 
 for i in range(0,len(B_nom)):
-	print("Se tiene una resistencia de Hall de %s para el campo magnetico %s" % (R[i].format(".2u"), B[i].format(".2u")))
+	print("Se tiene una resistencia de Hall de %s para el campo magnetico %s" % (R[i].format(".1ueL"), B[i].format(".1uL")))
 
 colors = ["b", "r", "g", "y", "m"]
 fig, ax = plt.subplots()
@@ -41,16 +47,19 @@ data = np.array([np.genfromtxt("actividad_2_%d.txt" % I) for I in I_p])
 B = [[ufloat(fit[0],1)*ufloat(I_B,0.01) + ufloat(fit[1],1) for I_B in data[i][:,0]] for i in range(0,len(data))]
 B_nom = np.array([np.array([b.nominal_value for b in B[i]]) for i in range(0,len(B))])
 
+for i in range(0,len(data)):
+	data[i][:,1] = -data[i][:,1]
+
 fit = np.array([np.polyfit(B_nom[i], data[i][:,1], 1) for i in range(0,len(B_nom))])
 sigma_V = np.array([np.sqrt(np.sum((data[i][:,1]-fit[i][1]-fit[i][0]*B_nom[i])**2)/(len(B_nom[i])-2)) for i in range(0,len(B_nom))])
 Delta = np.array([len(B_nom[i])*np.sum(B_nom[i]**2)-np.sum(B_nom[i])**2 for i in range(0,len(B_nom))])
 sigma_pendiente = np.array([sigma_V[i]*np.sqrt(len(B_nom[i])/Delta[i]) for i in range(0,len(B_nom))])
 sigma_intercepto = np.array([sigma_V[i]*np.sqrt(np.sum(B_nom[i]**2)/Delta[i]) for i in range(0,len(B_nom))])
 
-R = np.array([ufloat(fit[i][0], sigma_pendiente[i])*ufloat(0.001, 0.0005)/(ufloat(I_p[i], 1)/1000) for i in range(0,len(I_p))])
+R = np.array([ufloat(fit[i][0], sigma_pendiente[i])*ufloat(0.001, 0)/(ufloat(I_p[i], 1)/1000) for i in range(0,len(I_p))])
 
 for i in range(0,len(B_nom)):
-	print("Se tiene una resistencia de Hall de %s para la corriente transversal %f" % (R[i].format(".2u"), I_p[i]))
+	print("Se tiene una resistencia de Hall de %s para la corriente transversal %f" % (R[i].format(".1ueL"), I_p[i]))
 
 colors = ["b", "r", "g", "y", "m"]
 fig, ax = plt.subplots()
