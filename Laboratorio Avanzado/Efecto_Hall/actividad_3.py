@@ -30,9 +30,9 @@ R = (R-R[0])/R[0]
 R_nom = np.array([r.nominal_value for r in R])
 
 fig, ax = plt.subplots()
-ax.errorbar(B_nom, R_nom, xerr = [b.std_dev for b in B], yerr = [r.std_dev for r in R], fmt = "o")
+ax.errorbar(B_nom, R_nom, xerr = [b.std_dev for b in B], yerr = [r.std_dev for r in R], fmt = "o", c = "k")
 ax.set_xlabel(r"$B(\si{\milli\tesla})$")
 ax.set_ylabel(r"$\frac{R_m-R_0}{R_0}$")
-ax.set_title(r"Magnetoresistencia en semiconductores")
+ax.set_title(r"Magnetoresistencia")
 fig.savefig("resistencia_longitudinal.png")
 plt.close(fig)
