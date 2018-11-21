@@ -1,0 +1,184 @@
+\documentclass{beamer}
+\usetheme{Boadilla}
+
+\usepackage[utf8]{inputenc}
+\usepackage{tikz-cd}
+
+\title{Geometric Mechanics}
+\author[I. M. Burbano]{Iván Mauricio Burbano Aldana\thanks{\href{mailto:im.burbano10@uniandes.edu.co}{im.burbano10@uniandes.edu.co}}}
+\institute[Uniandes]{Universidad de los Andes}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{Motivation}
+
+\begin{frame}
+
+\frametitle{General Spaces}
+
+Usually, $\mathbb{R}^n$ is not an appropriate space to describe the configuration of a system.
+
+\begin{itemize}
+
+\item Particle in a box $Q=\Lambda\subseteq\mathbb{R}^3$.
+
+\item Pendulum $Q=S^1:=\{(x,y)\in\mathbb{R}^2\}$.
+
+\item N identical particles $Q=\mathbb{R}^{3N}/S_N$. 
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{A Coordinate Independent Formulation}
+
+Coordinates are artifacts we use to understand the world. However, physical processes should be unaffected by the way we choose to describe them. Physical laws should thus be coordinate independent. 
+
+\vspace{1cm}
+
+We can actually express them without coordinates!
+
+\end{frame}
+
+\section{Differential Geometry}
+
+\begin{frame}
+
+\frametitle{Topological Spaces}
+
+\begin{definition}
+A topology on a set $X$ is a collection of subsets $\mathcal{O}$ of $X$ such that:
+
+\begin{itemize}
+
+\item both $X,\varnothing\in\mathcal{O};$
+
+\item for every family $\{U_i\in\mathcal{O}|i\in I\}$ we have 
+\begin{equation}
+\bigcup_{i\in I}U_i\in\mathcal{O}\qquad\text{(Closed under unions);}
+\end{equation}
+
+\item for every $U_1,\dots,U_n\in\mathcal{O}$ we have
+\begin{equation}
+\bigcap_{i=1}^nU_i\in\mathcal{O}\qquad\text{(Closed under finite intersections).}
+\end{equation}
+
+\end{itemize}
+
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Topological Jargon}
+
+\begin{itemize}
+
+\item Elements of a topology $\mathcal{O}$ are said to be open.
+
+\item An open set $U$ which contains a point $p\in X$ is called a neighborhood of $p$.
+
+\item A space equipped with a topology is said to be a topological space.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Standard Topology on $\mathbb{R}^n$}
+
+A subset $U\subseteq\mathbb{R}^n$ is said to be open if for every $p\in U$ there exists a radius $r\in(0,\infty)$ such that the open ball of radius $r$ centered at $p$
+\begin{equation}
+B_r(p):=\{q\in\mathbb{R}^n|\|q-p\|<r\}
+\end{equation}
+is contained in $U$.
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Why topology? Convergence}
+
+After years of debate, mathematicians finally settled on topology being the most general setting for the study of convergence.
+
+\begin{definition}
+A sequence $(x_n)$ in a topological space $X$ is said to converge to $x\in X$ if for every open set $U\ni x$ (from now on called a neighborhood of $x$) there exists an $N\in\mathbb{N}$ such that for all $n\in\mathbb{N}$ greater than $N$ we have $x_n\in U$.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Why topology? Continuity}
+
+\begin{definition}
+A function $f:X\rightarrow Y$ between topological spaces is said to be continuous if $f^{-1}(V)\subseteq X$ is open for all open $V\subseteq Y$.
+\end{definition}
+
+\begin{definition}
+Two topological spaces $X$ and $Y$ are said to be homeomorphic if there is a continous bijection $f:X\rightarrow Y$ whose inverse is also homeomorphic. 
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Subspace Topology}
+
+\begin{definition}
+Let $Y\subseteq X$ be a subset of a topological space $X$. A subset $U\subset Y$ is said to be open (relative to $Y$) if there exists an open $V\subseteq X$ such that $U=V\cap Y$.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Topological Manifolds}
+
+\begin{definition}
+A locally euclidean space $M$ of dimension $n$ is a topological space where every point $p\in M$ has a neighborhood $U\ni p$ which is homeomorphic to an open subset of $\mathbb{R}^n$. A topological manifold of dimension $n$ is a Hausdorff second countable locally euclidean spaces of dimension $n$. 
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Manifold Jargon}
+
+\begin{itemize}
+
+\item A chart on $M$ is a pair $(U,x)$, where $U\subseteq X$ is open and $x:U\subseteq M\rightarrow x(U)\subseteq\mathbb{R}^n$ is an homeomorphism. 
+
+\item An atlas on $M$ is a collection of charts which covers $M$. 
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\frametitle{Manifold Philosophy}
+
+Use charts to verify properties on $M$ which are defined on $\mathbb{R}^n$. Restrict your atlas such that all charts agree on the properties.
+
+\begin{tikzcd}
+M \ar[r, "f"] \ar[d]\ar[u] & \mathbb{R} \\ 
+\end{tikzcd}
+
+\end{frame}
+
+\end{document}
