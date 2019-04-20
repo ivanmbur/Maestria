@@ -1,0 +1,39 @@
+\documentclass{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\begin{document}
+
+I am having a little trouble proving wick's theorem. I'll start from the last step that I know is correct. We define
+$$\left\langle \prod_{j=1}^{2m}x_{i_j}\right\rangle:=\left.\frac{\partial^{2m}}{\prod_{j=1}^{2m}\partial J_{i_j}}\frac{1}{2^m}\frac{1}{m!}\left(\vec{J}\cdot A^{-1}\vec{J}\right)^m\right|_{\vec{J}=0},$$
+where $A$ is a symmetric $N\times N$ matrix and $m\in\mathbb{N}$. Notice that
+$$\begin{aligned}
+\left(\vec{J}\cdot A^{-1}\vec{J}\right)^m=&\left(\sum_{k,l=1}^N J_kA^{-1}_{kl}J_l\right)^m=\sum_{k_1,\dots,k_m,l_1,\dots,l_m=1}^N\prod_{j=1}^m J_{k_j}A^{-1}_{k_jl_j}J_{l_j}\\
+=&\sum_{k_1,\dots,k_m,l_1,\dots,l_m=1}^N\prod_{j=1}^m A^{-1}_{k_jl_j}\prod_{j=1}^m J_{k_j}J_{l_j}.\end{aligned}$$
+Then 
+$$\left\langle \prod_{j=1}^{2m}x_{i_j}\right\rangle=\left.\frac{1}{2^m}\frac{1}{m!}\sum_{k_1,\dots,k_m,l_1,\dots,l_m=1}^N\prod_{j=1}^m A^{-1}_{k_jl_j}\frac{\partial^{2m}}{\prod_{j=1}^{2m}\partial J_{i_j}}\prod_{j=1}^m J_{k_j}J_{l_j}\right|_{\vec{J}=0}.$$
+The differential operator is going to anniquilate the polynomial in $\vec{J}$ unless it contains exactly the components with respect to which the operator is differentiating the exact same amount of times. Any more are going to be killed when we put $\vec{J}=0$ while any less are going to get killed by the derivatives. We can thus restrict the sum to $(k_1,\dots k_m,l_1,\dots l_m)=(i_{\sigma(1)},\dots,i_{\sigma(2m)})$ for some permutation $\sigma\in S_{2m}$. We thus have
+$$\begin{aligned}\left\langle \prod_{j=1}^{2m}x_{i_j}\right\rangle=&\left.\frac{1}{2^m}\frac{1}{m!}\sum_{\sigma\in S_{2m}}\prod_{j=1}^m A^{-1}_{i_{\sigma(j)}i_{\sigma(j+m)}}\frac{\partial^{2m}}{\prod_{j=1}^{2m}\partial J_{i_j}}\prod_{j=1}^m J_{i_{\sigma(j)}}J_{i_{\sigma(j+m)}}\right|_{\vec{J}=0}\\
+=&\left.\frac{1}{2^m}\frac{1}{m!}\sum_{\sigma\in S_{2m}}\prod_{j=1}^m A^{-1}_{i_{\sigma(j)}i_{\sigma(j+m)}}\frac{\partial^{2m}}{\prod_{j=1}^{2m}\partial J_{i_j}}\prod_{j=1}^{2m} J_{i_{\sigma(j)}}\right|_{\vec{J}=0}\\
+=&\left.\frac{1}{2^m}\frac{1}{m!}\sum_{\sigma\in S_{2m}}\prod_{j=1}^m A^{-1}_{i_{\sigma(j)}i_{\sigma(j+m)}}\frac{\partial^{2m}}{\prod_{j=1}^{2m}\partial J_{i_j}}\prod_{j=1}^{2m} J_{i_j}\right|_{\vec{J}=0}.\end{aligned}$$
+Now, for every $r\in\{1,\dots,N\}$ define $I_r=\{j\in\{1,\dots,2m\}|r=i_j\}.$ Then $\{I_r|r\in\{1,\dots,N\}\}$ is a partition of $\{1,\dots,2m\}$ and
+$$\begin{aligned}\frac{\partial^{2m}}{\prod_{j=1}^{2m}\partial J_{i_j}}\prod_{j=1}^{2m} J_{i_j}=&\prod_{j=1}^{2m}\frac{\partial}{\partial J_{i_j}}\prod_{j=1}^{2m} J_{i_j}=\prod_{r=1}^N\prod_{j\in I_r}\frac{\partial}{\partial J_r}\prod_{r=1}^N\prod_{j\in I_r}J_r=\prod_{r=1}^N\frac{\partial^{|I_r|}}{\partial J_r^{|I_r|}}\prod_{r=1}^NJ_r^{|I_r|}\\
+=&\prod_{r=1}^N\frac{\partial^{|I_r|}}{\partial J_r^{|I_r|}}J_r^{|I_r|}=\prod_{r=1}^N|I_r|!.\end{aligned}$$
+We then have
+$$\left\langle \prod_{j=1}^{2m}x_{i_j}\right\rangle=\prod_{r=1}^N|I_r|!\frac{1}{2^m}\frac{1}{m!}\sum_{\sigma\in S_{2m}}\prod_{j=1}^m A^{-1}_{i_{\sigma(j)}i_{\sigma(j+m)}}.$$
+If this is correct so far, the rest should be combinatorics. Let $\sigma_1,\sigma_2\in S_{2m}$. We say $\sigma_1\sim\sigma_2$ if there exists a permutation $\mu\in S_m$ such that $\sigma_2(j)=\sigma_1(\mu(j))$ and $\sigma_2(j+m)=\sigma_1(\mu(j)+m)$ for all $j\in\{1,\dots,m\}$. This is an equivalence relation, for every $[\sigma]\in S_{2m}/\sim$ we have $|[\sigma]|=|s_m|=m!$, and for every $\tilde{\sigma}\in[\sigma]$ we have
+$$\prod_{j=1}^m A^{-1}_{i_{\tilde{\sigma}(j)}i_{\tilde{\sigma}(j+m)}}=\prod_{j=1}^m A^{-1}_{i_{\sigma(\mu(j))}i_{\sigma(\mu(j)+m)}}=\prod_{j=1}^m A^{-1}_{i_{\sigma(j)}i_{\sigma(j+m)}}$$
+for some $\mu\in S_m$. Then
+$$\begin{aligned}
+\left\langle \prod_{j=1}^{2m}x_{i_j}\right\rangle=&\prod_{r=1}^N|I_r|!\frac{1}{2^m}\frac{1}{m!}\sum_{[\sigma]\in S_{2m}/\sim}\sum_{\tilde{\sigma}\in[\sigma]}\prod_{j=1}^m A^{-1}_{i_{\tilde{\sigma}(j)}i_{\tilde{\sigma}(j+m)}}\\
+=&\prod_{r=1}^N|I_r|!\frac{1}{2^m}\frac{1}{m!}\sum_{[\sigma]\in S_{2m}/\sim}\sum_{\tilde{\sigma}\in[\sigma]}\prod_{j=1}^m A^{-1}_{i_{\sigma(j)}i_{\sigma(j+m)}}\\
+=&\prod_{r=1}^N|I_r|!\frac{1}{2^m}\sum_{[\sigma]\in S_{2m}/\sim}\prod_{j=1}^m A^{-1}_{i_{\sigma(j)}i_{\sigma(j+m)}}\end{aligned}$$
+Now let $[\sigma_1],[\sigma_2]\in S_{2m}/\sim$. We say $[\sigma_1]\sim'[\sigma_2]$ if there exists a set $I\subset\{1,\dots,m\}$ such that $\sigma_1(j)=\sigma_2(j)$ and $\sigma_1(j+m)=\sigma_2(j+m)$ for all $j\in I$, while $\sigma_1(j)=\sigma_2(j+m)$ and $\sigma_1(j+m)=\sigma_2(j)$ for all $j\in A^c$. It is easily checked that this is a well defined equivalence relation and for every $[[\sigma]]\in S_{2m}/\sim/\sim'$ we have both that $|[[\sigma]]|=|2^{\{1,\dots,m\}}|=2^m$ and for every $\tilde{\sigma}\in S_{2m}/\sim/\sim'$
+$$A^{-1}_{i_{\tilde{\sigma}(j)}i_{\tilde{\sigma}(j+m)}}=A^{-1}_{i_{\tilde{\sigma}(j+m)}i_{\tilde{\sigma}(j)}}=A^{-1}_{i_{\sigma(j)}i_{\sigma(j+m)}}.$$
+We then have
+$$\begin{aligned}\left\langle \prod_{j=1}^{2m}x_{i_j}\right\rangle=&\prod_{r=1}^N|I_r|!\frac{1}{2^m}\sum_{[[\sigma]]\in S_{2m}/\sim/\sim'}\sum_{\tilde{\sigma}\in[[\sigma]]}\prod_{j=1}^m A^{-1}_{i_{\tilde{\sigma}(j)}i_{\tilde{\sigma}(j+m)}}\\
+=&\prod_{r=1}^N|I_r|!\frac{1}{2^m}\sum_{[[\sigma]]\in S_{2m}/\sim/\sim'}\sum_{\tilde{\sigma}\in[[\sigma]]}\prod_{j=1}^m A^{-1}_{i_{\sigma(j)}i_{\sigma(j+m)}}\\
+=&\prod_{r=1}^N|I_r|!\sum_{[[\sigma]]\in S_{2m}/\sim/\sim'}\prod_{j=1}^m A^{-1}_{i_{\sigma(j)}i_{\sigma(j+m)}}\end{aligned}$$
+The final result should be a summation over all pairings of the indices $(i_1,\dots,i_{2m})$ of the product of the elements of $A^{-1}$ corresponding to every pair in the pairing. However, the way that I understand it this is already $\sum_{[[\sigma]]\in S_{2m}/\sim/\sim'}\prod_{j=1}^m A^{-1}_{i_{\sigma(j)}i_{\sigma(j+m)}}$. Unless there is any more symmetry which I haven't seen and cancels the factor $\prod_{r=1}^N|I_r|!$, I must have done a mistake above.
+\end{document}
