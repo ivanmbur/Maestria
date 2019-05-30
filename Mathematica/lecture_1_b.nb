@@ -1,0 +1,1679 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     56890,       1671]
+NotebookOptionsPosition[     53330,       1603]
+NotebookOutlinePosition[     53682,       1619]
+CellTagsIndexPosition[     53639,       1616]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Examples", "Title",
+ CellChangeTimes->{{3.76816010923459*^9, 3.7681601162210627`*^9}, {
+  3.7681602335947647`*^9, 3.768160247181287*^9}, {3.768160459448516*^9, 
+  3.768160483262344*^9}, {3.768163808914227*^9, 
+  3.7681638100074453`*^9}},ExpressionUUID->"28de0cd4-9f65-4401-9870-\
+d8532dfa3f52"],
+
+Cell[CellGroupData[{
+
+Cell["Gamma Matrices", "Section",
+ CellChangeTimes->{{3.768163813319175*^9, 
+  3.768163816383511*^9}},ExpressionUUID->"ff0e7e1a-4b41-481e-8029-\
+795ef1facbdf"],
+
+Cell[TextData[{
+ "The rules of the game are ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      SubscriptBox["\[Gamma]", "a"], ",", 
+      SubscriptBox["\[Gamma]", "b"]}], "}"}], "=", 
+    RowBox[{"2", 
+     SubscriptBox["\[Delta]", "ab"]}]}], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "a65eae8e-fe20-4be7-97cb-307f0b2bdf7f"]
+}], "Text",
+ CellChangeTimes->{{3.7681606385895367`*^9, 
+  3.7681606783648252`*^9}},ExpressionUUID->"e31a61a5-330c-4bfc-84e7-\
+5d1d570003c3"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Gamma]", "[", "d", "]"}], "\[CenterDot]", 
+   RowBox[{"\[Gamma]", "[", "a", "]"}], "\[CenterDot]", 
+   RowBox[{"\[Gamma]", "[", "c", "]"}], "\[CenterDot]", 
+   RowBox[{"\[Gamma]", "[", "b", "]"}], "\[CenterDot]", 
+   RowBox[{"\[Gamma]", "[", "d", "]"}], "\[CenterDot]", 
+   RowBox[{"\[Gamma]", "[", "c", "]"}], "\[CenterDot]", 
+   RowBox[{"\[Gamma]", "[", "a", "]"}]}], "//.", " ", 
+  RowBox[{
+   RowBox[{"c___", "\[CenterDot]", 
+    RowBox[{"\[Gamma]", "[", "a_", "]"}], "\[CenterDot]", 
+    RowBox[{"\[Gamma]", "[", "b_", "]"}], "\[CenterDot]", "d___"}], 
+   "\[RuleDelayed]", 
+   RowBox[{
+    RowBox[{"c", "\[CenterDot]", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"\[Gamma]", "[", "b", "]"}]}], "\[CenterDot]", 
+        RowBox[{"\[Gamma]", "[", "a", "]"}]}], "+", 
+       RowBox[{"2", 
+        RowBox[{"\[Delta]", "[", 
+         RowBox[{"a", ",", "b"}], "]"}]}]}], ")"}], "\[CenterDot]", "d"}], "/;", 
+    RowBox[{"Not", "@", 
+     RowBox[{"OrderedQ", "[", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b"}], "}"}], "]"}]}]}]}]}]], "Input",
+ CellChangeTimes->{{3.768160486333352*^9, 3.768160619880335*^9}, {
+  3.7681608252336206`*^9, 3.768160917834848*^9}, {3.7681609484801893`*^9, 
+  3.768160972518817*^9}, {3.7681610067235107`*^9, 3.768161056380849*^9}, {
+  3.768161144390875*^9, 3.7681611697890387`*^9}, {3.768161210751131*^9, 
+  3.768161238946706*^9}, {3.768162221531308*^9, 3.768162225384581*^9}},
+ CellLabel->"In[26]:=",ExpressionUUID->"eba3a480-2d34-4f21-b87d-4b3cfd7219f8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{"\[Gamma]", "[", "a", "]"}]}], "\[CenterDot]", 
+     RowBox[{"\[Gamma]", "[", "d", "]"}]}], "+", 
+    RowBox[{"2", " ", 
+     RowBox[{"\[Delta]", "[", 
+      RowBox[{"d", ",", "a"}], "]"}]}]}], ")"}], "\[CenterDot]", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{"\[Gamma]", "[", "b", "]"}]}], "\[CenterDot]", 
+     RowBox[{"\[Gamma]", "[", "c", "]"}]}], "+", 
+    RowBox[{"2", " ", 
+     RowBox[{"\[Delta]", "[", 
+      RowBox[{"c", ",", "b"}], "]"}]}]}], ")"}], "\[CenterDot]", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{"\[Gamma]", "[", "c", "]"}]}], "\[CenterDot]", 
+     RowBox[{"\[Gamma]", "[", "d", "]"}]}], "+", 
+    RowBox[{"2", " ", 
+     RowBox[{"\[Delta]", "[", 
+      RowBox[{"d", ",", "c"}], "]"}]}]}], ")"}], "\[CenterDot]", 
+  RowBox[{"\[Gamma]", "[", "a", "]"}]}]], "Output",
+ CellChangeTimes->{
+  3.768160621423849*^9, 3.7681610590569773`*^9, 3.768161094266646*^9, {
+   3.768161145357044*^9, 3.768161166749617*^9}, {3.768161211383718*^9, 
+   3.7681612393758497`*^9}, 3.768162227427046*^9},
+ CellLabel->"Out[26]=",ExpressionUUID->"ce196dfa-021b-4155-9f23-0350eb4a978d"]
+}, Open  ]],
+
+Cell["\<\
+We tell mathematica that the Kronecker \[Delta] is a number and is symmetric\
+\>", "Text",
+ CellChangeTimes->{{3.768162482893655*^9, 3.768162496782045*^9}, {
+  3.768163344616137*^9, 
+  3.768163347549961*^9}},ExpressionUUID->"99bec106-1849-42c2-ba7e-\
+3f7915332a42"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetAttributes", "[", 
+   RowBox[{"\[Delta]", ",", "Orderless"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NumQ", "[", 
+    RowBox[{"_", "?", "NumericQ"}], "]"}], "=", "True"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NumQ", "[", 
+    RowBox[{"\[Delta]", "[", 
+     RowBox[{"_", ",", "_"}], "]"}], "]"}], "=", "True"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NumQ", "[", "_", "]"}], "=", "False"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.768162391013667*^9, 3.768162463291463*^9}, {
+  3.768163350194583*^9, 3.768163389388492*^9}},
+ CellLabel->"In[51]:=",ExpressionUUID->"795fe5a9-bf06-464f-a22c-868a4b1bca2b"],
+
+Cell["We see that we need to define some rules, e.g., linearity ", "Text",
+ CellChangeTimes->{{3.7681613194075823`*^9, 3.768161334985016*^9}, {
+  3.768161633775441*^9, 
+  3.7681616452670116`*^9}},ExpressionUUID->"0715ca81-a490-4ffb-8335-\
+9713f8fb7038"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"rules", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"c___", "\[CenterDot]", 
+       RowBox[{"\[Gamma]", "[", "a_", "]"}], "\[CenterDot]", 
+       RowBox[{"\[Gamma]", "[", "b_", "]"}], "\[CenterDot]", "d___"}], 
+      "\[RuleDelayed]", 
+      RowBox[{
+       RowBox[{"c", "\[CenterDot]", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            RowBox[{"\[Gamma]", "[", "b", "]"}]}], "\[CenterDot]", 
+           RowBox[{"\[Gamma]", "[", "a", "]"}]}], "+", 
+          RowBox[{"2", 
+           RowBox[{"\[Delta]", "[", 
+            RowBox[{"a", ",", "b"}], "]"}]}]}], ")"}], "\[CenterDot]", "d"}], 
+       "/;", 
+       RowBox[{"Not", "@", 
+        RowBox[{"OrderedQ", "[", 
+         RowBox[{"{", 
+          RowBox[{"a", ",", "b"}], "}"}], "]"}]}]}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"c___", "\[CenterDot]", 
+       RowBox[{"\[Gamma]", "[", "a_", "]"}], "\[CenterDot]", 
+       RowBox[{"\[Gamma]", "[", "a_", "]"}], "\[CenterDot]", "d___"}], 
+      "\[RuleDelayed]", 
+      RowBox[{"c", "\[CenterDot]", 
+       RowBox[{"(", 
+        RowBox[{"\[Delta]", "[", 
+         RowBox[{"a", ",", "a"}], "]"}], ")"}], "\[CenterDot]", "d"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"a1___", "\[CenterDot]", "a2_", "\[CenterDot]", "a3___"}], 
+      "\[RuleDelayed]", 
+      RowBox[{
+       RowBox[{"a2", " ", 
+        RowBox[{"a1", "\[CenterDot]", "a3"}]}], "/;", 
+       RowBox[{"NumQ", "[", "a2", "]"}]}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"a1___", "\[CenterDot]", 
+       RowBox[{"(", 
+        RowBox[{"a2_", " ", "a4_"}], ")"}], "\[CenterDot]", "a3___"}], 
+      "\[RuleDelayed]", 
+      RowBox[{
+       RowBox[{"a2", " ", 
+        RowBox[{"a1", "\[CenterDot]", "a4", "\[CenterDot]", "a3"}]}], "/;", 
+       RowBox[{"NumQ", "[", "a2", "]"}]}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"a1___", "\[CenterDot]", 
+       RowBox[{"(", 
+        RowBox[{"a2_", "+", "a4_"}], ")"}], "\[CenterDot]", "a3___"}], 
+      "\[RuleDelayed]", 
+      RowBox[{
+       RowBox[{"a1", "\[CenterDot]", "a2", "\[CenterDot]", "a3"}], "+", 
+       RowBox[{"a1", "\[CenterDot]", "a4", "\[CenterDot]", "a3"}]}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"CenterDot", "[", "a__", "]"}], "\[RuleDelayed]", 
+      RowBox[{"Flatten", "[", 
+       RowBox[{"CenterDot", "[", "a", "]"}], "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"\[Delta]", "[", 
+       RowBox[{"c_", ",", "c_"}], "]"}], "\[Rule]", "n"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[Delta]", "[", 
+        RowBox[{"a1_", ",", "a2_"}], "]"}], "a3_"}], "\[RuleDelayed]", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"a3", "/.", 
+         RowBox[{"a1", "\[Rule]", "a2"}]}], ")"}], "/;", 
+       RowBox[{"Not", "@", 
+        RowBox[{"FreeQ", "[", 
+         RowBox[{"a3", ",", "a1"}], "]"}]}]}]}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.768161360791622*^9, 3.768161615976486*^9}, {
+   3.76816171157246*^9, 3.768161762284382*^9}, {3.768162042778735*^9, 
+   3.768162100672525*^9}, 3.768162132422868*^9, 3.768162173815949*^9, {
+   3.768162268358918*^9, 3.76816228874798*^9}, {3.7681623708264513`*^9, 
+   3.768162373146408*^9}, {3.768162579162794*^9, 3.7681625812852793`*^9}, {
+   3.768162731796776*^9, 3.768162753179186*^9}, {3.768162927359385*^9, 
+   3.768162984343789*^9}, {3.76816302070337*^9, 3.768163040571917*^9}, {
+   3.768163229266163*^9, 3.768163289607629*^9}, 3.768163399118781*^9, {
+   3.7681636804196377`*^9, 3.768163683310858*^9}},
+ CellLabel->"In[61]:=",ExpressionUUID->"b24a0286-3602-4908-b5ea-a0e7de3bb37e"],
+
+Cell["With this rules on our expression", "Text",
+ CellChangeTimes->{{3.768161801652067*^9, 
+  3.76816182021904*^9}},ExpressionUUID->"abf7e9b1-f5b6-461d-bc0d-\
+6fa6f037cb3b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"\[Gamma]", "[", "d", "]"}], "\[CenterDot]", 
+     RowBox[{"\[Gamma]", "[", "a", "]"}], "\[CenterDot]", 
+     RowBox[{"\[Gamma]", "[", "c", "]"}], "\[CenterDot]", 
+     RowBox[{"\[Gamma]", "[", "b", "]"}], "\[CenterDot]", 
+     RowBox[{"\[Gamma]", "[", "d", "]"}], "\[CenterDot]", 
+     RowBox[{"\[Gamma]", "[", "c", "]"}], "\[CenterDot]", 
+     RowBox[{"\[Gamma]", "[", "a", "]"}]}], "//.", "rules"}], "/.", 
+   RowBox[{
+    RowBox[{"CenterDot", "[", 
+     RowBox[{"\[Gamma]", "[", "a_", "]"}], "]"}], "\[Rule]", 
+    RowBox[{"\[Gamma]", "[", "a", "]"}]}]}], "//", "Simplify"}]], "Input",
+ CellChangeTimes->{{3.768161825894487*^9, 3.7681618492828197`*^9}, {
+   3.768162197859708*^9, 3.768162202992341*^9}, 3.768162244769348*^9, {
+   3.768162623272831*^9, 3.7681626260273457`*^9}, {3.76816277218437*^9, 
+   3.7681628130927057`*^9}, {3.7681635022534943`*^9, 3.768163503495715*^9}},
+ CellLabel->"In[62]:=",ExpressionUUID->"f3ebf3ae-3aa0-485e-a0e1-729b12c1f4a5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", "16"}], "+", 
+     RowBox[{"24", " ", "n"}], "-", 
+     RowBox[{"10", " ", 
+      SuperscriptBox["n", "2"]}], "+", 
+     SuperscriptBox["n", "3"]}], ")"}]}], " ", 
+  RowBox[{"\[Gamma]", "[", "b", "]"}]}]], "Output",
+ CellChangeTimes->{
+  3.768162141552494*^9, {3.768162185995945*^9, 3.768162205862464*^9}, 
+   3.7681622455558863`*^9, 3.768162294829844*^9, 3.768162378323258*^9, 
+   3.768162585080153*^9, 3.768162626877057*^9, 3.768162698319846*^9, 
+   3.768162757672882*^9, {3.76816280515884*^9, 3.768162813513236*^9}, 
+   3.768162987925558*^9, {3.768163475517148*^9, 3.7681635041890087`*^9}, {
+   3.76816368641768*^9, 3.768163691545039*^9}},
+ CellLabel->"Out[62]=",ExpressionUUID->"6660d5ff-f034-4657-abf1-5e48c609df26"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Deck of Cards", "Section",
+ CellChangeTimes->{{3.768163794398752*^9, 
+  3.768163804134447*^9}},ExpressionUUID->"e6535beb-cb05-461b-be55-\
+2cc58143d284"],
+
+Cell["First, we want to generate the cards", "Text",
+ CellChangeTimes->{{3.768163847574188*^9, 
+  3.768163855310376*^9}},ExpressionUUID->"cc8954ec-a42e-48e8-a989-\
+499c467948da"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Hearts", "=", 
+   RowBox[{"Style", "[", 
+    RowBox[{"\[HeartSuit]", ",", 
+     RowBox[{"{", 
+      RowBox[{"Red", ",", "Large"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Clubs", "=", 
+   RowBox[{"Style", "[", 
+    RowBox[{"\[ClubSuit]", ",", "Large"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Diamonds", "=", 
+   RowBox[{"Style", "[", 
+    RowBox[{"\[FilledDiamond]", ",", 
+     RowBox[{"{", 
+      RowBox[{"Red", ",", "Large"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Spades", "=", 
+   RowBox[{"Style", "[", 
+    RowBox[{"\[SpadeSuit]", ",", "Large"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.768164106366231*^9, 3.768164257575644*^9}},
+ CellLabel->"In[71]:=",ExpressionUUID->"3f866906-fa34-4d87-88d0-d1eeccac04ce"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"deck", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"#", "/@", 
+      RowBox[{"Flatten", "[", 
+       RowBox[{"{", 
+        RowBox[{"Ace", ",", 
+         RowBox[{"Range", "[", 
+          RowBox[{"2", ",", "10"}], "]"}], ",", "Jacks", ",", "Queen", ",", 
+         "King"}], "}"}], "]"}]}], "&"}], "/@", 
+    RowBox[{"{", 
+     RowBox[{"Hearts", ",", "Spades", ",", "Diamonds", ",", "Clubs"}], 
+     "}"}]}], "//", "Flatten"}]}]], "Input",
+ CellChangeTimes->{{3.768163857226431*^9, 3.768163929245764*^9}, {
+  3.7681639825456877`*^9, 3.7681640075539618`*^9}, {3.7681642615767183`*^9, 
+  3.76816426263865*^9}, {3.768164330971364*^9, 3.768164368032322*^9}},
+ CellLabel->"In[78]:=",ExpressionUUID->"8ac7ad76-e52a-4a1b-9e66-9456cef14635"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Ace", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "2", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "3", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "4", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "5", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "6", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "7", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "8", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "9", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "10", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Jacks", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Queen", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "King", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Ace", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "2", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "3", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "4", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "5", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "6", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "7", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "8", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "9", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "10", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Jacks", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Queen", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "King", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Ace", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "2", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "3", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "4", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "5", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "6", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "7", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "8", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "9", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "10", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Jacks", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Queen", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "King", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Ace", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "2", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "3", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "4", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "5", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "6", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "7", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "8", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "9", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "10", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Jacks", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Queen", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "King", "]"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.768163897121373*^9, 3.76816391461935*^9}, 
+   3.768164021397231*^9, 3.768164228233289*^9, 3.7681642634071617`*^9, {
+   3.7681643438240128`*^9, 3.76816436893235*^9}},
+ CellLabel->"Out[78]=",ExpressionUUID->"1f0e6cbd-0e28-4920-9d2a-96e99099ba73"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Shuffle", ":=", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"shuffledDeck", "=", 
+     RowBox[{"RandomSample", "[", "deck", "]"}]}], ";"}], ")"}]}]], "Input",
+ CellChangeTimes->{{3.768164274268237*^9, 3.768164281135429*^9}, {
+  3.768164389335466*^9, 3.768164451818294*^9}},
+ CellLabel->"In[84]:=",ExpressionUUID->"892dcae4-105a-4743-9d27-786f0e3745eb"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"take", "[", "a_", "]"}], ":=", 
+  RowBox[{"(", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"temp", "=", 
+     RowBox[{"shuffledDeck", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ";;", "a"}], "]"}], "]"}]}], ";", 
+    RowBox[{"shuffledDeck", "=", 
+     RowBox[{"Drop", "[", 
+      RowBox[{"shuffledDeck", ",", "a"}], "]"}]}], ";", "\[IndentingNewLine]",
+     "temp"}], ")"}]}]], "Input",
+ CellChangeTimes->{{3.768164437113227*^9, 3.7681644383290253`*^9}, {
+  3.7681644872040167`*^9, 3.7681646080951366`*^9}, {3.768164816007606*^9, 
+  3.768164816500369*^9}},
+ CellLabel->"In[96]:=",ExpressionUUID->"746c6c5b-ffac-4b60-ae19-3b4a13e13532"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["shuffledDeck"], "Input",
+ CellChangeTimes->{{3.76816445961298*^9, 3.7681644656182613`*^9}},
+ CellLabel->"In[86]:=",ExpressionUUID->"6f76f565-e326-4530-aac1-500c86ddf61b"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "8", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "5", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "6", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Ace", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "9", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "10", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "5", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "7", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "9", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "4", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Jacks", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "10", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "3", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Ace", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "5", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Jacks", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Ace", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "6", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "King", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "9", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Ace", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "8", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "King", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Queen", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "8", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "4", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "7", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "9", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "6", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "6", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "2", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "7", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Queen", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "2", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "10", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "2", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "2", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "10", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "3", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "7", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "3", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Queen", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "King", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "5", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Jacks", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "8", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "King", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Queen", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Jacks", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "3", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "4", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "4", "]"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.768164466566744*^9},
+ CellLabel->"Out[86]=",ExpressionUUID->"04f48036-8a22-484d-98ac-3d5a09342294"]
+}, Open  ]],
+
+Cell[BoxData["Shuffle"], "Input",
+ CellChangeTimes->{{3.768164469820115*^9, 3.768164470858549*^9}},
+ CellLabel->"In[87]:=",ExpressionUUID->"8fd9288e-b111-4a3d-8515-4c7a0652ae11"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["shuffledDeck"], "Input",
+ CellChangeTimes->{{3.7681644724938107`*^9, 3.768164475827763*^9}},
+ CellLabel->"In[88]:=",ExpressionUUID->"189359db-6ade-4056-bf9e-b97f45d50c0c"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "3", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "4", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Queen", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "4", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "6", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "7", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "4", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "10", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "2", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "7", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Jacks", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "5", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "4", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "5", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "King", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Jacks", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Jacks", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "10", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "8", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Ace", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "2", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "6", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "King", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "5", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "2", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "3", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "6", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "8", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Ace", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "King", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "7", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "5", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Ace", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Jacks", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Ace", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "10", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Queen", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "10", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "9", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "9", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "Queen", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Queen", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "8", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "3", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "9", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "9", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "3", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[HeartSuit]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "2", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "8", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "6", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "7", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "King", "]"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.768164476294222*^9},
+ CellLabel->"Out[88]=",ExpressionUUID->"afc0ad4e-a05a-4a04-8049-56448499643a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Poker", "Subsection",
+ CellChangeTimes->{{3.7681647130964823`*^9, 
+  3.7681647145665293`*^9}},ExpressionUUID->"e9c15273-2241-4e48-a8c9-\
+88f914747367"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{"Shuffle", "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\"\<Player 1:\>\"", ",", 
+      RowBox[{"take", "[", "2", "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Player 2:\>\"", ",", 
+      RowBox[{"take", "[", "2", "]"}]}], "}"}]}], "}"}], "//", 
+  "TableForm"}]}], "Input",
+ CellChangeTimes->{{3.7681647165668097`*^9, 3.7681648046328287`*^9}},
+ CellLabel->
+  "In[101]:=",ExpressionUUID->"645c090a-7013-42f3-95b0-6c44f17e8dde"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"Player 1:\"\>", GridBox[{
+       {
+        RowBox[{
+         StyleBox["\[SpadeSuit]",
+          StripOnInput->False,
+          FontSize->Large], "[", "Jacks", "]"}]},
+       {
+        RowBox[{
+         StyleBox["\[FilledDiamond]",
+          StripOnInput->False,
+          LineColor->RGBColor[1, 0, 0],
+          FrontFaceColor->RGBColor[1, 0, 0],
+          BackFaceColor->RGBColor[1, 0, 0],
+          GraphicsColor->RGBColor[1, 0, 0],
+          FontSize->Large,
+          FontColor->RGBColor[1, 0, 0]], "[", "10", "]"}]}
+      },
+      GridBoxAlignment->{
+       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+        "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}}]},
+    {"\<\"Player 2:\"\>", GridBox[{
+       {
+        RowBox[{
+         StyleBox["\[ClubSuit]",
+          StripOnInput->False,
+          FontSize->Large], "[", "9", "]"}]},
+       {
+        RowBox[{
+         StyleBox["\[ClubSuit]",
+          StripOnInput->False,
+          FontSize->Large], "[", "Ace", "]"}]}
+      },
+      GridBoxAlignment->{
+       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+        "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.1]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}}]}
+   },
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}, "RowsIndexed" -> {}}],
+  TableForm[{{"Player 1:", {
+      Style[$CellContext`\[SpadeSuit], Large][$CellContext`Jacks], 
+      Style[$CellContext`\[FilledDiamond], {
+        RGBColor[1, 0, 0], Large}][10]}}, {"Player 2:", {
+      Style[$CellContext`\[ClubSuit], Large][9], 
+      Style[$CellContext`\[ClubSuit], Large][$CellContext`Ace]}}}]]], "Output",\
+
+ CellChangeTimes->{{3.76816478285428*^9, 3.768164821162796*^9}, 
+   3.768164865388389*^9},
+ CellLabel->
+  "Out[102]//TableForm=",ExpressionUUID->"a31da7f0-f2b7-4ba2-9233-\
+556804e8f60c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"take", "[", "3", "]"}]], "Input",
+ CellChangeTimes->{{3.768164829065255*^9, 3.7681648315490837`*^9}},
+ CellLabel->
+  "In[103]:=",ExpressionUUID->"a771f660-94c4-4bc1-b783-9a7e6f24250a"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    StyleBox["\[ClubSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "Jacks", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[SpadeSuit]",
+     StripOnInput->False,
+     FontSize->Large], "[", "4", "]"}], ",", 
+   RowBox[{
+    StyleBox["\[FilledDiamond]",
+     StripOnInput->False,
+     LineColor->RGBColor[1, 0, 0],
+     FrontFaceColor->RGBColor[1, 0, 0],
+     BackFaceColor->RGBColor[1, 0, 0],
+     GraphicsColor->RGBColor[1, 0, 0],
+     FontSize->Large,
+     FontColor->RGBColor[1, 0, 0]], "[", "4", "]"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.768164832380601*^9, 3.7681648683619127`*^9},
+ CellLabel->
+  "Out[103]=",ExpressionUUID->"bbdd094b-e79e-44f0-917c-0142c68b0e16"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"shuffledDeck", "//", "Length"}]], "Input",
+ CellChangeTimes->{{3.7681648344604263`*^9, 3.768164847747695*^9}},
+ CellLabel->
+  "In[100]:=",ExpressionUUID->"cf255dee-f52d-4be0-8624-23801685144c"],
+
+Cell[BoxData["45"], "Output",
+ CellChangeTimes->{3.7681648483917713`*^9},
+ CellLabel->
+  "Out[100]=",ExpressionUUID->"37227bc3-45b1-44ca-86bb-c478580456ac"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]]
+}, Open  ]]
+},
+WindowSize->{639, 775},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 300, 5, 98, "Title",ExpressionUUID->"28de0cd4-9f65-4401-9870-d8532dfa3f52"],
+Cell[CellGroupData[{
+Cell[905, 31, 159, 3, 67, "Section",ExpressionUUID->"ff0e7e1a-4b41-481e-8029-795ef1facbdf"],
+Cell[1067, 36, 522, 16, 35, "Text",ExpressionUUID->"e31a61a5-330c-4bfc-84e7-5d1d570003c3"],
+Cell[CellGroupData[{
+Cell[1614, 56, 1582, 35, 73, "Input",ExpressionUUID->"eba3a480-2d34-4f21-b87d-4b3cfd7219f8"],
+Cell[3199, 93, 1245, 34, 56, "Output",ExpressionUUID->"ce196dfa-021b-4155-9f23-0350eb4a978d"]
+}, Open  ]],
+Cell[4459, 130, 275, 6, 35, "Text",ExpressionUUID->"99bec106-1849-42c2-ba7e-3f7915332a42"],
+Cell[4737, 138, 733, 21, 94, "Input",ExpressionUUID->"795fe5a9-bf06-464f-a22c-868a4b1bca2b"],
+Cell[5473, 161, 253, 4, 35, "Text",ExpressionUUID->"0715ca81-a490-4ffb-8335-9713f8fb7038"],
+Cell[5729, 167, 3753, 91, 220, "Input",ExpressionUUID->"b24a0286-3602-4908-b5ea-a0e7de3bb37e"],
+Cell[9485, 260, 174, 3, 35, "Text",ExpressionUUID->"abf7e9b1-f5b6-461d-bc0d-6fa6f037cb3b"],
+Cell[CellGroupData[{
+Cell[9684, 267, 1032, 20, 52, "Input",ExpressionUUID->"f3ebf3ae-3aa0-485e-a0e1-729b12c1f4a5"],
+Cell[10719, 289, 809, 18, 37, "Output",ExpressionUUID->"6660d5ff-f034-4657-abf1-5e48c609df26"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[11577, 313, 158, 3, 53, "Section",ExpressionUUID->"e6535beb-cb05-461b-be55-2cc58143d284"],
+Cell[11738, 318, 178, 3, 35, "Text",ExpressionUUID->"cc8954ec-a42e-48e8-a989-499c467948da"],
+Cell[11919, 323, 853, 25, 94, "Input",ExpressionUUID->"3f866906-fa34-4d87-88d0-d1eeccac04ce"],
+Cell[CellGroupData[{
+Cell[12797, 352, 765, 18, 52, "Input",ExpressionUUID->"8ac7ad76-e52a-4a1b-9e66-9456cef14635"],
+Cell[13565, 372, 11179, 344, 181, "Output",ExpressionUUID->"1f0e6cbd-0e28-4920-9d2a-96e99099ba73"]
+}, Open  ]],
+Cell[24759, 719, 373, 8, 30, "Input",ExpressionUUID->"892dcae4-105a-4743-9d27-786f0e3745eb"],
+Cell[25135, 729, 676, 16, 94, "Input",ExpressionUUID->"746c6c5b-ffac-4b60-ae19-3b4a13e13532"],
+Cell[CellGroupData[{
+Cell[25836, 749, 184, 2, 30, "Input",ExpressionUUID->"6f76f565-e326-4530-aac1-500c86ddf61b"],
+Cell[26023, 753, 11033, 342, 181, "Output",ExpressionUUID->"04f48036-8a22-484d-98ac-3d5a09342294"]
+}, Open  ]],
+Cell[37071, 1098, 178, 2, 30, "Input",ExpressionUUID->"8fd9288e-b111-4a3d-8515-4c7a0652ae11"],
+Cell[CellGroupData[{
+Cell[37274, 1104, 185, 2, 30, "Input",ExpressionUUID->"189359db-6ade-4056-bf9e-b97f45d50c0c"],
+Cell[37462, 1108, 11033, 342, 181, "Output",ExpressionUUID->"afc0ad4e-a05a-4a04-8049-56448499643a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[48532, 1455, 157, 3, 54, "Subsection",ExpressionUUID->"e9c15273-2241-4e48-a8c9-88f914747367"],
+Cell[CellGroupData[{
+Cell[48714, 1462, 501, 13, 73, "Input",ExpressionUUID->"645c090a-7013-42f3-95b0-6c44f17e8dde"],
+Cell[49218, 1477, 2663, 73, 108, "Output",ExpressionUUID->"a31da7f0-f2b7-4ba2-9233-556804e8f60c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[51918, 1555, 208, 4, 30, "Input",ExpressionUUID->"a771f660-94c4-4bc1-b783-9a7e6f24250a"],
+Cell[52129, 1561, 736, 22, 76, "Output",ExpressionUUID->"bbdd094b-e79e-44f0-917c-0142c68b0e16"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[52902, 1588, 217, 4, 30, "Input",ExpressionUUID->"cf255dee-f52d-4be0-8624-23801685144c"],
+Cell[53122, 1594, 156, 3, 34, "Output",ExpressionUUID->"37227bc3-45b1-44ca-86bb-c478580456ac"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]]
+}, Open  ]]
+}
+]
+*)
+
